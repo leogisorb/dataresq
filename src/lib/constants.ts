@@ -10,38 +10,53 @@ export const SITE = {
   },
 } as const;
 
-export const PRICE_MATRIX: Record<string, Record<string, [number, number]>> = {
+export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb';
+export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash';
+export type UrgencyKey = 'std' | 'exp' | 'now';
+
+export const PRICE_MATRIX: Record<DeviceKey, Record<DamageKey, [number, number]>> = {
   hdd: {
-    logisch: [149, 299],
-    elektronik: [249, 449],
-    mechanisch: [349, 699],
-    wasser: [449, 899],
-    ransomware: [299, 599],
+    del: [290, 490],
+    mech: [490, 890],
+    water: [690, 1200],
+    ctrl: [390, 690],
+    enc: [290, 590],
+    crash: [390, 750],
   },
   ssd: {
-    logisch: [199, 349],
-    elektronik: [299, 549],
-    mechanisch: [349, 649],
-    ransomware: [349, 649],
+    del: [390, 690],
+    mech: [590, 990],
+    water: [790, 1400],
+    ctrl: [490, 890],
+    enc: [390, 790],
+    crash: [490, 890],
   },
   raid: {
-    logisch: [399, 699],
-    elektronik: [599, 999],
-    mechanisch: [599, 1199],
-    ransomware: [499, 999],
+    del: [990, 2200],
+    mech: [1200, 2800],
+    water: [1400, 3200],
+    ctrl: [890, 1800],
+    enc: [990, 2200],
+    crash: [890, 2000],
   },
-  usb_sd: {
-    logisch: [99, 199],
-    elektronik: [149, 299],
-    mechanisch: [149, 299],
+  usb: {
+    del: [190, 390],
+    mech: [290, 590],
+    water: [390, 790],
+    ctrl: [290, 590],
+    enc: [290, 490],
+    crash: [290, 550],
   },
-  smartphone: {
-    logisch: [299, 499],
-    mechanisch: [399, 699],
-  },
-} as const;
+};
 
-export const EXPRESS_MULTIPLIER = 1.3;
+export const URGENCY_MULTIPLIER: Record<UrgencyKey, number> = {
+  std: 1.0,
+  exp: 1.3,
+  now: 1.7,
+};
+
+/** @deprecated Use URGENCY_MULTIPLIER.exp */
+export const EXPRESS_MULTIPLIER = URGENCY_MULTIPLIER.exp;
 
 /** @deprecated Use SITE.phone */
 export const PHONE_NUMBER = SITE.phone;

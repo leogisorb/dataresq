@@ -1,0 +1,24 @@
+---
+description: Sanity CMS — Schema, GROQ-Queries, Ratgeber/Blog-Integration
+globs: ["src/sanity/**", "src/app/ratgeber/**"]
+alwaysApply: false
+---
+
+# Sanity-Scope: NUR Ratgeber/Blog
+- Core-Landingpages (/datenrettung/*, /standort/*) sind KEIN Sanity-Content → statisch
+- Sanity = dynamischer Redaktions-Content: Ratgeber, Case Studies, News
+
+# GROQ-Queries
+- Immer typsichere Queries mit `@sanity/client` + explizite TypeScript-Typen
+- Kein `any` bei Sanity-Response — Response-Typen definieren oder Zod nutzen
+- ISR für Ratgeber: `export const revalidate = 3600`
+- Queries in `src/lib/sanity-queries.ts` zentralisieren (nicht in Komponenten streuen)
+
+# Schema-Änderungen
+- Neue Felder immer `optional` (nicht `required`) für Migration-Safety
+- Slug-Felder: `isUnique`-Validator im Schema definieren
+- Keine Schema-Änderungen ohne Migrations-Kommentar
+
+# On-Demand Revalidation
+- Sanity Webhook → `/api/revalidate` Route
+- `revalidatePath` für betroffene Ratgeber-Seiten

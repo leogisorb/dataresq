@@ -222,6 +222,37 @@ export function generateServiceJsonLd(): DatenrettungServiceSchema {
   };
 }
 
+export interface MediumServiceSchema {
+  '@context': 'https://schema.org';
+  '@type': 'Service';
+  name: string;
+  description: string;
+  provider: {
+    '@type': 'LocalBusiness';
+    name: string;
+  };
+  serviceType: string;
+  areaServed: string;
+}
+
+export function generateMediumServiceJsonLd(
+  name: string,
+  description: string,
+): MediumServiceSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: siteConfig.name,
+    },
+    serviceType: 'Datenrettung',
+    areaServed: 'DE',
+  };
+}
+
 export interface BreadcrumbSchema {
   '@context': 'https://schema.org';
   '@type': 'BreadcrumbList';

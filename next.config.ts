@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: '/#kostenrechner',
         permanent: true,
       },
+      {
+        source: '/kontakt',
+        destination: '/#kontakt',
+        permanent: false,
+      },
     ];
   },
 };

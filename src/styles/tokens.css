@@ -1,28 +1,47 @@
 :root {
+  /* Source values — referenced by @theme in globals.css */
+  --value-color-bg: #f5f5f7;
+  --value-color-bg-card: #ffffff;
+  --value-color-bg-subtle: #f5f5f7;
+  --value-color-border: #d2d2d7;
+  --value-color-text: #000000;
+  --value-color-text-muted: #6e6e73;
+  --value-color-text-dim: #86868b;
+  --value-color-accent: #0071e3;
+  --value-color-accent-hover: #0077ed;
+  --value-color-accent-glow: #0071e31a;
+  --value-color-primary: #f5f5f7;
+  --value-color-primary-light: #ffffff;
+  --value-color-surface: #ffffff;
+  --value-color-surface-muted: #f5f5f7;
+  --value-color-success: #16a34a;
+  --value-color-warning: #d97706;
+
   /* Colors — Apple Light */
-  --color-bg: #f5f5f7;
-  --color-bg-card: #ffffff;
-  --color-bg-subtle: #f5f5f7;
-  --color-border: #d2d2d7;
+  --color-bg: var(--value-color-bg);
+  --color-bg-card: var(--value-color-bg-card);
+  --color-bg-subtle: var(--value-color-bg-subtle);
+  --color-border: var(--value-color-border);
 
-  --color-text: #000000;
-  --color-text-muted: #6e6e73;
-  --color-text-dim: #86868b;
+  --color-text: var(--value-color-text);
+  --color-text-muted: var(--value-color-text-muted);
+  --color-text-dim: var(--value-color-text-dim);
 
-  --color-accent: #0071e3;
-  --color-accent-hover: #0077ed;
-  --color-accent-glow: #0071e31a;
+  --color-accent: var(--value-color-accent);
+  --color-accent-hover: var(--value-color-accent-hover);
+  --color-accent-glow: var(--value-color-accent-glow);
 
   /* Legacy aliases (other pages) */
-  --color-primary: #f5f5f7;
-  --color-primary-light: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-muted: #f5f5f7;
-  --color-success: #16a34a;
-  --color-warning: #d97706;
+  --color-primary: var(--value-color-primary);
+  --color-primary-light: var(--value-color-primary-light);
+  --color-surface: var(--value-color-surface);
+  --color-surface-muted: var(--value-color-surface-muted);
+  --color-success: var(--value-color-success);
+  --color-warning: var(--value-color-warning);
 
   /* Typography */
-  --font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --value-font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--value-font-sans);
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;

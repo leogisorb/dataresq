@@ -1,0 +1,26 @@
+---
+description: src/lib/ Utilities, Constants, Helper-Funktionen
+globs: ["src/lib/**/*.ts", "src/lib/**/*.tsx"]
+alwaysApply: false
+---
+
+# constants.ts — Single Source of Truth
+- `SITE.phone`, `SITE.phoneTel`, `SITE.email`, `SITE.address` → Placeholder-Werte, nie überschreiben
+- `PRICE_MATRIX` und `EXPRESS_MULTIPLIER` → Preislogik AUSSCHLIESSLICH hier
+- NIE diese Werte in Komponenten direkt hardcoden
+
+# Neue lib-Datei anlegen wenn
+- Logik in mehr als 2 Komponenten dupliziert wird
+- Externe API-Calls (Sanity, Resend) eine eigene Abstraktion brauchen
+- Pure Business-Logik (Preisberechnung) aus Komponenten extrahiert werden soll
+
+# Naming Conventions
+- Utility-Funktionen: camelCase, Verb-Nomen (`formatPrice`, `buildJsonLd`, `slugify`)
+- Konstanten: SCREAMING_SNAKE_CASE (`PRICE_MATRIX`, `EXPRESS_MULTIPLIER`)
+- Typen/Interfaces: PascalCase, im eigenen Block oben in der Datei
+- Dateien: kebab-case (`metadata.ts`, `json-ld.ts`, `price-calculator.ts`)
+
+# Bestehende lib-Dateien (nicht duplizieren)
+- `constants.ts` — SITE, PRICE_MATRIX, EXPRESS_MULTIPLIER
+- `metadata.ts` — defaultMetadata, generatePageMetadata
+- Weitere Dateien per `ls src/lib/` prüfen bevor neue angelegt wird

@@ -1,0 +1,35 @@
+---
+description: Globale Coding-Standards für das Münch Datenrettungs-Projekt — immer aktiv
+alwaysApply: true
+---
+
+# Stack
+Next.js 15 App Router · TypeScript strict · Tailwind CSS v4 · HeroUI v3 · Sanity · Vercel
+
+# Absolute Regeln — niemals brechen
+- KEIN `any` ohne `// @ts-ignore reason: …` Kommentar
+- KEINE Inline-Styles — ausnahmslos alles in Tailwind-Klassen
+- KEINE hardcodierten Strings für Telefon/E-Mail/Adresse → immer `SITE` aus `src/lib/constants.ts`
+- KEIN `console.log` in Production-Code (nur in API-Routes mit `// dev only`)
+- KEINE `<br />` für Abstände — Tailwind `gap` / `space-y` nutzen
+
+# TypeScript
+- `strict: true` in tsconfig.json ist permanent
+- Interfaces bevorzugt vor `type` für Objekte
+- `as const` für Lookup-Objekte statt Enums
+- Nie `React.FC<>` — normale Funktionen mit explizitem Return-Typ
+- Keine `any` im Sanity/API-Response-Handling — Zod oder explizite Typen
+
+# Commits & Checkpoints
+- Vor jedem Refactor über mehrere Dateien: `git add -A && git commit -m "checkpoint: vor [task]"`
+- Nie committen ohne explizite User-Freigabe
+- Nie Konfigurationsdateien (next.config, tsconfig, globals.css) löschen oder leeren
+
+# Plan-First-Pattern (Pflicht bei neuen Features)
+1. Erst die Dateien nennen, die geändert werden
+2. Nur das TypeScript-Interface / die Props zeigen
+3. Auf explizites "OK" warten — dann implementieren
+
+# Sicherheit
+- Bei gefundenem Security-Issue: sofort stoppen + User informieren
+- Keine Credentials in Code — nur `process.env.VARIABLE_NAME` mit Placeholder in `.env.local`

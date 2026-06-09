@@ -7,17 +7,17 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Was kostet eine Datenrettung?',
     answer:
-      'Die Kosten hängen von Medium und Schadenstyp ab. Einfache logische Schäden an USB-Sticks beginnen bei ca. 99 €, mechanische HDD-Schäden liegen zwischen 349 € und 699 €. Unser Preisrechner gibt Ihnen eine realistische Richtspanne — der verbindliche Festpreis folgt nach der kostenlosen Diagnose.',
+      'Die Kosten hängen von Datenträger, Schadensart und Dringlichkeit ab. Typische Preise: HDD 290–1.200 €, SSD 390–1.400 €, RAID ab 890 €. Die Diagnose ist immer kostenlos.',
   },
   {
-    question: 'Zahle ich auch wenn keine Daten gerettet werden?',
+    question: 'Was bedeutet No Recovery, No Fee?',
     answer:
-      'Nein. Bei DATARESQ gilt: Kein Befund = keine Kosten. Sie erhalten vor Beauftragung einen Festpreis auf Basis der Diagnose. Wird nichts gerettet, entstehen Ihnen keine Kosten.',
+      'Sie zahlen nichts, wenn keine Daten gerettet werden können. Die Diagnose ist kostenlos, eine Kostenübernahme entsteht erst nach erfolgter Datenrettung.',
   },
   {
     question: 'Wie lange dauert eine Datenrettung?',
     answer:
-      'Im Standard-Service dauert die Datenrettung in der Regel 3–5 Werktage. Mit dem Express-Service (24h) bearbeiten wir Ihren Fall prioritär — gegen einen Aufschlag von 30 % auf die Richtpreisspanne.',
+      'Standard: 10–14 Werktage. Express: 3–5 Werktage. Notfall: 24–48 Stunden. Alle Aufträge werden in unserem Reinraum ISO Klasse 5 bearbeitet.',
   },
   {
     question: 'Ist die Diagnose wirklich kostenlos?',
@@ -27,6 +27,6 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Gilt der Preis auch für RAID-Systeme?',
     answer:
-      'RAID- und NAS-Systeme erfordern eine individuelle Bewertung. Unser Rechner zeigt Richtwerte für gängige RAID-Konfigurationen. Für komplexe Setups (z. B. mehrere defekte Platten, Enterprise-RAID) erstellen wir nach der Diagnose ein individuelles Angebot.',
+      'RAID- und NAS-Systeme erfordern eine individuelle Bewertung. Unser Rechner zeigt Richtwerte für gängige RAID-Konfigurationen. Für komplexe Setups erstellen wir nach der Diagnose ein individuelles Angebot.',
   },
 ];

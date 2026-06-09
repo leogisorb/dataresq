@@ -1,0 +1,38 @@
+---
+description: Explizit verbotene Patterns — verhindert bekannte Fehler, immer aktiv
+alwaysApply: true
+---
+
+# STYLING — Verboten
+- ❌ `style={{ color: '#333' }}` → ✅ `className="text-[#333]"`
+- ❌ `className="text-white"` auf Content-Text → ✅ `className="text-[#1d1d1f]"` (Light Theme)
+- ❌ `bg-[#0a0a0f]` in neuen Komponenten (war Dark Theme — abgelöst)
+- ❌ `tailwind.config.ts` neu anlegen → v4 nutzt `@theme` Block in globals.css
+
+# HEROUI v3 — Verboten
+- ❌ `useDisclosure()` → ✅ `useOverlayState()`
+- ❌ `<HeroUIProvider>` in layout.tsx → v3 braucht keinen Provider
+- ❌ HeroUI Button mit `onClick` ohne `"use client"` Boundary in der Komponente
+
+# TYPESCRIPT — Verboten
+- ❌ `as any` ohne erklärenden Kommentar
+- ❌ `// @ts-ignore` ohne Beschreibung warum
+- ❌ `React.FC<Props>` → ✅ `function Component(props: Props): JSX.Element`
+- ❌ Enum statt `as const` Objekt
+
+# SEO/RENDERING — Verboten
+- ❌ `"use client"` auf `page.tsx` ohne zwingende Begründung
+- ❌ `useEffect` + `fetch` für initialen Page-Content → Server Component nutzen
+- ❌ `noindex` auf Content-Seiten (/datenrettung/*, /standort/*, /ratgeber/*)
+- ❌ Identischer `<title>` auf mehreren Seiten
+
+# KONSTANTEN — Verboten
+- ❌ Telefonnummer direkt im JSX: `"+49 123 456"` → ✅ `{SITE.phone}`
+- ❌ E-Mail direkt im JSX: `"info@muench.de"` → ✅ `{SITE.email}`
+- ❌ Preise direkt hardcoden → ✅ aus `PRICE_MATRIX` in constants.ts
+
+# CODE-QUALITÄT — Verboten
+- ❌ Leere catch-Blöcke: `catch(e) {}` → mind. `console.error` oder Error-Handling
+- ❌ `// TODO` oder `// PLACEHOLDER` in committed Code
+- ❌ Komponenten über 150 Zeilen ohne aufzuteilen
+- ❌ Mehrere Verantwortlichkeiten in einer Datei

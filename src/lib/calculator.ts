@@ -1,38 +1,63 @@
-import { EXPRESS_MULTIPLIER, PRICE_MATRIX } from './constants';
+import {
+  PRICE_MATRIX,
+  URGENCY_MULTIPLIER,
+  type DamageKey,
+  type DeviceKey,
+  type UrgencyKey,
+} from './constants';
 
-export const MEDIUM_OPTIONS = [
-  { id: 'hdd', label: 'Festplatte HDD', icon: '💾' },
-  { id: 'ssd', label: 'SSD', icon: '⚡' },
-  { id: 'raid', label: 'RAID / NAS', icon: '🗄️' },
-  { id: 'usb_sd', label: 'USB / SD-Karte', icon: '🔌' },
-  { id: 'smartphone', label: 'Smartphone', icon: '📱' },
-] as const;
-
-export const SCHADEN_LABELS: Record<string, string> = {
-  logisch: 'Daten gelöscht / formatiert / nicht erkannt',
-  elektronik: 'Elektronikschaden / Überspannung',
-  mechanisch: 'Klackert / Geräusche / Sturz',
-  wasser: 'Wasserschaden / Feuchtigkeit',
-  ransomware: 'Verschlüsselt (Ransomware / Virus)',
-};
-
-export function getSchadenOptions(medium: string): string[] {
-  const matrix = PRICE_MATRIX[medium];
-  if (!matrix) return [];
-  return Object.keys(matrix);
+export interface DeviceOption {
+  key: DeviceKey;
+  label: string;
 }
 
-export function calculatePriceRange(
-  medium: string,
-  schaden: string,
-  express: boolean,
-): string | null {
-  const matrix = PRICE_MATRIX[medium];
-  if (!matrix || !matrix[schaden]) return null;
+export interface DamageOption {
+  key: DamageKey;
+  label: string;
+  hint: string;
+}
 
-  const [min, max] = matrix[schaden];
-  const factor = express ? EXPRESS_MULTIPLIER : 1;
-  return `${Math.round(min * factor)} € – ${Math.round(max * factor)} €`;
+export interface UrgencyOption {
+  key: UrgencyKey;
+  label: string;
+  duration: string;
+  popular?: boolean;
+}
+
+export const DEVICE_OPTIONS: DeviceOption[] = [
+  { key: 'hdd', label: 'Festplatte HDD' },
+  { key: 'ssd', label: 'SSD / NVMe' },
+  { key: 'raid', label: 'RAID / NAS' },
+  { key: 'usb', label: 'USB / SD-Karte' },
+];
+
+export const DAMAGE_OPTIONS: DamageOption[] = [
+  { key: 'del', label: 'Versehentlich gelöscht', hint: 'Dateien, Partitionen' },
+  { key: 'mech', label: 'Mechanischer Schaden', hint: 'Klicken, Sturz' },
+  { key: 'water', label: 'Flüssigkeitsschaden', hint: 'Wasser, Feuchtigkeit' },
+  { key: 'ctrl', label: 'Controller / Elektronik', hint: 'PCB, Überspannung' },
+  { key: 'enc', label: 'Verschlüsselt / Ransomware', hint: 'BitLocker, Virus' },
+  { key: 'crash', label: 'Absturz / BSOD', hint: 'Boot-Fehler, Kernel' },
+];
+
+export const URGENCY_OPTIONS: UrgencyOption[] = [
+  { key: 'std', label: 'Standard', duration: '10–14 Tage' },
+  { key: 'exp', label: 'Express', duration: '3–5 Tage', popular: true },
+  { key: 'now', label: 'Notfall', duration: '24–48 Std.' },
+];
+
+export function calculatePriceRange(
+  device: DeviceKey,
+  damage: DamageKey,
+  urgency: UrgencyKey,
+): [number, number] {
+  const [lo, hi] = PRICE_MATRIX[device][damage];
+  const mult = URGENCY_MULTIPLIER[urgency];
+  return [Math.round((lo * mult) / 10) * 10, Math.round((hi * mult) / 10) * 10];
+}
+
+export function formatPriceRange(range: [number, number]): string {
+  return `${range[0].toLocaleString('de-DE')} – ${range[1].toLocaleString('de-DE')} €`;
 }
 
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

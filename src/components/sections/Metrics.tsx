@@ -1,7 +1,7 @@
 import { RESCUED_DATASETS } from '@/lib/team';
 
 const metrics = [
-  { value: '95%', label: 'Erfolgsquote' },
+  { value: '92%', label: 'Erfolgsquote' },
   { value: `${RESCUED_DATASETS}+`, label: 'Gerettete Datensätze' },
   { value: '24h', label: 'Express möglich' },
   { value: '0€', label: 'Diagnosekosten' },

@@ -1,0 +1,48 @@
+---
+description: Next.js 15 App Router — SSR/SSG, Metadata, Data Fetching, next/image
+globs: ["src/app/**/*.tsx", "src/app/**/*.ts"]
+alwaysApply: false
+---
+
+# App Router Defaults
+- `page.tsx` = Server Component — kein `"use client"` ohne zwingenden Grund
+- `layout.tsx` = Server Component — kein State hier
+- `"use client"` nur wenn: useState, useEffect, Event-Listener, HeroUI-Buttons mit onClick
+
+# Rendering-Strategie
+- Statische Seiten (impressum, datenschutz, agb): `export const dynamic = 'force-static'`
+- Content-Seiten (ratgeber/[slug]): ISR mit `export const revalidate = 3600`
+- Landingpages (datenrettung/*, standort/*): SSG (kein `dynamic` nötig, default)
+- API-Routes: kein `force-static`
+
+# Metadata — PFLICHT auf jeder page.tsx
+```typescript
+export const metadata: Metadata = {
+  title: '[Seitentitel] | Münch Datenrettung',
+  description: '[120-160 Zeichen, keyword-reich, einzigartig pro Seite]',
+  openGraph: {
+    title: '[OG Titel]',
+    description: '[OG Description]',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/[pfad-ohne-trailing-slash]',
+  },
+}
+```
+
+# next/image — immer korrekt
+- IMMER `alt` Attribut (SEO + a11y) — nie leer lassen
+- IMMER `width` + `height` ODER `fill` mit `sizes`
+- LCP-Bild (above the fold): `priority` Prop setzen
+- Formate: AVIF/WebP automatisch via Next.js Image Optimization
+
+# Data Fetching
+- Server Components: direkte `fetch()` mit `cache: 'force-cache'` oder Sanity-Client
+- Kein `getServerSideProps` oder `getStaticProps` (Pages Router — nicht verwendet)
+- Kein `useEffect` + `fetch` für Daten die beim Load vorhanden sein sollen
+
+# Routing
+- Keine `pages/` Verzeichnisse anlegen — nur `src/app/`
+- Dynamische Routen: `[slug]` für Content, `[stadt]` für Standorte
+- Catch-all nur wenn wirklich nötig: `[...segments]`

@@ -1,0 +1,30 @@
+---
+description: Next.js API Routes, Formular-Handling, Resend E-Mail, DSGVO
+globs: ["src/app/api/**"]
+alwaysApply: false
+---
+
+# API Routes (App Router)
+- Dateiname: `route.ts` — kein `pages/api/` (Pages Router)
+- Exports: `export async function GET/POST/DELETE(req: Request)`
+- Return: `NextResponse.json({ success: true }, { status: 200 })`
+- Fehlerbehandlung: try/catch mit sinnvollen HTTP-Status-Codes (400 = Validation, 500 = Server)
+
+# Input-Validation (Pflicht)
+- Zod-Schema für jeden eingehenden POST-Body
+- Bei Validation-Fehler: `status: 400` + Fehlermeldung zurückgeben
+- Niemals unvalidierte User-Inputs direkt weiterverarbeiten
+
+# Resend (E-Mail)
+- API-Key: ausschließlich `process.env.RESEND_API_KEY`
+- `.env.local` Placeholder: `RESEND_API_KEY=re_placeholder_key_replace_me`
+- Von-Adresse: eigene Domain sobald verifiziert, vorher `onboarding@resend.dev`
+- E-Mail-Templates: HTML in separater Funktion, nicht inline im Handler
+
+# DSGVO-Konformität
+- Kein Logging von personenbezogenen Kundendaten (Name, E-Mail, Adresse)
+- Widerrufs-Route (`/api/widerruf`): Status-Tracking ohne PII in Server-Logs
+- AV-Vertrag-relevante Datenverarbeitung: nur nach expliziter User-Zustimmung
+
+# Rate Limiting
+- Kontaktformular-Route: mind. einfaches Rate-Limit (z.B. via Vercel Edge Config oder Upstash)

@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 import MobileNav from '@/components/layout/MobileNav';
 import CalculatorSection from '@/components/sections/CalculatorSection';
-import ExpertiseCards from '@/components/sections/ExpertiseCards';
+import ExpertiseSection from '@/components/sections/ExpertiseSection';
+import FaqSection from '@/components/sections/FaqSection';
 import Features from '@/components/sections/Features';
 import Hero from '@/components/sections/Hero';
 import Metrics from '@/components/sections/Metrics';
@@ -11,7 +12,6 @@ import { calculatorFaqs } from '@/lib/faq-calculator';
 import { siteConfig } from '@/lib/metadata';
 import {
   generateCalculatorServiceJsonLd,
-  generateFaqPageJsonLd,
   generateLocalBusinessJsonLd,
 } from '@/lib/structured-data';
 
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const localBusinessJsonLd = generateLocalBusinessJsonLd();
   const calculatorServiceJsonLd = generateCalculatorServiceJsonLd();
-  const calculatorFaqJsonLd = generateFaqPageJsonLd(calculatorFaqs);
 
   return (
     <>
@@ -43,18 +42,15 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorServiceJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorFaqJsonLd) }}
-      />
       <MobileNav />
       <main>
         <Hero />
         <CalculatorSection />
+        <ExpertiseSection />
         <Features />
-        <ExpertiseCards />
         <Metrics />
         <Testimonials />
+        <FaqSection faqs={calculatorFaqs} title="Häufige Fragen zu Datenrettungskosten" />
       </main>
     </>
   );

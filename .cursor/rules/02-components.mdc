@@ -1,0 +1,46 @@
+---
+description: React Komponenten, HeroUI v3, Accessibility, Tailwind Mobile-First
+globs: ["src/components/**/*.tsx", "src/components/**/*.ts"]
+alwaysApply: false
+---
+
+# HeroUI v3 — Kritische Besonderheiten (Breaking vs. v2)
+- `useOverlayState` verwenden — NICHT `useDisclosure` (existiert in v3 nicht)
+- Buttons mit `onClick` oder `render` prop: BRAUCHEN `"use client"` Boundary
+- Kein `<HeroUIProvider>` in layout.tsx — v3 hat keinen globalen Provider
+- Imports: `import { Button, Drawer, Modal, … } from '@heroui/react'`
+- Link-Wrapping: `render` prop mit `ComponentProps<typeof Link>` Cast
+
+# Komponenten-Struktur
+- Eine Verantwortung pro Datei (Single Responsibility Principle)
+- Props: immer explizites Interface oben in der Datei definieren
+- Keine anonymen Default Exports: `export default function MyComponent()`
+- children: `React.ReactNode` typen
+- Kleine Komponenten: max ~100 Zeilen — dann aufteilen
+
+# Tailwind — Mobile-First (strikt)
+- Basis-Klassen = Mobile (kein Präfix)
+- `md:` = Tablet ab 768px
+- `lg:` = Desktop ab 1280px
+- Design Tokens nutzen: `bg-bg`, `text-text`, `text-accent`, `border-border`
+- Kein `w-[372px]` ohne Kommentar — semantische Klassen bevorzugen
+
+# Apple Design System (aktuell aktiv)
+- BG alternierend: `bg-white` / `bg-[#f5f5f7]`
+- Text: `text-[#1d1d1f]` (primär), `text-[#6e6e73]` (muted), `text-[#adadb2]` (dim)
+- Accent: `text-[#0071e3]` / `bg-[#0071e3]`
+- Cards: `rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,.06)] border border-black/[0.04]`
+- CTAs: `rounded-full` (Pill-Form)
+- KEIN `text-white` auf Content-Text — nur auf farbigen Buttons OK
+
+# Accessibility
+- Interaktive Elemente: immer `aria-label` wenn Icon-only Button
+- Fokus: nie `outline-none` ohne `focus-visible:ring-2 focus-visible:ring-[#0071e3]`
+- Heading-Hierarchie: `h1` genau einmal pro Seite, dann `h2` → `h3`
+- Kontrast: Text auf Hintergrund mind. 4.5:1 (WCAG AA)
+- Semantisches HTML: `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`
+
+# NEVER
+- Keine prop-drilling über 2 Ebenen → Context oder Kolokalisation
+- Keine Magic Numbers direkt in JSX — in constants.ts oder CSS-Token
+- Kein `useEffect` für Daten die ein Server Component laden kann

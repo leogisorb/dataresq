@@ -1,0 +1,59 @@
+---
+description: SEO, Metadata, JSON-LD Structured Data, Sitemap, interne Verlinkung — PFLICHT
+globs: ["src/app/**/page.tsx", "src/app/**/layout.tsx", "src/app/sitemap.ts", "src/app/robots.ts"]
+alwaysApply: false
+---
+
+# Oberste Priorität: SEO ist das Produkt
+Jede page.tsx braucht ohne Ausnahme:
+1. `export const metadata: Metadata` mit title, description, openGraph, canonical
+2. Mind. ein JSON-LD `<script type="application/ld+json">` im JSX-Return
+
+# JSON-LD Typen nach Route
+| Route | Pflicht-Typen |
+|-------|--------------|
+| `/` | `LocalBusiness` + `FAQPage` |
+| `/datenrettung` | `Service` + `FAQPage` |
+| `/datenrettung/[slug]` | `Service` + `BreadcrumbList` |
+| `/standort/[stadt]` | `LocalBusiness` (stadtspezifisch) + `BreadcrumbList` |
+| `/ratgeber/[slug]` | `Article` + `BreadcrumbList` |
+| `/ueber-uns` | `Organization` |
+| Alle Seiten | `BreadcrumbList` |
+
+# JSON-LD Template (LocalBusiness)
+```typescript
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Münch Data Center',
+  description: '[Beschreibung]',
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    postalCode: SITE.address.zip,
+    addressCountry: 'DE',
+  },
+  priceRange: '$$',
+  openingHoursSpecification: { /* … */ },
+}
+```
+
+# Interne Verlinkung
+- Pillar-Pages (/datenrettung) → verlinken auf alle Cluster-Pages
+- Cluster-Pages → verlinken zurück auf Pillar + verwandte Cluster
+- Breadcrumbs: auf jeder Seite außer Homepage, konsistent mit BreadcrumbList JSON-LD
+
+# URL-Konventionen
+- Lowercase, Bindestriche, keine Umlaute: `/datenrettung/festplatte-hdd`
+- Keine Trailing-Slashes
+- Canonical immer explizit — niemals Fallback vertrauen
+
+# VERBOTEN (Ranking-Risiko)
+- Kein `noindex` auf relevante Content-Seiten (nur: /impressum, /datenschutz, /agb, /auftragsverarbeitung)
+- Kein duplikater Title-Tag (jede Seite eindeutig)
+- Kein Keyword-Stuffing in Descriptions
+- Kein `"use client"` auf SEO-kritischen page.tsx ohne zwingende Notwendigkeit
+- Keine Thin-Content-Seiten: jede generierte Seite braucht einzigartigen, substantiellen Inhalt

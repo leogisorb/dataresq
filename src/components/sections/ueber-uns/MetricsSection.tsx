@@ -1,7 +1,7 @@
 import { FOUNDING_YEAR, RESCUED_DATASETS, YEARS_EXPERIENCE } from '@/lib/team';
 
 const metrics = [
-  { value: '95%', label: 'Erfolgsquote' },
+  { value: '92%', label: 'Erfolgsquote' },
   { value: `${RESCUED_DATASETS}+`, label: 'Gerettete Datensätze' },
   { value: `${YEARS_EXPERIENCE}+`, label: 'Jahre Erfahrung' },
   { value: '100%', label: 'Interne Bearbeitung' },

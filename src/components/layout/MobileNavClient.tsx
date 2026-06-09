@@ -13,10 +13,10 @@ function HamburgerIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="size-6"
+      className="size-5"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={1.5}
       viewBox="0 0 24 24"
     >
       <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" strokeLinejoin="round" />
@@ -28,10 +28,10 @@ function PhoneIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="size-4 shrink-0"
+      className="size-3.5 shrink-0"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={1.5}
       viewBox="0 0 24 24"
     >
       <path
@@ -57,41 +57,39 @@ export default function MobileNavClient() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/72 shadow-sm backdrop-blur-xl">
-      <div className="site-container flex min-h-[56px] items-center justify-between gap-4">
-        <Link className="touch-target flex shrink-0 items-center" href="/">
-          <img
-            alt={siteConfig.name}
-            className="h-8 w-auto md:h-9"
-            height={36}
-            src="/images/LOGO.svg"
-            width={109}
-          />
-        </Link>
+    <header className="site-header">
+      <div className="site-container grid h-11 grid-cols-[1fr_auto_1fr] items-center gap-4 md:h-12">
+        <div className="flex items-center">
+          <Link className="touch-target flex shrink-0 items-center" href="/">
+            <img
+              alt={siteConfig.name}
+              className="h-7 w-auto md:h-8"
+              height={32}
+              src="/images/logo_2.svg"
+              width={97}
+            />
+          </Link>
+        </div>
 
-        <nav
-          aria-label="Hauptnavigation"
-          className="hidden items-center gap-8 md:inline-flex"
-        >
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.href}
-              className={[
-                'touch-target flex items-center text-sm text-text transition-colors hover:text-text',
-                isActive(item.href) ? 'font-semibold' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              href={item.href}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav aria-label="Hauptnavigation" className="hidden justify-center md:flex">
+          <ul className="flex items-center gap-8">
+            {mainNavItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className="site-header-nav-link touch-target inline-flex items-center"
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-3">
           <a
-            className="touch-target hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-text sm:flex"
+            className="touch-target hidden items-center gap-1.5 whitespace-nowrap text-xs text-text-muted transition-colors hover:text-text sm:flex"
             href={SITE.phoneTel}
           >
             <PhoneIcon />
@@ -107,6 +105,8 @@ export default function MobileNavClient() {
 
           <button
             aria-label="Menü öffnen"
+            aria-controls="mobile-nav-drawer"
+            aria-expanded={drawerState.isOpen}
             className="touch-target inline-flex items-center justify-center rounded-lg p-2 text-text md:hidden"
             type="button"
             onClick={drawerState.open}
@@ -118,23 +118,27 @@ export default function MobileNavClient() {
 
       <Drawer.Backdrop isOpen={drawerState.isOpen} onOpenChange={drawerState.setOpen}>
         <Drawer.Content placement="left">
-          <Drawer.Dialog className="bg-white">
+          <Drawer.Dialog className="bg-bg-card" id="mobile-nav-drawer">
             <Drawer.CloseTrigger />
             <Drawer.Header>
               <Drawer.Heading className="text-text">{siteConfig.name}</Drawer.Heading>
             </Drawer.Header>
             <Drawer.Body>
-              <nav aria-label="Mobile Navigation" className="flex flex-col">
-                {mainNavItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    className="touch-target border-b border-black/5 py-3 text-lg text-text active:text-text"
-                    href={item.href}
-                    onClick={handleNavClick}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <nav aria-label="Mobile Navigation">
+                <ul className="flex flex-col">
+                  {mainNavItems.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        aria-current={isActive(item.href) ? 'page' : undefined}
+                        className="site-header-nav-link touch-target block border-b border-border py-3 text-base"
+                        href={item.href}
+                        onClick={handleNavClick}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </nav>
             </Drawer.Body>
             <Drawer.Footer>

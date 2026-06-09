@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import DatenrettungFaq from '@/components/sections/datenrettung/DatenrettungFaq';
 import ServiceGrid from '@/components/sections/datenrettung/ServiceGrid';
@@ -17,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: 'Professionelle Datenrettung — Festplatte, SSD, RAID, NAS',
   description:
-    'Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Kostenlose Diagnose, Festpreis, 95% Erfolgsquote. Kein Befund = keine Kosten.',
+    'Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Kostenlose Diagnose, Festpreis, 92% Erfolgsquote.',
   robots: {
     index: true,
     follow: true,
@@ -168,6 +169,8 @@ export default function DatenrettungPage() {
             </div>
           </div>
         </section>
+
+        <PriceCalculatorSection />
 
         {/* Final CTA */}
         <section className="border-t border-black/5 bg-bg-card px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">

@@ -1,0 +1,54 @@
+---
+description: Tailwind CSS v4, Design Tokens, globals.css, tokens.css
+globs: ["src/styles/**", "src/app/globals.css"]
+alwaysApply: false
+---
+
+# Tailwind v4 — Breaking Changes (nicht mit v3 verwechseln)
+- Config: CSS-basiert via `@theme` Block in globals.css — KEIN tailwind.config.ts anlegen
+- Import-Reihenfolge EXAKT in globals.css:
+  1. `@import "tailwindcss"`
+  2. `@import "@heroui/styles"`
+  3. `@import "./tokens.css"`
+  4. `@plugin "@tailwindcss/typography"`
+- `@theme inline { … }` mappt CSS Custom Properties auf Tailwind-Utilities
+
+# Design Tokens (src/styles/tokens.css)
+- Alle Farben in `:root` als CSS Custom Properties definiert
+- Token-Naming: `--color-bg`, `--color-accent`, `--font-sans` etc.
+- HeroUI-Tokens: `--heroui-primary`, `--heroui-background` etc. MÜSSEN mit Farbsystem matchen
+- NIE Farben direkt in Komponenten hardcoden wenn Token vorhanden
+
+# Aktuelles Design System: Apple-Inspired Light Theme
+```css
+/* Hintergründe */
+--color-bg: #ffffff
+--color-bg-subtle: #f5f5f7    /* Apple Signature Grau */
+
+/* Text */
+--color-text: #1d1d1f          /* Apple near-black */
+--color-text-muted: #6e6e73   /* Apple secondary */
+--color-text-dim: #adadb2      /* Apple tertiary */
+
+/* Accent */
+--color-accent: #0071e3        /* Apple Blau */
+--color-accent-hover: #0077ed
+
+/* Shadows */
+--shadow-card: 0 2px 12px rgba(0,0,0,.06)
+--shadow-md:   0 4px 16px rgba(0,0,0,.08)
+--shadow-lg:   0 12px 40px rgba(0,0,0,.10)
+
+/* Radius */
+--radius-md: 12px
+--radius-lg: 18px
+--radius-full: 9999px
+```
+
+# color-scheme
+- `color-scheme: light` in html-Regel (war: dark — nicht zurücksetzen)
+
+# Animationen
+- `brand-carousel-track` Keyframe in globals.css bereits definiert — nicht duplizieren
+- Transitions max `duration-300`, ease mit `cubic-bezier(.25,.46,.45,.94)`
+- Hover-Lift auf Cards: `hover:-translate-y-1 transition-all duration-300`
