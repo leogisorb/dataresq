@@ -1,0 +1,176 @@
+import Link from 'next/link';
+
+import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
+import type { Location } from '@/lib/locations';
+import { getStandortFaqs } from '@/lib/standort-faq';
+import {
+  generateBreadcrumbJsonLd,
+  generateLocalBusinessLocationJsonLd,
+  generateRatgeberFaqPageJsonLd,
+} from '@/lib/structured-data';
+import { siteConfig } from '@/lib/metadata';
+
+const services = [
+  {
+    icon: '💾',
+    title: 'HDD Datenrettung',
+    description: 'Mechanische und logische Festplattenrettung — auch nach Sturz oder Klickgeräuschen.',
+    href: '/datenrettung',
+  },
+  {
+    icon: '⚡',
+    title: 'SSD Datenrettung',
+    description: 'Controller-Defekte, Firmware-Probleme und gelöschte Partitionen auf SSDs.',
+    href: '/datenrettung',
+  },
+  {
+    icon: '🖥️',
+    title: 'RAID / NAS',
+    description: 'RAID-Rekonstruktion und NAS-Recovery für Unternehmen und Privatnutzer.',
+    href: '/datenrettung',
+  },
+  {
+    icon: '🚀',
+    title: 'Express-Service',
+    description: '24h-Express nach Eingang im Labor — ideal für geschäftskritische Fälle.',
+    href: '/#kostenrechner',
+  },
+];
+
+const processSteps = [
+  { step: '①', title: 'Einsenden', description: 'Medium sicher verpacken und per DHL einsenden.' },
+  { step: '②', title: 'Diagnose (24–48h)', description: 'Kostenlose Analyse mit Festpreis-Angebot.' },
+  { step: '③', title: 'Daten zurück', description: 'Gerettete Daten auf verschlüsseltem Datenträger.' },
+];
+
+interface StandortContentProps {
+  loc: Location;
+}
+
+export default function StandortContent({ loc }: StandortContentProps) {
+  const faqs = getStandortFaqs(loc);
+  const localBusinessJsonLd = generateLocalBusinessLocationJsonLd(loc);
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Startseite', url: siteConfig.url },
+    { name: 'Standorte', url: `${siteConfig.url}/standort` },
+    { name: loc.name, url: `${siteConfig.url}/standort/${loc.slug}` },
+  ]);
+  const faqJsonLd = generateRatgeberFaqPageJsonLd(faqs);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text">
+        <Link className="active:text-accent md:hover:text-accent" href="/">
+          Startseite
+        </Link>
+        <span className="mx-2">›</span>
+        <Link className="active:text-accent md:hover:text-accent" href="/standort">
+          Standorte
+        </Link>
+        <span className="mx-2">›</span>
+        <span>{loc.name}</span>
+      </nav>
+
+      <h1 className="text-3xl font-bold text-text md:text-4xl lg:text-5xl">
+        Datenrettung {loc.name}
+      </h1>
+      <p className="mt-4 max-w-2xl text-lg text-text">{loc.description}</p>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-text">
+          Datenrettung in {loc.name} & {loc.region}
+        </h2>
+        <p className="mt-4 max-w-3xl leading-relaxed text-text">{loc.localFact}</p>
+        <p className="mt-4 max-w-3xl leading-relaxed text-text">{loc.serviceNote}</p>
+        <p className="mt-4 text-sm text-text">
+          Umland: Wir betreuen auch {loc.nearbyAreas.join(', ')}.
+        </p>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-text">Unsere Leistungen in {loc.name}</h2>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {services.map((service) => (
+            <article
+              key={service.title}
+              className="rounded-lg border border-black/5 bg-bg-card p-6"
+            >
+              <span aria-hidden="true" className="text-2xl">
+                {service.icon}
+              </span>
+              <h3 className="mt-3 font-semibold text-text">{service.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text">
+                {service.description}
+              </p>
+              <Link
+                className="mt-4 inline-flex text-sm font-medium text-accent active:text-accent-hover"
+                href={service.href}
+              >
+                Mehr erfahren →
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-text">So funktioniert es</h2>
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {processSteps.map((step) => (
+            <div key={step.title}>
+              <p className="text-2xl font-bold text-accent">{step.step}</p>
+              <h3 className="mt-2 font-semibold text-text">{step.title}</h3>
+              <p className="mt-2 text-sm text-text">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-text">Warum DATARESQ für {loc.name}?</h2>
+        <ul className="mt-4 space-y-2 text-text">
+          <li>✓ Versand von {loc.name} → Standard 3–5 WT</li>
+          <li>✓ Express-Option: 24h nach Eingang</li>
+          <li>✓ Kostenloser Kostenvoranschlag</li>
+          <li>✓ {loc.serviceNote}</li>
+        </ul>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-text">
+          Häufige Fragen zur Datenrettung in {loc.name}
+        </h2>
+        <div className="mt-6 space-y-6">
+          {faqs.map((faq) => (
+            <div key={faq.question}>
+              <h3 className="font-semibold text-text">{faq.question}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-lg border border-black/5 bg-bg-card p-8 text-text">
+        <h2 className="text-2xl font-bold text-text">
+          Jetzt Datenrettung in {loc.name} beauftragen
+        </h2>
+        <div className="mt-6">
+          <DatenrettungCta />
+        </div>
+      </section>
+    </>
+  );
+}
