@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import MobileNav from '@/components/layout/MobileNav';
 import CalculatorSection from '@/components/sections/CalculatorSection';
 import ExpertiseSection from '@/components/sections/ExpertiseSection';
+import BrandCarousel from '@/components/sections/BrandCarousel';
 import FaqSection from '@/components/sections/FaqSection';
 import Features from '@/components/sections/Features';
 import Hero from '@/components/sections/Hero';
-import Metrics from '@/components/sections/Metrics';
 import Testimonials from '@/components/sections/Testimonials';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import { siteConfig } from '@/lib/metadata';
@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: 'Datenrettung Festplatte, SSD, RAID — dataresq',
   description:
-    'Professionelle Datenrettung: Festplatte, SSD, RAID, NAS. Kostenlose Diagnose, Festpreis, 24h Express. Jetzt Kosten berechnen.',
+    'Professionelle Datenrettung: Festplatte, SSD, RAID, NAS. Prüfgebühr 39€, Festpreis. Jetzt Kosten berechnen.',
   robots: {
     index: true,
     follow: true,
@@ -47,10 +47,12 @@ export default function HomePage() {
         <Hero />
         <CalculatorSection />
         <ExpertiseSection />
+        <div className="bg-bg pb-16 md:pb-24">
+          <BrandCarousel />
+        </div>
         <Features />
-        <Metrics />
-        <Testimonials />
         <FaqSection faqs={calculatorFaqs} title="Häufige Fragen zu Datenrettungskosten" />
+        <Testimonials />
       </main>
     </>
   );

@@ -27,8 +27,9 @@ export default function AgbPage() {
 
       <h2>§ 2 Leistungsumfang</h2>
       <p>
-        Leistungen umfassen Diagnose, Datenrettung und Rückversand des Datenträgers. Es wird kein
-        Erfolg garantiert. Grundsatz: Kein Befund = keine Kosten (Details im individuellen Angebot).
+        Leistungen umfassen Prüfung, Datenrettung und Rückversand des Datenträgers. Es wird kein
+        Erfolg garantiert. Die Erstprüfung kostet 39 €; die Datenrettung zum vereinbarten Festpreis
+        nach Beauftragung.
       </p>
 
       <h2>§ 3 Preise &amp; Zahlung</h2>

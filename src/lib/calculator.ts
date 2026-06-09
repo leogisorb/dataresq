@@ -42,8 +42,7 @@ export const DAMAGE_OPTIONS: DamageOption[] = [
 
 export const URGENCY_OPTIONS: UrgencyOption[] = [
   { key: 'std', label: 'Standard', duration: '10–14 Tage' },
-  { key: 'exp', label: 'Express', duration: '3–5 Tage', popular: true },
-  { key: 'now', label: 'Notfall', duration: '24–48 Std.' },
+  { key: 'now', label: 'Notfall', duration: '24–48 Std.', popular: true },
 ];
 
 export function calculatePriceRange(

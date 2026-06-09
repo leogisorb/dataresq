@@ -1,6 +1,4 @@
 export const SITE = {
-  phone: '+49-[NUMMER]',
-  phoneTel: 'tel:+49[NUMMER]',
   email: 'info@muench-datenrettung.de',
   address: {
     street: '[STRASSE]',
@@ -10,9 +8,13 @@ export const SITE = {
   },
 } as const;
 
+/** Prüfgebühr für Erstdiagnose inkl. Kostenvoranschlag */
+export const DIAGNOSIS_FEE = 39 as const;
+export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
+
 export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb';
 export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash';
-export type UrgencyKey = 'std' | 'exp' | 'now';
+export type UrgencyKey = 'std' | 'now';
 
 export const PRICE_MATRIX: Record<DeviceKey, Record<DamageKey, [number, number]>> = {
   hdd: {
@@ -51,15 +53,5 @@ export const PRICE_MATRIX: Record<DeviceKey, Record<DamageKey, [number, number]>
 
 export const URGENCY_MULTIPLIER: Record<UrgencyKey, number> = {
   std: 1.0,
-  exp: 1.3,
   now: 1.7,
 };
-
-/** @deprecated Use URGENCY_MULTIPLIER.exp */
-export const EXPRESS_MULTIPLIER = URGENCY_MULTIPLIER.exp;
-
-/** @deprecated Use SITE.phone */
-export const PHONE_NUMBER = SITE.phone;
-
-/** @deprecated Use SITE.phone */
-export const PHONE_DISPLAY = SITE.phone;

@@ -1,5 +1,11 @@
 // TODO: Echte Kundenzitate einsetzen — keine Testimonials erfinden
 
+import {
+  SECTION_CONTENT_MT,
+  SECTION_HEADING,
+  SECTION_PADDING,
+} from '@/lib/section-styles';
+
 const testimonials = [
   {
     quote: '[QUOTE PLACEHOLDER — echter Kundentext hier einsetzen]',
@@ -15,13 +21,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 md:py-32">
+    <section className={SECTION_PADDING}>
       <div className="site-container">
-        <h2 className="mb-12 text-2xl font-semibold tracking-tight text-text md:text-3xl">
-          Was unsere Kunden sagen
-        </h2>
+        <h2 className={SECTION_HEADING}>Was unsere Kunden sagen</h2>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className={`${SECTION_CONTENT_MT} grid grid-cols-1 gap-6 md:grid-cols-2`}>
           {testimonials.map((testimonial, index) => (
             <article
               key={index}

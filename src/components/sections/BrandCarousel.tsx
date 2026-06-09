@@ -1,7 +1,12 @@
 const BRANDS = [
-  { name: 'Apple', src: '/images/Apple_Logo_0.svg', monochrome: true },
-  { name: 'LaCie', src: '/images/LaCie_idLci2C7-__1.svg', monochrome: false },
+  {
+    name: 'Apple',
+    src: '/images/Apple_Logo_0.svg',
+    monochrome: true,
+    imgClass: 'translate-x-[35px] md:translate-x-[39px]',
+  },
   { name: 'Samsung', src: '/images/Samsung_idLNQNZGf5_0.svg', monochrome: true },
+  { name: 'LaCie', src: '/images/LaCie_idLci2C7-__1.svg', monochrome: false },
   { name: 'Seagate', src: '/images/Seagate_idsCmr5TeW_1.svg', monochrome: false },
   { name: 'Toshiba', src: '/images/Toshiba_idUntBByXp_0.svg', monochrome: true },
   { name: 'Western Digital', src: '/images/Western_Digital_idiaGcEimZ_0.svg', monochrome: false },
@@ -11,9 +16,10 @@ interface BrandLogoProps {
   name: string;
   src: string;
   monochrome: boolean;
+  imgClass?: string;
 }
 
-function BrandLogo({ name, src, monochrome }: BrandLogoProps) {
+function BrandLogo({ name, src, monochrome, imgClass }: BrandLogoProps) {
   return (
     <div className="flex h-10 w-28 shrink-0 items-center justify-center md:h-12 md:w-36">
       <img
@@ -21,6 +27,7 @@ function BrandLogo({ name, src, monochrome }: BrandLogoProps) {
         className={[
           'h-full w-auto max-w-full object-contain',
           monochrome ? 'brightness-0 opacity-70' : 'opacity-90',
+          imgClass ?? '',
         ].join(' ')}
         height={48}
         src={src}
@@ -46,6 +53,7 @@ function BrandSet({ ariaHidden = false, setIndex }: BrandSetProps) {
           key={`${setIndex}-${brand.name}`}
           monochrome={brand.monochrome}
           name={brand.name}
+          imgClass={'imgClass' in brand ? brand.imgClass : undefined}
           src={brand.src}
         />
       ))}

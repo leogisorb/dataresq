@@ -39,7 +39,7 @@ export default function CalcInfoModal({ content, isOpen, onClose }: CalcInfoModa
       }}
       onClose={onClose}
     >
-      <div className="flex items-start justify-between gap-4 border-b border-border px-6 py-5">
+      <div className="flex items-start justify-between gap-4 px-6 py-5">
         <h2 className="text-lg font-semibold tracking-tight text-text" id="calc-info-title">
           {content.title}
         </h2>

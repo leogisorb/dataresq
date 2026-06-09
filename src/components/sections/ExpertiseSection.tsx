@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-interface ExpertiseStat {
-  value: string;
-  label: string;
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+
+interface ExpertiseBadge {
+  text: string;
+  hint: string;
 }
 
 interface ExpertiseCardData {
@@ -16,7 +18,7 @@ interface ExpertiseCardData {
   gradient: string;
   glowColor: string;
   brands: string[];
-  stats: ExpertiseStat[];
+  badges: ExpertiseBadge[];
   features: string[];
   href: string;
 }
@@ -30,10 +32,10 @@ const CARDS: ExpertiseCardData[] = [
     gradient: 'linear-gradient(135deg, #0a1628 0%, #0d3b5e 45%, #0a6b5e 100%)',
     glowColor: 'rgba(52,211,153,0.15)',
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
-    stats: [
-      { value: '95%', label: 'Erfolgsquote' },
-      { value: '24h', label: 'Express' },
-      { value: '0€', label: 'Kein Befund' },
+    badges: [
+      { text: '95%', hint: 'Erfolgsquote' },
+      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Prüfgebühr' },
+      { text: 'Festpreis', hint: 'Verbindlich vor Beauftragung' },
     ],
     features: [
       'Headcrash & mechanische Schäden',
@@ -51,10 +53,10 @@ const CARDS: ExpertiseCardData[] = [
     gradient: 'linear-gradient(135deg, #1a0a3e 0%, #2d1b6e 45%, #1a3a9e 100%)',
     glowColor: 'rgba(129,140,248,0.15)',
     brands: ['Samsung', 'WD', 'Crucial', 'Kingston', 'Corsair', 'Intel'],
-    stats: [
-      { value: '92%', label: 'Erfolgsquote' },
-      { value: '48h', label: 'Standard' },
-      { value: '0€', label: 'Kein Befund' },
+    badges: [
+      { text: '92%', hint: 'Erfolgsquote' },
+      { text: '48h', hint: 'Standardbearbeitung' },
+      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Prüfgebühr' },
     ],
     features: [
       'Controller-Ausfall & Firmware-Fehler',
@@ -72,10 +74,10 @@ const CARDS: ExpertiseCardData[] = [
     gradient: 'linear-gradient(135deg, #0a1f12 0%, #0d4a2a 45%, #0a5540 100%)',
     glowColor: 'rgba(16,185,129,0.15)',
     brands: ['Synology', 'QNAP', 'Buffalo', 'Drobo', 'LaCie', 'NetApp'],
-    stats: [
-      { value: '89%', label: 'Erfolgsquote' },
-      { value: 'SLA', label: 'B2B-Vertrag' },
-      { value: 'NDA', label: 'Verfügbar' },
+    badges: [
+      { text: '89%', hint: 'Erfolgsquote' },
+      { text: 'SLA', hint: 'B2B-Vertrag' },
+      { text: 'NDA', hint: 'Verfügbar' },
     ],
     features: [
       'RAID 0/1/5/6/10 Rekonstruktion',
@@ -109,11 +111,13 @@ function ExpertiseSectionHeading({ className }: { className?: string }) {
     <div className={className}>
       <h2
         id="expertise-heading"
-        className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-[-0.02em] text-text"
+        className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold leading-tight tracking-[-0.02em] text-text"
       >
         Unsere Expertise
       </h2>
-      <p className="mt-2 text-base text-text-muted">Jedes Medium. Jeder Schaden.</p>
+      <p className="mt-1.5 text-base leading-snug text-text-muted md:mt-2">
+        Jedes Medium. Jeder Schaden.
+      </p>
     </div>
   );
 }
@@ -137,10 +141,10 @@ function ExpertiseCardMedium({
       <p className="mb-2 text-xs font-medium uppercase tracking-widest text-text-muted">
         {card.label}
       </p>
-      <h3 className="mb-1 whitespace-pre-line text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-tight tracking-[-0.02em] text-text">
+      <h3 className="mb-0.5 whitespace-pre-line text-[clamp(1.5rem,2.5vw,2rem)] font-bold leading-tight tracking-[-0.02em] text-text">
         {card.title}
       </h3>
-      <p className="text-sm text-text-muted">{card.subtitle}</p>
+      <p className="text-sm leading-snug text-text-muted">{card.subtitle}</p>
     </div>
   );
 }
@@ -188,7 +192,7 @@ function ExpertiseCardTile({
   return (
     <div
       className={[
-        'relative h-[520px] w-full max-w-[340px] shrink-0 overflow-hidden rounded-3xl',
+        'relative h-[468px] w-full max-w-[340px] shrink-0 overflow-hidden rounded-3xl min-[1512px]:h-[520px]',
         className,
       ]
         .filter(Boolean)
@@ -204,16 +208,16 @@ function ExpertiseCardTile({
       />
 
       <div className="relative flex h-full flex-col justify-between p-6 md:p-8">
-        <div className="flex gap-6">
-          {card.stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="mb-1 text-[clamp(1.25rem,2vw,1.75rem)] font-bold leading-none tracking-[-0.03em] text-white">
-                {stat.value}
-              </p>
-              <p className="text-[10px] font-medium uppercase tracking-widest text-white/45">
-                {stat.label}
-              </p>
-            </div>
+        <div className="flex flex-wrap gap-2">
+          {card.badges.map((badge) => (
+            <span
+              key={badge.text}
+              aria-label={badge.hint}
+              title={badge.hint}
+              className="rounded-full border border-white/15 bg-white/[0.08] px-3 py-1 text-xs font-semibold tracking-wide text-white/90"
+            >
+              {badge.text}
+            </span>
           ))}
         </div>
 
@@ -271,7 +275,7 @@ function ExpertiseSlide({
 
 function MobileExpertiseBlock({ card }: { card: ExpertiseCardData }) {
   return (
-    <div className="mx-auto flex w-full max-w-[340px] flex-col items-center gap-5 text-center">
+    <div className="mx-auto flex w-full max-w-[340px] flex-col items-center gap-8 text-center">
       <ExpertiseCardMedium card={card} className="w-full items-center" />
       <ExpertiseCardTile card={card} className="w-full" />
       <ExpertiseCardBrands card={card} className="w-full items-center" />
@@ -320,7 +324,7 @@ export default function ExpertiseSection() {
     <section aria-labelledby="expertise-heading">
       <div className="py-16 md:hidden">
         <ExpertiseSectionHeading className="px-6 text-center" />
-        <div className="mt-10 flex flex-col items-center gap-10 px-6">
+        <div className="mt-12 flex flex-col items-center gap-10 px-6">
           {CARDS.map((card) => (
             <MobileExpertiseBlock key={card.id} card={card} />
           ))}
@@ -329,9 +333,9 @@ export default function ExpertiseSection() {
 
       <div ref={outerRef} className="relative hidden h-[300vh] md:block">
         <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-6">
-          <ExpertiseSectionHeading className="absolute left-0 right-0 top-10 text-center" />
+          <ExpertiseSectionHeading className="absolute left-0 right-0 top-16 text-center" />
 
-          <div className="relative h-[520px] w-full max-w-5xl">
+          <div className="relative h-[468px] w-full max-w-5xl min-[1512px]:h-[520px]">
             {CARDS.map((card, index) => (
               <ExpertiseSlide
                 key={card.id}
@@ -344,7 +348,7 @@ export default function ExpertiseSection() {
             ))}
           </div>
 
-          <div className="absolute bottom-10 flex gap-2">
+          <div className="absolute bottom-20 flex gap-2">
             {CARDS.map((_, index) => (
               <div
                 key={index}

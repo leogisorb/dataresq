@@ -1,26 +1,33 @@
 import Image from 'next/image';
 
+import {
+  CALCULATOR_HEADING,
+  CALCULATOR_HEADING_ID,
+  CALCULATOR_SECTION_ID,
+} from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[95dvh] overflow-hidden bg-bg">
-      <div className="site-container relative z-10 grid min-h-[95dvh] grid-cols-1 items-center gap-12 py-24 md:py-32 lg:grid-cols-2 lg:gap-16">
+    <section className="relative flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden bg-bg">
+      <div className="site-container relative z-10 grid min-h-0 flex-1 grid-cols-1 items-center gap-6 overflow-hidden py-6 md:gap-10 md:py-10 lg:grid-cols-2 lg:gap-14 lg:py-12">
         <div className="flex flex-col justify-center">
-          <h1 className="mb-6 text-4xl font-semibold leading-[1.05] tracking-tight text-text md:text-6xl lg:text-7xl">
+          <h1 className="mb-5 text-4xl font-semibold leading-[1.05] tracking-tight text-text md:mb-6 md:text-6xl lg:text-7xl">
             Daten verloren.
             <br />
             Wir holen sie zurück.
           </h1>
 
-          <p className="mb-10 max-w-xl text-base leading-relaxed text-text md:text-lg">
-            Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Kostenlose Diagnose mit
-            Datenübersicht und unverbindlichem Kostenvoranschlag — bevor Sie entscheiden.
+          <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
+            Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Erstprüfung für{' '}
+            {DIAGNOSIS_FEE_FORMATTED} mit Datenübersicht und unverbindlichem Kostenvoranschlag —
+            bevor Sie entscheiden.
           </p>
 
           <HeroCtas />
 
-          <div className="mt-10 flex flex-wrap gap-6 text-sm text-text">
+          <div className="mt-8 flex flex-wrap gap-6 text-sm text-text md:mt-10">
             <span>✓ 92% Erfolgsquote</span>
             <span>✓ ISO Reinraum</span>
           </div>
@@ -28,14 +35,26 @@ export default function Hero() {
 
         <div className="relative flex items-center justify-center lg:justify-end">
           <Image
-            alt="Verschiedene Datenspeicher-Medien: USB-Stick, SD-Karte, SSD, Festplatte"
-            className="h-auto w-full max-w-[640px] object-contain"
-            height={500}
+            alt="Verschiedene Datenspeicher-Medien: USB-Stick, SD-Karte, SSD, Festplatte, Diskette"
+            className="h-auto max-h-[min(42dvh,420px)] w-full max-w-[640px] object-contain lg:max-h-[min(48dvh,480px)]"
+            height={985}
             priority
             src="/images/hero-storage-devices.png"
-            width={750}
+            width={1597}
           />
         </div>
+      </div>
+
+      <div
+        className="site-container shrink-0 scroll-mt-24 pb-5 pt-5 text-center md:pb-6 md:pt-6"
+        id={CALCULATOR_SECTION_ID}
+      >
+        <h2
+          className="text-3xl font-semibold tracking-tight text-text md:text-4xl"
+          id={CALCULATOR_HEADING_ID}
+        >
+          {CALCULATOR_HEADING}
+        </h2>
       </div>
     </section>
   );

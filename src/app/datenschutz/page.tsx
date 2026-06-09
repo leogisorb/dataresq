@@ -27,8 +27,6 @@ export default function DatenschutzPage() {
         <br />
         [PLZ ORT]
         <br />
-        Telefon: <a href={SITE.phoneTel}>{SITE.phone}</a>
-        <br />
         E-Mail: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </p>
 

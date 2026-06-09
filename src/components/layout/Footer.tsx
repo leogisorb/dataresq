@@ -77,16 +77,9 @@ export default function Footer() {
             <FooterColumn title="Rechtliches" links={rechtlichesLinks} />
           </div>
 
-          <div className="mt-8 border-t border-black/5 pt-6">
+          <div className="mt-8 pt-6">
             <p className="text-xs text-text">
               © 2026 {siteConfig.name} · Alle Angaben ohne Gewähr ·{' '}
-              <a
-                className="text-text underline-offset-2 hover:underline"
-                href={SITE.phoneTel}
-              >
-                {SITE.phone}
-              </a>{' '}
-              ·{' '}
               <a
                 className="text-text underline-offset-2 hover:underline"
                 href={`mailto:${SITE.email}`}

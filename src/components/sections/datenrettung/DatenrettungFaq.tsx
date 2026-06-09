@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+
 const faqItems = [
   {
     id: 'dauer',
     question: 'Wie lange dauert eine Datenrettung?',
     answer:
-      'Standard 3–5 Werktage nach Eingang des Mediums. Express-Service binnen 24 Stunden auf Anfrage möglich (+30% Aufschlag).',
+      'Standard 3–5 Werktage nach Eingang des Mediums. Notfallbearbeitung binnen 24–48 Stunden auf Anfrage möglich (+70% Aufschlag).',
   },
   {
     id: 'kosten',
@@ -16,10 +18,9 @@ const faqItems = [
     answer: null,
   },
   {
-    id: 'kein-befund',
-    question: 'Zahle ich auch wenn keine Daten gerettet werden?',
-    answer:
-      'Nein. Unser Prinzip: Kein Befund — keine Kosten. Sie zahlen nur bei erfolgreich geretteten Daten.',
+    id: 'pruefgebuehr',
+    question: 'Was kostet die Erstprüfung?',
+    answer: `Die Erstprüfung inklusive schriftlichem Kostenvoranschlag kostet ${DIAGNOSIS_FEE_FORMATTED}. Die kostenpflichtige Datenrettung zahlen Sie erst nach Ihrer Beauftragung zum vereinbarten Festpreis.`,
   },
   {
     id: 'sicherheit',
@@ -58,7 +59,7 @@ export default function DatenrettungFaq() {
                 </>
               ) : item.id === 'sicherheit' ? (
                 <>
-                  Ja. Alle Arbeiten erfolgen intern in unserem Reinraum. Keine Weitergabe an Dritte.
+                  Ja. Alle Arbeiten erfolgen in unserem Reinraum. Keine Weitergabe an Dritte.
                   DSGVO-konforme Verarbeitung. Für Unternehmen schließen wir einen{' '}
                   <Link className="text-accent" href="/auftragsverarbeitung">
                     AVV

@@ -1,4 +1,4 @@
-import { Clock, Flame, Siren } from 'lucide-react';
+import { Clock, Siren } from 'lucide-react';
 
 import CalcOptionTile from '@/components/calculator/CalcOptionTile';
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
@@ -8,7 +8,6 @@ import type { UrgencyKey } from '@/lib/constants';
 
 const URGENCY_ICONS = {
   std: Clock,
-  exp: Flame,
   now: Siren,
 } as const;
 
@@ -22,7 +21,7 @@ export default function CalcStepUrgency({ selected, onSelect }: CalcStepUrgencyP
     <div role="group" aria-labelledby="calc-step-urgency">
       <CalcStepHeading id="calc-step-urgency">Wie dringend ist Ihr Fall?</CalcStepHeading>
 
-      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
         {URGENCY_OPTIONS.map((option) => {
           const Icon = URGENCY_ICONS[option.key];
           const isSelected = selected === option.key;

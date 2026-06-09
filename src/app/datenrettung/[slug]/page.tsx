@@ -6,6 +6,7 @@ import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSecti
 import MobileNav from '@/components/layout/MobileNav';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
@@ -98,8 +99,8 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               {service.description}
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-              Kostenlose Diagnose mit Datenübersicht, Festpreis vor Beauftragung und No Recovery,
-              No Fee — Sie zahlen nur bei erfolgreicher Datenrettung.
+              Erstprüfung für {DIAGNOSIS_FEE_FORMATTED} mit Datenübersicht, Festpreis vor
+              Beauftragung — die Rettung zahlen Sie erst nach Ihrer Freigabe.
             </p>
             <div className="mt-8">
               <DatenrettungCta layout="row" />
@@ -113,7 +114,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
           <div className="site-container text-center">
             <h2 className="text-2xl font-bold md:text-3xl">Noch Fragen zu {service.title}?</h2>
             <p className="mt-4 text-base leading-relaxed text-text-muted md:text-lg">
-              Unser Team berät Sie kostenlos — telefonisch oder per E-Mail.
+              Unser Team berät Sie kostenlos per E-Mail.
             </p>
             <div className="mt-8 flex justify-center">
               <DatenrettungCta layout="column" />

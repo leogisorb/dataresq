@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Drawer, useOverlayState } from '@heroui/react';
 
-import { BTN_BRAND_LG, BTN_BRAND_SM } from '@/lib/button-styles';
-import { SITE } from '@/lib/constants';
+import { BTN_BRAND_HEADER, BTN_BRAND_LG } from '@/lib/button-styles';
 import { mainNavItems } from '@/lib/navigation';
 import { siteConfig } from '@/lib/metadata';
 
@@ -20,25 +19,6 @@ function HamburgerIcon() {
       viewBox="0 0 24 24"
     >
       <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-3.5 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   );
 }
@@ -88,16 +68,8 @@ export default function MobileNavClient() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
-          <a
-            className="touch-target hidden items-center gap-1.5 whitespace-nowrap text-xs text-text-muted transition-colors hover:text-text sm:flex"
-            href={SITE.phoneTel}
-          >
-            <PhoneIcon />
-            {SITE.phone}
-          </a>
-
           <Link
-            className={`${BTN_BRAND_SM} touch-target hidden md:inline-flex`}
+            className={`${BTN_BRAND_HEADER} hidden md:inline-flex`}
             href="/#kostenrechner"
           >
             Kostenlos anfragen
@@ -130,7 +102,7 @@ export default function MobileNavClient() {
                     <li key={item.href}>
                       <Link
                         aria-current={isActive(item.href) ? 'page' : undefined}
-                        className="site-header-nav-link touch-target block border-b border-border py-3 text-base"
+                        className="site-header-nav-link touch-target block py-3 text-base"
                         href={item.href}
                         onClick={handleNavClick}
                       >

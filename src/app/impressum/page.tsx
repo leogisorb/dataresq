@@ -30,9 +30,6 @@ export default function ImpressumPage() {
 
       <h2>Kontakt</h2>
       <p>
-        Telefon:{' '}
-        <a href={SITE.phoneTel}>{SITE.phone}</a>
-        <br />
         E-Mail: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </p>
 

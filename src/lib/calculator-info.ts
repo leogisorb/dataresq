@@ -175,7 +175,7 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
       },
     ],
     warning:
-      'Salzwasser, Meerwasser oder koffeinhaltige Flüssigkeiten sind aggressiver als reines Wasser und beschleunigen die Korrosion massiv. Bei solchen Fällen bitte telefonisch Vorabsprache.',
+      'Salzwasser, Meerwasser oder koffeinhaltige Flüssigkeiten sind aggressiver als reines Wasser und beschleunigen die Korrosion massiv. Bei solchen Fällen bitte vorab per E-Mail Kontakt aufnehmen.',
   },
   ctrl: {
     title: 'Elektronik- & Controller-Schaden',

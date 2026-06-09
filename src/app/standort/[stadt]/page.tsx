@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: StandortPageProps): Promise<M
 
   return {
     title: `Datenrettung ${loc.name} — Festplatte, SSD, RAID`,
-    description: `Professionelle Datenrettung in ${loc.name} und ${loc.region}. Kostenlose Diagnose, Festpreis, 92% Erfolgsquote.`,
+    description: `Professionelle Datenrettung in ${loc.name} und ${loc.region}. Prüfgebühr 39€, Festpreis, 92% Erfolgsquote.`,
     robots: {
       index: true,
       follow: true,

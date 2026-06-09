@@ -9,7 +9,6 @@ import {
   Clock,
   Cpu,
   Droplets,
-  Flame,
   HardDrive,
   Lock,
   Server,
@@ -31,6 +30,7 @@ import {
   URGENCY_OPTIONS,
   calculatePriceRange,
 } from '@/lib/calculator';
+import { BTN_BRAND_RECT } from '@/lib/button-styles';
 import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
 
 type Step = 1 | 2 | 3 | 4;
@@ -53,7 +53,6 @@ const DAMAGE_ICONS = {
 
 const URGENCY_ICONS = {
   std: Clock,
-  exp: Flame,
   now: Siren,
 } as const;
 
@@ -67,6 +66,7 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   const [damage, setDamage] = useState<DamageKey | null>(null);
   const [urgency, setUrgency] = useState<UrgencyKey | null>(null);
   const stepRef = useRef<HTMLDivElement>(null);
+  const hasMountedRef = useRef(false);
 
   const priceRange = useMemo(() => {
     if (!device || !damage || !urgency) return null;
@@ -98,7 +98,12 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
     (step === 3 && urgency !== null);
 
   useEffect(() => {
-    stepRef.current?.focus();
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    stepRef.current?.focus({ preventScroll: true });
   }, [step]);
 
   const goNext = () => {
@@ -125,7 +130,7 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl lg:max-w-4xl">
+    <div className="relative w-full">
       <CalcProgressBar step={step} />
 
       {step >= 2 && step < 4 && <CalcSummaryBar pills={summaryPills} />}
@@ -134,7 +139,7 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
         key={step}
         ref={stepRef}
         tabIndex={-1}
-        className="transition-opacity duration-200 focus:outline-none"
+        className="transition-opacity duration-200 outline-none focus:outline-none focus-visible:outline-none"
       >
         {step === 1 && (
           <CalcStepDevice
@@ -182,7 +187,8 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
             type="button"
             aria-label="Weiter"
             className={[
-              'inline-flex items-center gap-2 rounded-xl bg-text px-5 py-2.5 text-sm font-medium text-bg-card transition-opacity',
+              BTN_BRAND_RECT,
+              'inline-flex items-center gap-2',
               canGoNext ? 'hover:opacity-90' : 'cursor-not-allowed opacity-40',
             ].join(' ')}
             disabled={!canGoNext}

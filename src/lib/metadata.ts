@@ -4,7 +4,7 @@ export const siteConfig = {
   name: 'DATARESQ',
   url: 'https://muench-datenrettung.de',
   description:
-    'Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Kostenlose Diagnose, Festpreis, 24h Express. Jetzt Kostenrechner nutzen.',
+    'Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Prüfgebühr 39€, Festpreis. Jetzt Kostenrechner nutzen.',
   locale: 'de_DE',
 };
 

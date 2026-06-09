@@ -1,4 +1,4 @@
-/** Unified brand button — blue default, black + white text on hover. Overrides HeroUI variants. */
+/** Unified brand button — neon green default, darker neon on hover. Overrides HeroUI variants. */
 export const BTN_BRAND = 'btn-brand rounded-full px-5 text-sm font-semibold sm:px-6 sm:text-base';
 
 /** Apple-like responsive scale: 44px → 48px → 52px with matching type. */
@@ -7,3 +7,14 @@ export const BTN_BRAND_LG =
 
 export const BTN_BRAND_SM =
   'btn-brand min-h-9 rounded-full px-4 text-xs font-semibold leading-none sm:min-h-10 sm:px-5 sm:text-sm';
+
+/** Header CTA — 25% shorter than BTN_BRAND_SM; header bar height unchanged. */
+export const BTN_BRAND_HEADER =
+  'btn-brand min-h-[27px] rounded-full px-3.5 text-xs font-semibold leading-none sm:min-h-[30px] sm:px-4';
+
+export const BTN_BRAND_RECT =
+  'btn-brand rounded-xl px-6 py-4 text-base font-medium transition-opacity hover:opacity-90';
+
+/** Large tile-style CTA (Features grid). */
+export const BTN_FEATURE_CTA_TILE =
+  'group flex flex-col justify-between rounded-2xl border border-border bg-transparent p-5 transition-opacity hover:opacity-90 md:rounded-3xl md:p-6';

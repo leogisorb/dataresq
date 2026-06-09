@@ -24,7 +24,7 @@ export const LOCATIONS: Location[] = [
     localFact:
       'Als Wirtschaftsmetropole mit hoher Unternehmens- und Startup-Dichte ist schnelle Datenrettung in München besonders geschäftskritisch.',
     nearbyAreas: ['Augsburg', 'Ingolstadt', 'Rosenheim', 'Landshut', 'Freising'],
-    serviceNote: 'Persönliche Abgabe in München möglich — Termin per Telefon vereinbaren.',
+    serviceNote: 'Persönliche Abgabe in München möglich — Termin per E-Mail vereinbaren.',
   },
   {
     slug: 'berlin',
@@ -50,7 +50,7 @@ export const LOCATIONS: Location[] = [
     localFact:
       'Als größter Seehafen Deutschlands ist Hamburg auf lückenlosen Datenzugriff angewiesen — Datenverlust hat hier direkte wirtschaftliche Konsequenzen.',
     nearbyAreas: ['Lübeck', 'Kiel', 'Lüneburg', 'Buchholz', 'Norderstedt'],
-    serviceNote: 'Expressversand ab Hamburg in der Regel 24h Laufzeit.',
+    serviceNote: 'Einsenden per DHL — Versandlabel auf Anfrage.',
   },
 ];
 

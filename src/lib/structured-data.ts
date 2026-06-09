@@ -1,6 +1,6 @@
 import type { RatgeberArticle, RatgeberFaqItem } from './sanity';
 
-import { SITE } from './constants';
+import { DIAGNOSIS_FEE_FORMATTED, SITE } from './constants';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
 import { siteConfig } from './metadata';
@@ -37,7 +37,6 @@ export interface OrganizationJsonLdSchema {
   '@type': 'Organization';
   name: string;
   url: string;
-  telephone: string;
   email: string;
   foundingDate: string;
   employee: Array<{
@@ -53,7 +52,6 @@ export function generateOrganizationJsonLd(): OrganizationJsonLdSchema {
     '@type': 'Organization',
     name: siteConfig.name,
     url: siteConfig.url,
-    telephone: SITE.phone,
     email: SITE.email,
     foundingDate: FOUNDING_YEAR,
     employee: TEAM.map((member) => ({
@@ -90,7 +88,6 @@ export interface LocalBusinessSchema {
   name: string;
   description: string;
   url: string;
-  telephone: string;
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -110,7 +107,6 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     name: siteConfig.name,
     description: 'Professionelle Datenrettung für Festplatten, SSD, RAID und NAS.',
     url: siteConfig.url,
-    telephone: SITE.phone,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
@@ -160,7 +156,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      description: 'Kostenlose Diagnose mit Festpreis — kein Befund, keine Kosten.',
+      description: `Erstprüfung ${DIAGNOSIS_FEE_FORMATTED} — verbindlicher Festpreis nach Prüfung.`,
     },
   };
 }
@@ -359,7 +355,6 @@ export interface LocalBusinessLocationSchema {
   '@type': 'LocalBusiness';
   name: string;
   url: string;
-  telephone: string;
   areaServed: string[];
   geo: {
     '@type': 'GeoCoordinates';
@@ -380,7 +375,6 @@ export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusines
     '@type': 'LocalBusiness',
     name: `${siteConfig.name} ${loc.name}`,
     url: `${siteConfig.url}/standort/${loc.slug}`,
-    telephone: SITE.phone,
     areaServed: [loc.name, ...loc.nearbyAreas],
     geo: {
       '@type': 'GeoCoordinates',

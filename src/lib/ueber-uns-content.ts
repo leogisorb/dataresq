@@ -1,3 +1,5 @@
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+
 export interface Certification {
   icon: string;
   title: string;
@@ -37,14 +39,12 @@ export const comparisonRows: ComparisonRow[] = [
   { feature: 'Reinraumlabor', muench: '✅ Eigenes', competitor: '❌ Oft extern' },
   { feature: 'Ersatzteillager', muench: '✅ 14.000+', competitor: '⚠️ Begrenzt' },
   { feature: 'Festpreis', muench: '✅ Immer', competitor: '⚠️ Oft variabel' },
-  { feature: 'No Cure No Pay', muench: '✅ Garantiert', competitor: '⚠️ Nicht immer' },
-  { feature: 'Kein Outsourcing', muench: '✅ 100%', competitor: '❌ Häufig' },
+  { feature: 'Erstprüfung', muench: `✅ ${DIAGNOSIS_FEE_FORMATTED}`, competitor: '⚠️ Oft unklar' },
   { feature: 'DSGVO / AVV', muench: '✅', competitor: '⚠️ Selten' },
 ];
 
 export const reinraumBullets = [
   'Reinraum ISO-Klasse 5',
   'Über 14.000 Ersatzteile im Lager',
-  'Alle Arbeiten intern — kein Outsourcing',
   'Sichere, verschlüsselte Datenspeicherung',
 ];

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import type { Location } from '@/lib/locations';
 import { getStandortFaqs } from '@/lib/standort-faq';
 import {
@@ -30,16 +31,16 @@ const services = [
     href: '/datenrettung',
   },
   {
-    icon: '🚀',
-    title: 'Express-Service',
-    description: '24h-Express nach Eingang im Labor — ideal für geschäftskritische Fälle.',
-    href: '/#kostenrechner',
+    icon: '🔌',
+    title: 'USB & SD-Karte',
+    description: 'Abgebrochene Stecker, defekte Chips und gelöschte Fotos — Rettung ab 99 €.',
+    href: '/datenrettung/usb-sd',
   },
 ];
 
 const processSteps = [
   { step: '①', title: 'Einsenden', description: 'Medium sicher verpacken und per DHL einsenden.' },
-  { step: '②', title: 'Diagnose (24–48h)', description: 'Kostenlose Analyse mit Festpreis-Angebot.' },
+  { step: '②', title: 'Prüfung (24–48h)', description: `Schadensanalyse für ${DIAGNOSIS_FEE_FORMATTED} mit Festpreis-Angebot.` },
   { step: '③', title: 'Daten zurück', description: 'Gerettete Daten auf verschlüsseltem Datenträger.' },
 ];
 
@@ -143,8 +144,8 @@ export default function StandortContent({ loc }: StandortContentProps) {
         <h2 className="text-2xl font-bold text-text">Warum DATARESQ für {loc.name}?</h2>
         <ul className="mt-4 space-y-2 text-text">
           <li>✓ Versand von {loc.name} → Standard 3–5 WT</li>
-          <li>✓ Express-Option: 24h nach Eingang</li>
-          <li>✓ Kostenloser Kostenvoranschlag</li>
+          <li>✓ Prüfgebühr {DIAGNOSIS_FEE_FORMATTED} für Erstdiagnose</li>
+          <li>✓ Verbindlicher Festpreis vor Beauftragung</li>
           <li>✓ {loc.serviceNote}</li>
         </ul>
       </section>

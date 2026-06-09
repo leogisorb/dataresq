@@ -10,6 +10,14 @@
   --value-color-accent: #0071e3;
   --value-color-accent-hover: #0077ed;
   --value-color-accent-glow: #0071e31a;
+  --value-color-neon: #c6ff00;
+  --value-color-neon-hover: #b8eb00;
+  --value-chevron-1: #22d3ee;
+  --value-chevron-2: #a78bfa;
+  --value-chevron-3: #f472b6;
+  --value-chevron-4: #60a5fa;
+  --value-chevron-5: #c6ff00;
+  --value-chevron-6: #fb923c;
   --value-color-primary: #f5f5f7;
   --value-color-primary-light: #ffffff;
   --value-color-surface: #ffffff;
@@ -30,6 +38,14 @@
   --color-accent: var(--value-color-accent);
   --color-accent-hover: var(--value-color-accent-hover);
   --color-accent-glow: var(--value-color-accent-glow);
+  --color-neon: var(--value-color-neon);
+  --color-neon-hover: var(--value-color-neon-hover);
+  --color-chevron-1: var(--value-chevron-1);
+  --color-chevron-2: var(--value-chevron-2);
+  --color-chevron-3: var(--value-chevron-3);
+  --color-chevron-4: var(--value-chevron-4);
+  --color-chevron-5: var(--value-chevron-5);
+  --color-chevron-6: var(--value-chevron-6);
 
   /* Legacy aliases (other pages) */
   --color-primary: var(--value-color-primary);

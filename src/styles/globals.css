@@ -22,6 +22,14 @@
   --color-accent: var(--value-color-accent);
   --color-accent-hover: var(--value-color-accent-hover);
   --color-accent-glow: var(--value-color-accent-glow);
+  --color-neon: var(--value-color-neon);
+  --color-neon-hover: var(--value-color-neon-hover);
+  --color-chevron-1: var(--value-chevron-1);
+  --color-chevron-2: var(--value-chevron-2);
+  --color-chevron-3: var(--value-chevron-3);
+  --color-chevron-4: var(--value-chevron-4);
+  --color-chevron-5: var(--value-chevron-5);
+  --color-chevron-6: var(--value-chevron-6);
   --color-surface: var(--value-color-surface);
   --color-surface-muted: var(--value-color-surface-muted);
   --color-success: var(--value-color-success);
@@ -111,7 +119,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
   background-color: color-mix(in srgb, var(--value-color-bg) 80%, transparent);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
@@ -160,21 +167,22 @@ body {
   line-height: 1 !important;
   white-space: nowrap;
   box-sizing: border-box;
-  background-color: var(--color-accent) !important;
-  color: #ffffff !important;
-  border-color: var(--color-accent) !important;
+  background-color: var(--color-neon) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-neon) !important;
   transition:
     background-color 0.15s ease,
     color 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .btn-brand:hover,
 .btn-brand[data-hovered='true'],
 .btn-brand[data-pressed='true'] {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-color: #000000 !important;
+  background-color: var(--color-neon-hover) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-neon-hover) !important;
 }
 
 .btn-brand:disabled,
@@ -227,4 +235,41 @@ body {
   .brand-carousel-track > div[aria-hidden='true'] {
     display: none;
   }
+}
+
+.chevron-clip-first {
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 22px) 0,
+    100% 50%,
+    calc(100% - 22px) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 10px
+  );
+}
+
+.chevron-clip-mid {
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 22px 50%);
+}
+
+.chevron-clip-last {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    22px 50%
+  );
+}
+
+.chevron-segment {
+  transition: transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.chevron-segment:hover {
+  transform: translateY(-6px);
+  z-index: 10;
 }

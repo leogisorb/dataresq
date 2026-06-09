@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
+import { BTN_BRAND_RECT } from '@/lib/button-styles';
 import {
   DAMAGE_OPTIONS,
   DEVICE_OPTIONS,
@@ -8,6 +9,7 @@ import {
   formatPriceRange,
 } from '@/lib/calculator';
 import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 
 interface CalcStepResultProps {
   device: DeviceKey;
@@ -49,21 +51,18 @@ export default function CalcStepResult({
           <p className="mt-1 text-sm text-text-muted">Erfolgsrate · Reinraum ISO 5</p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
-          <p className="text-2xl font-semibold text-text">0 €</p>
-          <p className="mt-1 text-sm text-text-muted">Diagnose kostenlos</p>
+          <p className="text-2xl font-semibold text-text">{DIAGNOSIS_FEE_FORMATTED}</p>
+          <p className="mt-1 text-sm text-text-muted">Prüfgebühr Erstdiagnose</p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
-          <p className="text-2xl font-semibold text-text">No Fee</p>
-          <p className="mt-1 text-sm text-text-muted">Kein Erfolg — keine Kosten</p>
+          <p className="text-2xl font-semibold text-text">Festpreis</p>
+          <p className="mt-1 text-sm text-text-muted">Verbindliches Angebot vor Beauftragung</p>
         </div>
       </div>
 
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Link
-          className="rounded-xl bg-text px-6 py-4 text-center text-base font-medium text-bg-card transition-opacity hover:opacity-90"
-          href="/kontakt"
-        >
-          Kostenloses Angebot anfordern
+        <Link className={`${BTN_BRAND_RECT} text-center`} href="/kontakt">
+          Angebot anfordern
         </Link>
         <button
           type="button"
@@ -75,7 +74,7 @@ export default function CalcStepResult({
       </div>
 
       <p className="mt-6 text-sm text-text-dim">
-        Richtpreis — verbindlicher Festpreis nach kostenloser Diagnose.
+        Richtpreis — verbindlicher Festpreis nach Erstprüfung ({DIAGNOSIS_FEE_FORMATTED}).
       </p>
     </div>
   );

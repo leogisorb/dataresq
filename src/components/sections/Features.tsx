@@ -1,43 +1,71 @@
-import FestpreisIcon from '@/components/icons/FestpreisIcon';
-import InternalIcon from '@/components/icons/InternalIcon';
-import NoCureIcon from '@/components/icons/NoCureIcon';
-import ReinraumIcon from '@/components/icons/ReinraumIcon';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-const features = [
+import { CALCULATOR_SECTION_ID } from '@/lib/calculator-section';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { BTN_FEATURE_CTA_TILE } from '@/lib/button-styles';
+import { RESCUED_DATASETS } from '@/lib/team';
+
+const statHeadlineClass =
+  'text-[clamp(2rem,4vw,2.75rem)] font-bold leading-none tracking-tight';
+
+const statCards = [
   {
-    icon: ReinraumIcon,
-    title: 'Reinraum ISO 5',
-    description: 'Staubfreie Umgebung für mechanische Rettung',
+    value: '92%',
+    caption: 'Erfolgsquote bei Datenrettung',
+    gradient: 'linear-gradient(135deg, #0a1628 0%, #0d3b5e 45%, #0a6b5e 100%)',
+    glowColor: 'rgba(52,211,153,0.18)',
   },
   {
-    icon: FestpreisIcon,
-    title: 'Festpreis',
-    description: 'Verbindliches Angebot vor Beauftragung',
+    value: `${RESCUED_DATASETS}+`,
+    caption: 'Gerettete Datensätze',
+    gradient: 'linear-gradient(135deg, #1a0a3e 0%, #2d1b6e 45%, #1a3a9e 100%)',
+    glowColor: 'rgba(129,140,248,0.18)',
   },
   {
-    icon: NoCureIcon,
-    title: 'Kein Befund = 0€',
-    description: 'Sie zahlen nur bei Erfolg',
+    value: DIAGNOSIS_FEE_FORMATTED,
+    caption: 'Prüfgebühr Erstdiagnose',
+    gradient: 'linear-gradient(135deg, #0a1f12 0%, #0d4a2a 45%, #0a5540 100%)',
+    glowColor: 'rgba(16,185,129,0.18)',
   },
-  {
-    icon: InternalIcon,
-    title: '100% Intern',
-    description: 'Kein Outsourcing, alles in Deutschland',
-  },
-];
+] as const;
 
 export default function Features() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="bg-bg-subtle py-20 md:py-28">
       <div className="site-container">
-        <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4 md:gap-6">
-          {features.map((feature) => (
-            <div key={feature.title} className="flex flex-col items-center gap-3">
-              <feature.icon className="size-8 text-accent" />
-              <p className="text-sm font-semibold text-text">{feature.title}</p>
-              <p className="text-xs leading-relaxed text-text">{feature.description}</p>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4">
+          {statCards.map((card) => (
+            <div
+              key={card.caption}
+              className="relative flex min-h-[180px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 p-5 md:min-h-[200px] md:rounded-3xl md:p-6"
+              style={{ background: card.gradient }}
+            >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-0 size-32 rounded-full md:size-40"
+                style={{
+                  background: `radial-gradient(circle, ${card.glowColor} 0%, transparent 70%)`,
+                }}
+              />
+              <p className={`relative ${statHeadlineClass} text-bg-card`}>{card.value}</p>
+              <p className="relative max-w-[16ch] text-sm leading-snug text-bg-card/55">
+                {card.caption}
+              </p>
             </div>
           ))}
+
+          <Link
+            href={`/#${CALCULATOR_SECTION_ID}`}
+            className={`${BTN_FEATURE_CTA_TILE} min-h-[180px] md:min-h-[200px]`}
+          >
+            <p className={`${statHeadlineClass} max-w-[12ch] text-text`}>Kosten berechnen</p>
+            <ArrowRight
+              aria-hidden="true"
+              className="size-[30px] text-text transition-transform group-hover:translate-x-1"
+              strokeWidth={2}
+            />
+          </Link>
         </div>
       </div>
     </section>

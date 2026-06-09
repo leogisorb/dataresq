@@ -13,11 +13,11 @@ export function getStandortFaqs(loc: Location): StandortFaqItem[] {
     },
     {
       question: `Wie lange dauert die Datenrettung ab ${loc.name}?`,
-      answer: `Bei Versand aus ${loc.name} in der Regel 3–5 Werktage. Express-Option: 24h nach Eingang im Labor.`,
+      answer: `Bei Versand aus ${loc.name} in der Regel 3–5 Werktage. Notfallbearbeitung binnen 24–48 Stunden auf Anfrage möglich.`,
     },
     {
       question: `Gibt es einen lokalen Ansprechpartner in ${loc.name}?`,
-      answer: `Ja — persönlicher Kontakt per Telefon und E-Mail. Wir arbeiten bundesweit per Versandservice; ${loc.serviceNote}`,
+      answer: `Ja — persönlicher Kontakt per E-Mail. Wir melden uns bei Ihnen und arbeiten bundesweit per Versandservice; ${loc.serviceNote}`,
     },
   ];
 }

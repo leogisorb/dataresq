@@ -14,7 +14,6 @@ export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   enc: 'text-[#af52de]',
   crash: 'text-[#ff2d55]',
   std: 'text-[#86868b]',
-  exp: 'text-[#ff9500]',
   now: 'text-[#ff3b30]',
 };
 

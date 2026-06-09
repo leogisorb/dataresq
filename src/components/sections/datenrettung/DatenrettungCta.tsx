@@ -18,8 +18,8 @@ export default function DatenrettungCta({ layout = 'row' }: DatenrettungCtaProps
       <Link className={`${BTN_BRAND_LG} w-full md:w-auto`} href="/#kostenrechner">
         Jetzt Kosten berechnen
       </Link>
-      <a className={`${BTN_BRAND_LG} w-full md:w-auto`} href={SITE.phoneTel}>
-        Kostenlos anrufen: {SITE.phone}
+      <a className={`${BTN_BRAND_LG} w-full md:w-auto`} href={`mailto:${SITE.email}`}>
+        Per E-Mail anfragen
       </a>
     </div>
   );

@@ -1,10 +1,10 @@
-import type { FaqItem } from './faq-calculator';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 
-export const datenrettungFaqs: FaqItem[] = [
+export const datenrettungFaqs = [
   {
     question: 'Wie lange dauert eine Datenrettung?',
     answer:
-      'Standard 3–5 Werktage nach Eingang des Mediums. Express-Service binnen 24 Stunden auf Anfrage möglich (+30% Aufschlag).',
+      'Standard 3–5 Werktage nach Eingang des Mediums. Notfallbearbeitung binnen 24–48 Stunden auf Anfrage möglich (+70% Aufschlag).',
   },
   {
     question: 'Was kostet eine Datenrettung?',
@@ -12,18 +12,7 @@ export const datenrettungFaqs: FaqItem[] = [
       'Der Preis hängt vom Medium und Schadenstyp ab. Richtwerte: HDD ab 149 €, SSD ab 199 €, RAID ab 399 €. Nutzen Sie unseren Preisrechner für eine sofortige Schätzung.',
   },
   {
-    question: 'Zahle ich auch wenn keine Daten gerettet werden?',
-    answer:
-      'Nein. Unser Prinzip: Kein Befund — keine Kosten. Sie zahlen nur bei erfolgreich geretteten Daten.',
-  },
-  {
-    question: 'Sind meine Daten bei Ihnen sicher?',
-    answer:
-      'Ja. Alle Arbeiten erfolgen intern in unserem Reinraum. Keine Weitergabe an Dritte. DSGVO-konforme Verarbeitung. Für Unternehmen schließen wir einen AVV ab.',
-  },
-  {
-    question: 'Welche Medien können Sie retten?',
-    answer:
-      'Festplatten (2,5" und 3,5"), SSDs (SATA, NVMe, M.2), RAID-Arrays, NAS-Systeme, USB-Sticks, SD-Karten und Smartphones.',
+    question: 'Was kostet die Erstprüfung?',
+    answer: `Die Erstprüfung inklusive schriftlichem Kostenvoranschlag kostet ${DIAGNOSIS_FEE_FORMATTED}. Die kostenpflichtige Datenrettung zahlen Sie erst nach Ihrer Beauftragung zum vereinbarten Festpreis.`,
   },
 ];

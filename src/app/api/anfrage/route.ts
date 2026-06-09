@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
           <tr><td><b>E-Mail:</b></td><td>${safeEmail}</td></tr>
           <tr><td><b>Medium:</b></td><td>${safeMedium}</td></tr>
           <tr><td><b>Schaden:</b></td><td>${safeSchaden}</td></tr>
-          <tr><td><b>Express:</b></td><td>${express ? 'Ja' : 'Nein'}</td></tr>
+          <tr><td><b>Dringlichkeit:</b></td><td>${express ? 'Notfall' : 'Standard'}</td></tr>
           <tr><td><b>Preisspanne:</b></td><td>${safePreisrange}</td></tr>
           <tr><td><b>Nachricht:</b></td><td>${safeNachricht}</td></tr>
         </table>
@@ -114,10 +114,9 @@ export async function POST(req: NextRequest) {
         <h2>Vielen Dank, ${safeName}!</h2>
         <p>Ihre Anfrage ist bei uns eingegangen.</p>
         <p><b>Ihre geschätzte Preisspanne: ${safePreisrange}</b></p>
-        <p>Unser Team meldet sich binnen <b>24 Stunden telefonisch</b> bei Ihnen
+        <p>Unser Team meldet sich binnen <b>24 Stunden per E-Mail</b> bei Ihnen
         und sendet Ihnen anschließend ein individuelles schriftliches Angebot.</p>
-        <p>Bei dringenden Fällen erreichen Sie uns auch direkt:<br>
-        📞 <a href="${SITE.phoneTel}">${SITE.phone}</a></p>
+        <p>Bei Rückfragen antworten Sie einfach auf diese E-Mail.</p>
         <hr>
         <p style="font-size:12px;color:#666">
         DATARESQ · ${addressLine} ·

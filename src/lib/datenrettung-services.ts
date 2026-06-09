@@ -1,4 +1,4 @@
-import type { DeviceKey } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, type DeviceKey } from '@/lib/constants';
 
 export interface ServiceCard {
   slug: string;
@@ -80,32 +80,68 @@ export function getDatenrettungSlugs(): string[] {
   return datenrettungServices.map((service) => service.slug);
 }
 
-export const processSteps = [
+export interface ProcessStep {
+  step: number;
+  phase: 1 | 2;
+  phaseLabel: string;
+  title: string;
+  description: string;
+}
+
+export const processSteps: ProcessStep[] = [
   {
-    step: '①',
-    title: 'Einsenden (kostenlos)',
+    step: 1,
+    phase: 1,
+    phaseLabel: 'Kontakt & Einsendung',
+    title: 'Anfrage stellen',
     description:
-      'Verpacken Sie Ihr Medium sicher und senden Sie es uns zu — kostenloses Versandlabel auf Anfrage.',
+      'Online, per Telefon oder direkt in einem unserer Shops — kostenlos und unverbindlich.',
   },
   {
-    step: '②',
-    title: 'Kostenlose Diagnose (24–48h)',
+    step: 2,
+    phase: 1,
+    phaseLabel: 'Kontakt & Einsendung',
+    title: 'Prüfung & Kontaktaufnahme',
     description:
-      'Wir analysieren den Schaden und senden Ihnen einen Festpreis-Kostenvoranschlag. Keine Überraschungen.',
+      'Wir melden uns innerhalb von 2 Stunden mit einem ersten Kostenrahmen und dem weiteren Ablauf.',
   },
   {
-    step: '③',
-    title: 'Daten zurück',
+    step: 3,
+    phase: 1,
+    phaseLabel: 'Kontakt & Einsendung',
+    title: 'Einsendung oder Shop-Abgabe',
     description:
-      'Nach Ihrer Freigabe retten wir Ihre Daten und senden sie auf einem neuen Medium zurück.',
+      'Datenträger sicher per Versand einsenden (Versandlabel auf Anfrage) oder persönlich in einem unserer Shops abgeben.',
+  },
+  {
+    step: 4,
+    phase: 2,
+    phaseLabel: 'Rettung & Rückgabe',
+    title: 'Diagnose im Reinraum',
+    description: `Erstprüfung in unserem ISO-5-Reinraum für ${DIAGNOSIS_FEE_FORMATTED}. Ergebnis und Festpreis-Angebot binnen 24–48h.`,
+  },
+  {
+    step: 5,
+    phase: 2,
+    phaseLabel: 'Rettung & Rückgabe',
+    title: 'Datenrettung bei Zusage',
+    description:
+      'Erst nach Ihrer ausdrücklichen Freigabe beginnt die Rettung zum vereinbarten Festpreis.',
+  },
+  {
+    step: 6,
+    phase: 2,
+    phaseLabel: 'Rettung & Rückgabe',
+    title: 'Sichere Datenübergabe',
+    description:
+      'Gerettete Daten per verschlüsseltem Transfer oder auf einer neuen Festplatte — DSGVO-konform.',
   },
 ];
 
 export const trustMetrics = [
   { value: '92%', label: 'Erfolgsquote' },
-  { value: '0€', label: 'Diagnosekosten' },
-  { value: '24h', label: 'Express möglich' },
-  { value: '100%', label: 'Interne Bearbeitung' },
+  { value: DIAGNOSIS_FEE_FORMATTED, label: 'Prüfgebühr' },
+  { value: '3–5 Tage', label: 'Standardbearbeitung' },
 ];
 
 export const trustBadges = ['ISO-Zertifikat', 'Reinraum Klasse 100', 'DSGVO-konform'];
