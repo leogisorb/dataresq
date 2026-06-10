@@ -9,7 +9,7 @@ import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
   title: 'Datenschutzerklärung',
-  description: 'Datenschutzerklärung der DATARESQ gemäß DSGVO.',
+  description: 'Datenschutzerklärung der RSQDATA gemäß DSGVO.',
   path: '/datenschutz',
 });
 

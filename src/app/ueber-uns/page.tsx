@@ -16,9 +16,9 @@ import {
 import { FOUNDING_YEAR, LAB_LOCATION, RESCUED_DATASETS } from '@/lib/team';
 
 export const metadata: Metadata = {
-  title: 'Über uns — DATARESQ: Team & Reinraum',
+  title: 'Über uns — RSQDATA: Team & Reinraum',
   description:
-    'Lernen Sie das Team hinter DATARESQ kennen. Reinraumlabor, ISO-zertifiziert, über [X] Jahre Erfahrung. Ihre Daten in Expertenhand.',
+    'Lernen Sie das Team hinter RSQDATA kennen. Reinraumlabor, ISO-zertifiziert, über [X] Jahre Erfahrung. Ihre Daten in Expertenhand.',
   robots: {
     index: true,
     follow: true,
@@ -113,7 +113,7 @@ export default function UeberUnsPage() {
         {/* Vergleich */}
         <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
-            <h2 className="text-2xl font-bold text-text md:text-3xl">Warum DATARESQ?</h2>
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Warum RSQDATA?</h2>
             <p className="mt-3 text-text">
               Ein direkter Vergleich mit typischen Datenrettungs-Anbietern.
             </p>

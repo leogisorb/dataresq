@@ -10,7 +10,7 @@ const faqItems = [
     id: 'dauer',
     question: 'Wie lange dauert eine Datenrettung?',
     answer:
-      'Standard 3–5 Werktage nach Eingang des Mediums. Notfallbearbeitung binnen 24–48 Stunden auf Anfrage möglich (+70% Aufschlag).',
+      'Standard: 3–5 Arbeitstage nach Eingang. Express: 1–2 Arbeitstage nach Eingang. Notfall: 24/7-Bearbeitung bis Ihre Daten gerettet sind — auf Anfrage.',
   },
   {
     id: 'kosten',
@@ -19,8 +19,8 @@ const faqItems = [
   },
   {
     id: 'pruefgebuehr',
-    question: 'Was kostet die Erstprüfung?',
-    answer: `Die Erstprüfung inklusive schriftlichem Kostenvoranschlag kostet ${DIAGNOSIS_FEE_FORMATTED}. Die kostenpflichtige Datenrettung zahlen Sie erst nach Ihrer Beauftragung zum vereinbarten Festpreis.`,
+    question: 'Was kostet die Analysepauschale?',
+    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} deckt die Laboranalyse und Dateiliste. Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. Können wir nichts retten, zahlen Sie keinen Cent — inklusive kostenlosem Rückversand.`,
   },
   {
     id: 'sicherheit',
@@ -50,17 +50,21 @@ export default function DatenrettungFaq() {
             <Accordion.Body className="leading-relaxed text-text">
               {item.id === 'kosten' ? (
                 <>
-                  Der Preis hängt vom Medium und Schadenstyp ab. Richtwerte: HDD ab 149 €, SSD ab
-                  199 €, RAID ab 399 €. Nutzen Sie unseren{' '}
+                  Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.099 – 1.999 € · Flash
+                  Standard 699 – 999 €, Express 899 – 1.199 € · RAID / NAS / Server individuell ·
+                  Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung
+                  treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen
+                  Sie unseren{' '}
                   <Link className="text-accent" href="/#kostenrechner">
-                    Preisrechner
-                  </Link>{' '}
-                  für eine sofortige Schätzung.
+                    Preisrahmen-Rechner
+                  </Link>
+                  .
                 </>
               ) : item.id === 'sicherheit' ? (
                 <>
-                  Ja. Alle Arbeiten erfolgen in unserem Reinraum. Keine Weitergabe an Dritte.
-                  DSGVO-konforme Verarbeitung. Für Unternehmen schließen wir einen{' '}
+                  Ja. DSGVO-konforme Verarbeitung, verschlüsselte Übertragung und zertifizierte
+                  Löschung mit Nachweis. Alle Arbeiten erfolgen in unserem Reinraum. Für
+                  Unternehmen schließen wir einen{' '}
                   <Link className="text-accent" href="/auftragsverarbeitung">
                     AVV
                   </Link>{' '}

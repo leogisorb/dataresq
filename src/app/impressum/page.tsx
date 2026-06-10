@@ -9,7 +9,7 @@ import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
   title: 'Impressum',
-  description: 'Impressum der DATARESQ gemäß § 5 DDG.',
+  description: 'Impressum der RSQDATA gemäß § 5 DDG.',
   path: '/impressum',
   index: true,
 });

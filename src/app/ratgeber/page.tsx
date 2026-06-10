@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: 'Ratgeber Datenrettung — Tipps & Anleitungen',
   description:
-    'Expertenwissen zu Datenverlust: Was tun bei klackernder Festplatte, Wasserschaden, gelöschten Daten? Kostenlose Ratgeber von DATARESQ.',
+    'Expertenwissen zu Datenverlust: Was tun bei klackernder Festplatte, Wasserschaden, gelöschten Daten? Kostenlose Ratgeber von RSQDATA.',
   robots: {
     index: true,
     follow: true,

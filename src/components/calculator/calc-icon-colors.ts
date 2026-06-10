@@ -14,7 +14,8 @@ export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   enc: 'text-[#af52de]',
   crash: 'text-[#ff2d55]',
   std: 'text-[#86868b]',
-  now: 'text-[#ff3b30]',
+  express: 'text-[#ff9500]',
+  notfall: 'text-[#ff3b30]',
 };
 
 export function calcTileIconClasses(isSelected: boolean, key: CalcIconKey): string {

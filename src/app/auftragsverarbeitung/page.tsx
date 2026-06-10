@@ -9,7 +9,7 @@ import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
   title: 'Auftragsverarbeitungsvertrag (AVV)',
-  description: 'AVV der DATARESQ gemäß Art. 28 DSGVO für gewerbliche Auftraggeber.',
+  description: 'AVV der RSQDATA gemäß Art. 28 DSGVO für gewerbliche Auftraggeber.',
   path: '/auftragsverarbeitung',
 });
 
@@ -32,7 +32,7 @@ export default function AuftragsverarbeitungPage() {
         vom Inhalt des Datenträgers).
       </p>
 
-      <h2>3. Pflichten DATARESQ als Auftragsverarbeiter</h2>
+      <h2>3. Pflichten RSQDATA als Auftragsverarbeiter</h2>
       <ul>
         <li>Verarbeitung nur nach dokumentierter Weisung des Auftraggebers</li>
         <li>Vertraulichkeit — alle Mitarbeiter zur Geheimhaltung verpflichtet</li>
@@ -41,7 +41,7 @@ export default function AuftragsverarbeitungPage() {
           LÖSCHPROZESS NACH ÜBERGABE]
         </li>
         <li>Keine Weitergabe an Unterauftragnehmer ohne vorherige Zustimmung</li>
-        <li>Löschung nach Auftragsabschluss (7 Tage Sicherungskopie zur Qualitätssicherung)</li>
+        <li>Löschung nach Auftragsabschluss (14 Tage Sicherungskopie zur Qualitätssicherung)</li>
       </ul>
 
       <h2>4. Unterauftragnehmer</h2>
@@ -49,7 +49,7 @@ export default function AuftragsverarbeitungPage() {
 
       <h2>5. Betroffenenrechte</h2>
       <p>
-        DATARESQ unterstützt den Auftraggeber bei der Erfüllung von Auskunfts-, Berichtigungs- und
+        RSQDATA unterstützt den Auftraggeber bei der Erfüllung von Auskunfts-, Berichtigungs- und
         Löschanfragen betroffener Personen im Rahmen des Auftrags.
       </p>
 

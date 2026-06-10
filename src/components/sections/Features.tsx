@@ -24,7 +24,7 @@ const statCards = [
   },
   {
     value: DIAGNOSIS_FEE_FORMATTED,
-    caption: 'Prüfgebühr Erstdiagnose',
+    caption: 'Analysepauschale — bei Beauftragung verrechnet',
     gradient: 'linear-gradient(135deg, #0a1f12 0%, #0d4a2a 45%, #0a5540 100%)',
     glowColor: 'rgba(16,185,129,0.18)',
   },

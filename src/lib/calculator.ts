@@ -1,7 +1,7 @@
 import {
-  PRICE_MATRIX,
-  URGENCY_MULTIPLIER,
-  type DamageKey,
+  formatPriceRange,
+  getDeviceCategory,
+  SERVICE_PRICES,
   type DeviceKey,
   type UrgencyKey,
 } from './constants';
@@ -12,7 +12,7 @@ export interface DeviceOption {
 }
 
 export interface DamageOption {
-  key: DamageKey;
+  key: import('./constants').DamageKey;
   label: string;
   hint: string;
 }
@@ -24,10 +24,15 @@ export interface UrgencyOption {
   popular?: boolean;
 }
 
+export interface PriceEstimateResult {
+  range: [number, number] | null;
+  label: string;
+}
+
 export const DEVICE_OPTIONS: DeviceOption[] = [
   { key: 'hdd', label: 'Festplatte HDD' },
   { key: 'ssd', label: 'SSD / NVMe' },
-  { key: 'raid', label: 'RAID / NAS' },
+  { key: 'raid', label: 'RAID / NAS / Server' },
   { key: 'usb', label: 'USB / SD-Karte' },
 ];
 
@@ -41,22 +46,35 @@ export const DAMAGE_OPTIONS: DamageOption[] = [
 ];
 
 export const URGENCY_OPTIONS: UrgencyOption[] = [
-  { key: 'std', label: 'Standard', duration: '10–14 Tage' },
-  { key: 'now', label: 'Notfall', duration: '24–48 Std.', popular: true },
+  { key: 'std', label: 'Standard', duration: '3–5 Arbeitstage nach Eingang' },
+  { key: 'express', label: 'Express', duration: '1–2 Arbeitstage nach Eingang', popular: true },
+  {
+    key: 'notfall',
+    label: 'Notfall',
+    duration: '24/7-Bearbeitung, bis Ihre Daten gerettet sind',
+  },
 ];
 
-export function calculatePriceRange(
+export function calculatePriceEstimate(
   device: DeviceKey,
-  damage: DamageKey,
   urgency: UrgencyKey,
-): [number, number] {
-  const [lo, hi] = PRICE_MATRIX[device][damage];
-  const mult = URGENCY_MULTIPLIER[urgency];
-  return [Math.round((lo * mult) / 10) * 10, Math.round((hi * mult) / 10) * 10];
-}
+): PriceEstimateResult {
+  const category = getDeviceCategory(device);
 
-export function formatPriceRange(range: [number, number]): string {
-  return `${range[0].toLocaleString('de-DE')} – ${range[1].toLocaleString('de-DE')} €`;
+  if (category === null || urgency === 'notfall') {
+    return { range: null, label: 'auf Anfrage' };
+  }
+
+  const range = SERVICE_PRICES[urgency][category];
+
+  if (range === null) {
+    return { range: null, label: 'auf Anfrage' };
+  }
+
+  return {
+    range,
+    label: formatPriceRange(range),
+  };
 }
 
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -39,7 +39,8 @@ export const comparisonRows: ComparisonRow[] = [
   { feature: 'Reinraumlabor', muench: '✅ Eigenes', competitor: '❌ Oft extern' },
   { feature: 'Ersatzteillager', muench: '✅ 14.000+', competitor: '⚠️ Begrenzt' },
   { feature: 'Festpreis', muench: '✅ Immer', competitor: '⚠️ Oft variabel' },
-  { feature: 'Erstprüfung', muench: `✅ ${DIAGNOSIS_FEE_FORMATTED}`, competitor: '⚠️ Oft unklar' },
+  { feature: 'Analysepauschale', muench: `✅ ${DIAGNOSIS_FEE_FORMATTED} — bei Beauftragung verrechnet`, competitor: '⚠️ Oft unklar' },
+  { feature: 'No Data, No Fee', muench: '✅', competitor: '❌ Selten' },
   { feature: 'DSGVO / AVV', muench: '✅', competitor: '⚠️ Selten' },
 ];
 

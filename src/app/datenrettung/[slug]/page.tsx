@@ -42,7 +42,7 @@ export async function generateMetadata({
       canonical: `${siteConfig.url}${service.href}`,
     },
     openGraph: {
-      title: `${service.title} — DATARESQ`,
+      title: `${service.title} — RSQDATA`,
       description: service.description,
       locale: 'de_DE',
     },
@@ -99,8 +99,8 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               {service.description}
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-              Erstprüfung für {DIAGNOSIS_FEE_FORMATTED} mit Datenübersicht, Festpreis vor
-              Beauftragung — die Rettung zahlen Sie erst nach Ihrer Freigabe.
+              Analysepauschale {DIAGNOSIS_FEE_FORMATTED} mit Dateiliste im Kundenportal, garantierter
+              Festpreis vor Beauftragung — bei erfolgloser Rettung zahlen Sie nichts.
             </p>
             <div className="mt-8">
               <DatenrettungCta layout="row" />

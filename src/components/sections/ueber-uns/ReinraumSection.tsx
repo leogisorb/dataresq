@@ -23,7 +23,7 @@ export default function ReinraumSection() {
         </ul>
       </div>
       <Image
-        alt="Reinraumlabor DATARESQ"
+        alt="Reinraumlabor RSQDATA"
         className="rounded-lg object-cover"
         height={500}
         src="/images/reinraum.svg"

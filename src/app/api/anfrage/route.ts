@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-import { SITE } from '@/lib/constants';
-import { EMAIL_REGEX, PHONE_REGEX } from '@/lib/calculator';
+import { EMAIL_REGEX, PHONE_REGEX, URGENCY_OPTIONS } from '@/lib/calculator';
+import { SITE, type UrgencyKey } from '@/lib/constants';
 
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY;
@@ -16,7 +16,10 @@ interface AnfrageBody {
   email?: string;
   medium?: string;
   schaden?: string;
+  dringlichkeit?: UrgencyKey;
   express?: boolean;
+  festpreis?: string;
+  preisrahmen?: string;
   preisrange?: string;
   nachricht?: string;
 }
@@ -29,9 +32,19 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;');
 }
 
+function resolveUrgencyLabel(body: AnfrageBody): string {
+  if (body.dringlichkeit) {
+    return URGENCY_OPTIONS.find((o) => o.key === body.dringlichkeit)?.label ?? body.dringlichkeit;
+  }
+  if (body.express) return 'Notfall';
+  return 'Standard';
+}
+
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as AnfrageBody;
-  const { name, telefon, email, medium, schaden, express, preisrange, nachricht } = body;
+  const { name, telefon, email, medium, schaden, nachricht } = body;
+  const preisrahmen = body.preisrahmen ?? body.preisrange ?? body.festpreis;
+  const dringlichkeitLabel = resolveUrgencyLabel(body);
 
   if (!name || !telefon || !email || !medium || !schaden) {
     return NextResponse.json({ error: 'Pflichtfelder fehlen' }, { status: 400 });
@@ -56,14 +69,15 @@ export async function POST(req: NextRequest) {
 
   if (emailNotConfigured) {
     if (process.env.NODE_ENV === 'development') {
+      // dev only
       console.info('[dev] Anfrage empfangen (E-Mail-Versand übersprungen):', {
         name: name.trim(),
         telefon: telefon.trim(),
         email: email.trim(),
         medium,
         schaden,
-        express,
-        preisrange,
+        dringlichkeit: dringlichkeitLabel,
+        preisrahmen,
       });
       return NextResponse.json({ success: true, dev: true });
     }
@@ -81,7 +95,8 @@ export async function POST(req: NextRequest) {
   const safeEmail = escapeHtml(email.trim());
   const safeMedium = escapeHtml(medium);
   const safeSchaden = escapeHtml(schaden);
-  const safePreisrange = escapeHtml(preisrange ?? '—');
+  const safePreisrahmen = escapeHtml(preisrahmen ?? '—');
+  const safeDringlichkeit = escapeHtml(dringlichkeitLabel);
   const safeNachricht = escapeHtml(nachricht?.trim() || '—');
   const addressLine = `${SITE.address.street}, ${SITE.address.zip} ${SITE.address.city}`;
 
@@ -91,15 +106,15 @@ export async function POST(req: NextRequest) {
       to: contactEmail,
       subject: `Neue Datenrettungs-Anfrage: ${medium} / ${schaden}`,
       html: `
-        <h2>Neue Anfrage über den Preiskalkulator</h2>
+        <h2>Neue Anfrage über den Preisrahmen-Rechner</h2>
         <table>
           <tr><td><b>Name:</b></td><td>${safeName}</td></tr>
           <tr><td><b>Telefon:</b></td><td>${safeTelefon}</td></tr>
           <tr><td><b>E-Mail:</b></td><td>${safeEmail}</td></tr>
           <tr><td><b>Medium:</b></td><td>${safeMedium}</td></tr>
           <tr><td><b>Schaden:</b></td><td>${safeSchaden}</td></tr>
-          <tr><td><b>Dringlichkeit:</b></td><td>${express ? 'Notfall' : 'Standard'}</td></tr>
-          <tr><td><b>Preisspanne:</b></td><td>${safePreisrange}</td></tr>
+          <tr><td><b>Service-Level:</b></td><td>${safeDringlichkeit}</td></tr>
+          <tr><td><b>Preisrahmen:</b></td><td>${safePreisrahmen}</td></tr>
           <tr><td><b>Nachricht:</b></td><td>${safeNachricht}</td></tr>
         </table>
         <p><b>Bitte binnen 24h zurückrufen.</b></p>
@@ -107,19 +122,19 @@ export async function POST(req: NextRequest) {
     });
 
     await resend.emails.send({
-      from: 'DATARESQ <noreply@muench-datenrettung.de>',
+      from: 'RSQDATA <noreply@muench-datenrettung.de>',
       to: email.trim(),
       subject: 'Ihre Anfrage ist eingegangen — wir melden uns binnen 24h',
       html: `
         <h2>Vielen Dank, ${safeName}!</h2>
         <p>Ihre Anfrage ist bei uns eingegangen.</p>
-        <p><b>Ihre geschätzte Preisspanne: ${safePreisrange}</b></p>
+        <p><b>Ihr Preisrahmen: ${safePreisrahmen}</b></p>
         <p>Unser Team meldet sich binnen <b>24 Stunden per E-Mail</b> bei Ihnen
-        und sendet Ihnen anschließend ein individuelles schriftliches Angebot.</p>
+        und sendet Ihnen anschließend die Bestätigung mit Ihrer Auftragsnummer.</p>
         <p>Bei Rückfragen antworten Sie einfach auf diese E-Mail.</p>
         <hr>
         <p style="font-size:12px;color:#666">
-        DATARESQ · ${addressLine} ·
+        RSQDATA · ${addressLine} ·
         <a href="https://muench-datenrettung.de/datenschutz">Datenschutz</a>
         </p>
       `,

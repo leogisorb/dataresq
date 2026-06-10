@@ -31,7 +31,7 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'HDDs haben die besten Rettungsquoten unter allen Datenträgern — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. In unserem Reinraum ISO Klasse 5 erzielen wir eine Erfolgsquote von über 97 %.',
+        text: 'HDDs haben die besten Rettungsquoten unter allen Datenträgern — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. In unserem Reinraum ISO Klasse 5 erzielen wir eine Erfolgsquote von 92 %.',
       },
     ],
     warning:

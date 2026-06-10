@@ -91,6 +91,9 @@ export interface LocalBusinessSchema {
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
+    streetAddress?: string;
+    postalCode?: string;
+    addressLocality?: string;
     addressCountry: string;
   };
   areaServed: string;
@@ -105,12 +108,15 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    description: 'Professionelle Datenrettung für Festplatten, SSD, RAID und NAS.',
+    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
     url: siteConfig.url,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'DE',
+      streetAddress: SITE.address.street,
+      postalCode: SITE.address.zip,
+      addressLocality: SITE.address.city,
+      addressCountry: SITE.address.country,
     },
     areaServed: 'DE',
     hasOfferCatalog: {
@@ -156,7 +162,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      description: `Erstprüfung ${DIAGNOSIS_FEE_FORMATTED} — verbindlicher Festpreis nach Prüfung.`,
+      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — garantierter Festpreis vor Beauftragung, No Data No Fee.`,
     },
   };
 }

@@ -16,6 +16,7 @@ import {
   Trash2,
   Usb,
   Wrench,
+  Zap,
 } from 'lucide-react';
 
 import CalcProgressBar from '@/components/calculator/CalcProgressBar';
@@ -28,7 +29,7 @@ import {
   DAMAGE_OPTIONS,
   DEVICE_OPTIONS,
   URGENCY_OPTIONS,
-  calculatePriceRange,
+  calculatePriceEstimate,
 } from '@/lib/calculator';
 import { BTN_BRAND_RECT } from '@/lib/button-styles';
 import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
@@ -53,7 +54,8 @@ const DAMAGE_ICONS = {
 
 const URGENCY_ICONS = {
   std: Clock,
-  now: Siren,
+  express: Zap,
+  notfall: Siren,
 } as const;
 
 interface PriceCalculatorProps {
@@ -68,10 +70,10 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   const stepRef = useRef<HTMLDivElement>(null);
   const hasMountedRef = useRef(false);
 
-  const priceRange = useMemo(() => {
-    if (!device || !damage || !urgency) return null;
-    return calculatePriceRange(device, damage, urgency);
-  }, [device, damage, urgency]);
+  const priceEstimate = useMemo(() => {
+    if (!device || !urgency) return null;
+    return calculatePriceEstimate(device, urgency);
+  }, [device, urgency]);
 
   const summaryPills = useMemo(() => {
     const pills = [];
@@ -156,11 +158,11 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
 
         {step === 3 && <CalcStepUrgency selected={urgency} onSelect={setUrgency} />}
 
-        {step === 4 && device && damage && urgency && priceRange && (
+        {step === 4 && device && damage && urgency && priceEstimate && (
           <CalcStepResult
             damage={damage}
             device={device}
-            priceRange={priceRange}
+            priceEstimate={priceEstimate}
             urgency={urgency}
             onReset={handleReset}
           />

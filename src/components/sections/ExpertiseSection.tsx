@@ -34,8 +34,8 @@ const CARDS: ExpertiseCardData[] = [
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
     badges: [
       { text: '95%', hint: 'Erfolgsquote' },
-      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Prüfgebühr' },
-      { text: 'Festpreis', hint: 'Verbindlich vor Beauftragung' },
+      { text: '899 – 1.799 €', hint: 'Preisrahmen Standard HDD/SSD' },
+      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Analysepauschale' },
     ],
     features: [
       'Headcrash & mechanische Schäden',
@@ -55,8 +55,8 @@ const CARDS: ExpertiseCardData[] = [
     brands: ['Samsung', 'WD', 'Crucial', 'Kingston', 'Corsair', 'Intel'],
     badges: [
       { text: '92%', hint: 'Erfolgsquote' },
-      { text: '48h', hint: 'Standardbearbeitung' },
-      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Prüfgebühr' },
+      { text: '3–5 Tage', hint: 'Standardbearbeitung' },
+      { text: '899 – 1.799 €', hint: 'Preisrahmen Standard HDD/SSD' },
     ],
     features: [
       'Controller-Ausfall & Firmware-Fehler',

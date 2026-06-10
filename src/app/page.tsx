@@ -16,9 +16,9 @@ import {
 } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Datenrettung Festplatte, SSD, RAID — dataresq',
+  title: 'Datenrettung Festplatte, SSD, RAID — RSQDATA',
   description:
-    'Professionelle Datenrettung: Festplatte, SSD, RAID, NAS. Prüfgebühr 39€, Festpreis. Jetzt Kosten berechnen.',
+    'Professionelle Datenrettung: Festplatte, SSD, RAID, NAS. Analysepauschale 79€, garantierter Festpreis vor dem Versand. Jetzt Festpreis berechnen.',
   robots: {
     index: true,
     follow: true,

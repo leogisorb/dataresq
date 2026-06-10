@@ -140,7 +140,7 @@ export default async function RatgeberDetailPage({ params }: RatgeberDetailPageP
 
             <aside className="mt-12 rounded-lg border border-black/5 bg-bg-card p-6 md:sticky md:top-24">
               <h2 className="text-lg font-semibold text-text">
-                Betroffen? Jetzt Erstprüfung für 39€ vereinbaren.
+                Betroffen? Jetzt Festpreis berechnen — Analysepauschale 79€.
               </h2>
               <div className="mt-4">
                 <DatenrettungCta layout="column" />

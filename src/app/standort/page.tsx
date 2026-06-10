@@ -6,9 +6,9 @@ import { LOCATIONS } from '@/lib/locations';
 import { siteConfig } from '@/lib/metadata';
 
 export const metadata: Metadata = {
-  title: 'Datenrettung Deutschland — Alle Standorte & Regionen',
+  title: 'Abgabestellen & Kundenbetreuung — NRW',
   description:
-    'DATARESQ: Bundesweiter Service per Versand. Alle Regionen, alle Medien. Kostenloser Versand auf Anfrage.',
+    'RSQDATA: Abgabestellen in Grevenbroich, Mönchengladbach und Köln. Kostenlose DHL Express-Abholung an Ihrer Haustür, versichert.',
   robots: {
     index: true,
     follow: true,
@@ -23,11 +23,11 @@ export default function StandortOverviewPage() {
     <ContentPageShell>
       <div className="site-container px-4 py-12 md:px-8 md:py-16 lg:px-12">
         <h1 className="text-3xl font-bold text-text md:text-4xl">
-          Datenrettung Deutschland — Alle Standorte
+          Abgabestellen &amp; Kundenbetreuung
         </h1>
         <p className="mt-4 max-w-2xl text-text">
-          Bundesweiter Datenrettungs-Service per Versand. Wählen Sie Ihre Region für
-          lokalspezifische Informationen.
+          Geben Sie Ihren Datenträger ohne Termin an einer unserer Abgabestellen ab — oder nutzen
+          Sie die kostenlose DHL Express-Abholung direkt an Ihrer Haustür.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -40,7 +40,7 @@ export default function StandortOverviewPage() {
               <h2 className="text-xl font-semibold text-text">{location.name}</h2>
               <p className="mt-1 text-sm text-accent">{location.region}</p>
               <p className="mt-3 text-sm leading-relaxed text-text">
-                {location.description}
+                {location.serviceNote}
               </p>
             </Link>
           ))}

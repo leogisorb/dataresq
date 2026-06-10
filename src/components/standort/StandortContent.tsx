@@ -3,6 +3,7 @@ import Link from 'next/link';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import type { Location } from '@/lib/locations';
+import { trustBadges } from '@/lib/datenrettung-services';
 import { getStandortFaqs } from '@/lib/standort-faq';
 import {
   generateBreadcrumbJsonLd,
@@ -15,7 +16,7 @@ const services = [
   {
     icon: '💾',
     title: 'HDD Datenrettung',
-    description: 'Mechanische und logische Festplattenrettung — auch nach Sturz oder Klickgeräuschen.',
+    description: 'Mechanische und logische Festplattenrettung — Preisrahmen 899 – 1.799 € (Standard).',
     href: '/datenrettung',
   },
   {
@@ -27,21 +28,35 @@ const services = [
   {
     icon: '🖥️',
     title: 'RAID / NAS',
-    description: 'RAID-Rekonstruktion und NAS-Recovery für Unternehmen und Privatnutzer.',
+    description: 'RAID-Rekonstruktion und NAS-Recovery — Preis individuell nach Voranfrage.',
     href: '/datenrettung',
   },
   {
     icon: '🔌',
     title: 'USB & SD-Karte',
-    description: 'Abgebrochene Stecker, defekte Chips und gelöschte Fotos — Rettung ab 99 €.',
+    description: 'Abgebrochene Stecker, defekte Chips und gelöschte Fotos — Preisrahmen 699 – 999 €.',
     href: '/datenrettung/usb-sd',
   },
 ];
 
 const processSteps = [
-  { step: '①', title: 'Einsenden', description: 'Medium sicher verpacken und per DHL einsenden.' },
-  { step: '②', title: 'Prüfung (24–48h)', description: `Schadensanalyse für ${DIAGNOSIS_FEE_FORMATTED} mit Festpreis-Angebot.` },
-  { step: '③', title: 'Daten zurück', description: 'Gerettete Daten auf verschlüsseltem Datenträger.' },
+  {
+    step: '①',
+    title: 'Abholung oder Abgabe',
+    description:
+      'DHL Express holt kostenlos an Ihrer Haustür ab — oder Sie geben Ihren Datenträger ohne Termin an unserer Abgabestelle ab.',
+  },
+  {
+    step: '②',
+    title: 'Laboranalyse',
+    description: `Vollständige technische Analyse für ${DIAGNOSIS_FEE_FORMATTED} — bei Beauftragung voll verrechnet, bei erfolgloser Rettung entfällt die Pauschale.`,
+  },
+  {
+    step: '③',
+    title: 'Sichere Übergabe',
+    description:
+      'Dateiliste im Kundenportal, Festpreis-Bestätigung, verschlüsselter Download oder neuer Datenträger — 14 Tage Sicherheitskopie.',
+  },
 ];
 
 interface StandortContentProps {
@@ -85,44 +100,25 @@ export default function StandortContent({ loc }: StandortContentProps) {
         <span>{loc.name}</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-text md:text-4xl lg:text-5xl">
+      <h1 className="text-3xl font-bold text-text md:text-4xl">
         Datenrettung {loc.name}
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-text">{loc.description}</p>
+      <p className="mt-3 text-sm text-text-muted">{loc.serviceNote}</p>
 
       <section className="mt-12">
-        <h2 className="text-2xl font-bold text-text">
-          Datenrettung in {loc.name} & {loc.region}
-        </h2>
-        <p className="mt-4 max-w-3xl leading-relaxed text-text">{loc.localFact}</p>
-        <p className="mt-4 max-w-3xl leading-relaxed text-text">{loc.serviceNote}</p>
-        <p className="mt-4 text-sm text-text">
-          Umland: Wir betreuen auch {loc.nearbyAreas.join(', ')}.
-        </p>
-      </section>
-
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold text-text">Unsere Leistungen in {loc.name}</h2>
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <h2 className="text-2xl font-bold text-text">Leistungen in {loc.name}</h2>
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
           {services.map((service) => (
-            <article
+            <Link
               key={service.title}
-              className="rounded-lg border border-black/5 bg-bg-card p-6"
+              className="rounded-lg border border-black/5 bg-bg-card p-6 transition-colors active:border-accent md:hover:border-accent"
+              href={service.href}
             >
-              <span aria-hidden="true" className="text-2xl">
-                {service.icon}
-              </span>
+              <span className="text-2xl">{service.icon}</span>
               <h3 className="mt-3 font-semibold text-text">{service.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text">
-                {service.description}
-              </p>
-              <Link
-                className="mt-4 inline-flex text-sm font-medium text-accent active:text-accent-hover"
-                href={service.href}
-              >
-                Mehr erfahren →
-              </Link>
-            </article>
+              <p className="mt-2 text-sm text-text">{service.description}</p>
+            </Link>
           ))}
         </div>
       </section>
@@ -141,12 +137,11 @@ export default function StandortContent({ loc }: StandortContentProps) {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-2xl font-bold text-text">Warum DATARESQ für {loc.name}?</h2>
+        <h2 className="text-2xl font-bold text-text">Warum RSQDATA in {loc.name}?</h2>
         <ul className="mt-4 space-y-2 text-text">
-          <li>✓ Versand von {loc.name} → Standard 3–5 WT</li>
-          <li>✓ Prüfgebühr {DIAGNOSIS_FEE_FORMATTED} für Erstdiagnose</li>
-          <li>✓ Verbindlicher Festpreis vor Beauftragung</li>
-          <li>✓ {loc.serviceNote}</li>
+          {trustBadges.map((badge) => (
+            <li key={badge}>✓ {badge}</li>
+          ))}
         </ul>
       </section>
 

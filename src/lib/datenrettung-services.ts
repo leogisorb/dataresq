@@ -36,7 +36,7 @@ export const datenrettungServices: ServiceCard[] = [
     icon: '🗄️',
     title: 'RAID & NAS',
     description:
-      'RAID 0/1/5/6, Synology, QNAP, Drobo — auch bei mehrfachem Laufwerksausfall.',
+      'RAID 0/1/5/6, Synology, QNAP, Drobo — auch bei mehrfachem Laufwerksausfall. Preis individuell nach kostenloser Voranfrage.',
     href: '/datenrettung/raid-nas',
     imageAlt: 'Datenrettung RAID NAS',
     defaultDevice: 'raid',
@@ -46,7 +46,7 @@ export const datenrettungServices: ServiceCard[] = [
     icon: '🔌',
     title: 'USB-Stick & SD-Karte',
     description:
-      'Abgebrochener Stecker, beschädigter Chip, gelöschte Fotos — Rettung ab 99 €.',
+      'Abgebrochener Stecker, beschädigter Chip, gelöschte Fotos — Preisrahmen 699 – 999 € (Flash-Speicher, Standard).',
     href: '/datenrettung/usb-sd',
     imageAlt: 'Datenrettung USB SD-Karte',
     defaultDevice: 'usb',
@@ -92,56 +92,63 @@ export const processSteps: ProcessStep[] = [
   {
     step: 1,
     phase: 1,
-    phaseLabel: 'Kontakt & Einsendung',
-    title: 'Anfrage stellen',
+    phaseLabel: 'Anfrage & Angebot',
+    title: 'Anfrage stellen & Angebot erhalten',
     description:
-      'Online, per Telefon oder direkt in einem unserer Shops — kostenlos und unverbindlich.',
+      'Beschreiben Sie über unser Online-Formular Datenträger, Auslöser und wichtige Daten — und wählen Sie Ihr Service-Level. Sie erhalten sofort Ihr unverbindliches Angebot: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.099 – 1.999 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 899 – 1.199 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt. Wichtig: Schalten Sie den Datenträger nicht mehr ein und starten Sie keine eigenen Rettungsversuche.',
   },
   {
     step: 2,
     phase: 1,
-    phaseLabel: 'Kontakt & Einsendung',
-    title: 'Prüfung & Kontaktaufnahme',
+    phaseLabel: 'Anfrage & Angebot',
+    title: 'Kostenlose Express-Abholung oder persönliche Abgabe',
     description:
-      'Wir melden uns innerhalb von 2 Stunden mit einem ersten Kostenrahmen und dem weiteren Ablauf.',
+      'DHL Express holt Ihren Datenträger kostenlos und versichert an Ihrer Haustür ab — mit Wunschzeitfenster. Auf Wunsch senden wir vorab eine kostenlose Schutzbox mit Verpackungsanleitung. Oder geben Sie Ihren Datenträger ohne Termin an unseren Abgabestellen in Grevenbroich, Mönchengladbach oder Köln ab.',
   },
   {
     step: 3,
     phase: 1,
-    phaseLabel: 'Kontakt & Einsendung',
-    title: 'Einsendung oder Shop-Abgabe',
-    description:
-      'Datenträger sicher per Versand einsenden (Versandlabel auf Anfrage) oder persönlich in einem unserer Shops abgeben.',
+    phaseLabel: 'Anfrage & Angebot',
+    title: 'Laboranalyse mit fairer Verrechnungs-Garantie',
+    description: `Nach Eingang dokumentieren wir den Zustand und führen die vollständige technische Analyse durch. Standard: 3–5 Arbeitstage, Express: 1–2 Arbeitstage, Notfall: 24/7 bis Ihre Daten gerettet sind. Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED}: Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. Können wir nichts retten, entfällt sie vollständig — inklusive kostenlosem Rückversand. Nur bei nachweislich rettbaren Daten und Ihrer Ablehnung berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
   },
   {
     step: 4,
     phase: 2,
-    phaseLabel: 'Rettung & Rückgabe',
-    title: 'Diagnose im Reinraum',
-    description: `Erstprüfung in unserem ISO-5-Reinraum für ${DIAGNOSIS_FEE_FORMATTED}. Ergebnis und Festpreis-Angebot binnen 24–48h.`,
+    phaseLabel: 'Rettung & Übergabe',
+    title: 'Dateiliste der verfügbaren Daten & verbindliche Bestätigung',
+    description:
+      'Sie erhalten Zugang zu Ihrem Kundenportal mit der vollständigen Dateiliste aller verfügbaren Daten — durchklickbar wie im Datei-Explorer. Dazu eine ehrliche Einschätzung und die verbindliche Festpreis-Bestätigung nach Laboranalyse, abzüglich der bereits angerechneten Analysepauschale. Keine Nachforderungen.',
   },
   {
     step: 5,
     phase: 2,
-    phaseLabel: 'Rettung & Rückgabe',
-    title: 'Datenrettung bei Zusage',
+    phaseLabel: 'Rettung & Übergabe',
+    title: 'Beauftragung & Bezahlung',
     description:
-      'Erst nach Ihrer ausdrücklichen Freigabe beginnt die Rettung zum vereinbarten Festpreis.',
+      'Beauftragen Sie uns direkt im Kundenportal. Verschlüsselter Download-Link ist im Festpreis enthalten; ein neuer Datenträger per versichertem Versand gegen Aufpreis je nach Speichergröße. Nach Zahlungseingang beginnt die finale Wiederherstellung — Express- und Notfall-Aufträge werden priorisiert.',
   },
   {
     step: 6,
     phase: 2,
-    phaseLabel: 'Rettung & Rückgabe',
-    title: 'Sichere Datenübergabe',
+    phaseLabel: 'Rettung & Übergabe',
+    title: 'Sichere Übergabe Ihrer Daten',
     description:
-      'Gerettete Daten per verschlüsseltem Transfer oder auf einer neuen Festplatte — DSGVO-konform.',
+      'Sie erhalten Ihre Daten als verschlüsselten, passwortgeschützten Download oder auf einem neuen Datenträger per versichertem Versand. Ihre Daten bleiben 14 Tage als Sicherheitskopie bei uns — danach werden alle Kopien unwiderruflich und nachweisbar gelöscht. Auf Wunsch erhalten Sie ein Löschzertifikat.',
   },
 ];
 
 export const trustMetrics = [
-  { value: '92%', label: 'Erfolgsquote' },
-  { value: DIAGNOSIS_FEE_FORMATTED, label: 'Prüfgebühr' },
+  { value: DIAGNOSIS_FEE_FORMATTED, label: 'Analysepauschale' },
   { value: '3–5 Tage', label: 'Standardbearbeitung' },
+  { value: 'Festpreis', label: 'Garantiert vor Versand' },
 ];
 
-export const trustBadges = ['ISO-Zertifikat', 'Reinraum Klasse 100', 'DSGVO-konform'];
+export const trustBadges = [
+  'Festpreis vor dem Versand',
+  'Kostenlose DHL Express-Abholung',
+  'Dateiliste vor dem Kauf',
+  'Analysepauschale wird voll verrechnet',
+  'No Data, No Fee',
+  'DSGVO-konform',
+];

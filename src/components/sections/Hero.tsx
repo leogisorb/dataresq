@@ -6,7 +6,6 @@ import {
   CALCULATOR_SECTION_ID,
 } from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 
 export default function Hero() {
   return (
@@ -20,16 +19,16 @@ export default function Hero() {
           </h1>
 
           <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
-            Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Erstprüfung für{' '}
-            {DIAGNOSIS_FEE_FORMATTED} mit Datenübersicht und unverbindlichem Kostenvoranschlag —
-            bevor Sie entscheiden.
+            Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Garantierter
+            Festpreis, Dateiliste im Kundenportal — und wenn wir nichts retten können, zahlen Sie
+            nichts.
           </p>
 
           <HeroCtas />
 
           <div className="mt-8 flex flex-wrap gap-6 text-sm text-text md:mt-10">
-            <span>✓ 92% Erfolgsquote</span>
-            <span>✓ ISO Reinraum</span>
+            <span>✓ Festpreis vor Versand</span>
+            <span>✓ No Data, No Fee</span>
           </div>
         </div>
 

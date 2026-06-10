@@ -8,7 +8,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
 
 export default defineConfig({
   name: 'muench-datenrettung',
-  title: 'DATARESQ',
+  title: 'RSQDATA',
   projectId,
   dataset,
   plugins: [structureTool()],

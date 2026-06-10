@@ -9,15 +9,17 @@ export function getStandortFaqs(loc: Location): StandortFaqItem[] {
   return [
     {
       question: 'Kann ich das Medium persönlich vorbeibringen?',
-      answer: loc.serviceNote,
+      answer: `${loc.serviceNote} Unsere Kundenbetreuung dokumentiert den Zustand gemeinsam mit Ihnen und beantwortet Ihre Fragen direkt vor Ort.`,
     },
     {
       question: `Wie lange dauert die Datenrettung ab ${loc.name}?`,
-      answer: `Bei Versand aus ${loc.name} in der Regel 3–5 Werktage. Notfallbearbeitung binnen 24–48 Stunden auf Anfrage möglich.`,
+      answer:
+        'Standard: 3–5 Arbeitstage nach Eingang. Express: 1–2 Arbeitstage. Notfall: 24/7-Bearbeitung bis Ihre Daten gerettet sind — auf Anfrage.',
     },
     {
-      question: `Gibt es einen lokalen Ansprechpartner in ${loc.name}?`,
-      answer: `Ja — persönlicher Kontakt per E-Mail. Wir melden uns bei Ihnen und arbeiten bundesweit per Versandservice; ${loc.serviceNote}`,
+      question: `Gibt es eine kostenlose Abholung in ${loc.name}?`,
+      answer:
+        'Ja — DHL Express holt Ihren Datenträger kostenlos und versichert an Ihrer Haustür oder im Büro ab. Auf Wunsch senden wir vorab eine kostenlose Schutzbox mit Verpackungsanleitung.',
     },
   ];
 }

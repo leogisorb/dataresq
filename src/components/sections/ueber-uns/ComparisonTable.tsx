@@ -9,12 +9,12 @@ export default function ComparisonTable() {
     <div className="overflow-x-auto">
       <Table.ScrollContainer>
         <Table.Content
-          aria-label="Vergleich DATARESQ vs. typischer Anbieter"
+          aria-label="Vergleich RSQDATA vs. typischer Anbieter"
           className="min-w-[480px] text-text"
         >
           <Table.Header>
             <Table.Column isRowHeader>Merkmal</Table.Column>
-            <Table.Column>DATARESQ</Table.Column>
+            <Table.Column>RSQDATA</Table.Column>
             <Table.Column>Typischer Anbieter</Table.Column>
           </Table.Header>
           <Table.Body>

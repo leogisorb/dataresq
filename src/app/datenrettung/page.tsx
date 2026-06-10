@@ -25,8 +25,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Professionelle Datenrettung — Festplatte, SSD, RAID, NAS',
-  description:
-    'Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Prüfgebühr 39€, Festpreis, 92% Erfolgsquote.',
+  description: `Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis vor dem Versand.`,
   robots: {
     index: true,
     follow: true,
@@ -35,8 +34,8 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.url}/datenrettung`,
   },
   openGraph: {
-    title: 'Professionelle Datenrettung — DATARESQ',
-    description: `HDD, SSD, RAID, NAS. Prüfgebühr ${DIAGNOSIS_FEE_FORMATTED}. Festpreis.`,
+    title: 'Professionelle Datenrettung — RSQDATA',
+    description: `HDD, SSD, RAID, NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}. Garantierter Festpreis.`,
     locale: 'de_DE',
   },
 };
@@ -73,8 +72,9 @@ export default function DatenrettungPage() {
               HDD · SSD · RAID · NAS · USB · Smartphone
             </p>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted md:text-lg">
-              Über {RESCUED_DATASETS} gerettete Datensätze. Erstprüfung für{' '}
-              {DIAGNOSIS_FEE_FORMATTED}. Festpreis vor Beauftragung.
+              Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Sie sehen Ihre
+              Dateien, bevor Sie beauftragen. Und wenn wir nichts retten können, zahlen Sie nichts.
+              Über {RESCUED_DATASETS} gerettete Datensätze.
             </p>
           </div>
         </section>
@@ -84,7 +84,9 @@ export default function DatenrettungPage() {
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-text-muted">
               So funktioniert es
             </p>
-            <h2 className={`${SECTION_HEADING} mb-10`}>In 6 Schritten zu Ihren Daten.</h2>
+            <h2 className={`${SECTION_HEADING} mb-10`}>
+              So funktioniert Ihre Datenrettung – transparent in 6 Schritten
+            </h2>
             <ProcessTimeline />
           </div>
         </section>

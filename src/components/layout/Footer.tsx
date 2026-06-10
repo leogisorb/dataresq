@@ -66,8 +66,8 @@ export default function Footer() {
                 {siteConfig.name}
               </Link>
               <p className="mt-4 text-sm leading-relaxed text-text">
-                Professionelle Datenrettung für Festplatten, SSD, RAID und NAS — bundesweit per
-                Versand.
+                Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Abgabestellen in
+                Grevenbroich, Mönchengladbach und Köln — kostenlose DHL Express-Abholung bundesweit.
               </p>
               <p className="mt-4 text-xs text-text">[Social-Links Placeholder]</p>
             </div>

@@ -9,24 +9,24 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Was kostet eine Datenrettung?',
     answer:
-      'Die Kosten hängen von Datenträger, Schadensart und Dringlichkeit ab. Typische Preise: HDD 290–1.200 €, SSD 390–1.400 €, RAID ab 890 €. Die Erstprüfung kostet 39 €.',
+      'Preisrahmen je Medientyp und Service-Level: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.099 – 1.999 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 899 – 1.199 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt.',
   },
   {
-    question: 'Was passiert nach der Erstprüfung?',
-    answer: `Die Prüfgebühr von ${DIAGNOSIS_FEE_FORMATTED} fällt für die Schadensanalyse und den Kostenvoranschlag an. Die kostenpflichtige Datenrettung zahlen Sie erst nach Ihrer Beauftragung — zum vereinbarten Festpreis.`,
+    question: 'Was passiert nach der Analyse?',
+    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % auf Ihren Festpreis angerechnet — die Analyse kostet Sie dann effektiv nichts. Können wir nichts retten, entfällt die Pauschale vollständig, inklusive kostenlosem Rückversand.`,
   },
   {
     question: 'Wie lange dauert eine Datenrettung?',
     answer:
-      'Standard: 10–14 Werktage. Notfall: 24–48 Stunden. Alle Aufträge werden in unserem Reinraum ISO Klasse 5 bearbeitet.',
+      'Standard: 3–5 Arbeitstage nach Eingang. Express: 1–2 Arbeitstage nach Eingang. Notfall: 24/7-Bearbeitung bis Ihre Daten gerettet sind — auf Anfrage.',
   },
   {
-    question: 'Was kostet die Erstprüfung?',
-    answer: `Die Erstprüfung inklusive schriftlichem Kostenvoranschlag kostet ${DIAGNOSIS_FEE_FORMATTED}. Erst nach Ihrer Beauftragung beginnt die kostenpflichtige Datenrettung zum vereinbarten Festpreis.`,
+    question: 'Was kostet die Analysepauschale?',
+    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} deckt die vollständige Laboranalyse und die Dateiliste im Kundenportal. Bei Beauftragung wird sie vollständig verrechnet. Nur wenn Ihre Daten nachweislich rettbar sind und Sie sich gegen die Rettung entscheiden, berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
   },
   {
     question: 'Gilt der Preis auch für RAID-Systeme?',
     answer:
-      'RAID- und NAS-Systeme erfordern eine individuelle Bewertung. Unser Rechner zeigt Richtwerte für gängige RAID-Konfigurationen. Für komplexe Setups erstellen wir nach der Prüfung ein individuelles Angebot.',
+      'RAID-, NAS- und Server-Systeme bepreisen wir individuell nach kostenloser Voranfrage. Der Rechner zeigt für diese Medien „auf Anfrage“ — nach der Analyse erhalten Sie ein verbindliches Angebot.',
   },
 ];

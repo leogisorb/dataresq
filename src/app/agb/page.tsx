@@ -4,11 +4,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import LegalPageLayout from '@/components/layout/LegalPageLayout';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
   title: 'Allgemeine Geschäftsbedingungen',
-  description: 'AGB der DATARESQ.',
+  description: 'AGB der RSQDATA.',
   path: '/agb',
 });
 
@@ -20,16 +21,19 @@ export default function AgbPage() {
 
       <h2>§ 1 Geltungsbereich</h2>
       <p>
-        [PLACEHOLDER — Diese AGB gelten für alle Aufträge der DATARESQ gegenüber
+        [PLACEHOLDER — Diese AGB gelten für alle Aufträge der RSQDATA gegenüber
         Verbrauchern und Unternehmern, sofern nicht individuell abweichende Vereinbarungen
         getroffen wurden.]
       </p>
 
       <h2>§ 2 Leistungsumfang</h2>
       <p>
-        Leistungen umfassen Prüfung, Datenrettung und Rückversand des Datenträgers. Es wird kein
-        Erfolg garantiert. Die Erstprüfung kostet 39 €; die Datenrettung zum vereinbarten Festpreis
-        nach Beauftragung.
+        Leistungen umfassen Laboranalyse, Datenrettung und Rückversand des Datenträgers. Es wird
+        kein Erfolg der Datenrettung garantiert. Die Analysepauschale beträgt{' '}
+        {DIAGNOSIS_FEE_FORMATTED} und wird bei Beauftragung zu 100 % auf den Festpreis angerechnet.
+        Können wir nichts retten, entfällt die Pauschale vollständig — inklusive kostenlosem
+        Rückversand. Die Datenrettung erfolgt zum vereinbarten Festpreis nach Beauftragung im
+        Kundenportal.
       </p>
 
       <h2>§ 3 Preise &amp; Zahlung</h2>

@@ -13,6 +13,21 @@ const nextConfig: NextConfig = {
         destination: '/#kontakt',
         permanent: false,
       },
+      {
+        source: '/standort/muenchen',
+        destination: '/standort/grevenbroich',
+        permanent: true,
+      },
+      {
+        source: '/standort/berlin',
+        destination: '/standort/koeln',
+        permanent: true,
+      },
+      {
+        source: '/standort/hamburg',
+        destination: '/standort/moenchengladbach',
+        permanent: true,
+      },
     ];
   },
 };

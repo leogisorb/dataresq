@@ -1,57 +1,40 @@
 export const SITE = {
   email: 'info@muench-datenrettung.de',
   address: {
-    street: '[STRASSE]',
-    city: '[ORT]',
-    zip: '[PLZ]',
+    street: 'Am Hammerwerk 16A',
+    city: 'Grevenbroich',
+    zip: '41515',
     country: 'DE',
   },
 } as const;
 
-/** Prüfgebühr für Erstdiagnose inkl. Kostenvoranschlag */
-export const DIAGNOSIS_FEE = 39 as const;
+/** Analysepauschale für Laboranalyse inkl. Dateiliste */
+export const DIAGNOSIS_FEE = 79 as const;
 export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
+
+export const DATA_RETENTION_DAYS = 14 as const;
 
 export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb';
 export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash';
-export type UrgencyKey = 'std' | 'now';
+export type UrgencyKey = 'std' | 'express' | 'notfall';
 
-export const PRICE_MATRIX: Record<DeviceKey, Record<DamageKey, [number, number]>> = {
-  hdd: {
-    del: [290, 490],
-    mech: [490, 890],
-    water: [690, 1200],
-    ctrl: [390, 690],
-    enc: [290, 590],
-    crash: [390, 750],
-  },
-  ssd: {
-    del: [390, 690],
-    mech: [590, 990],
-    water: [790, 1400],
-    ctrl: [490, 890],
-    enc: [390, 790],
-    crash: [490, 890],
-  },
-  raid: {
-    del: [990, 2200],
-    mech: [1200, 2800],
-    water: [1400, 3200],
-    ctrl: [890, 1800],
-    enc: [990, 2200],
-    crash: [890, 2000],
-  },
-  usb: {
-    del: [190, 390],
-    mech: [290, 590],
-    water: [390, 790],
-    ctrl: [290, 590],
-    enc: [290, 490],
-    crash: [290, 550],
-  },
-};
+export type DeviceCategory = 'hddSsd' | 'flash';
 
-export const URGENCY_MULTIPLIER: Record<UrgencyKey, number> = {
-  std: 1.0,
-  now: 1.7,
-};
+export const SERVICE_PRICES: Record<
+  UrgencyKey,
+  Record<DeviceCategory, [number, number] | null>
+> = {
+  std: { hddSsd: [899, 1799], flash: [699, 999] },
+  express: { hddSsd: [1099, 1999], flash: [899, 1199] },
+  notfall: { hddSsd: null, flash: null },
+} as const;
+
+export function formatPriceRange(range: [number, number]): string {
+  return `${range[0].toLocaleString('de-DE')} – ${range[1].toLocaleString('de-DE')} €`;
+}
+
+export function getDeviceCategory(device: DeviceKey): DeviceCategory | null {
+  if (device === 'hdd' || device === 'ssd') return 'hddSsd';
+  if (device === 'usb') return 'flash';
+  return null;
+}

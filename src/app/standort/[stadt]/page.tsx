@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import StandortContent from '@/components/standort/StandortContent';
+import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import { getLocation, LOCATIONS } from '@/lib/locations';
 import { siteConfig } from '@/lib/metadata';
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: StandortPageProps): Promise<M
 
   return {
     title: `Datenrettung ${loc.name} — Festplatte, SSD, RAID`,
-    description: `Professionelle Datenrettung in ${loc.name} und ${loc.region}. Prüfgebühr 39€, Festpreis, 92% Erfolgsquote.`,
+    description: `Professionelle Datenrettung in ${loc.name}. ${loc.serviceNote} Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
     robots: {
       index: true,
       follow: true,

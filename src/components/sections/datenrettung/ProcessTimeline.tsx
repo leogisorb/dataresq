@@ -158,7 +158,7 @@ export default function ProcessTimeline() {
           target="_blank"
         >
           <MapPin aria-hidden="true" className="size-4" strokeWidth={2.25} />
-          Unsere Shops auf Google Maps ansehen
+          Unsere Abgabestellen in NRW auf Google Maps ansehen
         </Link>
       </div>
     </div>

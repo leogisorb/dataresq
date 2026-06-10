@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 
+import { DIAGNOSIS_FEE_FORMATTED } from './constants';
+
 export const siteConfig = {
-  name: 'DATARESQ',
+  name: 'RSQDATA',
   url: 'https://muench-datenrettung.de',
-  description:
-    'Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Prüfgebühr 39€, Festpreis. Jetzt Kostenrechner nutzen.',
+  description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis vor dem Versand. Jetzt Festpreis berechnen.`,
   locale: 'de_DE',
 };
 

@@ -52,8 +52,8 @@ const expandContent: Record<string, ServiceExpandContent> = {
     ],
     stats: [
       { value: '95%', label: 'Erfolgsquote' },
-      { value: DIAGNOSIS_FEE_FORMATTED, label: 'Prüfgebühr' },
-      { value: 'Festpreis', label: 'Garantiert' },
+      { value: '899 – 1.799 €', label: 'Preisrahmen Standard' },
+      { value: DIAGNOSIS_FEE_FORMATTED, label: 'Analysepauschale' },
     ],
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
   },
@@ -66,8 +66,8 @@ const expandContent: Record<string, ServiceExpandContent> = {
     ],
     stats: [
       { value: '92%', label: 'Erfolgsquote' },
-      { value: '48h', label: 'Standard' },
-      { value: DIAGNOSIS_FEE_FORMATTED, label: 'Prüfgebühr' },
+      { value: '3–5 Tage', label: 'Standard' },
+      { value: '899 – 1.799 €', label: 'Preisrahmen Standard' },
     ],
     brands: ['Samsung', 'WD', 'Crucial', 'Kingston', 'Corsair', 'Intel'],
   },
@@ -87,7 +87,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
   },
   'usb-sd': {
     features: [],
-    note: 'USB-Stick ab 99€, SD-Karte ab 99€ — schnelle Diagnose, Festpreis.',
+    note: 'USB-Stick & SD-Karte — Preisrahmen 699 – 999 € (Flash-Speicher, Standard).',
   },
   server: {
     features: [],
