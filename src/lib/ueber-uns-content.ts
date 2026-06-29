@@ -1,51 +1,64 @@
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+export type CertificationIconKey = 'award' | 'microscope' | 'shield' | 'handshake';
 
 export interface Certification {
-  icon: string;
+  iconKey: CertificationIconKey;
+  iconClass: string;
+  iconBgClass: string;
   title: string;
   description: string;
 }
 
 export const certifications: Certification[] = [
   {
-    icon: '🏅',
+    iconKey: 'award',
+    iconClass: 'text-accent',
+    iconBgClass: 'bg-accent/10',
     title: 'ISO 9001',
     description: 'Zertifiziertes Qualitätsmanagement für reproduzierbare Datenrettungsprozesse.',
   },
   {
-    icon: '🔬',
+    iconKey: 'microscope',
+    iconClass: 'text-chevron-1',
+    iconBgClass: 'bg-chevron-1/15',
     title: 'Reinraum ISO 5',
     description: 'Staubfreie Umgebung für mechanische Festplattenrettung nach ISO-Klasse 5.',
   },
   {
-    icon: '🔒',
+    iconKey: 'shield',
+    iconClass: 'text-success',
+    iconBgClass: 'bg-success/10',
     title: 'DSGVO-konform',
     description: 'Datenschutzkonforme Verarbeitung — AVV für Unternehmenskunden verfügbar.',
   },
   {
-    icon: '🤝',
-    title: 'Mitglied [VERBAND]',
-    description: 'Mitgliedschaft in [VERBAND] — anerkannte Branchenstandards und Weiterbildung.',
+    iconKey: 'handshake',
+    iconClass: 'text-chevron-2',
+    iconBgClass: 'bg-chevron-2/15',
+    title: 'Internationaler Verband',
+    description:
+      'Mitgliedschaft in einem internationalen Fachverband — anerkannte Branchenstandards und regelmäßige Weiterbildung.',
   },
 ];
 
+export type ComparisonRating = 'yes' | 'partial' | 'no';
+
 export interface ComparisonRow {
   feature: string;
-  muench: string;
-  competitor: string;
+  muench: ComparisonRating;
+  competitor: ComparisonRating;
 }
 
 export const comparisonRows: ComparisonRow[] = [
-  { feature: 'Reinraumlabor', muench: '✅ Eigenes', competitor: '❌ Oft extern' },
-  { feature: 'Ersatzteillager', muench: '✅ 14.000+', competitor: '⚠️ Begrenzt' },
-  { feature: 'Festpreis', muench: '✅ Immer', competitor: '⚠️ Oft variabel' },
-  { feature: 'Analysepauschale', muench: `✅ ${DIAGNOSIS_FEE_FORMATTED} — bei Beauftragung verrechnet`, competitor: '⚠️ Oft unklar' },
-  { feature: 'No Data, No Fee', muench: '✅', competitor: '❌ Selten' },
-  { feature: 'DSGVO / AVV', muench: '✅', competitor: '⚠️ Selten' },
+  { feature: 'Eigenes Reinraumlabor ISO 5', muench: 'yes', competitor: 'no' },
+  { feature: 'Ersatzteillager (14.000+ Teile)', muench: 'yes', competitor: 'partial' },
+  { feature: 'Festpreis vor Beauftragung', muench: 'yes', competitor: 'partial' },
+  { feature: 'Transparente Analysepauschale', muench: 'yes', competitor: 'partial' },
+  { feature: 'DSGVO / AVV für Unternehmen', muench: 'yes', competitor: 'partial' },
+  { feature: 'Abgabestellen & DHL-Abholung', muench: 'yes', competitor: 'partial' },
 ];
 
-export const reinraumBullets = [
-  'Reinraum ISO-Klasse 5',
-  'Über 14.000 Ersatzteile im Lager',
-  'Sichere, verschlüsselte Datenspeicherung',
-];
+export const comparisonRatingLabels: Record<ComparisonRating, string> = {
+  yes: 'Ja',
+  partial: 'Teilweise',
+  no: 'Nein',
+};

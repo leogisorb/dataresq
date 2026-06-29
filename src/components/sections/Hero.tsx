@@ -6,6 +6,7 @@ import {
   CALCULATOR_SECTION_ID,
 } from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
+import { FAILED_RECOVERY_BADGE, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 export default function Hero() {
   return (
@@ -20,15 +21,14 @@ export default function Hero() {
 
           <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
             Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Garantierter
-            Festpreis, Dateiliste im Kundenportal — und wenn wir nichts retten können, zahlen Sie
-            nichts.
+            Festpreis, Dateiliste im Kundenportal — {FAILED_RECOVERY_NOTE}
           </p>
 
           <HeroCtas />
 
           <div className="mt-8 flex flex-wrap gap-6 text-sm text-text md:mt-10">
             <span>✓ Festpreis vor Versand</span>
-            <span>✓ No Data, No Fee</span>
+            <span>✓ {FAILED_RECOVERY_BADGE}</span>
           </div>
         </div>
 
@@ -38,7 +38,7 @@ export default function Hero() {
             className="h-auto max-h-[min(42dvh,420px)] w-full max-w-[640px] object-contain lg:max-h-[min(48dvh,480px)]"
             height={896}
             priority
-            src="/images/hero-storage-devices.png"
+            src="/images/hero-devices-v3.png"
             width={1200}
           />
         </div>

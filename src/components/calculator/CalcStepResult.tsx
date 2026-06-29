@@ -9,7 +9,7 @@ import {
   type PriceEstimateResult,
 } from '@/lib/calculator';
 import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 interface CalcStepResultProps {
   device: DeviceKey;
@@ -82,8 +82,8 @@ export default function CalcStepResult({
       </div>
 
       <p className="mt-6 text-sm text-text-dim">
-        Analysepauschale {DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % angerechnet.
-        Können wir nichts retten, zahlen Sie nichts.
+        Analysepauschale {DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % angerechnet.{' '}
+        {FAILED_RECOVERY_NOTE}
       </p>
     </div>
   );

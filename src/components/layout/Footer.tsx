@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-import FooterCta from '@/components/layout/FooterCta';
+import FooterContactSection from '@/components/layout/FooterContactSection';
+import HashLink from '@/components/navigation/HashLink';
 import WiderrufsButton from '@/components/ui/WiderrufsButton';
 import { SITE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
@@ -32,12 +33,12 @@ function FooterColumn({
       <ul className="mt-4 flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.label}>
-            <Link
+            <HashLink
               className="touch-target inline-flex items-center text-sm text-text transition-colors hover:text-text active:text-text"
               href={link.href}
             >
               {link.label}
-            </Link>
+            </HashLink>
           </li>
         ))}
       </ul>
@@ -48,15 +49,7 @@ function FooterColumn({
 export default function Footer() {
   return (
     <>
-      <section className="bg-bg py-20 text-center" id="kontakt">
-        <div className="site-container">
-          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-text md:text-4xl">
-            Datenverlust ist stressig.
-          </h2>
-          <p className="mb-8 text-lg text-text">Uns zu erreichen nicht.</p>
-          <FooterCta />
-        </div>
-      </section>
+      <FooterContactSection />
 
       <footer className="bg-bg-subtle py-12 text-text">
         <div className="site-container">

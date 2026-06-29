@@ -1,4 +1,4 @@
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 export interface FaqItem {
   question: string;
@@ -13,7 +13,7 @@ export const calculatorFaqs: FaqItem[] = [
   },
   {
     question: 'Was passiert nach der Analyse?',
-    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % auf Ihren Festpreis angerechnet — die Analyse kostet Sie dann effektiv nichts. Können wir nichts retten, entfällt die Pauschale vollständig, inklusive kostenlosem Rückversand.`,
+    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % auf Ihren Festpreis angerechnet — die Analyse kostet Sie dann effektiv nichts. ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
   },
   {
     question: 'Wie lange dauert eine Datenrettung?',
@@ -22,7 +22,7 @@ export const calculatorFaqs: FaqItem[] = [
   },
   {
     question: 'Was kostet die Analysepauschale?',
-    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} deckt die vollständige Laboranalyse und die Dateiliste im Kundenportal. Bei Beauftragung wird sie vollständig verrechnet. Nur wenn Ihre Daten nachweislich rettbar sind und Sie sich gegen die Rettung entscheiden, berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
+    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} deckt die vollständige Laboranalyse und die Dateiliste im Kundenportal. Bei Beauftragung wird sie vollständig verrechnet. ${FAILED_RECOVERY_NOTE} Entscheiden Sie sich gegen die Rettung, obwohl Daten rettbar sind, berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
   },
   {
     question: 'Gilt der Preis auch für RAID-Systeme?',

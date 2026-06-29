@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import HashLink from '@/components/navigation/HashLink';
 
 import { CALCULATOR_SECTION_ID } from '@/lib/calculator-section';
 import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
@@ -55,7 +55,7 @@ export default function Features() {
             </div>
           ))}
 
-          <Link
+          <HashLink
             href={`/#${CALCULATOR_SECTION_ID}`}
             className={`${BTN_FEATURE_CTA_TILE} min-h-[180px] md:min-h-[200px]`}
           >
@@ -65,7 +65,7 @@ export default function Features() {
               className="size-[30px] text-text transition-transform group-hover:translate-x-1"
               strokeWidth={2}
             />
-          </Link>
+          </HashLink>
         </div>
       </div>
     </section>

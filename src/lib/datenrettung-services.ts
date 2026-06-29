@@ -1,4 +1,4 @@
-import { DIAGNOSIS_FEE_FORMATTED, type DeviceKey } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, FAILED_RECOVERY_NOTE, type DeviceKey } from '@/lib/constants';
 
 export interface ServiceCard {
   slug: string;
@@ -110,7 +110,7 @@ export const processSteps: ProcessStep[] = [
     phase: 1,
     phaseLabel: 'Anfrage & Angebot',
     title: 'Laboranalyse mit fairer Verrechnungs-Garantie',
-    description: `Nach Eingang dokumentieren wir den Zustand und führen die vollständige technische Analyse durch. Standard: 3–5 Arbeitstage, Express: 1–2 Arbeitstage, Notfall: 24/7 bis Ihre Daten gerettet sind. Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED}: Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. Können wir nichts retten, entfällt sie vollständig — inklusive kostenlosem Rückversand. Nur bei nachweislich rettbaren Daten und Ihrer Ablehnung berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
+    description: `Nach Eingang dokumentieren wir den Zustand und führen die vollständige technische Analyse durch. Standard: 3–5 Arbeitstage, Express: 1–2 Arbeitstage, Notfall: 24/7 bis Ihre Daten gerettet sind. Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED}: Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. Entscheiden Sie sich gegen die Rettung, obwohl Daten rettbar sind, berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
   },
   {
     step: 4,
@@ -149,6 +149,6 @@ export const trustBadges = [
   'Kostenlose DHL Express-Abholung',
   'Dateiliste vor dem Kauf',
   'Analysepauschale wird voll verrechnet',
-  'No Data, No Fee',
+  FAILED_RECOVERY_BADGE,
   'DSGVO-konform',
 ];

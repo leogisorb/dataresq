@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   AlertTriangle,
   ArrowLeft,
@@ -10,9 +10,11 @@ import {
   Cpu,
   Droplets,
   HardDrive,
+  Laptop,
   Lock,
   Server,
   Siren,
+  Smartphone,
   Trash2,
   Usb,
   Wrench,
@@ -41,6 +43,8 @@ const DEVICE_ICONS = {
   ssd: CircuitBoard,
   raid: Server,
   usb: Usb,
+  smartphone: Smartphone,
+  notebook: Laptop,
 } as const;
 
 const DAMAGE_ICONS = {
@@ -67,8 +71,6 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   const [device, setDevice] = useState<DeviceKey | null>(defaultDevice ?? null);
   const [damage, setDamage] = useState<DamageKey | null>(null);
   const [urgency, setUrgency] = useState<UrgencyKey | null>(null);
-  const stepRef = useRef<HTMLDivElement>(null);
-  const hasMountedRef = useRef(false);
 
   const priceEstimate = useMemo(() => {
     if (!device || !urgency) return null;
@@ -98,15 +100,6 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
     (step === 1 && device !== null) ||
     (step === 2 && damage !== null) ||
     (step === 3 && urgency !== null);
-
-  useEffect(() => {
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
-      return;
-    }
-
-    stepRef.current?.focus({ preventScroll: true });
-  }, [step]);
 
   const goNext = () => {
     if (step === 3 && urgency) {
@@ -139,9 +132,9 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
 
       <div
         key={step}
-        ref={stepRef}
-        tabIndex={-1}
-        className="transition-opacity duration-200 outline-none focus:outline-none focus-visible:outline-none"
+        aria-atomic="true"
+        aria-live="polite"
+        className="transition-opacity duration-200"
       >
         {step === 1 && (
           <CalcStepDevice

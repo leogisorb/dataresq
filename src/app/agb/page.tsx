@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import LegalPageLayout from '@/components/layout/LegalPageLayout';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
@@ -30,10 +30,9 @@ export default function AgbPage() {
       <p>
         Leistungen umfassen Laboranalyse, Datenrettung und Rückversand des Datenträgers. Es wird
         kein Erfolg der Datenrettung garantiert. Die Analysepauschale beträgt{' '}
-        {DIAGNOSIS_FEE_FORMATTED} und wird bei Beauftragung zu 100 % auf den Festpreis angerechnet.
-        Können wir nichts retten, entfällt die Pauschale vollständig — inklusive kostenlosem
-        Rückversand. Die Datenrettung erfolgt zum vereinbarten Festpreis nach Beauftragung im
-        Kundenportal.
+        {DIAGNOSIS_FEE_FORMATTED} und wird bei Beauftragung zu 100 % auf den Festpreis angerechnet.{' '}
+        {FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. Die Datenrettung erfolgt zum vereinbarten
+        Festpreis nach Beauftragung im Kundenportal.
       </p>
 
       <h2>§ 3 Preise &amp; Zahlung</h2>

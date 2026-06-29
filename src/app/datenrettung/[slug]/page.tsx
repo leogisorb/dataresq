@@ -6,7 +6,7 @@ import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSecti
 import MobileNav from '@/components/layout/MobileNav';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
@@ -100,7 +100,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
               Analysepauschale {DIAGNOSIS_FEE_FORMATTED} mit Dateiliste im Kundenportal, garantierter
-              Festpreis vor Beauftragung — bei erfolgloser Rettung zahlen Sie nichts.
+              Festpreis vor Beauftragung — {FAILED_RECOVERY_NOTE}
             </p>
             <div className="mt-8">
               <DatenrettungCta layout="row" />

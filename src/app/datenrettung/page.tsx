@@ -6,7 +6,7 @@ import ProcessTimeline from '@/components/sections/datenrettung/ProcessTimeline'
 import ServiceGrid from '@/components/sections/datenrettung/ServiceGrid';
 import MobileNav from '@/components/layout/MobileNav';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 import {
   PAGE_HERO_HEADING,
@@ -73,8 +73,8 @@ export default function DatenrettungPage() {
             </p>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted md:text-lg">
               Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Sie sehen Ihre
-              Dateien, bevor Sie beauftragen. Und wenn wir nichts retten können, zahlen Sie nichts.
-              Über {RESCUED_DATASETS} gerettete Datensätze.
+              Dateien, bevor Sie beauftragen. {FAILED_RECOVERY_NOTE} Über {RESCUED_DATASETS}{' '}
+              gerettete Datensätze.
             </p>
           </div>
         </section>

@@ -7,6 +7,8 @@ export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   ssd: 'text-[#5856d6]',
   raid: 'text-[#ff9500]',
   usb: 'text-[#34c759]',
+  smartphone: 'text-[#007aff]',
+  notebook: 'text-[#86868b]',
   del: 'text-[#ff3b30]',
   mech: 'text-[#ff9500]',
   water: 'text-[#32ade6]',

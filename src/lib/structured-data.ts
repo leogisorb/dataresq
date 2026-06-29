@@ -1,6 +1,6 @@
 import type { RatgeberArticle, RatgeberFaqItem } from './sanity';
 
-import { DIAGNOSIS_FEE_FORMATTED, SITE } from './constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, SITE } from './constants';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
 import { siteConfig } from './metadata';
@@ -53,7 +53,7 @@ export function generateOrganizationJsonLd(): OrganizationJsonLdSchema {
     name: siteConfig.name,
     url: siteConfig.url,
     email: SITE.email,
-    foundingDate: FOUNDING_YEAR,
+    foundingDate: String(FOUNDING_YEAR),
     employee: TEAM.map((member) => ({
       '@type': 'Person',
       name: member.name,
@@ -162,7 +162,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — garantierter Festpreis vor Beauftragung, No Data No Fee.`,
+      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — garantierter Festpreis vor Beauftragung, ${FAILED_RECOVERY_BADGE}.`,
     },
   };
 }

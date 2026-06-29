@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import ContentPageShell from '@/components/layout/ContentPageShell';
@@ -8,7 +9,7 @@ import { siteConfig } from '@/lib/metadata';
 export const metadata: Metadata = {
   title: 'Abgabestellen & Kundenbetreuung — NRW',
   description:
-    'RSQDATA: Abgabestellen in Grevenbroich, Mönchengladbach und Köln. Kostenlose DHL Express-Abholung an Ihrer Haustür, versichert.',
+    'RSQDATA: Abgabestellen in Grevenbroich, Mönchengladbach und Köln. Alle Datenträgertypen — kostenlose DHL Express-Abholung an Ihrer Haustür.',
   robots: {
     index: true,
     follow: true,
@@ -26,22 +27,37 @@ export default function StandortOverviewPage() {
           Abgabestellen &amp; Kundenbetreuung
         </h1>
         <p className="mt-4 max-w-2xl text-text">
-          Geben Sie Ihren Datenträger ohne Termin an einer unserer Abgabestellen ab — oder nutzen
-          Sie die kostenlose DHL Express-Abholung direkt an Ihrer Haustür.
+          Geben Sie Ihren Datenträger ohne Termin an einer unserer Abgabestellen ab — alle
+          Datenträgertypen willkommen. Oder nutzen Sie die kostenlose DHL Express-Abholung direkt
+          an Ihrer Haustür.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {LOCATIONS.map((location) => (
             <Link
               key={location.slug}
-              className="rounded-lg border border-black/5 bg-bg-card p-6 transition-colors active:border-accent md:hover:border-accent"
+              className="group overflow-hidden rounded-xl border border-black/5 bg-bg-card transition-colors active:border-accent md:hover:border-accent"
               href={`/standort/${location.slug}`}
             >
-              <h2 className="text-xl font-semibold text-text">{location.name}</h2>
-              <p className="mt-1 text-sm text-accent">{location.region}</p>
-              <p className="mt-3 text-sm leading-relaxed text-text">
-                {location.serviceNote}
-              </p>
+              <div className="relative aspect-[16/10] w-full bg-bg-subtle">
+                <Image
+                  alt={location.imageAlt}
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  src={location.image}
+                />
+              </div>
+              <div className="p-6">
+                <h2 className="text-xl font-semibold text-text">{location.name}</h2>
+                <p className="mt-1 text-sm text-accent">
+                  {location.partner === 'iambulanz' ? 'RSQDATA / iAmbulanz' : 'RSQDATA Büro'} ·{' '}
+                  {location.region}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  {location.serviceNote}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

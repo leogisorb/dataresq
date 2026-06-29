@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Drawer, useOverlayState } from '@heroui/react';
 
+import HashLink from '@/components/navigation/HashLink';
 import { BTN_BRAND_HEADER, BTN_BRAND_LG } from '@/lib/button-styles';
 import { mainNavItems } from '@/lib/navigation';
 import { siteConfig } from '@/lib/metadata';
@@ -55,25 +56,25 @@ export default function MobileNavClient() {
           <ul className="flex items-center gap-8">
             {mainNavItems.map((item) => (
               <li key={item.href}>
-                <Link
+                <HashLink
                   aria-current={isActive(item.href) ? 'page' : undefined}
                   className="site-header-nav-link touch-target inline-flex items-center"
                   href={item.href}
                 >
                   {item.label}
-                </Link>
+                </HashLink>
               </li>
             ))}
           </ul>
         </nav>
 
         <div className="flex items-center justify-end gap-3">
-          <Link
+          <HashLink
             className={`${BTN_BRAND_HEADER} hidden md:inline-flex`}
             href="/#kostenrechner"
           >
             Kostenlos anfragen
-          </Link>
+          </HashLink>
 
           <button
             aria-label="Menü öffnen"
@@ -88,43 +89,45 @@ export default function MobileNavClient() {
         </div>
       </div>
 
-      <Drawer.Backdrop isOpen={drawerState.isOpen} onOpenChange={drawerState.setOpen}>
-        <Drawer.Content placement="left">
-          <Drawer.Dialog className="bg-bg-card" id="mobile-nav-drawer">
-            <Drawer.CloseTrigger />
-            <Drawer.Header>
-              <Drawer.Heading className="text-text">{siteConfig.name}</Drawer.Heading>
-            </Drawer.Header>
-            <Drawer.Body>
-              <nav aria-label="Mobile Navigation">
-                <ul className="flex flex-col">
-                  {mainNavItems.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        aria-current={isActive(item.href) ? 'page' : undefined}
-                        className="site-header-nav-link touch-target block py-3 text-base"
-                        href={item.href}
-                        onClick={handleNavClick}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </Drawer.Body>
-            <Drawer.Footer>
-              <Link
-                className={`${BTN_BRAND_LG} touch-target w-full`}
-                href="/#kostenrechner"
-                onClick={handleNavClick}
-              >
-                Jetzt Kosten berechnen
-              </Link>
-            </Drawer.Footer>
-          </Drawer.Dialog>
-        </Drawer.Content>
-      </Drawer.Backdrop>
+      {drawerState.isOpen ? (
+        <Drawer.Backdrop isOpen={drawerState.isOpen} onOpenChange={drawerState.setOpen}>
+          <Drawer.Content placement="left">
+            <Drawer.Dialog className="bg-bg-card" id="mobile-nav-drawer">
+              <Drawer.CloseTrigger />
+              <Drawer.Header>
+                <Drawer.Heading className="text-text">{siteConfig.name}</Drawer.Heading>
+              </Drawer.Header>
+              <Drawer.Body>
+                <nav aria-label="Mobile Navigation">
+                  <ul className="flex flex-col">
+                    {mainNavItems.map((item) => (
+                      <li key={item.href}>
+                        <HashLink
+                          aria-current={isActive(item.href) ? 'page' : undefined}
+                          className="site-header-nav-link touch-target block py-3 text-base"
+                          href={item.href}
+                          onClick={handleNavClick}
+                        >
+                          {item.label}
+                        </HashLink>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </Drawer.Body>
+              <Drawer.Footer>
+                <HashLink
+                  className={`${BTN_BRAND_LG} touch-target w-full`}
+                  href="/#kostenrechner"
+                  onClick={handleNavClick}
+                >
+                  Jetzt Kosten berechnen
+                </HashLink>
+              </Drawer.Footer>
+            </Drawer.Dialog>
+          </Drawer.Content>
+        </Drawer.Backdrop>
+      ) : null}
     </header>
   );
 }

@@ -6,10 +6,9 @@ export interface TeamMember {
   image: string;
 }
 
-export const FOUNDING_YEAR = '[JAHR]';
-export const RESCUED_DATASETS = '12.000';
-export const YEARS_EXPERIENCE = '[X]';
-export const LAB_LOCATION = '[ORT]';
+export const FOUNDING_YEAR = 2013 as const;
+export const FOUNDING_LOCATION = 'Grevenbroich' as const;
+export const RESCUED_DATASETS = '12.000' as const;
 
 export const TEAM: TeamMember[] = [
   {

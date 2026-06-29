@@ -4,21 +4,19 @@ import Link from 'next/link';
 import MobileNav from '@/components/layout/MobileNav';
 import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
-import MetricsSection from '@/components/sections/ueber-uns/MetricsSection';
-import ReinraumSection from '@/components/sections/ueber-uns/ReinraumSection';
-import TeamGrid from '@/components/sections/ueber-uns/TeamGrid';
+import IambulanzPartnerSection from '@/components/sections/ueber-uns/IambulanzPartnerSection';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import { siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
   generateOrganizationJsonLd,
 } from '@/lib/structured-data';
-import { FOUNDING_YEAR, LAB_LOCATION, RESCUED_DATASETS } from '@/lib/team';
+import { FOUNDING_LOCATION, FOUNDING_YEAR, RESCUED_DATASETS } from '@/lib/team';
 
 export const metadata: Metadata = {
-  title: 'Über uns — RSQDATA: Team & Reinraum',
+  title: 'Über uns — RSQDATA: Partner & Expertise',
   description:
-    'Lernen Sie das Team hinter RSQDATA kennen. Reinraumlabor, ISO-zertifiziert, über [X] Jahre Erfahrung. Ihre Daten in Expertenhand.',
+    'RSQDATA: Gegründet 2013 in Grevenbroich, iAmbulanz-Partner, Abgabestellen in NRW. Über 12.000 erfolgreiche Datenrettungen.',
   robots: {
     index: true,
     follow: true,
@@ -48,7 +46,6 @@ export default function UeberUnsPage() {
 
       <MobileNav />
       <main>
-        {/* Intro Hero */}
         <section className="border-b border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text">
@@ -63,44 +60,23 @@ export default function UeberUnsPage() {
               Ihr Datenrettungs-Experte
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text md:text-lg">
-              Gegründet {FOUNDING_YEAR}. Inhabergeführt. Reinraum in {LAB_LOCATION}. Über{' '}
+              Gegründet {FOUNDING_YEAR} in {FOUNDING_LOCATION}. Inhabergeführt. Über{' '}
               {RESCUED_DATASETS} erfolgreich abgeschlossene Datenrettungen.
             </p>
           </div>
         </section>
 
-        {/* Team */}
         <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
-            <h2 className="text-2xl font-bold text-text md:text-3xl">Unser Team</h2>
-            <p className="mt-3 max-w-2xl text-text">
-              Benannte Experten mit nachweisbarer Fachkompetenz — keine anonymen
-              „Unser-Team&quot;-Texte.
-            </p>
+            <h2 className="text-2xl font-bold text-text md:text-3xl">
+              Offizieller Partner: iAmbulanz
+            </h2>
             <div className="mt-8">
-              <TeamGrid />
+              <IambulanzPartnerSection />
             </div>
           </div>
         </section>
 
-        {/* Reinraum */}
-        <section className="bg-bg-subtle px-4 py-12 md:px-8 md:py-16 lg:px-12">
-          <div className="site-container">
-            <h2 className="text-2xl font-bold text-text md:text-3xl">Unser Reinraumlabor</h2>
-            <div className="mt-8">
-              <ReinraumSection />
-            </div>
-          </div>
-        </section>
-
-        {/* Kennzahlen */}
-        <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
-          <div className="site-container">
-            <MetricsSection />
-          </div>
-        </section>
-
-        {/* Zertifikate */}
         <section className="bg-bg-subtle px-4 py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Zertifikate & Partner</h2>
@@ -110,20 +86,15 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        {/* Vergleich */}
         <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Warum RSQDATA?</h2>
-            <p className="mt-3 text-text">
-              Ein direkter Vergleich mit typischen Datenrettungs-Anbietern.
-            </p>
             <div className="mt-8">
               <ComparisonTable />
             </div>
           </div>
         </section>
 
-        {/* CTA */}
         <section className="border-t border-black/5 bg-bg-card px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">
             <h2 className="text-2xl font-bold md:text-3xl">

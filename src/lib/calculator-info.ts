@@ -103,6 +103,50 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
     warning:
       'Tippen Sie niemals auf „Jetzt formatieren", wenn Ihr Betriebssystem das vorschlägt. Das überschreibt die Dateitabelle und verschlechtert die Rettungschancen erheblich.',
   },
+  smartphone: {
+    title: 'Smartphone & Tablet (iPhone, iPad & Android)',
+    intro:
+      'Smartphones und Tablets speichern Fotos, Kontakte und Nachrichten auf internem Flash-Speicher oder einer verschlüsselten Partition. Nach Displaybruch, Wasserschaden oder versehentlichem Löschen ist eine professionelle Analyse oft der einzige Weg zu Ihren Daten.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Display kaputt — Gerät startet, Daten nicht zugänglich',
+          'Wasserschaden oder Sturz — Gerät erkennt sich nicht mehr',
+          'Gelöschte Fotos, Videos oder WhatsApp-Chats',
+          'PIN vergessen oder Gerät nach Reset gesperrt',
+        ],
+      },
+      {
+        label: 'Erfolgsaussichten',
+        text: 'Gelöschte Dateien und viele logische Defekte sind bei Smartphones gut rettbar — solange das Gerät nicht weiter genutzt wird. Bei Hardwaredefekten hängt die Quote vom Modell und Chipsatz ab.',
+      },
+    ],
+    warning:
+      'Gerät nicht weiter benutzen, nicht auf Werkseinstellungen zurücksetzen und keine Recovery-Apps installieren — das kann Daten überschreiben.',
+  },
+  notebook: {
+    title: 'Notebook & Laptop',
+    intro:
+      'Notebooks vereinen interne SSD oder HDD, oft verschlüsselte Systempartitionen und manchmal RAID- oder Hybrid-Speicher. Nach Sturz, Flüssigkeitsschaden, Displaybruch oder Boot-Fehler retten wir Daten direkt vom Speichermedium — unabhängig davon, ob das Gerät noch startet.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Laptop startet nicht mehr oder hängt beim Apple-/Windows-Logo',
+          'Bluescreen (BSOD) oder Kernel Panic nach Update oder Sturz',
+          'Wasserschaden auf der Tastatur — Gerät geht nicht mehr an',
+          'SSD/HDD wird im BIOS nicht erkannt, obwohl das Gerät läuft',
+        ],
+      },
+      {
+        label: 'Erfolgsaussichten',
+        text: 'Logische Defekte und viele Elektronikschäden sind gut rettbar, sobald das Speichermedium unangetastet bleibt. Bei mechanischen HDD-Schäden arbeiten wir im Reinraum; bei NVMe/SSD oft über Controller- oder Chip-Level-Zugriff.',
+      },
+    ],
+    warning:
+      'Gerät nicht weiter booten oder chkdsk/fsck ausführen. Bei Verdacht auf mechanischen Schaden Festplatte nicht wiederholt einschalten — direkt einsenden.',
+  },
 };
 
 export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {

@@ -1,16 +1,16 @@
-import Link from 'next/link';
+import HashLink from '@/components/navigation/HashLink';
 
 import { BTN_BRAND_LG } from '@/lib/button-styles';
 
 export default function FooterCta() {
   return (
     <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-      <Link className={`${BTN_BRAND_LG} w-full sm:w-auto`} href="/#kostenrechner">
+      <HashLink className={`${BTN_BRAND_LG} w-full sm:w-auto`} href="/#kostenrechner">
         Jetzt Kosten berechnen
-      </Link>
-      <Link className={`${BTN_BRAND_LG} w-full sm:w-auto`} href="/#kontakt">
+      </HashLink>
+      <HashLink className={`${BTN_BRAND_LG} w-full sm:w-auto`} href="/#kontakt">
         Kontakt aufnehmen
-      </Link>
+      </HashLink>
     </div>
   );
 }

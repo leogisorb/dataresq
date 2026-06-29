@@ -1,4 +1,4 @@
-import { CircuitBoard, HardDrive, Server, Usb } from 'lucide-react';
+import { CircuitBoard, HardDrive, Laptop, Server, Smartphone, Usb } from 'lucide-react';
 
 import CalcOptionTile from '@/components/calculator/CalcOptionTile';
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
@@ -12,6 +12,8 @@ const DEVICE_ICONS = {
   ssd: CircuitBoard,
   raid: Server,
   usb: Usb,
+  smartphone: Smartphone,
+  notebook: Laptop,
 } as const;
 
 interface CalcStepDeviceProps {

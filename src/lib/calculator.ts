@@ -34,6 +34,8 @@ export const DEVICE_OPTIONS: DeviceOption[] = [
   { key: 'ssd', label: 'SSD / NVMe' },
   { key: 'raid', label: 'RAID / NAS / Server' },
   { key: 'usb', label: 'USB / SD-Karte' },
+  { key: 'smartphone', label: 'Smartphone / Tablet' },
+  { key: 'notebook', label: 'Notebook' },
 ];
 
 export const DAMAGE_OPTIONS: DamageOption[] = [

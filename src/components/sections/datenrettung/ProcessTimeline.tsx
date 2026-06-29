@@ -2,7 +2,6 @@ import { MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 import { CHEVRON_STEP_STYLES } from '@/lib/chevron-colors';
-import { SITE } from '@/lib/constants';
 import { processSteps } from '@/lib/datenrettung-services';
 
 const STEP_STYLES = CHEVRON_STEP_STYLES;
@@ -10,10 +9,6 @@ const STEP_STYLES = CHEVRON_STEP_STYLES;
 const CLIP_CLASSES = ['chevron-clip-first', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-last'] as const;
 
 const Z_INDEX_CLASSES = ['z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
-
-const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${SITE.address.street} ${SITE.address.zip} ${SITE.address.city} Deutschland`,
-)}`;
 
 function StepLabelAbove({
   step,
@@ -153,12 +148,10 @@ export default function ProcessTimeline() {
       <div className="mt-10">
         <Link
           className="inline-flex items-center gap-2.5 text-base font-semibold text-text transition-opacity duration-150 hover:opacity-70"
-          href={mapsUrl}
-          rel="noopener noreferrer"
-          target="_blank"
+          href="/standort"
         >
           <MapPin aria-hidden="true" className="size-4" strokeWidth={2.25} />
-          Unsere Abgabestellen in NRW auf Google Maps ansehen
+          Abgabestelle finden
         </Link>
       </div>
     </div>
