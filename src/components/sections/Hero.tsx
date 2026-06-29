@@ -34,12 +34,12 @@ export default function Hero() {
 
         <div className="relative flex items-center justify-center lg:justify-end">
           <Image
-            alt="Verschiedene Datenspeicher-Medien: USB-Stick, SD-Karte, SSD, Festplatte, Diskette"
+            alt="Datenspeicher-Medien: Festplatte, SSD, Speicherkarten und Smartphone — professionelle Datenrettung"
             className="h-auto max-h-[min(42dvh,420px)] w-full max-w-[640px] object-contain lg:max-h-[min(48dvh,480px)]"
-            height={985}
+            height={896}
             priority
             src="/images/hero-storage-devices.png"
-            width={1597}
+            width={1200}
           />
         </div>
       </div>
