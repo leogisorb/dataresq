@@ -6,7 +6,7 @@ import {
   CALCULATOR_SECTION_ID,
 } from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
-import { FAILED_RECOVERY_BADGE, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE } from '@/lib/constants';
 
 export default function Hero() {
   return (
@@ -20,8 +20,8 @@ export default function Hero() {
           </h1>
 
           <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
-            Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Garantierter
-            Festpreis, Dateiliste im Kundenportal — {FAILED_RECOVERY_NOTE}
+            Vor der Beauftragung kennen Sie Festpreis und Dateiliste. Scheitert die Rettung, zahlen
+            Sie nur die Analysepauschale von {DIAGNOSIS_FEE_FORMATTED}.
           </p>
 
           <HeroCtas />

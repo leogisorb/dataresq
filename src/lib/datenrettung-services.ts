@@ -103,7 +103,7 @@ export const processSteps: ProcessStep[] = [
     phaseLabel: 'Anfrage & Angebot',
     title: 'Kostenlose Express-Abholung oder persönliche Abgabe',
     description:
-      'DHL Express holt Ihren Datenträger kostenlos und versichert an Ihrer Haustür ab — mit Wunschzeitfenster. Auf Wunsch senden wir vorab eine kostenlose Schutzbox mit Verpackungsanleitung. Oder geben Sie Ihren Datenträger ohne Termin an unseren Abgabestellen in Grevenbroich, Mönchengladbach oder Köln ab.',
+      'DHL Express holt Ihren Datenträger kostenlos und versichert an Ihrer Haustür ab — mit Wunschzeitfenster. Auf Wunsch senden wir vorab eine kostenlose Schutzbox mit Verpackungsanleitung. Oder geben Sie Ihren Datenträger ohne Termin an unseren Abgabestellen in Grevenbroich oder Mönchengladbach ab.',
   },
   {
     step: 3,

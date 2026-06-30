@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
-import HashLink from '@/components/navigation/HashLink';
-
+import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 const faqItems = [
@@ -57,9 +56,9 @@ export default function DatenrettungFaq() {
                   Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung
                   treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen
                   Sie unseren{' '}
-                  <HashLink className="text-accent" href="/#kostenrechner">
+                  <Link className="text-accent" href={CALCULATOR_PAGE_PATH}>
                     Preisrahmen-Rechner
-                  </HashLink>
+                  </Link>
                   .
                 </>
               ) : item.id === 'sicherheit' ? (

@@ -10,7 +10,7 @@ const leistungenLinks = [
   { label: 'Festplatte HDD', href: '/datenrettung' },
   { label: 'SSD', href: '/datenrettung' },
   { label: 'RAID / NAS', href: '/datenrettung' },
-  { label: 'Preisrechner', href: '/#kostenrechner' },
+  { label: 'Preisrechner', href: '/preisrechner' },
 ];
 
 const rechtlichesLinks = [
@@ -60,7 +60,7 @@ export default function Footer() {
               </Link>
               <p className="mt-4 text-sm leading-relaxed text-text">
                 Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Abgabestellen in
-                Grevenbroich, Mönchengladbach und Köln — kostenlose DHL Express-Abholung bundesweit.
+                Grevenbroich und Mönchengladbach — kostenlose DHL Express-Abholung bundesweit.
               </p>
               <p className="mt-4 text-xs text-text">[Social-Links Placeholder]</p>
             </div>

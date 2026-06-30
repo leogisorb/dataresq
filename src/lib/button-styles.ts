@@ -17,4 +17,13 @@ export const BTN_BRAND_RECT =
 
 /** Large tile-style CTA (Features grid). */
 export const BTN_FEATURE_CTA_TILE =
-  'group flex flex-col justify-between rounded-2xl border border-border bg-transparent p-5 transition-opacity hover:opacity-90 md:rounded-3xl md:p-6';
+  'group flex flex-col justify-between rounded-2xl border border-border bg-transparent p-5 transition-colors hover:border-neon hover:bg-neon/10 md:rounded-3xl md:p-6';
+
+/** Interactive tile/card hover border — matches CTA neon green. */
+export const TILE_HOVER_BORDER =
+  'transition-colors active:border-neon md:hover:border-neon';
+
+export const TILE_CARD =
+  'rounded-xl border border-black/5 bg-bg-card transition-colors active:border-neon md:hover:border-neon';
+
+export const TILE_CARD_LINK = `${TILE_CARD} rounded-lg p-6`;

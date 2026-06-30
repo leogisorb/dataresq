@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 
+import { TILE_HOVER_BORDER } from '@/lib/button-styles';
 import { getIambulanzLocations } from '@/lib/locations';
 
 export default function IambulanzPartnerSection() {
@@ -21,7 +22,7 @@ export default function IambulanzPartnerSection() {
         {locations.map((location) => (
           <article
             key={location.slug}
-            className="flex flex-col overflow-hidden rounded-xl border border-border bg-bg-card"
+            className={['flex flex-col overflow-hidden rounded-xl border border-border bg-bg-card', TILE_HOVER_BORDER].join(' ')}
           >
             <div className="relative aspect-[16/10] w-full bg-bg-subtle">
               <Image
@@ -49,7 +50,7 @@ export default function IambulanzPartnerSection() {
 
               <div className="mt-auto flex flex-col gap-3 sm:flex-row">
                 <a
-                  className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium text-text transition-colors hover:border-text-dim hover:text-text"
+                  className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium text-text transition-colors active:border-neon md:hover:border-neon"
                   href={location.mapsUrl}
                   rel="noopener noreferrer"
                   target="_blank"

@@ -81,13 +81,10 @@ export default function DatenrettungPage() {
 
         <section className={`${SECTION_PADDING} overflow-visible`}>
           <div className="site-container overflow-visible">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-text-muted">
-              So funktioniert es
-            </p>
-            <h2 className={`${SECTION_HEADING} mb-10`}>
-              So funktioniert Ihre Datenrettung – transparent in 6 Schritten
-            </h2>
-            <ProcessTimeline />
+            <h2 className={SECTION_HEADING}>So funktioniert es</h2>
+            <div className={`${SECTION_CONTENT_MT} overflow-visible`}>
+              <ProcessTimeline />
+            </div>
           </div>
         </section>
 

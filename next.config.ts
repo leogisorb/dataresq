@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/preise-calculator',
-        destination: '/#kostenrechner',
+        destination: '/preisrechner',
         permanent: true,
       },
       {
@@ -20,7 +20,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/standort/berlin',
-        destination: '/standort/koeln',
+        destination: '/standort/grevenbroich',
+        permanent: true,
+      },
+      {
+        source: '/standort/koeln',
+        destination: '/standort/grevenbroich',
         permanent: true,
       },
       {

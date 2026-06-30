@@ -26,7 +26,6 @@ export function getGoogleMapsUrl(address: string): string {
 
 const GREVENBROICH_ADDRESS = `${SITE.address.street}, ${SITE.address.zip} ${SITE.address.city}`;
 const MOENCHENGLADBACH_ADDRESS = 'Lüpertzender Str. 159, 41061 Mönchengladbach';
-const KOELN_ADDRESS = 'Pellenzstr. 15, 50823 Köln';
 
 export const LOCATIONS: Location[] = [
   {
@@ -38,8 +37,8 @@ export const LOCATIONS: Location[] = [
     lat: 51.0897,
     lng: 6.5924,
     partner: 'iambulanz',
-    image: '/images/standort/grevenbroich.png',
-    imageAlt: 'iAmbulanz Abgabestelle Grevenbroich — RSQDATA Datenrettung',
+    image: '/images/standort/grevenbroich.jpeg',
+    imageAlt: 'iAmbulanz Abgabestelle Grevenbroich — Empfang und Übergabe',
     description:
       'RSQDATA / iAmbulanz Grevenbroich — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook und mehr.',
     localFact:
@@ -57,8 +56,8 @@ export const LOCATIONS: Location[] = [
     lat: 51.1805,
     lng: 6.4428,
     partner: 'iambulanz',
-    image: '/images/standort/moenchengladbach.png',
-    imageAlt: 'iAmbulanz Abgabestelle Mönchengladbach — RSQDATA Datenrettung',
+    image: '/images/standort/moenchengladbach.jpeg',
+    imageAlt: 'iAmbulanz Abgabestelle Mönchengladbach — Storefront',
     description:
       'RSQDATA / iAmbulanz Mönchengladbach — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook und mehr.',
     localFact:
@@ -66,25 +65,6 @@ export const LOCATIONS: Location[] = [
     nearbyAreas: ['Grevenbroich', 'Viersen', 'Krefeld', 'Düsseldorf', 'Jüchen'],
     serviceNote: `RSQDATA / iAmbulanz, ${MOENCHENGLADBACH_ADDRESS} — Abgabe ohne Termin. Kostenlose DHL Express-Abholung an Ihrer Haustür.`,
     mapsUrl: getGoogleMapsUrl(MOENCHENGLADBACH_ADDRESS),
-  },
-  {
-    slug: 'koeln',
-    name: 'Köln',
-    region: 'NRW',
-    zip: '50823',
-    street: 'Pellenzstr. 15',
-    lat: 50.9375,
-    lng: 6.9603,
-    partner: 'rsqdata',
-    image: '/images/standort/koeln.png',
-    imageAlt: 'RSQDATA Abgabestelle Köln — Datenrettung Rheinland',
-    description:
-      'RSQDATA Büro Köln — persönliche Abgabe ohne Termin im Rheinland. Alle Datenträgertypen willkommen.',
-    localFact:
-      'Unser Kölner Büro ist Ihre Abgabestelle für den Großraum Köln/Bonn — mit direkter Kundenbetreuung, Dokumentation und Annahme aller Datenträgertypen.',
-    nearbyAreas: ['Bonn', 'Leverkusen', 'Bergisch Gladbach', 'Hürth', 'Brühl'],
-    serviceNote: `RSQDATA Büro Köln, ${KOELN_ADDRESS} — Abgabe ohne Termin. Kostenlose DHL Express-Abholung an Ihrer Haustür.`,
-    mapsUrl: getGoogleMapsUrl(KOELN_ADDRESS),
   },
 ];
 

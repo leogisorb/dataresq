@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { TILE_CARD } from '@/lib/button-styles';
 import type { RatgeberListItem } from '@/lib/sanity';
 
 function formatDate(date: string | null): string {
@@ -31,7 +32,7 @@ export default function RatgeberArticleGrid({ articles }: RatgeberArticleGridPro
       {articles.map((article) => (
         <article
           key={article.slug.current}
-          className="flex h-full flex-col rounded-lg border border-black/5 bg-bg-card p-6"
+          className={`flex h-full flex-col p-6 ${TILE_CARD}`}
         >
           {article.category && (
             <span className="text-xs font-medium uppercase tracking-wide text-accent">

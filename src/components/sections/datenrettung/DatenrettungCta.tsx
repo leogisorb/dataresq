@@ -1,4 +1,6 @@
-import HashLink from '@/components/navigation/HashLink';
+import Link from 'next/link';
+
+import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
 import { BTN_BRAND_LG } from '@/lib/button-styles';
 import { SITE } from '@/lib/constants';
 
@@ -14,9 +16,9 @@ export default function DatenrettungCta({ layout = 'row' }: DatenrettungCtaProps
 
   return (
     <div className={layoutClass}>
-      <HashLink className={`${BTN_BRAND_LG} w-full md:w-auto`} href="/#kostenrechner">
+      <Link className={`${BTN_BRAND_LG} w-full md:w-auto`} href={CALCULATOR_PAGE_PATH}>
         Jetzt Kosten berechnen
-      </HashLink>
+      </Link>
       <a className={`${BTN_BRAND_LG} w-full md:w-auto`} href={`mailto:${SITE.email}`}>
         Per E-Mail anfragen
       </a>

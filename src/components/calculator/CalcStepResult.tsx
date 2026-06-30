@@ -74,7 +74,7 @@ export default function CalcStepResult({
         </Link>
         <button
           type="button"
-          className="rounded-xl border border-border px-6 py-4 text-base font-medium text-text-muted transition-colors hover:border-text-dim hover:text-text"
+          className="rounded-xl border border-border px-6 py-4 text-base font-medium text-text-muted transition-colors active:border-neon md:hover:border-neon md:hover:text-text"
           onClick={onReset}
         >
           Neu berechnen

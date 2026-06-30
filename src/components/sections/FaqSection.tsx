@@ -1,7 +1,12 @@
+'use client';
+
+import { Accordion } from '@heroui/react';
+
 import type { FaqItem } from '@/lib/faq-calculator';
 import {
   SECTION_CONTENT_MT,
   SECTION_HEADING,
+  SECTION_NARROW_WIDTH,
   SECTION_PADDING,
 } from '@/lib/section-styles';
 import { generateFaqPageJsonLd } from '@/lib/structured-data';
@@ -23,17 +28,26 @@ export default function FaqSection({ title, faqs, id }: FaqSectionProps) {
       />
 
       <div className="site-container">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className={`${SECTION_NARROW_WIDTH} text-center`}>
           <h2 className={SECTION_HEADING}>{title}</h2>
 
-          <div className={`${SECTION_CONTENT_MT} flex flex-col gap-8 text-left`}>
-            {faqs.map((faq) => (
-              <article key={faq.question}>
-                <h3 className="text-lg font-semibold text-text">{faq.question}</h3>
-                <p className="mt-2 leading-relaxed text-text-muted">{faq.answer}</p>
-              </article>
+          <Accordion className={`${SECTION_CONTENT_MT} w-full text-left`} variant="surface">
+            {faqs.map((faq, index) => (
+              <Accordion.Item key={faq.question} id={id ? `${id}-${index}` : `faq-${index}`}>
+                <Accordion.Heading>
+                  <Accordion.Trigger>
+                    {faq.question}
+                    <Accordion.Indicator />
+                  </Accordion.Trigger>
+                </Accordion.Heading>
+                <Accordion.Panel>
+                  <Accordion.Body className="leading-relaxed text-text-muted">
+                    {faq.answer}
+                  </Accordion.Body>
+                </Accordion.Panel>
+              </Accordion.Item>
             ))}
-          </div>
+          </Accordion>
         </div>
       </div>
     </section>

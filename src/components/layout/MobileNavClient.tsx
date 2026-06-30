@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Drawer, useOverlayState } from '@heroui/react';
 
 import HashLink from '@/components/navigation/HashLink';
+import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
 import { BTN_BRAND_HEADER, BTN_BRAND_LG } from '@/lib/button-styles';
 import { mainNavItems } from '@/lib/navigation';
 import { siteConfig } from '@/lib/metadata';
@@ -69,12 +70,12 @@ export default function MobileNavClient() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
-          <HashLink
+          <Link
             className={`${BTN_BRAND_HEADER} hidden md:inline-flex`}
-            href="/#kostenrechner"
+            href={CALCULATOR_PAGE_PATH}
           >
             Kostenlos anfragen
-          </HashLink>
+          </Link>
 
           <button
             aria-label="Menü öffnen"
@@ -116,13 +117,13 @@ export default function MobileNavClient() {
                 </nav>
               </Drawer.Body>
               <Drawer.Footer>
-                <HashLink
+                <Link
                   className={`${BTN_BRAND_LG} touch-target w-full`}
-                  href="/#kostenrechner"
+                  href={CALCULATOR_PAGE_PATH}
                   onClick={handleNavClick}
                 >
                   Jetzt Kosten berechnen
-                </HashLink>
+                </Link>
               </Drawer.Footer>
             </Drawer.Dialog>
           </Drawer.Content>

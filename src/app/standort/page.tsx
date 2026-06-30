@@ -3,13 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import ContentPageShell from '@/components/layout/ContentPageShell';
+import { TILE_CARD } from '@/lib/button-styles';
 import { LOCATIONS } from '@/lib/locations';
 import { siteConfig } from '@/lib/metadata';
 
 export const metadata: Metadata = {
   title: 'Abgabestellen & Kundenbetreuung — NRW',
   description:
-    'RSQDATA: Abgabestellen in Grevenbroich, Mönchengladbach und Köln. Alle Datenträgertypen — kostenlose DHL Express-Abholung an Ihrer Haustür.',
+    'RSQDATA: Abgabestellen in Grevenbroich und Mönchengladbach. Alle Datenträgertypen — kostenlose DHL Express-Abholung an Ihrer Haustür.',
   robots: {
     index: true,
     follow: true,
@@ -32,11 +33,11 @@ export default function StandortOverviewPage() {
           an Ihrer Haustür.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {LOCATIONS.map((location) => (
             <Link
               key={location.slug}
-              className="group overflow-hidden rounded-xl border border-black/5 bg-bg-card transition-colors active:border-accent md:hover:border-accent"
+              className={`group overflow-hidden ${TILE_CARD}`}
               href={`/standort/${location.slug}`}
             >
               <div className="relative aspect-[16/10] w-full bg-bg-subtle">
@@ -50,7 +51,7 @@ export default function StandortOverviewPage() {
               </div>
               <div className="p-6">
                 <h2 className="text-xl font-semibold text-text">{location.name}</h2>
-                <p className="mt-1 text-sm text-accent">
+                <p className="mt-1 text-sm text-neon">
                   {location.partner === 'iambulanz' ? 'RSQDATA / iAmbulanz' : 'RSQDATA Büro'} ·{' '}
                   {location.region}
                 </p>

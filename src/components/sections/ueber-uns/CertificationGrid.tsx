@@ -1,5 +1,6 @@
 import { Award, Handshake, Microscope, ShieldCheck } from 'lucide-react';
 
+import { TILE_HOVER_BORDER } from '@/lib/button-styles';
 import { certifications, type CertificationIconKey } from '@/lib/ueber-uns-content';
 
 const CERTIFICATION_ICONS: Record<
@@ -21,7 +22,7 @@ export default function CertificationGrid() {
         return (
           <article
             key={cert.title}
-            className="flex h-full flex-col rounded-xl border border-border bg-bg-card p-6"
+            className={['flex h-full flex-col rounded-xl border border-border bg-bg-card p-6', TILE_HOVER_BORDER].join(' ')}
           >
             <div
               className={[

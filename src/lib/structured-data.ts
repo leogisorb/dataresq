@@ -1,6 +1,7 @@
 import type { RatgeberArticle, RatgeberFaqItem } from './sanity';
 
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, SITE } from './constants';
+import { CALCULATOR_PAGE_PATH } from './calculator-section';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
 import { siteConfig } from './metadata';
@@ -152,7 +153,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     name: 'Datenrettung Kostenrechner',
     description:
       'Kostenloser Online-Preisrechner für Datenrettung: Festplatte, SSD, RAID, NAS und Smartphone.',
-    url: `${siteConfig.url}/#kostenrechner`,
+    url: `${siteConfig.url}${CALCULATOR_PAGE_PATH}`,
     provider: {
       '@type': 'Organization',
       name: siteConfig.name,

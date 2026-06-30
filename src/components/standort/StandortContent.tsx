@@ -2,7 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import ProcessTimelinePreview from '@/components/sections/datenrettung/ProcessTimelinePreview';
+import StandortFaq from '@/components/standort/StandortFaq';
+import { TILE_CARD_LINK } from '@/lib/button-styles';
 import type { Location } from '@/lib/locations';
 import { trustBadges } from '@/lib/datenrettung-services';
 import { STANDORT_SERVICES } from '@/lib/standort-services';
@@ -13,26 +15,6 @@ import {
   generateRatgeberFaqPageJsonLd,
 } from '@/lib/structured-data';
 import { siteConfig } from '@/lib/metadata';
-
-const processSteps = [
-  {
-    step: '①',
-    title: 'Abholung oder Abgabe',
-    description:
-      'DHL Express holt kostenlos an Ihrer Haustür ab — oder Sie geben Ihren Datenträger ohne Termin an unserer Abgabestelle ab.',
-  },
-  {
-    step: '②',
-    title: 'Laboranalyse',
-    description: `Vollständige technische Analyse für ${DIAGNOSIS_FEE_FORMATTED} — bei Beauftragung voll verrechnet. ${FAILED_RECOVERY_NOTE}`,
-  },
-  {
-    step: '③',
-    title: 'Sichere Übergabe',
-    description:
-      'Dateiliste im Kundenportal, Festpreis-Bestätigung, verschlüsselter Download oder neuer Datenträger — 14 Tage Sicherheitskopie.',
-  },
-];
 
 interface StandortContentProps {
   loc: Location;
@@ -95,14 +77,14 @@ export default function StandortContent({ loc }: StandortContentProps) {
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-text">Leistungen in {loc.name}</h2>
         <p className="mt-3 max-w-2xl text-sm text-text-muted md:text-base">
-          An dieser Abgabestelle nehmen wir alle Datenträgertypen entgegen — die Rettung erfolgt
+          An dieser Abgabestelle nehmen wir alle Datenträgertypen entgegen. Die Rettung erfolgt
           in unserem Labor nach dokumentierter Übergabe.
         </p>
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
           {STANDORT_SERVICES.map((service) => (
             <Link
               key={service.title}
-              className="rounded-lg border border-black/5 bg-bg-card p-6 transition-colors active:border-accent md:hover:border-accent"
+              className={TILE_CARD_LINK}
               href={service.href}
             >
               <h3 className="font-semibold text-text">{service.title}</h3>
@@ -114,14 +96,12 @@ export default function StandortContent({ loc }: StandortContentProps) {
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-text">So funktioniert es</h2>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {processSteps.map((step) => (
-            <div key={step.title}>
-              <p className="text-2xl font-bold text-accent">{step.step}</p>
-              <h3 className="mt-2 font-semibold text-text">{step.title}</h3>
-              <p className="mt-2 text-sm text-text">{step.description}</p>
-            </div>
-          ))}
+        <p className="mt-3 max-w-2xl text-sm text-text-muted">
+          Kurzüberblick in sechs Schritten. Details, Preise und Ablauf finden Sie auf der
+          Datenrettungsseite.
+        </p>
+        <div className="mt-6">
+          <ProcessTimelinePreview />
         </div>
       </section>
 
@@ -138,13 +118,8 @@ export default function StandortContent({ loc }: StandortContentProps) {
         <h2 className="text-2xl font-bold text-text">
           Häufige Fragen zur Datenrettung in {loc.name}
         </h2>
-        <div className="mt-6 space-y-6">
-          {faqs.map((faq) => (
-            <div key={faq.question}>
-              <h3 className="font-semibold text-text">{faq.question}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text">{faq.answer}</p>
-            </div>
-          ))}
+        <div className="mt-6">
+          <StandortFaq faqs={faqs} />
         </div>
       </section>
 

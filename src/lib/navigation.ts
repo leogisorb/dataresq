@@ -6,7 +6,7 @@ export interface NavItem {
 export const mainNavItems: NavItem[] = [
   { label: 'Startseite', href: '/' },
   { label: 'Datenrettung', href: '/datenrettung' },
-  { label: 'Preise & Kosten', href: '/#kostenrechner' },
+  { label: 'Preisrechner', href: '/preisrechner' },
   { label: 'Über uns', href: '/ueber-uns' },
   { label: 'Kontakt', href: '/#kontakt' },
 ];
