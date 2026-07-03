@@ -15,7 +15,7 @@ export const metadata: Metadata = createLegalMetadata({
 
 export default function AuftragsverarbeitungPage() {
   return (
-    <LegalPageLayout>
+    <LegalPageLayout breadcrumbLabel="Auftragsverarbeitung" path="/auftragsverarbeitung">
       <h1>Auftragsverarbeitungsvertrag (AVV)</h1>
       <p>gemäß Art. 28 DSGVO — für gewerbliche Auftraggeber</p>
 

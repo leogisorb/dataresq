@@ -15,7 +15,7 @@ export const metadata: Metadata = createLegalMetadata({
 
 export default function AgbPage() {
   return (
-    <LegalPageLayout>
+    <LegalPageLayout breadcrumbLabel="AGB" path="/agb">
       <h1>Allgemeine Geschäftsbedingungen</h1>
       <p>Stand: [DATUM]</p>
 

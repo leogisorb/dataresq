@@ -89,6 +89,8 @@ export interface LocalBusinessSchema {
   name: string;
   description: string;
   url: string;
+  telephone: string;
+  email: string;
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -98,6 +100,12 @@ export interface LocalBusinessSchema {
     addressCountry: string;
   };
   areaServed: string;
+  openingHoursSpecification: Array<{
+    '@type': 'OpeningHoursSpecification';
+    dayOfWeek: string[];
+    opens: string;
+    closes: string;
+  }>;
   hasOfferCatalog: {
     '@type': 'OfferCatalog';
     name: string;
@@ -111,6 +119,8 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     name: siteConfig.name,
     description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
     url: siteConfig.url,
+    telephone: SITE.phone,
+    email: SITE.email,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
@@ -120,6 +130,14 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
       addressCountry: SITE.address.country,
     },
     areaServed: 'DE',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [...SITE.openingHours.weekdays],
+        opens: SITE.openingHours.opens,
+        closes: SITE.openingHours.closes,
+      },
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Datenrettungsservices',
@@ -329,31 +347,91 @@ export interface ArticleSchema {
   '@context': 'https://schema.org';
   '@type': 'Article';
   headline: string;
+  description?: string;
+  url: string;
+  mainEntityOfPage: string;
   author: {
     '@type': 'Person';
     name: string;
   };
   datePublished: string | null;
+  dateModified?: string | null;
+  publisher: {
+    '@type': 'Organization';
+    name: string;
+    url: string;
+  };
+}
+
+export function generateArticleJsonLd(article: RatgeberArticle, slug: string): ArticleSchema {
+  const url = `${siteConfig.url}/ratgeber/${slug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.metaDesc ?? article.excerpt ?? undefined,
+    url,
+    mainEntityOfPage: url,
+    author: {
+      '@type': 'Person',
+      name: article.author ?? siteConfig.name,
+    },
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+}
+
+export interface WebSiteSchema {
+  '@context': 'https://schema.org';
+  '@type': 'WebSite';
+  name: string;
+  url: string;
+  description: string;
   publisher: {
     '@type': 'Organization';
     name: string;
   };
 }
 
-export function generateArticleJsonLd(article: RatgeberArticle): ArticleSchema {
+export function generateWebSiteJsonLd(): WebSiteSchema {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    author: {
-      '@type': 'Person',
-      name: article.author ?? siteConfig.name,
-    },
-    datePublished: article.publishedAt,
+    '@type': 'WebSite',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
     },
+  };
+}
+
+export interface CollectionPageSchema {
+  '@context': 'https://schema.org';
+  '@type': 'CollectionPage';
+  name: string;
+  description: string;
+  url: string;
+}
+
+export function generateCollectionPageJsonLd(
+  name: string,
+  description: string,
+  path: string,
+): CollectionPageSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url: `${siteConfig.url}${path}`,
   };
 }
 

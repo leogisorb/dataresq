@@ -7,6 +7,7 @@ import RatgeberArticleFaq from '@/components/ratgeber/RatgeberArticleFaq';
 import RatgeberArticleGrid from '@/components/ratgeber/RatgeberArticleGrid';
 import RatgeberPortableText from '@/components/ratgeber/RatgeberPortableText';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
+import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
 import {
   fetchRatgeberBySlug,
@@ -38,17 +39,19 @@ export async function generateMetadata({ params }: RatgeberDetailPageProps): Pro
     return {};
   }
 
-  return {
+  const description = article.metaDesc ?? article.excerpt ?? siteConfig.description;
+
+  return createContentMetadata({
     title: article.metaTitle ?? article.title,
-    description: article.metaDesc ?? article.excerpt ?? undefined,
-    alternates: {
-      canonical: `${siteConfig.url}/ratgeber/${slug}`,
-    },
+    description,
+    path: `/ratgeber/${slug}`,
     openGraph: {
       type: 'article',
       publishedTime: article.publishedAt ?? undefined,
+      title: article.metaTitle ?? article.title,
+      description,
     },
-  };
+  });
 }
 
 function formatDate(date: string | null): string {
@@ -71,7 +74,7 @@ export default async function RatgeberDetailPage({ params }: RatgeberDetailPageP
   }
 
   const related = await fetchRelatedRatgeber(article.category, slug);
-  const articleJsonLd = generateArticleJsonLd(article);
+  const articleJsonLd = generateArticleJsonLd(article, slug);
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
     { name: 'Ratgeber', url: `${siteConfig.url}/ratgeber` },

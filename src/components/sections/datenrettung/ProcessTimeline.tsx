@@ -1,6 +1,7 @@
 import { MapPin } from 'lucide-react';
 import Link from 'next/link';
 
+import ProcessTimelineMobile from '@/components/sections/datenrettung/ProcessTimelineMobile';
 import { CHEVRON_STEP_STYLES } from '@/lib/chevron-colors';
 import { processSteps } from '@/lib/datenrettung-services';
 
@@ -9,6 +10,15 @@ const STEP_STYLES = CHEVRON_STEP_STYLES;
 const CLIP_CLASSES = ['chevron-clip-first', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-last'] as const;
 
 const Z_INDEX_CLASSES = ['z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
+
+const WAVE_STEP_CLASSES = [
+  'timeline-wave-step-0',
+  'timeline-wave-step-1',
+  'timeline-wave-step-2',
+  'timeline-wave-step-3',
+  'timeline-wave-step-4',
+  'timeline-wave-step-5',
+] as const;
 
 function StepLabelAbove({
   step,
@@ -59,19 +69,28 @@ export default function ProcessTimeline() {
     <div className="overflow-visible">
       <div className="hidden overflow-visible md:block">
         <div className="flex overflow-visible">
-          {processSteps.map((step, index) => (
-            <div key={step.step} className="flex min-w-0 flex-1 flex-col items-center justify-end">
-              {step.step % 2 !== 0 ? (
-                <StepLabelAbove
-                  step={step.step}
-                  tickClass={STEP_STYLES[index].tick}
-                  title={step.title}
-                />
-              ) : (
-                <div aria-hidden="true" className="h-[72px]" />
-              )}
-            </div>
-          ))}
+          {processSteps.map((step, index) => {
+            const waveClass =
+              step.step % 2 !== 0
+                ? ['timeline-wave-up', WAVE_STEP_CLASSES[index]].join(' ')
+                : '';
+
+            return (
+              <div key={step.step} className="flex min-w-0 flex-1 flex-col items-center justify-end">
+                {step.step % 2 !== 0 ? (
+                  <div className={waveClass}>
+                    <StepLabelAbove
+                      step={step.step}
+                      tickClass={STEP_STYLES[index].tick}
+                      title={step.title}
+                    />
+                  </div>
+                ) : (
+                  <div aria-hidden="true" className="h-[72px]" />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div
@@ -83,67 +102,61 @@ export default function ProcessTimeline() {
             const styles = STEP_STYLES[index];
             const overlapClass = index === 0 ? '' : '-ml-[22px]';
 
+            const waveClass = [
+              step.step % 2 !== 0 ? 'timeline-wave-up' : 'timeline-wave-down',
+              WAVE_STEP_CLASSES[index],
+            ].join(' ');
+
             return (
               <div
                 key={step.step}
                 aria-label={`Schritt ${step.step}: ${step.title}`}
-                className={[
-                  'chevron-segment relative flex h-[60px] flex-1 items-center justify-center',
-                  overlapClass,
-                  CLIP_CLASSES[index],
-                  Z_INDEX_CLASSES[index],
-                  styles.bg,
-                  styles.text,
-                ].join(' ')}
+                className={['relative min-w-0 flex-1', overlapClass, waveClass].join(' ')}
                 role="listitem"
               >
-                <span className="select-none text-sm font-semibold">{step.step}</span>
+                <div
+                  className={[
+                    'chevron-segment relative flex h-[60px] items-center justify-center',
+                    CLIP_CLASSES[index],
+                    Z_INDEX_CLASSES[index],
+                    styles.bg,
+                    styles.text,
+                  ].join(' ')}
+                >
+                  <span className="select-none text-sm font-semibold">{step.step}</span>
+                </div>
               </div>
             );
           })}
         </div>
 
         <div className="flex overflow-visible">
-          {processSteps.map((step, index) => (
-            <div key={step.step} className="flex min-w-0 flex-1 flex-col items-center">
-              {step.step % 2 === 0 ? (
-                <StepLabelBelow
-                  step={step.step}
-                  tickClass={STEP_STYLES[index].tick}
-                  title={step.title}
-                />
-              ) : (
-                <div aria-hidden="true" className="h-[72px]" />
-              )}
-            </div>
-          ))}
+          {processSteps.map((step, index) => {
+            const waveClass =
+              step.step % 2 === 0
+                ? ['timeline-wave-down', WAVE_STEP_CLASSES[index]].join(' ')
+                : '';
+
+            return (
+              <div key={step.step} className="flex min-w-0 flex-1 flex-col items-center">
+                {step.step % 2 === 0 ? (
+                  <div className={waveClass}>
+                    <StepLabelBelow
+                      step={step.step}
+                      tickClass={STEP_STYLES[index].tick}
+                      title={step.title}
+                    />
+                  </div>
+                ) : (
+                  <div aria-hidden="true" className="h-[72px]" />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <ol aria-label="Prozess-Schritte" className="flex flex-col gap-4 md:hidden">
-        {processSteps.map((step, index) => {
-          const styles = STEP_STYLES[index];
-
-          return (
-            <li key={step.step} className="flex items-start gap-4">
-              <div
-                aria-hidden="true"
-                className={[
-                  'flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold',
-                  styles.bg,
-                  styles.text,
-                ].join(' ')}
-              >
-                {step.step}
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-text">{step.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-text-muted">{step.description}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
+      <ProcessTimelineMobile />
 
       <div className="mt-10">
         <Link

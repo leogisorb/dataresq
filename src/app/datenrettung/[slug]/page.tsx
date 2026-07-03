@@ -4,9 +4,14 @@ import { notFound } from 'next/navigation';
 
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
 import MobileNav from '@/components/layout/MobileNav';
+import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
+import MediumDetailSections from '@/components/sections/datenrettung/MediumDetailSections';
+import RelatedServices from '@/components/sections/datenrettung/RelatedServices';
+import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
@@ -31,22 +36,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return createContentMetadata({
     title: `${service.title} — Professionelle Datenrettung`,
     description: service.description,
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: {
-      canonical: `${siteConfig.url}${service.href}`,
-    },
-    openGraph: {
-      title: `${service.title} — RSQDATA`,
-      description: service.description,
-      locale: 'de_DE',
-    },
-  };
+    path: service.href,
+  });
 }
 
 export default async function DatenrettungMediumPage({ params }: DatenrettungMediumPageProps) {
@@ -57,6 +51,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
     notFound();
   }
 
+  const detailContent = getMediumDetailContent(slug);
   const serviceJsonLd = generateMediumServiceJsonLd(service.title, service.description);
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
@@ -79,17 +74,13 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
       <main>
         <section className="border-b border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
-            <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text">
-              <Link className="active:text-text md:hover:text-text" href="/">
-                Startseite
-              </Link>
-              <span className="mx-2">›</span>
-              <Link className="active:text-text md:hover:text-text" href="/datenrettung">
-                Datenrettung
-              </Link>
-              <span className="mx-2">›</span>
-              <span className="text-text">{service.title}</span>
-            </nav>
+            <Breadcrumbs
+              items={[
+                { label: 'Startseite', href: '/' },
+                { label: 'Datenrettung', href: '/datenrettung' },
+                { label: service.title },
+              ]}
+            />
 
             <span aria-hidden="true" className="text-4xl">
               {service.icon}
@@ -108,7 +99,15 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
           </div>
         </section>
 
+        {detailContent ? (
+          <MediumDetailSections content={detailContent} title={service.title} />
+        ) : null}
+
         <PriceCalculatorSection defaultDevice={service.defaultDevice} />
+
+        {detailContent ? (
+          <RelatedServices currentSlug={slug} relatedSlugs={detailContent.relatedSlugs} />
+        ) : null}
 
         <section className="border-t border-black/5 bg-bg-card px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">
@@ -119,6 +118,11 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
             <div className="mt-8 flex justify-center">
               <DatenrettungCta layout="column" />
             </div>
+            <p className="mt-8 text-sm text-text-muted">
+              <Link className="font-medium text-text transition-opacity hover:opacity-70" href="/datenrettung">
+                ← Zurück zur Datenrettungs-Übersicht
+              </Link>
+            </p>
           </div>
         </section>
       </main>

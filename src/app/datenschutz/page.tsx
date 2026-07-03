@@ -15,7 +15,7 @@ export const metadata: Metadata = createLegalMetadata({
 
 export default function DatenschutzPage() {
   return (
-    <LegalPageLayout>
+    <LegalPageLayout breadcrumbLabel="Datenschutzerklärung" path="/datenschutz">
       <h1>Datenschutzerklärung</h1>
       <p>Stand: [DATUM]</p>
 

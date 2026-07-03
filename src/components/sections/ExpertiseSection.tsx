@@ -185,14 +185,19 @@ function ExpertiseCardBrands({
 function ExpertiseCardTile({
   card,
   className,
+  compact = false,
 }: {
   card: ExpertiseCardData;
   className?: string;
+  compact?: boolean;
 }) {
   return (
     <div
       className={[
-        'relative h-[468px] w-full max-w-[340px] shrink-0 overflow-hidden rounded-3xl min-[1512px]:h-[520px]',
+        'relative w-full max-w-[340px] shrink-0 overflow-hidden rounded-3xl',
+        compact
+          ? 'h-[351px]'
+          : 'h-[468px] min-[1512px]:h-[520px]',
         className,
       ]
         .filter(Boolean)
@@ -208,7 +213,7 @@ function ExpertiseCardTile({
       />
 
       <div className="relative flex h-full flex-col justify-between p-6 md:p-8">
-        <div className="flex flex-wrap gap-2">
+        <div className={['flex flex-wrap gap-2', compact ? 'justify-start' : ''].join(' ')}>
           {card.badges.map((badge) => (
             <span
               key={badge.text}
@@ -221,11 +226,11 @@ function ExpertiseCardTile({
           ))}
         </div>
 
-        <ul className="space-y-2.5">
+        <ul className={['w-full space-y-2.5', compact ? 'text-left' : ''].join(' ')}>
           {card.features.map((feature) => (
             <li
               key={feature}
-              className="flex items-start gap-2.5 text-sm leading-snug text-white/75"
+              className="flex items-start gap-2.5 text-left text-sm leading-snug text-white/75"
             >
               <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-emerald-400" />
               {feature}
@@ -273,12 +278,79 @@ function ExpertiseSlide({
   );
 }
 
-function MobileExpertiseBlock({ card }: { card: ExpertiseCardData }) {
+function MobileExpertiseStack({
+  card,
+  className,
+}: {
+  card: ExpertiseCardData;
+  className?: string;
+}) {
   return (
-    <div className="mx-auto flex w-full max-w-[340px] flex-col items-center gap-8 text-center">
-      <ExpertiseCardMedium card={card} className="w-full items-center" />
-      <ExpertiseCardTile card={card} className="w-full" />
-      <ExpertiseCardBrands card={card} className="w-full items-center" />
+    <div
+      className={[
+        'mx-auto flex w-full max-w-[340px] origin-top scale-[0.9] flex-col items-stretch gap-4',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <ExpertiseCardMedium card={card} className="w-full text-center" />
+      <ExpertiseCardTile card={card} className="pointer-events-auto w-full" compact />
+      <ExpertiseCardBrands card={card} className="w-full text-center" />
+    </div>
+  );
+}
+
+function MobileExpertiseSlide({
+  card,
+  state,
+  direction,
+}: {
+  card: ExpertiseCardData;
+  state: CardState;
+  direction: SlideDirection;
+}) {
+  const opacities: Record<CardState, number> = { active: 1, exit: 0, hidden: 0 };
+  const zIndexes: Record<CardState, number> = { active: 10, exit: 5, hidden: 0 };
+
+  return (
+    <div
+      className="pointer-events-none absolute inset-0"
+      style={{
+        opacity: opacities[state],
+        zIndex: zIndexes[state],
+        transition: 'opacity 0.5s ease',
+      }}
+    >
+      <div
+        className="pointer-events-none"
+        style={{
+          transform: getSlideTransform(state, direction),
+          transition: 'transform 0.6s cubic-bezier(.25,.46,.45,.94)',
+        }}
+      >
+        <MobileExpertiseStack
+          card={card}
+          className={state === 'active' ? 'pointer-events-auto' : undefined}
+        />
+      </div>
+    </div>
+  );
+}
+
+function ProgressDots({ activeIndex }: { activeIndex: number }) {
+  return (
+    <div className="flex gap-2">
+      {CARDS.map((_, index) => (
+        <div
+          key={index}
+          aria-hidden={index !== activeIndex}
+          className={[
+            'h-1.5 rounded-full transition-all duration-500',
+            index === activeIndex ? 'w-6 bg-text' : 'w-1.5 bg-text/20',
+          ].join(' ')}
+        />
+      ))}
     </div>
   );
 }
@@ -293,15 +365,21 @@ export default function ExpertiseSection() {
     let rafId: number;
     let lastIndex = 0;
 
+    const getViewportHeight = (): number =>
+      window.visualViewport?.height ?? window.innerHeight;
+
     const onScroll = (): void => {
       if (!outerRef.current) return;
-      if (window.innerWidth < 768) return;
 
       const rect = outerRef.current.getBoundingClientRect();
       const outerHeight = outerRef.current.offsetHeight;
+      const viewportHeight = getViewportHeight();
+      const scrollRange = outerHeight - viewportHeight;
+      if (scrollRange <= 0) return;
+
       const scrolled = -rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / (outerHeight - window.innerHeight)));
-      const idx = Math.min(2, Math.floor(progress * 3));
+      const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+      const idx = Math.min(CARDS.length - 1, Math.floor(progress * CARDS.length));
 
       if (idx !== lastIndex) {
         setDirection(idx > lastIndex ? 'forward' : 'back');
@@ -316,48 +394,74 @@ export default function ExpertiseSection() {
       rafId = requestAnimationFrame(tick);
     };
 
+    const handleViewportResize = (): void => {
+      onScroll();
+    };
+
     rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.visualViewport?.addEventListener('resize', handleViewportResize);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', onScroll);
+      window.visualViewport?.removeEventListener('resize', handleViewportResize);
+    };
   }, []);
 
   return (
     <section aria-labelledby="expertise-heading">
-      <div className="py-16 md:hidden">
-        <ExpertiseSectionHeading className="px-6 text-center" />
-        <div className="mt-12 flex flex-col items-center gap-10 px-6">
-          {CARDS.map((card) => (
-            <MobileExpertiseBlock key={card.id} card={card} />
-          ))}
-        </div>
-      </div>
+      <div ref={outerRef} className="relative h-[300vh] touch-pan-y">
+        <ExpertiseSectionHeading className="px-6 pb-6 pt-12 text-center md:hidden" />
 
-      <div ref={outerRef} className="relative hidden h-[300vh] md:block">
-        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-6">
-          <ExpertiseSectionHeading className="absolute left-0 right-0 top-16 text-center" />
+        <div className="sticky top-[var(--site-header-height)] h-[calc(100dvh-var(--site-header-height))] overflow-hidden md:top-0 md:h-screen">
+          {/* Desktop — original layout & full-size tiles */}
+          <div className="relative hidden h-full items-center justify-center px-6 md:flex">
+            <ExpertiseSectionHeading className="absolute left-0 right-0 top-16 text-center" />
 
-          <div className="relative h-[468px] w-full max-w-5xl min-[1512px]:h-[520px]">
-            {CARDS.map((card, index) => (
-              <ExpertiseSlide
-                key={card.id}
-                card={card}
-                direction={direction}
-                state={
-                  index === activeIndex ? 'active' : index === prevIndex ? 'exit' : 'hidden'
-                }
-              />
-            ))}
+            <div className="relative h-[468px] w-full max-w-5xl min-[1512px]:h-[520px]">
+              {CARDS.map((card, index) => {
+                const state: CardState =
+                  index === activeIndex ? 'active' : index === prevIndex ? 'exit' : 'hidden';
+
+                return (
+                  <ExpertiseSlide key={card.id} card={card} direction={direction} state={state} />
+                );
+              })}
+            </div>
+
+            <div className="absolute bottom-20 left-0 right-0 flex justify-center">
+              <ProgressDots activeIndex={activeIndex} />
+            </div>
           </div>
 
-          <div className="absolute bottom-20 flex gap-2">
-            {CARDS.map((_, index) => (
-              <div
-                key={index}
-                className={[
-                  'h-1.5 rounded-full transition-all duration-500',
-                  index === activeIndex ? 'w-6 bg-text' : 'w-1.5 bg-text/20',
-                ].join(' ')}
-              />
-            ))}
+          {/* Mobile — stacked: medium → tile → hersteller → pagination (fixed) */}
+          <div className="flex h-full flex-col items-center px-4 pt-[10vh] md:hidden">
+            <div className="relative w-full max-w-[340px] shrink-0">
+              <div aria-hidden="true" className="invisible">
+                <MobileExpertiseStack card={CARDS[activeIndex]} />
+              </div>
+
+              <div className="absolute inset-0">
+                {CARDS.map((card, index) => {
+                  const state: CardState =
+                    index === activeIndex ? 'active' : index === prevIndex ? 'exit' : 'hidden';
+
+                  return (
+                    <MobileExpertiseSlide
+                      key={card.id}
+                      card={card}
+                      direction={direction}
+                      state={state}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-4 shrink-0 pb-8">
+              <ProgressDots activeIndex={activeIndex} />
+            </div>
           </div>
         </div>
       </div>

@@ -10,6 +10,8 @@ import {
   Usb,
   type LucideIcon,
 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { calcTileClasses } from '@/components/calculator/calc-tile-styles';
@@ -196,6 +198,13 @@ export default function ServiceGrid() {
               <div className="overflow-hidden">
                 <div className="px-5 pb-5 md:px-6 md:pb-6">
                   <ServiceExpandBody bulletClass={chevronStyle.bullet} slug={service.slug} />
+                  <Link
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-text transition-opacity hover:opacity-70"
+                    href={service.href}
+                  >
+                    Details zu {service.title}
+                    <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2} />
+                  </Link>
                 </div>
               </div>
             </div>

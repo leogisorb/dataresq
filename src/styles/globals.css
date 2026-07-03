@@ -115,10 +115,23 @@ body {
   margin-inline: auto;
 }
 
+:root {
+  --site-header-bar-height: 2.75rem;
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --site-header-height: calc(var(--site-header-bar-height) + var(--safe-area-inset-top));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-bar-height: 3rem;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
+  padding-top: var(--safe-area-inset-top);
   background-color: color-mix(in srgb, var(--value-color-bg) 80%, transparent);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
@@ -272,4 +285,124 @@ body {
 .chevron-segment:hover {
   transform: translateY(-6px);
   z-index: 10;
+}
+
+@keyframes timeline-wave-up {
+  0%,
+  20%,
+  100% {
+    transform: translateY(0);
+  }
+
+  10% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes timeline-wave-down {
+  0%,
+  20%,
+  100% {
+    transform: translateY(0);
+  }
+
+  10% {
+    transform: translateY(10px);
+  }
+}
+
+.timeline-wave-up {
+  animation: timeline-wave-up 2.4s ease-in-out 1 both;
+}
+
+.timeline-wave-down {
+  animation: timeline-wave-down 2.4s ease-in-out 1 both;
+}
+
+.timeline-wave-step-0 {
+  animation-delay: 0s;
+}
+
+.timeline-wave-step-1 {
+  animation-delay: 0.4s;
+}
+
+.timeline-wave-step-2 {
+  animation-delay: 0.8s;
+}
+
+.timeline-wave-step-3 {
+  animation-delay: 1.2s;
+}
+
+.timeline-wave-step-4 {
+  animation-delay: 1.6s;
+}
+
+.timeline-wave-step-5 {
+  animation-delay: 2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-wave-up,
+  .timeline-wave-down {
+    animation: none;
+  }
+}
+
+@keyframes timeline-mobile-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scaleY(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.timeline-mobile-step {
+  opacity: 0;
+  transform: translateY(-14px) scaleY(0.82);
+  transform-origin: top center;
+}
+
+.timeline-mobile-in-view .timeline-mobile-step {
+  animation: timeline-mobile-unfold 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.timeline-mobile-step-0 {
+  animation-delay: 0ms;
+}
+
+.timeline-mobile-step-1 {
+  animation-delay: 120ms;
+}
+
+.timeline-mobile-step-2 {
+  animation-delay: 240ms;
+}
+
+.timeline-mobile-step-3 {
+  animation-delay: 360ms;
+}
+
+.timeline-mobile-step-4 {
+  animation-delay: 480ms;
+}
+
+.timeline-mobile-step-5 {
+  animation-delay: 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-mobile-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-mobile-in-view .timeline-mobile-step {
+    animation: none;
+  }
 }

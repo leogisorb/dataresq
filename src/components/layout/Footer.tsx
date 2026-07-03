@@ -7,10 +7,20 @@ import { SITE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 
 const leistungenLinks = [
-  { label: 'Festplatte HDD', href: '/datenrettung' },
-  { label: 'SSD', href: '/datenrettung' },
-  { label: 'RAID / NAS', href: '/datenrettung' },
+  { label: 'Festplatte HDD', href: '/datenrettung/festplatte-hdd' },
+  { label: 'SSD & NVMe', href: '/datenrettung/ssd' },
+  { label: 'RAID / NAS', href: '/datenrettung/raid-nas' },
+  { label: 'USB & SD-Karte', href: '/datenrettung/usb-sd' },
+  { label: 'Server', href: '/datenrettung/server' },
+  { label: 'Smartphone', href: '/datenrettung/smartphone' },
   { label: 'Preisrechner', href: '/preisrechner' },
+];
+
+const standortLinks = [
+  { label: 'Abgabestellen', href: '/standort' },
+  { label: 'Grevenbroich', href: '/standort/grevenbroich' },
+  { label: 'Mönchengladbach', href: '/standort/moenchengladbach' },
+  { label: 'Ratgeber', href: '/ratgeber' },
 ];
 
 const rechtlichesLinks = [
@@ -53,7 +63,7 @@ export default function Footer() {
 
       <footer className="bg-bg-subtle py-12 text-text">
         <div className="site-container">
-          <div className="flex flex-col gap-10 md:grid md:grid-cols-3 md:gap-8">
+          <div className="flex flex-col gap-10 md:grid md:grid-cols-4 md:gap-8">
             <div>
               <Link className="text-lg font-semibold text-text" href="/">
                 {siteConfig.name}
@@ -66,6 +76,8 @@ export default function Footer() {
             </div>
 
             <FooterColumn title="Leistungen" links={leistungenLinks} />
+
+            <FooterColumn title="Standorte" links={standortLinks} />
 
             <FooterColumn title="Rechtliches" links={rechtlichesLinks} />
           </div>

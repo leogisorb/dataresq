@@ -5,7 +5,7 @@ import ContentPageShell from '@/components/layout/ContentPageShell';
 import StandortContent from '@/components/standort/StandortContent';
 import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 import { getLocation, LOCATIONS } from '@/lib/locations';
-import { siteConfig } from '@/lib/metadata';
+import { createContentMetadata } from '@/lib/metadata';
 
 interface StandortPageProps {
   params: Promise<{ stadt: string }>;
@@ -23,17 +23,11 @@ export async function generateMetadata({ params }: StandortPageProps): Promise<M
     return {};
   }
 
-  return {
+  return createContentMetadata({
     title: `Datenrettung ${loc.name} — Festplatte, SSD, RAID`,
     description: `Professionelle Datenrettung in ${loc.name}. ${loc.serviceNote} Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: {
-      canonical: `${siteConfig.url}/standort/${loc.slug}`,
-    },
-  };
+    path: `/standort/${loc.slug}`,
+  });
 }
 
 export default async function StandortPage({ params }: StandortPageProps) {

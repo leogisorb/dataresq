@@ -1,32 +1,26 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 import MobileNav from '@/components/layout/MobileNav';
+import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import AboutStorySection from '@/components/sections/ueber-uns/AboutStorySection';
 import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
 import FeelgoodManagerSection from '@/components/sections/ueber-uns/FeelgoodManagerSection';
 import IambulanzPartnerSection from '@/components/sections/ueber-uns/IambulanzPartnerSection';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
-import { siteConfig } from '@/lib/metadata';
+import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
   generateOrganizationJsonLd,
 } from '@/lib/structured-data';
 import { ABOUT_STORY_HEADLINE } from '@/lib/ueber-uns-content';
 
-export const metadata: Metadata = {
-  title: 'Über uns — RSQDATA: Von der Werkstatt zum Labor',
+export const metadata: Metadata = createContentMetadata({
+  title: 'Über uns — Von der Werkstatt zum Labor',
   description:
     'Seit 2013 in Grevenbroich: aus Handy-Reparatur gewachsen zum Datenrettungslabor mit Reinraum, Microsoldering und Abgabestellen in NRW.',
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: `${siteConfig.url}/ueber-uns`,
-  },
-};
+  path: '/ueber-uns',
+});
 
 export default function UeberUnsPage() {
   const organizationJsonLd = generateOrganizationJsonLd();
@@ -50,13 +44,12 @@ export default function UeberUnsPage() {
       <main>
         <section className="border-b border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
-            <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text">
-              <Link className="active:text-text md:hover:text-text" href="/">
-                Startseite
-              </Link>
-              <span className="mx-2">›</span>
-              <span className="text-text">Über uns</span>
-            </nav>
+            <Breadcrumbs
+              items={[
+                { label: 'Startseite', href: '/' },
+                { label: 'Über uns' },
+              ]}
+            />
 
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">{ABOUT_STORY_HEADLINE}</h1>
           </div>

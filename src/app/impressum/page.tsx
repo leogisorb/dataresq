@@ -11,12 +11,11 @@ export const metadata: Metadata = createLegalMetadata({
   title: 'Impressum',
   description: 'Impressum der RSQDATA gemäß § 5 DDG.',
   path: '/impressum',
-  index: true,
 });
 
 export default function ImpressumPage() {
   return (
-    <LegalPageLayout>
+    <LegalPageLayout breadcrumbLabel="Impressum" path="/impressum">
       <h1>Impressum</h1>
 
       <h2>Angaben gemäß § 5 DDG</h2>

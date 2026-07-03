@@ -1,10 +1,17 @@
 export const SITE = {
+  phone: '+49 2181 000000',
+  phoneTel: '+492181000000',
   email: 'info@muench-datenrettung.de',
   address: {
     street: 'Am Hammerwerk 16A',
     city: 'Grevenbroich',
     zip: '41515',
     country: 'DE',
+  },
+  openingHours: {
+    weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as const,
+    opens: '09:00',
+    closes: '18:00',
   },
 } as const;
 

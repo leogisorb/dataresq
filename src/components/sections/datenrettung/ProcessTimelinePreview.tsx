@@ -87,7 +87,7 @@ export default function ProcessTimelinePreview() {
 
       <div className="mt-8">
         <Link
-          className="inline-flex items-center gap-2 text-sm font-semibold text-neon transition-opacity hover:opacity-80"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-text transition-opacity hover:opacity-70"
           href="/datenrettung"
         >
           So funktioniert es im Detail

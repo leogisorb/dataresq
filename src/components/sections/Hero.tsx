@@ -10,7 +10,7 @@ import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE } from '@/lib/constants'
 
 export default function Hero() {
   return (
-    <section className="relative flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden bg-bg">
+    <section className="relative flex h-[calc(100dvh-var(--site-header-height))] flex-col overflow-hidden bg-bg">
       <div className="site-container relative z-10 grid min-h-0 flex-1 grid-cols-1 items-center gap-6 overflow-hidden py-6 md:gap-10 md:py-10 lg:grid-cols-2 lg:gap-14 lg:py-12">
         <div className="flex flex-col justify-center">
           <h1 className="mb-5 text-4xl font-semibold leading-[1.05] tracking-tight text-text md:mb-6 md:text-6xl lg:text-7xl">

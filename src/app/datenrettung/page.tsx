@@ -5,9 +5,10 @@ import DatenrettungFaq from '@/components/sections/datenrettung/DatenrettungFaq'
 import ProcessTimeline from '@/components/sections/datenrettung/ProcessTimeline';
 import ServiceGrid from '@/components/sections/datenrettung/ServiceGrid';
 import MobileNav from '@/components/layout/MobileNav';
+import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
-import { siteConfig } from '@/lib/metadata';
+import { createContentMetadata } from '@/lib/metadata';
 import {
   PAGE_HERO_HEADING,
   SECTION_CONTENT_MT,
@@ -22,23 +23,13 @@ import {
   generateFaqPageJsonLd,
   generateServiceJsonLd,
 } from '@/lib/structured-data';
+import { siteConfig } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createContentMetadata({
   title: 'Professionelle Datenrettung — Festplatte, SSD, RAID, NAS',
   description: `Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis vor dem Versand.`,
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: `${siteConfig.url}/datenrettung`,
-  },
-  openGraph: {
-    title: 'Professionelle Datenrettung — RSQDATA',
-    description: `HDD, SSD, RAID, NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}. Garantierter Festpreis.`,
-    locale: 'de_DE',
-  },
-};
+  path: '/datenrettung',
+});
 
 export default function DatenrettungPage() {
   const serviceJsonLd = generateServiceJsonLd();
@@ -65,8 +56,14 @@ export default function DatenrettungPage() {
 
       <MobileNav />
       <main>
-        <section className={`${SECTION_PADDING} bg-bg-subtle`}>
+        <section className="bg-bg-subtle pb-10 pt-20 md:pb-14 md:pt-28">
           <div className="site-container">
+            <Breadcrumbs
+              items={[
+                { label: 'Startseite', href: '/' },
+                { label: 'Datenrettung' },
+              ]}
+            />
             <h1 className={PAGE_HERO_HEADING}>Professionelle Datenrettung</h1>
             <p className="mt-3 text-lg text-text-muted md:text-xl">
               HDD · SSD · RAID · NAS · USB · Smartphone
@@ -79,10 +76,10 @@ export default function DatenrettungPage() {
           </div>
         </section>
 
-        <section className={`${SECTION_PADDING} overflow-visible`}>
+        <section className="overflow-visible pb-20 pt-10 md:pb-28 md:pt-14">
           <div className="site-container overflow-visible">
             <h2 className={SECTION_HEADING}>So funktioniert es</h2>
-            <div className={`${SECTION_CONTENT_MT} overflow-visible`}>
+            <div className="mt-5 overflow-visible">
               <ProcessTimeline />
             </div>
           </div>

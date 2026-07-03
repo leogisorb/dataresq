@@ -9,7 +9,6 @@ import {
   SECTION_NARROW_WIDTH,
   SECTION_PADDING,
 } from '@/lib/section-styles';
-import { generateFaqPageJsonLd } from '@/lib/structured-data';
 
 interface FaqSectionProps {
   title: string;
@@ -18,15 +17,8 @@ interface FaqSectionProps {
 }
 
 export default function FaqSection({ title, faqs, id }: FaqSectionProps) {
-  const faqJsonLd = generateFaqPageJsonLd(faqs);
-
   return (
     <section className={`${SECTION_PADDING} bg-bg`} id={id}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-
       <div className="site-container">
         <div className={`${SECTION_NARROW_WIDTH} text-center`}>
           <h2 className={SECTION_HEADING}>{title}</h2>
