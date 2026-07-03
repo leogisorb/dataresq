@@ -42,7 +42,7 @@ export default function UeberUnsPage() {
 
       <MobileNav />
       <main>
-        <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:border-b-0 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -61,7 +61,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="border-t border-black/5 bg-bg-subtle py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="border-t border-black/5 bg-bg-subtle py-12 md:border-t-0 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <FeelgoodManagerSection />
           </div>
@@ -96,7 +96,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="border-t border-black/5 bg-bg-card py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-t border-black/5 bg-bg-card py-12 text-text md:border-t-0 md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
               Überzeugt? Schildern Sie uns Ihren Fall.

@@ -1,6 +1,7 @@
 export type CertificationIconKey = 'award' | 'microscope' | 'shield' | 'handshake';
 
-export const ABOUT_STORY_HEADLINE = 'Wir retten Daten. Seit 2013.' as const;
+export const ABOUT_STORY_HEADLINE =
+  'Seit 2013 retten wir Daten — von der Werkstatt zum Labor.' as const;
 
 export const ABOUT_STORY_IMAGE = '/images/ueber-uns/hdd-hand.png' as const;
 
