@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import type { MediumDetailContent } from '@/lib/datenrettung-medium-content';
 import { SECTION_PADDING } from '@/lib/section-styles';
 
@@ -9,7 +11,7 @@ interface MediumDetailSectionsProps {
 export default function MediumDetailSections({
   title,
   content,
-}: MediumDetailSectionsProps): JSX.Element {
+}: MediumDetailSectionsProps): ReactElement {
   return (
     <section className={`${SECTION_PADDING} bg-bg`}>
       <div className="site-container max-w-3xl">

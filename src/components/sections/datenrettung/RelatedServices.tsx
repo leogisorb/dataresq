@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { ReactElement } from 'react';
 
 import { TILE_CARD_LINK } from '@/lib/button-styles';
 import { datenrettungServices } from '@/lib/datenrettung-services';
@@ -11,7 +12,7 @@ interface RelatedServicesProps {
 export default function RelatedServices({
   currentSlug,
   relatedSlugs,
-}: RelatedServicesProps): JSX.Element | null {
+}: RelatedServicesProps): ReactElement | null {
   const related = relatedSlugs
     .filter((slug) => slug !== currentSlug)
     .map((slug) => datenrettungServices.find((service) => service.slug === slug))

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactElement } from 'react';
 
 import HashLink from '@/components/navigation/HashLink';
 import { mobileNavItems, type MobileNavItem } from '@/lib/navigation';
@@ -55,7 +55,7 @@ export default function MobileCircleMenu({
   isOpen,
   activeHref,
   onClose,
-}: MobileCircleMenuProps): JSX.Element | null {
+}: MobileCircleMenuProps): ReactElement | null {
   const wheelRef = useRef<HTMLDivElement>(null);
   const [centerY, setCenterY] = useState(360);
   const [position, setPosition] = useState(() => getActiveIndex(activeHref));

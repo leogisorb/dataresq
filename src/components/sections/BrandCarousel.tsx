@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const BRANDS = [
   {
     name: 'Apple',
@@ -22,7 +24,7 @@ interface BrandLogoProps {
 function BrandLogo({ name, src, monochrome, imgClass }: BrandLogoProps) {
   return (
     <div className="flex h-10 w-28 shrink-0 items-center justify-center md:h-12 md:w-36">
-      <img
+      <Image
         alt={`${name} Logo`}
         className={[
           'h-full w-auto max-w-full object-contain',

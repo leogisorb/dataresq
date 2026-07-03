@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { ReactElement } from 'react';
 
 export interface BreadcrumbItem {
   label: string;
@@ -9,7 +10,7 @@ interface BreadcrumbsProps {
   items: BreadcrumbItem[];
 }
 
-export default function Breadcrumbs({ items }: BreadcrumbsProps): JSX.Element {
+export default function Breadcrumbs({ items }: BreadcrumbsProps): ReactElement {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text-muted">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
