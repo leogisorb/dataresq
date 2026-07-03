@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import Footer from '@/components/layout/Footer';
+import MobileNav from '@/components/layout/MobileNav';
 import HashScrollOnNavigate from '@/components/navigation/HashScrollOnNavigate';
 import { defaultMetadata } from '@/lib/metadata';
 import '@/styles/globals.css';
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${inter.variable} ${inter.className} min-h-screen bg-bg text-text antialiased`}
       >
         <HashScrollOnNavigate />
+        <MobileNav />
         {children}
         <Footer />
       </body>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-import MobileNav from '@/components/layout/MobileNav';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import AboutStorySection from '@/components/sections/ueber-uns/AboutStorySection';
 import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid';
@@ -40,7 +39,6 @@ export default function UeberUnsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <MobileNav />
       <main>
         <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:border-b-0 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">

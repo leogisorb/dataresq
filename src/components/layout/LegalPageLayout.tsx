@@ -1,4 +1,3 @@
-import MobileNav from '@/components/layout/MobileNav';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { siteConfig } from '@/lib/metadata';
 import { generateBreadcrumbJsonLd } from '@/lib/structured-data';
@@ -25,7 +24,6 @@ export default function LegalPageLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <MobileNav />
       <main className="bg-bg text-text">
         <div className="site-container py-12">
           <Breadcrumbs

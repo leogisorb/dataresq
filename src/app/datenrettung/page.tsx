@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
-import DatenrettungFaq from '@/components/sections/datenrettung/DatenrettungFaq';
 import ProcessTimeline from '@/components/sections/datenrettung/ProcessTimeline';
-import ServiceGrid from '@/components/sections/datenrettung/ServiceGrid';
-import MobileNav from '@/components/layout/MobileNav';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
@@ -24,6 +22,9 @@ import {
   generateServiceJsonLd,
 } from '@/lib/structured-data';
 import { siteConfig } from '@/lib/metadata';
+
+const ServiceGrid = dynamic(() => import('@/components/sections/datenrettung/ServiceGrid'));
+const DatenrettungFaq = dynamic(() => import('@/components/sections/datenrettung/DatenrettungFaq'));
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Professionelle Datenrettung — Festplatte, SSD, RAID, NAS',
@@ -54,7 +55,6 @@ export default function DatenrettungPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <MobileNav />
       <main>
         <section className="bg-bg-subtle pb-10 pt-20 md:pb-14 md:pt-28">
           <div className="site-container">

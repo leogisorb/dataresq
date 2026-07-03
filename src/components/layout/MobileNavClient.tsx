@@ -1,13 +1,17 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useOverlayState } from '@heroui/react';
 
-import MobileCircleMenu from '@/components/navigation/MobileCircleMenu';
 import HashLink from '@/components/navigation/HashLink';
 import { mainNavItems } from '@/lib/navigation';
 import { siteConfig } from '@/lib/metadata';
+
+const MobileCircleMenu = dynamic(() => import('@/components/navigation/MobileCircleMenu'), {
+  ssr: false,
+});
 
 function HamburgerIcon() {
   return (
@@ -53,13 +57,24 @@ export default function MobileNavClient() {
             <ul className="flex items-center gap-8">
               {mainNavItems.map((item) => (
                 <li key={item.href}>
-                  <HashLink
-                    aria-current={isActive(item.href) ? 'page' : undefined}
-                    className="site-header-nav-link touch-target inline-flex items-center"
-                    href={item.href}
-                  >
-                    {item.label}
-                  </HashLink>
+                  {item.href.includes('#') ? (
+                    <HashLink
+                      aria-current={isActive(item.href) ? 'page' : undefined}
+                      className="site-header-nav-link touch-target inline-flex items-center"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </HashLink>
+                  ) : (
+                    <Link
+                      aria-current={isActive(item.href) ? 'page' : undefined}
+                      className="site-header-nav-link touch-target inline-flex items-center"
+                      href={item.href}
+                      prefetch
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -80,11 +95,13 @@ export default function MobileNavClient() {
         </div>
       </header>
 
-      <MobileCircleMenu
-        activeHref={pathname}
-        isOpen={menuState.isOpen}
-        onClose={menuState.close}
-      />
+      {menuState.isOpen ? (
+        <MobileCircleMenu
+          activeHref={pathname}
+          isOpen={menuState.isOpen}
+          onClose={menuState.close}
+        />
+      ) : null}
     </>
   );
 }

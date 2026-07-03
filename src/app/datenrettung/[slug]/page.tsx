@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
-import MobileNav from '@/components/layout/MobileNav';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import MediumDetailSections from '@/components/sections/datenrettung/MediumDetailSections';
@@ -70,7 +69,6 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <MobileNav />
       <main>
         <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">

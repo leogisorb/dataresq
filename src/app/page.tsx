@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-import MobileNav from '@/components/layout/MobileNav';
-import CalculatorSection from '@/components/sections/CalculatorSection';
-import ExpertiseSection from '@/components/sections/ExpertiseSection';
 import BrandCarousel from '@/components/sections/BrandCarousel';
-import FaqSection from '@/components/sections/FaqSection';
 import Features from '@/components/sections/Features';
 import Hero from '@/components/sections/Hero';
 import Testimonials from '@/components/sections/Testimonials';
@@ -16,6 +13,18 @@ import {
   generateLocalBusinessJsonLd,
   generateWebSiteJsonLd,
 } from '@/lib/structured-data';
+
+const CalculatorSection = dynamic(
+  () => import('@/components/sections/CalculatorSection'),
+  { loading: () => <div className="min-h-[32rem] bg-bg" aria-hidden="true" /> },
+);
+
+const ExpertiseSection = dynamic(
+  () => import('@/components/sections/ExpertiseSection'),
+  { loading: () => <div className="h-[100dvh] bg-bg" aria-hidden="true" /> },
+);
+
+const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 export const metadata: Metadata = {
   ...createContentMetadata({
@@ -53,7 +62,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      <MobileNav />
       <main>
         <Hero />
         <CalculatorSection />

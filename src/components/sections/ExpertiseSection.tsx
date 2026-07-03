@@ -362,14 +362,18 @@ export default function ExpertiseSection() {
   const [direction, setDirection] = useState<SlideDirection>('forward');
 
   useEffect(() => {
-    let rafId: number;
+    const outer = outerRef.current;
+    if (!outer) return;
+
+    let rafId: number | null = null;
     let lastIndex = 0;
+    let isTracking = false;
 
     const getViewportHeight = (): number =>
       window.visualViewport?.height ?? window.innerHeight;
 
-    const onScroll = (): void => {
-      if (!outerRef.current) return;
+    const updateIndex = (): void => {
+      if (!outerRef.current || !isTracking) return;
 
       const rect = outerRef.current.getBoundingClientRect();
       const outerHeight = outerRef.current.offsetHeight;
@@ -389,23 +393,31 @@ export default function ExpertiseSection() {
       }
     };
 
-    const tick = (): void => {
-      onScroll();
-      rafId = requestAnimationFrame(tick);
+    const scheduleUpdate = (): void => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        updateIndex();
+      });
     };
 
-    const handleViewportResize = (): void => {
-      onScroll();
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isTracking = entry?.isIntersecting ?? false;
+        if (isTracking) scheduleUpdate();
+      },
+      { rootMargin: '50% 0px', threshold: 0 },
+    );
 
-    rafId = requestAnimationFrame(tick);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.visualViewport?.addEventListener('resize', handleViewportResize);
+    observer.observe(outer);
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.visualViewport?.addEventListener('resize', scheduleUpdate);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll);
-      window.visualViewport?.removeEventListener('resize', handleViewportResize);
+      observer.disconnect();
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.visualViewport?.removeEventListener('resize', scheduleUpdate);
     };
   }, []);
 

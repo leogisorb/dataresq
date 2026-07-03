@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
-import MobileNav from '@/components/layout/MobileNav';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
-import FaqSection from '@/components/sections/FaqSection';
 import {
   CALCULATOR_HEADING,
   CALCULATOR_PAGE_PATH,
@@ -21,6 +20,8 @@ import {
   generateCalculatorServiceJsonLd,
   generateFaqPageJsonLd,
 } from '@/lib/structured-data';
+
+const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Preisrechner — Datenrettungskosten berechnen',
@@ -51,7 +52,6 @@ export default function PreisrechnerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <MobileNav />
       <main>
         <section className={`${SECTION_PADDING} bg-bg-subtle`}>
           <div className="site-container">

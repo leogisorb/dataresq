@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import FooterContactSection from '@/components/layout/FooterContactSection';
-import HashLink from '@/components/navigation/HashLink';
 import WiderrufsButton from '@/components/ui/WiderrufsButton';
 import { SITE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
@@ -43,12 +42,13 @@ function FooterColumn({
       <ul className="mt-4 flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.label}>
-            <HashLink
+            <Link
               className="touch-target inline-flex items-center text-sm text-text transition-colors hover:text-text active:text-text"
               href={link.href}
+              prefetch
             >
               {link.label}
-            </HashLink>
+            </Link>
           </li>
         ))}
       </ul>
