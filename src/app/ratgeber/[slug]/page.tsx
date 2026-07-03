@@ -103,7 +103,7 @@ export default async function RatgeberDetailPage({ params }: RatgeberDetailPageP
       )}
 
       <ContentPageShell>
-        <div className="site-container px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <div className="site-container py-12 md:px-8 md:py-16 lg:px-12">
           <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text">
             <Link className="active:text-accent md:hover:text-accent" href="/">
               Startseite

@@ -42,7 +42,7 @@ export default function UeberUnsPage() {
 
       <MobileNav />
       <main>
-        <section className="border-b border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -55,19 +55,19 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <AboutStorySection />
           </div>
         </section>
 
-        <section className="border-t border-black/5 bg-bg-subtle px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="border-t border-black/5 bg-bg-subtle py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <FeelgoodManagerSection />
           </div>
         </section>
 
-        <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Zertifikate & Partner</h2>
             <div className="mt-8">
@@ -76,7 +76,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="bg-bg-subtle px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="bg-bg-subtle py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Warum RSQDATA?</h2>
             <div className="mt-8">
@@ -85,7 +85,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">
               Offizieller Partner: iAmbulanz
@@ -96,7 +96,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="border-t border-black/5 bg-bg-card px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-t border-black/5 bg-bg-card py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">
             <h2 className="text-2xl font-bold md:text-3xl">
               Überzeugt? Schildern Sie uns Ihren Fall.

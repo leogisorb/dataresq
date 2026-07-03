@@ -22,7 +22,7 @@ export default function RelatedServices({
   }
 
   return (
-    <section className="border-t border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
+    <section className="border-t border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
       <div className="site-container">
         <h2 className="text-2xl font-semibold tracking-tight text-text md:text-3xl">
           Verwandte Leistungen

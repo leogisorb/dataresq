@@ -412,7 +412,7 @@ export default function ExpertiseSection() {
   return (
     <section aria-labelledby="expertise-heading">
       <div ref={outerRef} className="relative h-[300vh] touch-pan-y">
-        <ExpertiseSectionHeading className="px-6 pb-6 pt-12 text-center md:hidden" />
+        <ExpertiseSectionHeading className="site-container pb-6 pt-12 text-center md:hidden" />
 
         <div className="sticky top-[var(--site-header-height)] h-[calc(100dvh-var(--site-header-height))] overflow-hidden md:top-0 md:h-screen">
           {/* Desktop — original layout & full-size tiles */}
@@ -436,7 +436,7 @@ export default function ExpertiseSection() {
           </div>
 
           {/* Mobile — stacked: medium → tile → hersteller → pagination (fixed) */}
-          <div className="flex h-full flex-col items-center px-4 pt-[10vh] md:hidden">
+          <div className="site-container flex h-full flex-col items-center pt-[10vh] md:hidden">
             <div className="relative w-full max-w-[340px] shrink-0">
               <div aria-hidden="true" className="invisible">
                 <MobileExpertiseStack card={CARDS[activeIndex]} />

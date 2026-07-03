@@ -72,7 +72,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
 
       <MobileNav />
       <main>
-        <section className="border-b border-black/5 bg-bg-subtle px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -109,7 +109,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
           <RelatedServices currentSlug={slug} relatedSlugs={detailContent.relatedSlugs} />
         ) : null}
 
-        <section className="border-t border-black/5 bg-bg-card px-4 py-12 text-text md:px-8 md:py-16 lg:px-12">
+        <section className="border-t border-black/5 bg-bg-card py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">
             <h2 className="text-2xl font-bold md:text-3xl">Noch Fragen zu {service.title}?</h2>
             <p className="mt-4 text-base leading-relaxed text-text-muted md:text-lg">

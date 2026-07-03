@@ -41,7 +41,7 @@ export default async function StandortPage({ params }: StandortPageProps) {
   return (
     <>
       <ContentPageShell>
-        <div className="site-container px-4 py-12 md:px-8 md:py-16 lg:px-12">
+        <div className="site-container py-12 md:px-8 md:py-16 lg:px-12">
           <StandortContent loc={loc} />
         </div>
       </ContentPageShell>
