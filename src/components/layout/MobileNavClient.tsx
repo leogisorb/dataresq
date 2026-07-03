@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useOverlayState } from '@heroui/react';
@@ -43,10 +44,11 @@ export default function MobileNavClient() {
         <div className="site-container flex h-11 items-center justify-between md:grid md:h-12 md:grid-cols-[1fr_auto_1fr] md:gap-4">
           <div className="flex items-center">
             <Link className="touch-target flex shrink-0 items-center" href="/">
-              <img
+              <Image
                 alt={siteConfig.name}
                 className="h-7 w-auto md:h-8"
                 height={32}
+                priority
                 src="/images/logo_2.svg"
                 width={97}
               />

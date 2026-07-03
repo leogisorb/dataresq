@@ -15,6 +15,13 @@ export const aboutStoryParagraphs: readonly string[] = [
   'Heute sind wir ein Datenrettungslabor, das aus einer Handywerkstatt gewachsen ist. Dazu gehören über zehn Jahre Praxis, ein Reinraum nach ISO 5, Microsoldering auf Profi-Niveau und zwei Abgabestellen in Grevenbroich und Mönchengladbach.',
 ];
 
+export const reinraumBullets: readonly string[] = [
+  'ISO 5 Reinraum (Class 100) für mechanische Festplattenrettung',
+  'Geöffnete Laufwerke ausschließlich unter kontrollierten Bedingungen',
+  'Ersatzteillager mit über 14.000 Komponenten für schnelle Reparaturen',
+  'Dokumentierter Ablauf von Analyse bis Rückgabe der Daten',
+];
+
 export const FEELGOOD_MANAGER = {
   title: 'Unsere Feelgood-Managerin',
   body: 'Im Büro sorgt unsere Katze für gute Stimmung. Ins Labor darf sie leider nicht.',

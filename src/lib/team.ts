@@ -9,6 +9,7 @@ export interface TeamMember {
 export const FOUNDING_YEAR = 2013 as const;
 export const FOUNDING_LOCATION = 'Grevenbroich' as const;
 export const RESCUED_DATASETS = '12.000' as const;
+export const YEARS_EXPERIENCE = new Date().getFullYear() - FOUNDING_YEAR;
 
 export const TEAM: TeamMember[] = [
   {
