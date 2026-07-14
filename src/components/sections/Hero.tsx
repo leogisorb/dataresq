@@ -6,7 +6,7 @@ import {
   CALCULATOR_SECTION_ID,
 } from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE } from '@/lib/constants';
+import { HOME_TRUST_ITEMS, HOME_WELCOME_TEXT } from '@/lib/constants';
 
 export default function Hero() {
   return (
@@ -20,15 +20,15 @@ export default function Hero() {
           </h1>
 
           <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
-            Vor der Beauftragung kennen Sie Festpreis und Dateiliste. Scheitert die Rettung, zahlen
-            Sie nur die Analysepauschale von {DIAGNOSIS_FEE_FORMATTED}.
+            {HOME_WELCOME_TEXT}
           </p>
 
           <HeroCtas />
 
-          <div className="mt-8 flex flex-wrap gap-6 text-sm text-text md:mt-10">
-            <span>✓ Festpreis vor Versand</span>
-            <span>✓ {FAILED_RECOVERY_BADGE}</span>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-text md:mt-10">
+            {HOME_TRUST_ITEMS.map((item) => (
+              <span key={item}>✓ {item}</span>
+            ))}
           </div>
         </div>
 

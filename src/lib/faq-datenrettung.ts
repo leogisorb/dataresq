@@ -1,6 +1,19 @@
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import {
+  ANALYSIS_DURATION,
+  DIAGNOSIS_FEE_FORMATTED,
+  FAILED_RECOVERY_NOTE,
+  LAB_PARTNER_NOTE,
+} from '@/lib/constants';
 
 export const datenrettungFaqs = [
+  {
+    question: 'Wo findet die Datenrettung statt?',
+    answer: LAB_PARTNER_NOTE,
+  },
+  {
+    question: 'Wie lange dauert die Laboranalyse?',
+    answer: `Die technische Analyse inklusive Dateiliste dauert in der Regel ${ANALYSIS_DURATION} nach Eingang Ihres Datenträgers. Danach erhalten Sie ein verbindliches Angebot.`,
+  },
   {
     question: 'Wie lange dauert eine Datenrettung?',
     answer:

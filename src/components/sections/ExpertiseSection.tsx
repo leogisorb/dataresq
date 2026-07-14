@@ -41,7 +41,7 @@ const CARDS: ExpertiseCardData[] = [
       'Headcrash & mechanische Schäden',
       'Elektronikdefekte, Controller-Ausfall',
       'Gelöschte / überschriebene Partitionen',
-      'Reinraum ISO 5 — Class 100',
+      'Mechanische Reparatur im Reinraumlabor',
     ],
     href: '/datenrettung/festplatte-hdd',
   },

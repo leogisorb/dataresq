@@ -16,10 +16,11 @@ const leistungenLinks = [
 ];
 
 const standortLinks = [
-  { label: 'Abgabestellen', href: '/standort' },
+  { label: 'Alle Standorte', href: '/standort' },
   { label: 'Grevenbroich', href: '/standort/grevenbroich' },
   { label: 'Mönchengladbach', href: '/standort/moenchengladbach' },
-  { label: 'Ratgeber', href: '/ratgeber' },
+  { label: 'Köln (Büro)', href: '/standort/koeln' },
+  { label: 'Labor (UK)', href: '/standort/labor-fields' },
 ];
 
 const rechtlichesLinks = [
@@ -69,10 +70,13 @@ export default function Footer() {
                 {siteConfig.name}
               </Link>
               <p className="mt-4 text-sm leading-relaxed text-text">
-                Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Abgabestellen in
-                Grevenbroich und Mönchengladbach — kostenlose DHL Express-Abholung bundesweit.
+                Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Abgabe an
+                iAmbulanz in Grevenbroich und Mönchengladbach — kostenlose DHL Express-Abholung
+                bundesweit.
               </p>
-              <p className="mt-4 text-xs text-text">[Social-Links Placeholder]</p>
+              <p className="mt-3 text-sm text-text-muted">
+                Büro: {SITE.address.street}, {SITE.address.zip} {SITE.address.city}
+              </p>
             </div>
 
             <FooterColumn title="Leistungen" links={leistungenLinks} />

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 
-import { DIAGNOSIS_FEE_FORMATTED } from './constants';
+import { SITE_META_DESCRIPTION } from './constants';
 
 export const siteConfig = {
   name: 'RSQDATA',
   url: 'https://muench-datenrettung.de',
-  description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis vor dem Versand. Jetzt Festpreis berechnen.`,
+  description: SITE_META_DESCRIPTION,
   locale: 'de_DE',
 } as const;
 

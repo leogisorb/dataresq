@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation';
 
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import StandortContent from '@/components/standort/StandortContent';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
-import { getLocation, LOCATIONS } from '@/lib/locations';
+import { getLocation, getLocationMetaDescription, getLocationPageTitle, LOCATIONS } from '@/lib/locations';
 import { createContentMetadata } from '@/lib/metadata';
 
 interface StandortPageProps {
@@ -24,8 +23,8 @@ export async function generateMetadata({ params }: StandortPageProps): Promise<M
   }
 
   return createContentMetadata({
-    title: `Datenrettung ${loc.name} — Festplatte, SSD, RAID`,
-    description: `Professionelle Datenrettung in ${loc.name}. ${loc.serviceNote} Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
+    title: `${getLocationPageTitle(loc)} — RSQDATA`,
+    description: getLocationMetaDescription(loc),
     path: `/standort/${loc.slug}`,
   });
 }

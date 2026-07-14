@@ -54,7 +54,7 @@ export default function CalcStepResult({
       <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
         <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
           <p className="text-2xl font-semibold text-text">92%</p>
-          <p className="mt-1 text-sm text-text-muted">Erfolgsquote · Reinraum ISO 5</p>
+          <p className="mt-1 text-sm text-text-muted">Erfolgsquote · Reinraumlabor</p>
         </div>
         <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
           <p className="text-2xl font-semibold text-text">{DIAGNOSIS_FEE_FORMATTED}</p>

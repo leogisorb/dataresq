@@ -1,4 +1,4 @@
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { ANALYSIS_DURATION, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 export interface FaqItem {
   question: string;
@@ -14,6 +14,10 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Was passiert nach der Analyse?',
     answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} wird bei Beauftragung zu 100 % auf Ihren Festpreis angerechnet — die Analyse kostet Sie dann effektiv nichts. ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
+  },
+  {
+    question: 'Wie lange dauert die Laboranalyse?',
+    answer: `Die technische Analyse inklusive Dateiliste dauert in der Regel ${ANALYSIS_DURATION} nach Eingang. Danach erhalten Sie ein verbindliches Angebot.`,
   },
   {
     question: 'Wie lange dauert eine Datenrettung?',

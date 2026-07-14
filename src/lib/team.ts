@@ -22,7 +22,7 @@ export const TEAM: TeamMember[] = [
   {
     name: '[VOLLSTÄNDIGER NAME 2]',
     role: 'Senior Datenrettungs-Techniker',
-    bio: '[2–3 Sätze Fachkompetenz — z. B. Experte für Festplatten-Mechanik und Reinraumarbeiten, zertifiziert in ISO-Klasse-5-Umgebungen.]',
+    bio: '[2–3 Sätze Fachkompetenz — z. B. Experte für Festplatten-Mechanik und Koordination mit dem Partner-Labor Fields.]',
     credentials: ['[Zertifikat 1]'],
     image: '/images/team/techniker.svg',
   },

@@ -40,7 +40,7 @@ export const mobileNavItems: MobileNavItem[] = [
   {
     label: 'Über uns',
     href: '/ueber-uns',
-    description: 'Von der Werkstatt zum Labor — seit 2013 in Grevenbroich.',
+    description: 'Standorte, Abgabe und Kundenbetreuung — RSQDATA aus Köln.',
   },
   {
     label: 'Kontakt',

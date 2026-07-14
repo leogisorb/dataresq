@@ -9,7 +9,7 @@ import MediumDetailSections from '@/components/sections/datenrettung/MediumDetai
 import RelatedServices from '@/components/sections/datenrettung/RelatedServices';
 import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { BINDING_OFFER_BADGE, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
 import {
@@ -88,8 +88,8 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               {service.description}
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-              Analysepauschale {DIAGNOSIS_FEE_FORMATTED} mit Dateiliste im Kundenportal, garantierter
-              Festpreis vor Beauftragung — {FAILED_RECOVERY_NOTE}
+              Analysepauschale {DIAGNOSIS_FEE_FORMATTED} mit Dateiliste im Kundenportal,{' '}
+              {BINDING_OFFER_BADGE.toLowerCase()} — {FAILED_RECOVERY_NOTE}
             </p>
             <div className="mt-8">
               <DatenrettungCta layout="row" />

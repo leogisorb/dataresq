@@ -8,7 +8,7 @@ export interface MediumDetailContent {
 export const MEDIUM_DETAIL_CONTENT: Record<string, MediumDetailContent> = {
   'festplatte-hdd': {
     intro:
-      'Mechanische Festplatten sind besonders anfällig für Headcrash, Lagerschaden und Elektronikdefekte. In unserem ISO-5-Reinraum arbeiten wir am defekten Laufwerk — ohne Ihr Originalmedium zu überschreiben.',
+      'Mechanische Festplatten sind besonders anfällig für Headcrash, Lagerschaden und Elektronikdefekte. Bei mechanischen Defekten arbeiten wir im Reinraumlabor — ohne Ihr Originalmedium zu überschreiben.',
     symptoms: [
       'Klicken, Rattern oder Brummen beim Einschalten',
       'BIOS erkennt die Festplatte nicht mehr',
@@ -17,7 +17,7 @@ export const MEDIUM_DETAIL_CONTENT: Record<string, MediumDetailContent> = {
     ],
     approach: [
       'Zustandsdokumentation und forensische Erstinspektion',
-      'Reinraum-Arbeit bei mechanischen Defekten (ISO 5 / Class 100)',
+      'Reinraum-Arbeit bei mechanischen Defekten',
       'Sector-by-Sector-Imaging auf Sicherungsmedien',
       'Logische Rekonstruktion und Dateiliste im Kundenportal',
     ],
@@ -36,7 +36,7 @@ export const MEDIUM_DETAIL_CONTENT: Record<string, MediumDetailContent> = {
       'Chip-off und direkter NAND-Zugriff bei Controller-Defekt',
       'Firmware-Reparatur und Translation-Table-Rekonstruktion',
       'NVMe- und BitLocker-Verschlüsselung nach Key-Übergabe',
-      'Dateiliste vor Beauftragung — Festpreis garantiert',
+      'Dateiliste vor Beauftragung — verbindliches Angebot nach Laboranalyse',
     ],
     relatedSlugs: ['festplatte-hdd', 'usb-sd', 'smartphone'],
   },

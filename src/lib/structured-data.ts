@@ -1,6 +1,4 @@
-import type { RatgeberArticle, RatgeberFaqItem } from './sanity';
-
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, SITE } from './constants';
+import { BINDING_OFFER_BADGE, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, SITE } from './constants';
 import { CALCULATOR_PAGE_PATH } from './calculator-section';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
@@ -117,7 +115,7 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis.`,
+    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
     url: siteConfig.url,
     telephone: SITE.phone,
     email: SITE.email,
@@ -181,7 +179,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — garantierter Festpreis vor Beauftragung, ${FAILED_RECOVERY_BADGE}.`,
+      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — ${BINDING_OFFER_BADGE.toLowerCase()}, ${FAILED_RECOVERY_BADGE.toLowerCase()}.`,
     },
   };
 }
@@ -325,65 +323,6 @@ export function generateFaqPageJsonLd(faqs: FaqItem[] = calculatorFaqs): FaqPage
         text: faq.answer,
       },
     })),
-  };
-}
-
-export function generateRatgeberFaqPageJsonLd(faqs: RatgeberFaqItem[]): FaqPageSchema {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
-}
-
-export interface ArticleSchema {
-  '@context': 'https://schema.org';
-  '@type': 'Article';
-  headline: string;
-  description?: string;
-  url: string;
-  mainEntityOfPage: string;
-  author: {
-    '@type': 'Person';
-    name: string;
-  };
-  datePublished: string | null;
-  dateModified?: string | null;
-  publisher: {
-    '@type': 'Organization';
-    name: string;
-    url: string;
-  };
-}
-
-export function generateArticleJsonLd(article: RatgeberArticle, slug: string): ArticleSchema {
-  const url = `${siteConfig.url}/ratgeber/${slug}`;
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.metaDesc ?? article.excerpt ?? undefined,
-    url,
-    mainEntityOfPage: url,
-    author: {
-      '@type': 'Person',
-      name: article.author ?? siteConfig.name,
-    },
-    datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
   };
 }
 

@@ -1,30 +1,39 @@
-export type CertificationIconKey = 'award' | 'microscope' | 'shield' | 'handshake';
+import {
+  LAB_PARTNER,
+  LAB_PARTNER_ADDRESS_LINE,
+  LAB_PARTNER_NOTE,
+} from '@/lib/constants';
+
+export type CertificationIconKey = 'microscope' | 'shield' | 'handshake';
 
 export const ABOUT_STORY_HEADLINE =
-  'Seit 2013 retten wir Daten — von der Werkstatt zum Labor.' as const;
+  'Seit 2013 begleiten wir Sie bei Datenverlust — heute aus Köln.' as const;
 
 export const ABOUT_STORY_IMAGE = '/images/ueber-uns/hdd-hand.png' as const;
 
 export const ABOUT_STORY_IMAGE_ALT =
-  'Offene Festplatte in den Händen, mechanische Datenrettung im Reinraum' as const;
+  'Offene Festplatte in den Händen — professionelle Datenrettung' as const;
 
 export const aboutStoryParagraphs: readonly string[] = [
-  '2013 haben wir in Grevenbroich angefangen. Damals ging es um das Übliche: kaputte Handys, gerissene Displays, tote Akkus. Repariert, abgeholt, weiter.',
-  'Dann kamen die Fälle, bei denen andere aufgegeben hatten. Geräte, die nicht mehr starteten. Platinen mit Kurzschluss. Wasserschäden, die tiefer gingen als jedes Display. Statt abzulehnen haben wir Microsoldering gelernt, auf Chip- und Board-Level, mit Equipment, das in normalen Reparaturläden nicht auf dem Tisch liegt.',
-  'Irgendwann lag die erste Festplatte bei uns. Seitdem haben wir damit nicht mehr aufgehört. Wir haben einen Reinraum gebaut, Head-Crashes repariert und SSDs gerettet, die kein Diagnose-Tool mehr erkennen.',
-  'Heute sind wir ein Datenrettungslabor, das aus einer Handywerkstatt gewachsen ist. Dazu gehören über zehn Jahre Praxis, ein Reinraum nach ISO 5, Microsoldering auf Profi-Niveau und zwei Abgabestellen in Grevenbroich und Mönchengladbach.',
+  '2013 haben wir in Grevenbroich angefangen — mit Handy-Reparatur, Displays und Akkus. Schnell kamen Fälle dazu, bei denen es nicht nur ums Gerät ging, sondern um die Daten darauf.',
+  'Heute ist RSQDATA Ihr Ansprechpartner in Deutschland: Annahme, Beratung, Analyse-Koordination und verbindliches Angebot — aus unserem Büro in Köln. Persönliche Abgabe geht auch an unseren Partner iAmbulanz in Grevenbroich und Mönchengladbach.',
+  'Für Sie ändert sich der Ablauf nicht: Sie senden Ihr Medium ein oder geben es ab, erhalten nach der Analyse Dateiliste und Angebot — und entscheiden erst dann.',
 ];
 
-export const reinraumBullets: readonly string[] = [
-  'ISO 5 Reinraum (Class 100) für mechanische Festplattenrettung',
-  'Geöffnete Laufwerke ausschließlich unter kontrollierten Bedingungen',
-  'Ersatzteillager mit über 14.000 Komponenten für schnelle Reparaturen',
-  'Dokumentierter Ablauf von Analyse bis Rückgabe der Daten',
+export const labPartnerBullets: readonly string[] = [
+  `Reinraumlabor unseres Partners ${LAB_PARTNER.name} (UK)`,
+  'Mechanische HDD-Rettung unter kontrollierten Bedingungen',
+  'RSQDATA koordiniert Übergabe, Analyse und Kommunikation aus Köln',
+  'Dokumentierter Ablauf von Annahme bis Rückgabe der Daten',
 ];
+
+export const labPartnerIntro = LAB_PARTNER_NOTE;
+
+export const labPartnerAddressLine = LAB_PARTNER_ADDRESS_LINE;
 
 export const FEELGOOD_MANAGER = {
   title: 'Unsere Feelgood-Managerin',
-  body: 'Im Büro sorgt unsere Katze für gute Stimmung. Ins Labor darf sie leider nicht.',
+  body: 'Im Büro in Köln sorgt unsere Katze für gute Stimmung. Ins Labor darf sie leider nicht.',
   image: null as string | null,
   imageAlt: 'Feelgood-Managerin — Bürokatze bei RSQDATA',
 } as const;
@@ -39,18 +48,11 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
-    iconKey: 'award',
-    iconClass: 'text-accent',
-    iconBgClass: 'bg-accent/10',
-    title: 'ISO 9001',
-    description: 'Zertifiziertes Qualitätsmanagement für reproduzierbare Datenrettungsprozesse.',
-  },
-  {
     iconKey: 'microscope',
     iconClass: 'text-chevron-1',
     iconBgClass: 'bg-chevron-1/15',
-    title: 'Reinraum ISO 5',
-    description: 'Staubfreie Umgebung für mechanische Festplattenrettung nach ISO-Klasse 5.',
+    title: 'Reinraumlabor',
+    description: 'Mechanische HDD-Rettung unter kontrollierten Bedingungen.',
   },
   {
     iconKey: 'shield',
@@ -63,9 +65,9 @@ export const certifications: Certification[] = [
     iconKey: 'handshake',
     iconClass: 'text-chevron-2',
     iconBgClass: 'bg-chevron-2/15',
-    title: 'Internationaler Verband',
+    title: 'Abgabepartner iAmbulanz',
     description:
-      'Mitgliedschaft in einem internationalen Fachverband — anerkannte Branchenstandards und regelmäßige Weiterbildung.',
+      'Persönliche Übergabe in Grevenbroich und Mönchengladbach — ohne Termin, mit dokumentiertem Protokoll.',
   },
 ];
 
@@ -78,9 +80,8 @@ export interface ComparisonRow {
 }
 
 export const comparisonRows: ComparisonRow[] = [
-  { feature: 'Eigenes Reinraumlabor ISO 5', muench: 'yes', competitor: 'no' },
-  { feature: 'Ersatzteillager (14.000+ Teile)', muench: 'yes', competitor: 'partial' },
-  { feature: 'Festpreis vor Beauftragung', muench: 'yes', competitor: 'partial' },
+  { feature: 'Reinraumlabor-Zugang', muench: 'yes', competitor: 'no' },
+  { feature: 'Verbindliches Angebot vor Beauftragung', muench: 'yes', competitor: 'partial' },
   { feature: 'Transparente Analysepauschale', muench: 'yes', competitor: 'partial' },
   { feature: 'DSGVO / AVV für Unternehmen', muench: 'yes', competitor: 'partial' },
   { feature: 'Abgabestellen & DHL-Abholung', muench: 'yes', competitor: 'partial' },

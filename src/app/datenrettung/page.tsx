@@ -5,7 +5,7 @@ import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSecti
 import ProcessTimeline from '@/components/sections/datenrettung/ProcessTimeline';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { DATENRETTUNG_META_DESCRIPTION, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import {
   PAGE_HERO_HEADING,
@@ -28,7 +28,7 @@ const DatenrettungFaq = dynamic(() => import('@/components/sections/datenrettung
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Professionelle Datenrettung — Festplatte, SSD, RAID, NAS',
-  description: `Datenrettung vom Experten: HDD, SSD, RAID, NAS, USB-Sticks. Analysepauschale ${DIAGNOSIS_FEE_FORMATTED}, garantierter Festpreis vor dem Versand.`,
+  description: DATENRETTUNG_META_DESCRIPTION,
   path: '/datenrettung',
 });
 

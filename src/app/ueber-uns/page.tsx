@@ -17,7 +17,7 @@ import { ABOUT_STORY_HEADLINE } from '@/lib/ueber-uns-content';
 export const metadata: Metadata = createContentMetadata({
   title: 'Über uns — Von der Werkstatt zum Labor',
   description:
-    'Seit 2013 in Grevenbroich: aus Handy-Reparatur gewachsen zum Datenrettungslabor mit Reinraum, Microsoldering und Abgabestellen in NRW.',
+    'RSQDATA aus Köln: Koordination und Kundenbetreuung bei Datenverlust. Abgabestellen iAmbulanz in NRW.',
   path: '/ueber-uns',
 });
 
@@ -74,7 +74,7 @@ export default function UeberUnsPage() {
           </div>
         </section>
 
-        <section className="bg-bg-subtle py-12 md:px-8 md:py-16 lg:px-12">
+        <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Warum RSQDATA?</h2>
             <div className="mt-8">

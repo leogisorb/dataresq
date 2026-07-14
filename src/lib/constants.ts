@@ -3,9 +3,9 @@ export const SITE = {
   phoneTel: '+492181000000',
   email: 'info@muench-datenrettung.de',
   address: {
-    street: 'Am Hammerwerk 16A',
-    city: 'Grevenbroich',
-    zip: '41515',
+    street: 'Pellenzstr. 15',
+    city: 'Köln',
+    zip: '50823',
     country: 'DE',
   },
   openingHours: {
@@ -15,15 +15,64 @@ export const SITE = {
   },
 } as const;
 
+/** Laborpartner — technische Rettung im Reinraumlabor (nicht RSQDATA-eigen) */
+export const LAB_PARTNER = {
+  name: 'Fields',
+  address: {
+    careOf: 'Fields c/o RSQDATA',
+    street: '18-21 Old Fields Rd, Bocam Park',
+    city: 'Pencoed Bridgend',
+    zip: 'CF35 5LJ',
+    country: 'GB',
+  },
+} as const;
+
+export const LAB_PARTNER_ADDRESS_LINE =
+  `${LAB_PARTNER.address.careOf}, ${LAB_PARTNER.address.street}, ${LAB_PARTNER.address.zip} ${LAB_PARTNER.address.city}, United Kingdom` as const;
+
+export const LAB_PARTNER_BADGE = `Partner-Reinraumlabor (${LAB_PARTNER.name})` as const;
+
+export const LAB_PARTNER_NOTE =
+  `Die technische Analyse und Rettung erfolgt über unseren Laborpartner ${LAB_PARTNER.name} (UK). RSQDATA koordiniert Annahme, Kommunikation und Angebot aus Köln.` as const;
+
+export const LAB_PARTNER_NOTE_SHORT =
+  `Laborpartner ${LAB_PARTNER.name} (UK)` as const;
+
 /** Analysepauschale für Laboranalyse inkl. Dateiliste */
 export const DIAGNOSIS_FEE = 79 as const;
 export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
+
+/** Dauer der Laboranalyse bis Dateiliste und Angebot */
+export const ANALYSIS_DURATION = '48–72 h' as const;
 
 /** Bei erfolgloser Rettung: nur Analysepauschale, kein Rettungspreis */
 export const FAILED_RECOVERY_NOTE =
   `Können wir nichts retten, zahlen Sie nur die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} — nicht den Rettungspreis.` as const;
 
-export const FAILED_RECOVERY_BADGE = 'Kein Rettungspreis bei Misserfolg' as const;
+export const FAILED_RECOVERY_BADGE = 'Keine Rettung = kein Rettungspreis' as const;
+
+export const BINDING_OFFER_BADGE = 'Verbindliches Angebot vor Beauftragung' as const;
+
+export const HOME_META_TITLE =
+  'Datenrettung für Festplatte, HDD, SSD & RAID' as const;
+
+export const HOME_META_DESCRIPTION =
+  `Datenrettung: HDD, SSD, RAID & NAS. Analyse für ${DIAGNOSIS_FEE_FORMATTED} – verbindliches Angebot vor Beauftragung. Keine Rettung = kein Rettungspreis.` as const;
+
+export const HOME_WELCOME_TEXT =
+  `Festplatte klackert, SSD tot oder NAS „Volume degraded"? Keine weiteren Schreibzugriffe. RSQDATA rettet HDD, SSD, RAID & NAS — kostenlos per DHL Express oder Abgabe in Grevenbroich und Mönchengladbach. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, danach verbindliches Angebot und Dateiliste.` as const;
+
+export const HOME_TRUST_ITEMS = [
+  `Analyse in ${ANALYSIS_DURATION}`,
+  BINDING_OFFER_BADGE,
+  FAILED_RECOVERY_BADGE,
+] as const;
+
+export const DATENRETTUNG_META_DESCRIPTION =
+  `Ablauf, Leistungen und Preise: HDD, SSD, RAID, NAS, USB und Smartphone. Analyse in ${ANALYSIS_DURATION}, Dateiliste und verbindliches Angebot vor Beauftragung.` as const;
+
+export const SITE_META_DESCRIPTION =
+  `RSQDATA — Datenrettung aus Köln. Beratung, Koordination und verbindliches Angebot für Festplatte, SSD, RAID und NAS.` as const;
 
 export const DATA_RETENTION_DAYS = 14 as const;
 

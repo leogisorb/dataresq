@@ -6,6 +6,7 @@ import Features from '@/components/sections/Features';
 import Hero from '@/components/sections/Hero';
 import Testimonials from '@/components/sections/Testimonials';
 import { calculatorFaqs } from '@/lib/faq-calculator';
+import { HOME_META_DESCRIPTION, HOME_META_TITLE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import {
   generateCalculatorServiceJsonLd,
@@ -28,13 +29,12 @@ const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 export const metadata: Metadata = {
   ...createContentMetadata({
-    title: 'Datenrettung Festplatte, SSD, RAID',
-    description:
-      'Professionelle Datenrettung: Festplatte, SSD, RAID, NAS. Analysepauschale 79€, garantierter Festpreis vor dem Versand. Jetzt Festpreis berechnen.',
+    title: HOME_META_TITLE,
+    description: HOME_META_DESCRIPTION,
     path: '/',
   }),
   title: {
-    absolute: 'Datenrettung Festplatte, SSD, RAID | RSQDATA',
+    absolute: `${HOME_META_TITLE} – RSQDATA`,
   },
 };
 

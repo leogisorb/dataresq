@@ -27,8 +27,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/standort/koeln',
-        destination: '/standort/grevenbroich',
+        source: '/ratgeber',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/ratgeber/:path*',
+        destination: '/',
         permanent: true,
       },
       {

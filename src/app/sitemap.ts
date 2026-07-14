@@ -3,17 +3,13 @@ import type { MetadataRoute } from 'next';
 import { getDatenrettungSlugs } from '@/lib/datenrettung-services';
 import { LOCATIONS } from '@/lib/locations';
 import { siteConfig } from '@/lib/metadata';
-import { fetchRatgeberSlugs } from '@/lib/sanity';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const ratgeberSlugs = await fetchRatgeberSlugs();
-
+export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     '/',
     '/datenrettung',
     '/preisrechner',
     '/ueber-uns',
-    '/ratgeber',
     '/standort',
   ].map((path) => ({
     url: `${siteConfig.url}${path}`,
@@ -36,12 +32,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const ratgeberRoutes = ratgeberSlugs.map((entry) => ({
-    url: `${siteConfig.url}/ratgeber/${entry.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...datenrettungRoutes, ...locationRoutes, ...ratgeberRoutes];
+  return [...staticRoutes, ...datenrettungRoutes, ...locationRoutes];
 }

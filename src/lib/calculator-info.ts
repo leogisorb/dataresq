@@ -31,7 +31,7 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'HDDs haben die besten Rettungsquoten unter allen Datenträgern — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. In unserem Reinraum ISO Klasse 5 erzielen wir eine Erfolgsquote von 92 %.',
+        text: 'HDDs haben die besten Rettungsquoten unter allen Datenträgern — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. Im Reinraumlabor erzielen wir eine Erfolgsquote von 92 %.',
       },
     ],
     warning:
@@ -53,7 +53,7 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'Logische Defekte (gelöscht, formatiert, Dateisystemfehler) sind bei SSDs gut rettbar. Bei Controller-Ausfällen hängt die Quote vom genauen Chip-Typ ab — unser Labor hat Zugriff auf spezifische Firmware-Tools für alle gängigen Hersteller (Samsung, WD, Crucial, Micron, Toshiba).',
+        text: 'Logische Defekte (gelöscht, formatiert, Dateisystemfehler) sind bei SSDs gut rettbar. Bei Controller-Ausfällen hängt die Quote vom genauen Chip-Typ ab — spezifische Firmware-Tools für alle gängigen Hersteller (Samsung, WD, Crucial, Micron, Toshiba) stehen zur Verfügung.',
       },
     ],
     warning:
@@ -141,7 +141,7 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'Logische Defekte und viele Elektronikschäden sind gut rettbar, sobald das Speichermedium unangetastet bleibt. Bei mechanischen HDD-Schäden arbeiten wir im Reinraum; bei NVMe/SSD oft über Controller- oder Chip-Level-Zugriff.',
+        text: 'Logische Defekte und viele Elektronikschäden sind gut rettbar, sobald das Speichermedium unangetastet bleibt. Bei mechanischen HDD-Schäden arbeiten wir im Reinraumlabor; bei NVMe/SSD oft über Controller- oder Chip-Level-Zugriff.',
       },
     ],
     warning:
@@ -188,7 +188,7 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
       },
       {
         label: 'Unser Prozess',
-        text: 'Mechanische Reparaturen führen wir ausschließlich in unserem Reinraum ISO Klasse 5 durch — ein staubfreier Arbeitsraum mit einem Reinheitsgrad vergleichbar mit einem OP-Saal. Ein einzelnes Staubkorn auf der Plattenoberfläche würde beim Einschalten einen weiteren Headcrash auslösen.',
+        text: 'Mechanische Reparaturen führen wir ausschließlich im Reinraumlabor durch — ein staubfreier Arbeitsraum mit einem Reinheitsgrad vergleichbar mit einem OP-Saal. Ein einzelnes Staubkorn auf der Plattenoberfläche würde beim Einschalten einen weiteren Headcrash auslösen.',
       },
     ],
     warning:

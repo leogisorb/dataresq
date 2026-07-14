@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { TILE_CARD } from '@/lib/button-styles';
-import { LOCATIONS } from '@/lib/locations';
+import { getLocationPartnerLabel, LOCATIONS } from '@/lib/locations';
 import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
 import {
@@ -14,9 +14,9 @@ import {
 } from '@/lib/structured-data';
 
 export const metadata: Metadata = createContentMetadata({
-  title: 'Abgabestellen & Kundenbetreuung — NRW',
+  title: 'Standorte — Abgabe & Kundenbetreuung',
   description:
-    'RSQDATA: Abgabestellen in Grevenbroich und Mönchengladbach. Alle Datenträgertypen — kostenlose DHL Express-Abholung an Ihrer Haustür.',
+    'RSQDATA Standorte: iAmbulanz-Abgabe in Grevenbroich und Mönchengladbach, Büro Köln. Kostenlose DHL Express-Abholung bundesweit.',
   path: '/standort',
 });
 
@@ -26,8 +26,8 @@ export default function StandortOverviewPage() {
     { name: 'Standorte', url: `${siteConfig.url}/standort` },
   ]);
   const collectionJsonLd = generateCollectionPageJsonLd(
-    'Abgabestellen & Kundenbetreuung',
-    'RSQDATA Abgabestellen in Grevenbroich und Mönchengladbach.',
+    'Standorte — Abgabe & Kundenbetreuung',
+    'RSQDATA: Abgabestellen in Grevenbroich und Mönchengladbach, Büro Köln.',
     '/standort',
   );
 
@@ -49,13 +49,10 @@ export default function StandortOverviewPage() {
               { label: 'Standorte' },
             ]}
           />
-          <h1 className="text-3xl font-bold text-text md:text-4xl">
-            Abgabestellen &amp; Kundenbetreuung
-          </h1>
+          <h1 className="text-3xl font-bold text-text md:text-4xl">Standorte</h1>
           <p className="mt-4 max-w-2xl text-text">
-            Geben Sie Ihren Datenträger ohne Termin an einer unserer Abgabestellen ab — alle
-            Datenträgertypen willkommen. Oder nutzen Sie die kostenlose DHL Express-Abholung direkt
-            an Ihrer Haustür.
+            Abgabe an iAmbulanz-Standorten oder Kundenbetreuung aus Köln. Kostenlose DHL
+            Express-Abholung bundesweit.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -68,17 +65,21 @@ export default function StandortOverviewPage() {
                 <div className="relative aspect-[16/10] w-full bg-bg-subtle">
                   <Image
                     alt={location.imageAlt}
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    className={
+                      location.kind === 'labor'
+                        ? 'object-contain p-6'
+                        : 'object-cover transition-transform duration-300 group-hover:scale-[1.02]'
+                    }
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     src={location.image}
+                    unoptimized={location.kind === 'labor'}
                   />
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-text">{location.name}</h2>
-                  <p className="mt-1 text-sm text-neon">
-                    {location.partner === 'iambulanz' ? 'RSQDATA / iAmbulanz' : 'RSQDATA Büro'} ·{' '}
-                    {location.region}
+                  <p className="mt-1 text-sm font-medium text-text">
+                    {getLocationPartnerLabel(location)} · {location.region}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-text-muted">
                     {location.serviceNote}

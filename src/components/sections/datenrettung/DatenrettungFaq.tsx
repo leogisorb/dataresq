@@ -4,9 +4,14 @@ import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
-import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { ANALYSIS_DURATION, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 const faqItems = [
+  {
+    id: 'analyse-dauer',
+    question: 'Wie lange dauert die Laboranalyse?',
+    answer: `Die technische Analyse inklusive Dateiliste dauert in der Regel ${ANALYSIS_DURATION} nach Eingang Ihres Datenträgers. Danach erhalten Sie ein verbindliches Angebot.`,
+  },
   {
     id: 'dauer',
     question: 'Wie lange dauert eine Datenrettung?',
@@ -64,8 +69,7 @@ export default function DatenrettungFaq() {
               ) : item.id === 'sicherheit' ? (
                 <>
                   Ja. DSGVO-konforme Verarbeitung, verschlüsselte Übertragung und zertifizierte
-                  Löschung mit Nachweis. Alle Arbeiten erfolgen in unserem Reinraum. Für
-                  Unternehmen schließen wir einen{' '}
+                  Löschung mit Nachweis. Für Unternehmen schließen wir einen{' '}
                   <Link className="text-accent" href="/auftragsverarbeitung">
                     AVV
                   </Link>{' '}

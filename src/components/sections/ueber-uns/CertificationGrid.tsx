@@ -1,13 +1,9 @@
-import { Award, Handshake, Microscope, ShieldCheck } from 'lucide-react';
+import { Handshake, Microscope, ShieldCheck } from 'lucide-react';
 
 import { TILE_HOVER_BORDER } from '@/lib/button-styles';
 import { certifications, type CertificationIconKey } from '@/lib/ueber-uns-content';
 
-const CERTIFICATION_ICONS: Record<
-  CertificationIconKey,
-  typeof Award
-> = {
-  award: Award,
+const CERTIFICATION_ICONS: Record<CertificationIconKey, typeof Microscope> = {
   microscope: Microscope,
   shield: ShieldCheck,
   handshake: Handshake,
@@ -15,7 +11,7 @@ const CERTIFICATION_ICONS: Record<
 
 export default function CertificationGrid() {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       {certifications.map((cert) => {
         const Icon = CERTIFICATION_ICONS[cert.iconKey];
 
