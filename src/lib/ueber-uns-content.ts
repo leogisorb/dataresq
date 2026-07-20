@@ -1,4 +1,5 @@
 import {
+  DIAGNOSIS_FEE_FORMATTED,
   LAB_PARTNER,
   LAB_PARTNER_ADDRESS_LINE,
   LAB_PARTNER_NOTE,
@@ -64,24 +65,41 @@ export const certifications: Certification[] = [
   },
 ];
 
-export type ComparisonRating = 'yes' | 'partial' | 'no';
-
 export interface ComparisonRow {
   feature: string;
-  muench: ComparisonRating;
-  competitor: ComparisonRating;
+  rsqdata: string;
+  industry: string;
 }
 
 export const comparisonRows: ComparisonRow[] = [
-  { feature: 'Reinraumlabor-Zugang', muench: 'yes', competitor: 'no' },
-  { feature: 'Verbindliches Angebot vor Beauftragung', muench: 'yes', competitor: 'partial' },
-  { feature: 'Transparente Analysepauschale', muench: 'yes', competitor: 'partial' },
-  { feature: 'DSGVO / AVV für Unternehmen', muench: 'yes', competitor: 'partial' },
-  { feature: 'Abgabestellen & DHL-Abholung', muench: 'yes', competitor: 'partial' },
+  {
+    feature: 'Analysekosten',
+    rsqdata: `${DIAGNOSIS_FEE_FORMATTED} pauschal, bei Beauftragung voll verrechnet`,
+    industry: '„Kostenlos“ – dafür oft höhere Rettungspreise',
+  },
+  {
+    feature: 'Preisangabe vor Einsendung',
+    rsqdata: 'Konkreter Preisrahmen im Online-Rechner',
+    industry: 'Erst nach Einsendung',
+  },
+  {
+    feature: 'Angebot',
+    rsqdata: 'Verbindlicher Festpreis mit Maximalpreis-Garantie',
+    industry: 'Kostenvoranschlag, Nachberechnung möglich',
+  },
+  {
+    feature: 'Dateiliste vor Beauftragung',
+    rsqdata: 'Ja – Sie sehen, was rettbar ist',
+    industry: 'Selten',
+  },
+  {
+    feature: 'Keine Rettung',
+    rsqdata: `Nur ${DIAGNOSIS_FEE_FORMATTED} Analysepauschale`,
+    industry: 'Teils Bearbeitungs-/Rücksendegebühren',
+  },
+  {
+    feature: 'Abgabe vor Ort',
+    rsqdata: 'Mönchengladbach & Grevenbroich, persönlich',
+    industry: 'Nur Versand oder Kurier',
+  },
 ];
-
-export const comparisonRatingLabels: Record<ComparisonRating, string> = {
-  yes: 'Ja',
-  partial: 'Teilweise',
-  no: 'Nein',
-};

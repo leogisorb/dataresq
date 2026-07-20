@@ -84,12 +84,11 @@ export default function StandortContent({ loc }: StandortContentProps) {
       <div className="relative mt-8 aspect-[21/9] w-full overflow-hidden rounded-xl bg-bg-subtle md:aspect-[3/1]">
         <Image
           alt={loc.imageAlt}
-          className={loc.kind === 'labor' ? 'object-contain p-8' : 'object-cover'}
+          className="object-cover"
           fill
           priority
           sizes="(max-width: 768px) 100vw, 1200px"
           src={loc.image}
-          unoptimized={loc.kind === 'labor'}
         />
       </div>
 

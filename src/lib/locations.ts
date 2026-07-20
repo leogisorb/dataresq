@@ -112,8 +112,8 @@ export const LOCATIONS: Location[] = [
     lng: 6.9128,
     kind: 'buero',
     partner: 'rsqdata',
-    image: '/images/hero-devices-v3.png',
-    imageAlt: 'RSQDATA Büro Köln — Kundenbetreuung und Koordination',
+    image: '/images/standort/koeln-pellenzstrasse.png',
+    imageAlt: 'RSQDATA Büro Köln, Pellenzstr. 15 — Gebäudeansicht',
     description:
       'RSQDATA Büro in Köln — Ihr Ansprechpartner für Beratung, Koordination und Kommunikation während der Datenrettung. Keine Abgabe vor Ort; Medien senden Sie per DHL Express oder geben sie an einer iAmbulanz-Abgabestelle ab.',
     localFact:
@@ -132,8 +132,8 @@ export const LOCATIONS: Location[] = [
     lng: -3.697,
     kind: 'labor',
     partner: 'fields',
-    image: '/images/reinraum.svg',
-    imageAlt: `Reinraumlabor ${LAB_PARTNER.name} — technische Datenrettung`,
+    image: '/images/standort/labor-reinraum.png',
+    imageAlt: `Reinraumlabor ${LAB_PARTNER.name} — Festplattenrettung unter dem Mikroskop`,
     description: `Reinraumlabor in Großbritannien (Partner ${LAB_PARTNER.name}). Keine Abgabe vor Ort.`,
     localFact:
       'Mechanische HDD-Rettung und Reinraumarbeiten. Medien werden hierher geleitet, nachdem Sie sie bei RSQDATA angemeldet haben.',

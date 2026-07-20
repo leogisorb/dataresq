@@ -19,11 +19,10 @@ export default function ReinraumSection() {
         </ul>
       </div>
       <Image
-        alt="Partner-Reinraumlabor Fields — technische Datenrettung"
+        alt="Partner-Reinraumlabor Fields — Festplattenrettung unter dem Mikroskop"
         className="rounded-lg object-cover"
         height={500}
-        src="/images/reinraum.svg"
-        unoptimized
+        src="/images/standort/labor-reinraum.png"
         width={800}
       />
     </div>
