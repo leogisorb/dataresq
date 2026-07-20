@@ -31,13 +31,6 @@ export const labPartnerIntro = LAB_PARTNER_NOTE;
 
 export const labPartnerAddressLine = LAB_PARTNER_ADDRESS_LINE;
 
-export const FEELGOOD_MANAGER = {
-  title: 'Unsere Feelgood-Managerin',
-  body: 'Im Büro in Köln sorgt unsere Katze für gute Stimmung. Ins Labor darf sie leider nicht.',
-  image: null as string | null,
-  imageAlt: 'Feelgood-Managerin — Bürokatze bei RSQDATA',
-} as const;
-
 export interface Certification {
   iconKey: CertificationIconKey;
   iconClass: string;

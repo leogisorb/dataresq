@@ -4,7 +4,6 @@ import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import AboutStorySection from '@/components/sections/ueber-uns/AboutStorySection';
 import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
-import FeelgoodManagerSection from '@/components/sections/ueber-uns/FeelgoodManagerSection';
 import IambulanzPartnerSection from '@/components/sections/ueber-uns/IambulanzPartnerSection';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
@@ -60,12 +59,6 @@ export default function UeberUnsPage() {
         </section>
 
         <section className="border-t border-black/5 bg-bg-subtle py-12 md:border-t-0 md:px-8 md:py-16 lg:px-12">
-          <div className="site-container">
-            <FeelgoodManagerSection />
-          </div>
-        </section>
-
-        <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <h2 className="text-2xl font-bold text-text md:text-3xl">Zertifikate & Partner</h2>
             <div className="mt-8">
