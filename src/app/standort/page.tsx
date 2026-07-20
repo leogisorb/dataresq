@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import StandortLocationCard from '@/components/standort/StandortLocationCard';
-import { LOCATIONS } from '@/lib/locations';
+import {
+  getAbgabeLocations,
+  getOfficeAndLabLocations,
+} from '@/lib/locations';
 import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
 import {
@@ -19,6 +22,9 @@ export const metadata: Metadata = createContentMetadata({
 });
 
 export default function StandortOverviewPage() {
+  const abgabeLocations = getAbgabeLocations();
+  const officeAndLabLocations = getOfficeAndLabLocations();
+
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
     { name: 'Standorte', url: `${siteConfig.url}/standort` },
@@ -49,15 +55,33 @@ export default function StandortOverviewPage() {
           />
           <h1 className="text-3xl font-bold text-text md:text-4xl">Standorte</h1>
           <p className="mt-4 max-w-2xl text-text">
-            Abgabe an iAmbulanz-Standorten oder Kundenbetreuung aus Köln. Kostenlose DHL
+            Persönliche Abgabe an iAmbulanz-Partnern oder Beratung aus Köln. Kostenlose DHL
             Express-Abholung bundesweit.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-            {LOCATIONS.map((location) => (
-              <StandortLocationCard key={location.slug} location={location} />
-            ))}
-          </div>
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Abgabestellen</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted md:text-base">
+              Medien persönlich und ohne Termin abgeben — an unseren iAmbulanz-Partnern in NRW.
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+              {abgabeLocations.map((location) => (
+                <StandortLocationCard key={location.slug} location={location} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Büro & Labor</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted md:text-base">
+              Kundenbetreuung in Köln und Partner-Reinraumlabor — hier keine Medien-Abgabe vor Ort.
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+              {officeAndLabLocations.map((location) => (
+                <StandortLocationCard key={location.slug} location={location} />
+              ))}
+            </div>
+          </section>
         </div>
       </ContentPageShell>
     </>

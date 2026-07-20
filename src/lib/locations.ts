@@ -154,3 +154,9 @@ export function getIambulanzLocations(): Location[] {
 export function getAbgabeLocations(): Location[] {
   return LOCATIONS.filter((location) => location.kind === 'abgabe');
 }
+
+export function getOfficeAndLabLocations(): Location[] {
+  return LOCATIONS.filter(
+    (location) => location.kind === 'buero' || location.kind === 'labor',
+  );
+}
