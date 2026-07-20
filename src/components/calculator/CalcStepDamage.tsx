@@ -1,13 +1,23 @@
-import { AlertTriangle, Cpu, Droplets, Lock, Trash2, Wrench } from 'lucide-react';
+import {
+  AlertTriangle,
+  ArrowDown,
+  Cpu,
+  Droplets,
+  Lock,
+  Smartphone,
+  Trash2,
+  Wrench,
+  Zap,
+} from 'lucide-react';
 
 import CalcOptionTile from '@/components/calculator/CalcOptionTile';
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
 import { calcTileIconClasses } from '@/components/calculator/calc-icon-colors';
-import { DAMAGE_OPTIONS } from '@/lib/calculator';
-import { DAMAGE_INFO } from '@/lib/calculator-info';
-import type { DamageKey } from '@/lib/constants';
+import { getDamageOptionsForDevice } from '@/lib/calculator';
+import { getDamageInfo } from '@/lib/calculator-info';
+import type { DamageKey, DeviceKey } from '@/lib/constants';
 
-const DAMAGE_ICONS = {
+const DEFAULT_DAMAGE_ICONS = {
   del: Trash2,
   mech: Wrench,
   water: Droplets,
@@ -16,26 +26,43 @@ const DAMAGE_ICONS = {
   crash: AlertTriangle,
 } as const;
 
+const MOBILE_DAMAGE_ICONS = {
+  del: Trash2,
+  mech: ArrowDown,
+  water: Droplets,
+  ctrl: Zap,
+  enc: Lock,
+  crash: Smartphone,
+} as const;
+
+function getDamageIcon(device: DeviceKey | null, key: DamageKey) {
+  if (device === 'smartphone') return MOBILE_DAMAGE_ICONS[key];
+  return DEFAULT_DAMAGE_ICONS[key];
+}
+
 interface CalcStepDamageProps {
+  device: DeviceKey | null;
   selected: DamageKey | null;
   onSelect: (damage: DamageKey) => void;
 }
 
-export default function CalcStepDamage({ selected, onSelect }: CalcStepDamageProps) {
+export default function CalcStepDamage({ device, selected, onSelect }: CalcStepDamageProps) {
+  const options = getDamageOptionsForDevice(device);
+
   return (
     <div role="group" aria-labelledby="calc-step-damage">
       <CalcStepHeading id="calc-step-damage">Was ist passiert?</CalcStepHeading>
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
-        {DAMAGE_OPTIONS.map((option) => {
-          const Icon = DAMAGE_ICONS[option.key];
+        {options.map((option) => {
+          const Icon = getDamageIcon(device, option.key);
           const isSelected = selected === option.key;
 
           return (
             <CalcOptionTile
               key={option.key}
               className="flex flex-col gap-2 p-5 md:p-6"
-              infoContent={DAMAGE_INFO[option.key]}
+              infoContent={getDamageInfo(device, option.key)}
               infoLabel={option.label}
               isSelected={isSelected}
               onSelect={() => onSelect(option.key)}

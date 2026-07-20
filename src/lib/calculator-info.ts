@@ -290,3 +290,117 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
     note: 'Führen Sie kein weiteres chkdsk, fsck oder „Erste Hilfe" im Festplattendienstprogramm durch — diese Tools können Dateistruktur-Metadaten überschreiben, die für die Wiederherstellung entscheidend sind.',
   },
 };
+
+export const MOBILE_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
+  del: {
+    title: 'Gelöschte Fotos, Nachrichten & Apps',
+    intro:
+      'Gelöschte Dateien auf Smartphones und Tablets bleiben oft noch auf dem internen Flash-Speicher — solange der Speicher nicht überschrieben wurde. Entscheidend ist, das Gerät nach dem Löschvorgang möglichst wenig weiter zu nutzen.',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'Fotos oder Videos aus der Galerie gelöscht',
+          'WhatsApp-Nachrichten oder Kontakte verschwunden',
+          'Factory Reset oder „Telefon zurücksetzen"',
+          'App-Daten nach Update oder Neuinstallation weg',
+        ],
+      },
+    ],
+    warning:
+      'Keine neuen Fotos machen, Apps installieren oder Backups überschreiben — jede neue Schreiboperation kann gelöschte Daten ersetzen.',
+  },
+  mech: {
+    title: 'Sturz & Stoßschaden',
+    intro:
+      'Nach einem Sturz kann der interne Speicherchip gelöst sein, das Gehäuse verbogen sein oder Bauteile auf der Platine Mikrorisse bekommen. Oft startet das Gerät noch — die Daten sind aber nicht mehr zugänglich.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Gerät nach Fall auf harten Boden',
+          'Gehäuse verbogen, Risse im Rahmen',
+          'Gerät vibriert ungewöhnlich oder erkennt sich am PC nicht',
+          'Intermittierende Verbindung per USB',
+        ],
+      },
+    ],
+    warning:
+      'Gerät nicht wiederholt ein- und ausschalten. Bei gelöstem Speicherchip kann jeder Startversuch den Chip weiter beschädigen.',
+  },
+  water: {
+    title: 'Wasserschaden',
+    intro:
+      'Flüssigkeit auf dem Mainboard verursacht Kurzschlüsse und Korrosion — besonders im Ladeport und an Lötstellen. Je schneller das Gerät bei uns ankommt, desto höher die Chance auf vollständige Datenrettung.',
+    sections: [
+      {
+        label: 'Erste Maßnahmen',
+        items: [
+          'Sofort ausschalten — nicht laden',
+          'Nicht mit Föhn oder Reis trocknen',
+          'SIM-Karte entfernen, wenn möglich',
+          'So schnell wie möglich einsenden',
+        ],
+      },
+    ],
+    warning:
+      'Ladegerät nicht anschließen. Strom durch feuchte Elektronik beschleunigt Korrosion und kann den Speicher dauerhaft zerstören.',
+  },
+  ctrl: {
+    title: 'Kurzschluss & Elektronikdefekt',
+    intro:
+      'Defekte am Ladeport, auf dem Mainboard oder nach Überspannung führen dazu, dass das Gerät nicht mehr erkannt wird — die Daten auf dem Flash-Speicher sind oft noch intakt.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Ladeport korrodiert oder locker',
+          'Gerät heizt sich auf, startet nicht',
+          'Nach Gewitter oder Billig-Ladegerät kein Zugriff mehr',
+          'PC erkennt das Gerät nicht mehr per USB',
+        ],
+      },
+    ],
+    note: 'Wir lesen den Speicherchip im Labor direkt aus — unabhängig davon, ob das Gerät noch startet.',
+  },
+  enc: {
+    title: 'Passwort vergessen & Gerät gesperrt',
+    intro:
+      'Vergessene PIN, Passwort oder Bildschirmsperre bedeuten nicht automatisch Datenverlust. Je nach Gerät und Verschlüsselung prüfen wir, ob ein technischer Zugriff auf die gespeicherten Daten möglich ist.',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'PIN oder Muster vergessen',
+          'Apple-ID / Google-Konto gesperrt',
+          'Gerät nach zu vielen Fehlversuchen gesperrt',
+          'Kindersicherung oder Firmen-MDM aktiv',
+        ],
+      },
+    ],
+    warning:
+      'Keine weiteren Fehlversuche mit PIN oder Passwort — manche Geräte löschen nach zu vielen Versuchen alle Daten.',
+  },
+  crash: {
+    title: 'Displaybruch & schwarzer Bildschirm',
+    intro:
+      'Ein kaputtes Display bedeutet nicht, dass die Daten weg sind. Der interne Speicher ist oft unversehrt — nur die Anzeige oder Touch-Einheit ist defekt.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Displayglas gebrochen, Touch reagiert nicht',
+          'Schwarzer Bildschirm, Gerät vibriert noch',
+          'Bildschirm flackert oder zeigt Streifen',
+          'Gerät startet hörbar, Bild bleibt schwarz',
+        ],
+      },
+    ],
+    note: 'Datenrettung ist auch bei totem Display möglich — das Gerät muss dafür nicht mehr bedienbar sein.',
+  },
+};
+
+export function getDamageInfo(device: DeviceKey | null, key: DamageKey): CalculatorInfoContent {
+  if (device === 'smartphone') return MOBILE_DAMAGE_INFO[key];
+  return DAMAGE_INFO[key];
+}

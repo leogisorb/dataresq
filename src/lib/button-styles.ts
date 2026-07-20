@@ -15,6 +15,15 @@ export const BTN_BRAND_HEADER =
 export const BTN_BRAND_RECT =
   'btn-brand rounded-xl px-6 py-4 text-base font-medium transition-opacity hover:opacity-90';
 
+/** Equal-size calculator result actions — shared height, width, and typography. */
+export const BTN_CALC_PAIR_BASE =
+  'btn-calc-pair box-border !flex h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 px-6 py-0 text-base font-medium leading-none text-center transition-colors';
+
+export const BTN_CALC_PAIR_PRIMARY = `${BTN_CALC_PAIR_BASE} btn-brand btn-calc-pair hover:opacity-90`;
+
+export const BTN_CALC_PAIR_SECONDARY =
+  `${BTN_CALC_PAIR_BASE} border-border bg-bg text-text-muted active:border-neon md:hover:border-neon md:hover:text-text`;
+
 /** Large tile-style CTA (Features grid). */
 export const BTN_FEATURE_CTA_TILE =
   'group flex flex-col justify-between rounded-2xl border border-border bg-transparent p-5 transition-colors hover:border-neon hover:bg-neon/10 md:rounded-3xl md:p-6';

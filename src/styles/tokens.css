@@ -18,6 +18,7 @@
   --value-chevron-4: #60a5fa;
   --value-chevron-5: #c6ff00;
   --value-chevron-6: #fb923c;
+  --value-chevron-7: #34d399;
   --value-color-primary: #f5f5f7;
   --value-color-primary-light: #ffffff;
   --value-color-surface: #ffffff;
@@ -46,6 +47,7 @@
   --color-chevron-4: var(--value-chevron-4);
   --color-chevron-5: var(--value-chevron-5);
   --color-chevron-6: var(--value-chevron-6);
+  --color-chevron-7: var(--value-chevron-7);
 
   /* Legacy aliases (other pages) */
   --color-primary: var(--value-color-primary);

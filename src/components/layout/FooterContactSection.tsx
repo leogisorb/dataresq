@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import FooterCta from '@/components/layout/FooterCta';
+import { SITE } from '@/lib/constants';
 
 const HIDDEN_PATHS = ['/ueber-uns'] as const;
 
@@ -21,6 +22,12 @@ export default function FooterContactSection() {
         </h2>
         <p className="mb-8 text-lg text-text">Uns zu erreichen nicht.</p>
         <FooterCta />
+        <a
+          className="mt-8 inline-block text-base text-text-muted transition-colors hover:text-accent"
+          href={`mailto:${SITE.email}`}
+        >
+          {SITE.email}
+        </a>
       </div>
     </section>
   );

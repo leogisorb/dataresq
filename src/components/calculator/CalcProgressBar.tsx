@@ -1,17 +1,17 @@
 interface CalcProgressBarProps {
-  step: 1 | 2 | 3 | 4;
+  step: 1 | 2 | 3 | 4 | 5;
 }
 
 export default function CalcProgressBar({ step }: CalcProgressBarProps) {
   return (
     <div
       aria-label="Fortschritt"
-      aria-valuemax={4}
+      aria-valuemax={5}
       aria-valuenow={step}
       className="mb-8 flex items-center justify-center gap-2"
       role="progressbar"
     >
-      {([1, 2, 3, 4] as const).map((s) => {
+      {([1, 2, 3, 4, 5] as const).map((s) => {
         const isActive = s === step;
         const isDone = s < step;
 

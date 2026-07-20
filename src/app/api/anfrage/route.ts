@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 
 import { EMAIL_REGEX, PHONE_REGEX, URGENCY_OPTIONS } from '@/lib/calculator';
 import { SITE, type UrgencyKey } from '@/lib/constants';
+import { siteConfig } from '@/lib/metadata';
 
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY;
@@ -21,6 +22,7 @@ interface AnfrageBody {
   festpreis?: string;
   preisrahmen?: string;
   preisrange?: string;
+  ruecksendung?: string;
   nachricht?: string;
 }
 
@@ -45,6 +47,7 @@ export async function POST(req: NextRequest) {
   const { name, telefon, email, medium, schaden, nachricht } = body;
   const preisrahmen = body.preisrahmen ?? body.preisrange ?? body.festpreis;
   const dringlichkeitLabel = resolveUrgencyLabel(body);
+  const ruecksendung = body.ruecksendung?.trim();
 
   if (!name || !telefon || !email || !medium || !schaden) {
     return NextResponse.json({ error: 'Pflichtfelder fehlen' }, { status: 400 });
@@ -65,7 +68,7 @@ export async function POST(req: NextRequest) {
   const emailNotConfigured =
     !process.env.RESEND_API_KEY ||
     process.env.RESEND_API_KEY === 're_placeholder' ||
-    !process.env.CONTACT_EMAIL;
+    !(process.env.CONTACT_EMAIL ?? SITE.email);
 
   if (emailNotConfigured) {
     if (process.env.NODE_ENV === 'development') {
@@ -78,6 +81,7 @@ export async function POST(req: NextRequest) {
         schaden,
         dringlichkeit: dringlichkeitLabel,
         preisrahmen,
+        ruecksendung,
       });
       return NextResponse.json({ success: true, dev: true });
     }
@@ -85,7 +89,8 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = getResendClient();
-  const contactEmail = process.env.CONTACT_EMAIL;
+  const contactEmail = process.env.CONTACT_EMAIL ?? SITE.email;
+  const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'noreply@rsqdata.de';
   if (!resend || !contactEmail) {
     return NextResponse.json({ error: 'E-Mail-Konfiguration fehlt' }, { status: 503 });
   }
@@ -97,13 +102,15 @@ export async function POST(req: NextRequest) {
   const safeSchaden = escapeHtml(schaden);
   const safePreisrahmen = escapeHtml(preisrahmen ?? '—');
   const safeDringlichkeit = escapeHtml(dringlichkeitLabel);
+  const safeRuecksendung = escapeHtml(ruecksendung ?? '—');
   const safeNachricht = escapeHtml(nachricht?.trim() || '—');
   const addressLine = `${SITE.address.street}, ${SITE.address.zip} ${SITE.address.city}`;
 
   try {
     await resend.emails.send({
-      from: 'Anfragen <noreply@muench-datenrettung.de>',
+      from: `Anfragen <${fromEmail}>`,
       to: contactEmail,
+      replyTo: email.trim(),
       subject: `Neue Datenrettungs-Anfrage: ${medium} / ${schaden}`,
       html: `
         <h2>Neue Anfrage über den Preisrahmen-Rechner</h2>
@@ -114,6 +121,7 @@ export async function POST(req: NextRequest) {
           <tr><td><b>Medium:</b></td><td>${safeMedium}</td></tr>
           <tr><td><b>Schaden:</b></td><td>${safeSchaden}</td></tr>
           <tr><td><b>Service-Level:</b></td><td>${safeDringlichkeit}</td></tr>
+          <tr><td><b>Rücksendung:</b></td><td>${safeRuecksendung}</td></tr>
           <tr><td><b>Preisrahmen:</b></td><td>${safePreisrahmen}</td></tr>
           <tr><td><b>Nachricht:</b></td><td>${safeNachricht}</td></tr>
         </table>
@@ -122,8 +130,9 @@ export async function POST(req: NextRequest) {
     });
 
     await resend.emails.send({
-      from: 'RSQDATA <noreply@muench-datenrettung.de>',
+      from: `RSQDATA <${fromEmail}>`,
       to: email.trim(),
+      replyTo: contactEmail,
       subject: 'Ihre Anfrage ist eingegangen — wir melden uns binnen 24h',
       html: `
         <h2>Vielen Dank, ${safeName}!</h2>
@@ -135,7 +144,7 @@ export async function POST(req: NextRequest) {
         <hr>
         <p style="font-size:12px;color:#666">
         RSQDATA · ${addressLine} ·
-        <a href="https://muench-datenrettung.de/datenschutz">Datenschutz</a>
+        <a href="${siteConfig.url}/datenschutz">Datenschutz</a>
         </p>
       `,
     });

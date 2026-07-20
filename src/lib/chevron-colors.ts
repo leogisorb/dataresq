@@ -13,6 +13,7 @@ export const CHEVRON_STEP_STYLES: ChevronStepStyle[] = [
   { bg: 'bg-chevron-4', tick: 'bg-chevron-4', text: 'text-bg-card', icon: 'text-chevron-4', bullet: 'bg-chevron-4' },
   { bg: 'bg-chevron-5', tick: 'bg-chevron-5', text: 'text-text', icon: 'text-chevron-5', bullet: 'bg-chevron-5' },
   { bg: 'bg-chevron-6', tick: 'bg-chevron-6', text: 'text-bg-card', icon: 'text-chevron-6', bullet: 'bg-chevron-6' },
+  { bg: 'bg-chevron-7', tick: 'bg-chevron-7', text: 'text-bg-card', icon: 'text-chevron-7', bullet: 'bg-chevron-7' },
 ];
 
 const SERVICE_CHEVRON_INDEX: Record<string, number> = {

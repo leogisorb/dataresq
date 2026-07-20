@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
+import { CALC_BORDER } from '@/components/calculator/calc-tile-styles';
 import type { CalculatorInfoContent } from '@/lib/calculator-info';
 
 interface CalcInfoModalProps {
@@ -32,7 +33,7 @@ export default function CalcInfoModal({ content, isOpen, onClose }: CalcInfoModa
     <dialog
       ref={dialogRef}
       aria-labelledby="calc-info-title"
-      className="calc-info-dialog m-auto w-[calc(100%-32px)] max-w-lg rounded-2xl border border-border bg-bg-card p-0 text-text shadow-lg backdrop:bg-black/40 open:flex open:flex-col"
+      className={`calc-info-dialog m-auto w-[calc(100%-32px)] max-w-lg rounded-2xl ${CALC_BORDER} border-border bg-bg-card p-0 text-text shadow-lg backdrop:bg-black/40 open:flex open:flex-col`}
       onCancel={(event) => {
         event.preventDefault();
         onClose();
@@ -75,14 +76,14 @@ export default function CalcInfoModal({ content, isOpen, onClose }: CalcInfoModa
         </div>
 
         {content.warning && (
-          <div className="mt-6 rounded-xl border border-border bg-bg px-4 py-3">
+          <div className={`mt-6 rounded-xl ${CALC_BORDER} border-border bg-bg px-4 py-3`}>
             <p className="text-xs font-semibold uppercase tracking-wide text-text">Wichtig</p>
             <p className="mt-2 text-sm leading-relaxed text-text-muted">{content.warning}</p>
           </div>
         )}
 
         {content.note && (
-          <div className="mt-6 rounded-xl border border-border bg-bg px-4 py-3">
+          <div className={`mt-6 rounded-xl ${CALC_BORDER} border-border bg-bg px-4 py-3`}>
             <p className="text-xs font-semibold uppercase tracking-wide text-text">Hinweis</p>
             <p className="mt-2 text-sm leading-relaxed text-text-muted">{content.note}</p>
           </div>

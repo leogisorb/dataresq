@@ -55,33 +55,33 @@ export default function StandortOverviewPage() {
             Express-Abholung bundesweit.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
             {LOCATIONS.map((location) => (
               <Link
                 key={location.slug}
-                className={`group overflow-hidden ${TILE_CARD}`}
+                className={`group flex h-full flex-col overflow-hidden ${TILE_CARD}`}
                 href={`/standort/${location.slug}`}
               >
-                <div className="relative aspect-[16/10] w-full bg-bg-subtle">
+                <div className="relative aspect-[4/3] w-full bg-bg-subtle">
                   <Image
                     alt={location.imageAlt}
                     className={
                       location.kind === 'labor'
-                        ? 'object-contain p-6'
+                        ? 'object-contain p-4'
                         : 'object-cover transition-transform duration-300 group-hover:scale-[1.02]'
                     }
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 767px) 100vw, 25vw"
                     src={location.image}
                     unoptimized={location.kind === 'labor'}
                   />
                 </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold text-text">{location.name}</h2>
-                  <p className="mt-1 text-sm font-medium text-text">
+                <div className="flex flex-1 flex-col p-4 md:p-5">
+                  <h2 className="text-lg font-semibold text-text md:text-xl">{location.name}</h2>
+                  <p className="mt-1 text-xs font-medium text-text md:text-sm">
                     {getLocationPartnerLabel(location)} · {location.region}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  <p className="mt-2 line-clamp-4 flex-1 text-sm leading-relaxed text-text-muted">
                     {location.serviceNote}
                   </p>
                 </div>

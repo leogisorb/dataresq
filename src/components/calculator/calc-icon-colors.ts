@@ -1,6 +1,6 @@
-import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
+import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 
-export type CalcIconKey = DeviceKey | DamageKey | UrgencyKey;
+export type CalcIconKey = DeviceKey | DamageKey | UrgencyKey | ReturnMediumKey;
 
 export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   hdd: 'text-[#0071e3]',
@@ -18,6 +18,9 @@ export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   std: 'text-[#86868b]',
   express: 'text-[#ff9500]',
   notfall: 'text-[#ff3b30]',
+  original: 'text-[#0071e3]',
+  new: 'text-[#5856d6]',
+  both: 'text-[#34c759]',
 };
 
 export function calcTileIconClasses(isSelected: boolean, key: CalcIconKey): string {

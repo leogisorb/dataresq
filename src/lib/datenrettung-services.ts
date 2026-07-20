@@ -141,7 +141,15 @@ export const processSteps: ProcessStep[] = [
     phaseLabel: 'Rettung & Übergabe',
     title: 'Sichere Übergabe Ihrer Daten',
     description:
-      'Sie erhalten Ihre Daten als verschlüsselten, passwortgeschützten Download oder auf einem neuen Datenträger per versichertem Versand. Ihre Daten bleiben 14 Tage als Sicherheitskopie bei uns — danach werden alle Kopien unwiderruflich und nachweisbar gelöscht. Auf Wunsch erhalten Sie ein Löschzertifikat.',
+      'Sie erhalten Ihre Daten als verschlüsselten, passwortgeschützten Download über Ihr Kundenportal. Ihre Daten bleiben 14 Tage als Sicherheitskopie bei uns — danach werden alle Kopien unwiderruflich und nachweisbar gelöscht. Auf Wunsch erhalten Sie ein Löschzertifikat.',
+  },
+  {
+    step: 7,
+    phase: 2,
+    phaseLabel: 'Rettung & Übergabe',
+    title: 'Rücksendung Ihres Datenträgers',
+    description:
+      'Ihr ursprünglicher Datenträger wird kostenlos und versichert an Sie zurückgeschickt. Auf Wunsch spielen wir Ihre geretteten Daten auf einen neuen Datenträger — oder Sie erhalten beides: Original und neuen Datenträger. Preis für neuen Datenträger je nach Kapazität auf Anfrage.',
   },
 ];
 
@@ -154,6 +162,7 @@ export const trustMetrics = [
 export const trustBadges = [
   BINDING_OFFER_BADGE,
   'Kostenlose DHL Express-Abholung',
+  'Kostenlose Rücksendung des Datenträgers',
   'Dateiliste vor dem Kauf',
   'Analysepauschale wird voll verrechnet',
   FAILED_RECOVERY_BADGE,

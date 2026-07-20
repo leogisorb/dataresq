@@ -1,20 +1,22 @@
-import Link from 'next/link';
-
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
-import { BTN_BRAND_RECT } from '@/lib/button-styles';
+import AnfrageFormModal from '@/components/contact/AnfrageFormModal';
 import {
-  DAMAGE_OPTIONS,
+  getDamageLabel,
   DEVICE_OPTIONS,
+  RETURN_MEDIUM_OPTIONS,
   URGENCY_OPTIONS,
   type PriceEstimateResult,
 } from '@/lib/calculator';
-import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
+import { BTN_CALC_PAIR_PRIMARY, BTN_CALC_PAIR_SECONDARY } from '@/lib/button-styles';
+import { calcCardClasses } from '@/components/calculator/calc-tile-styles';
+import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 
 interface CalcStepResultProps {
   device: DeviceKey;
   damage: DamageKey;
   urgency: UrgencyKey;
+  returnMedium: ReturnMediumKey;
   priceEstimate: PriceEstimateResult;
   onReset: () => void;
 }
@@ -23,12 +25,15 @@ export default function CalcStepResult({
   device,
   damage,
   urgency,
+  returnMedium,
   priceEstimate,
   onReset,
 }: CalcStepResultProps) {
   const deviceLabel = DEVICE_OPTIONS.find((o) => o.key === device)?.label ?? '';
-  const damageLabel = DAMAGE_OPTIONS.find((o) => o.key === damage)?.label ?? '';
+  const damageLabel = getDamageLabel(device, damage);
   const urgencyLabel = URGENCY_OPTIONS.find((o) => o.key === urgency)?.label ?? '';
+  const returnMediumLabel =
+    RETURN_MEDIUM_OPTIONS.find((o) => o.key === returnMedium)?.label ?? '';
 
   return (
     <div role="group" aria-labelledby="calc-step-result">
@@ -42,7 +47,7 @@ export default function CalcStepResult({
       </p>
 
       <p className="mt-3 text-base text-text-muted">
-        {deviceLabel} · {damageLabel} · {urgencyLabel}
+        {deviceLabel} · {damageLabel} · {urgencyLabel} · {returnMediumLabel}
       </p>
 
       {priceEstimate.range !== null && (
@@ -52,31 +57,34 @@ export default function CalcStepResult({
       )}
 
       <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
-        <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
+        <div className={`${calcCardClasses()} p-5 md:p-6`}>
           <p className="text-2xl font-semibold text-text">92%</p>
           <p className="mt-1 text-sm text-text-muted">Erfolgsquote · Reinraumlabor</p>
         </div>
-        <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
+        <div className={`${calcCardClasses()} p-5 md:p-6`}>
           <p className="text-2xl font-semibold text-text">{DIAGNOSIS_FEE_FORMATTED}</p>
           <p className="mt-1 text-sm text-text-muted">
             Analysepauschale — wird bei Beauftragung voll verrechnet
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-bg-card p-5 md:p-6">
+        <div className={`${calcCardClasses()} p-5 md:p-6`}>
           <p className="text-2xl font-semibold text-text">Angebot</p>
           <p className="mt-1 text-sm text-text-muted">Verbindlich nach Laboranalyse</p>
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Link className={`${BTN_BRAND_RECT} text-center`} href="/kontakt">
-          Angebot anfordern
-        </Link>
-        <button
-          type="button"
-          className="rounded-xl border border-border px-6 py-4 text-base font-medium text-text-muted transition-colors active:border-neon md:hover:border-neon md:hover:text-text"
-          onClick={onReset}
-        >
+      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <AnfrageFormModal
+          prefill={{
+            medium: deviceLabel,
+            schaden: damageLabel,
+            dringlichkeit: urgency,
+            ruecksendung: returnMediumLabel,
+            preisrahmen: priceEstimate.label,
+          }}
+          triggerClassName={BTN_CALC_PAIR_PRIMARY}
+        />
+        <button className={BTN_CALC_PAIR_SECONDARY} type="button" onClick={onReset}>
           Neu berechnen
         </button>
       </div>

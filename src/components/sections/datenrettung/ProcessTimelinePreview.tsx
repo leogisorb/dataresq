@@ -10,10 +10,11 @@ const CLIP_CLASSES = [
   'chevron-clip-mid',
   'chevron-clip-mid',
   'chevron-clip-mid',
+  'chevron-clip-mid',
   'chevron-clip-last',
 ] as const;
 
-const Z_INDEX_CLASSES = ['z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
+const Z_INDEX_CLASSES = ['z-[7]', 'z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
 
 export default function ProcessTimelinePreview() {
   return (
@@ -48,7 +49,7 @@ export default function ProcessTimelinePreview() {
           })}
         </div>
 
-        <div className="mt-4 grid grid-cols-6 gap-2">
+        <div className="mt-4 grid grid-cols-7 gap-2">
           {processSteps.map((step) => (
             <p
               key={step.step}

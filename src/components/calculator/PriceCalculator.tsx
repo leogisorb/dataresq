@@ -11,7 +11,9 @@ import {
   Droplets,
   HardDrive,
   Laptop,
+  Layers,
   Lock,
+  Package,
   Server,
   Siren,
   Smartphone,
@@ -25,18 +27,20 @@ import CalcProgressBar from '@/components/calculator/CalcProgressBar';
 import CalcStepDamage from '@/components/calculator/CalcStepDamage';
 import CalcStepDevice from '@/components/calculator/CalcStepDevice';
 import CalcStepResult from '@/components/calculator/CalcStepResult';
+import CalcStepReturnMedium from '@/components/calculator/CalcStepReturnMedium';
 import CalcStepUrgency from '@/components/calculator/CalcStepUrgency';
 import CalcSummaryBar from '@/components/calculator/CalcSummaryBar';
 import {
-  DAMAGE_OPTIONS,
+  getDamageLabel,
   DEVICE_OPTIONS,
+  RETURN_MEDIUM_OPTIONS,
   URGENCY_OPTIONS,
   calculatePriceEstimate,
 } from '@/lib/calculator';
 import { BTN_BRAND_RECT } from '@/lib/button-styles';
-import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
+import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3 | 4 | 5;
 
 const DEVICE_ICONS = {
   hdd: HardDrive,
@@ -62,6 +66,12 @@ const URGENCY_ICONS = {
   notfall: Siren,
 } as const;
 
+const RETURN_MEDIUM_ICONS = {
+  original: Package,
+  new: HardDrive,
+  both: Layers,
+} as const;
+
 interface PriceCalculatorProps {
   defaultDevice?: DeviceKey;
 }
@@ -71,11 +81,12 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   const [device, setDevice] = useState<DeviceKey | null>(defaultDevice ?? null);
   const [damage, setDamage] = useState<DamageKey | null>(null);
   const [urgency, setUrgency] = useState<UrgencyKey | null>(null);
+  const [returnMedium, setReturnMedium] = useState<ReturnMediumKey | null>(null);
 
   const priceEstimate = useMemo(() => {
-    if (!device || !urgency) return null;
-    return calculatePriceEstimate(device, urgency);
-  }, [device, urgency]);
+    if (!device || !urgency || !returnMedium) return null;
+    return calculatePriceEstimate(device, urgency, returnMedium);
+  }, [device, urgency, returnMedium]);
 
   const summaryPills = useMemo(() => {
     const pills = [];
@@ -84,29 +95,34 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
       const label = DEVICE_OPTIONS.find((o) => o.key === device)?.label ?? '';
       pills.push({ icon: DEVICE_ICONS[device], label });
     }
-    if (damage && step >= 3) {
-      const label = DAMAGE_OPTIONS.find((o) => o.key === damage)?.label ?? '';
+    if (damage && device && step >= 3) {
+      const label = getDamageLabel(device, damage);
       pills.push({ icon: DAMAGE_ICONS[damage], label });
     }
     if (urgency && step >= 4) {
       const label = URGENCY_OPTIONS.find((o) => o.key === urgency)?.label ?? '';
       pills.push({ icon: URGENCY_ICONS[urgency], label });
     }
+    if (returnMedium && step >= 5) {
+      const label = RETURN_MEDIUM_OPTIONS.find((o) => o.key === returnMedium)?.label ?? '';
+      pills.push({ icon: RETURN_MEDIUM_ICONS[returnMedium], label });
+    }
 
     return pills;
-  }, [device, damage, urgency, step]);
+  }, [device, damage, urgency, returnMedium, step]);
 
   const canGoNext =
     (step === 1 && device !== null) ||
     (step === 2 && damage !== null) ||
-    (step === 3 && urgency !== null);
+    (step === 3 && urgency !== null) ||
+    (step === 4 && returnMedium !== null);
 
   const goNext = () => {
-    if (step === 3 && urgency) {
-      setStep(4);
+    if (step === 4 && returnMedium) {
+      setStep(5);
       return;
     }
-    if (step < 3 && canGoNext) {
+    if (step < 4 && canGoNext) {
       setStep((s) => (s + 1) as Step);
     }
   };
@@ -122,13 +138,14 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
     setDevice(defaultDevice ?? null);
     setDamage(null);
     setUrgency(null);
+    setReturnMedium(null);
   };
 
   return (
     <div className="relative w-full">
       <CalcProgressBar step={step} />
 
-      {step >= 2 && step < 4 && <CalcSummaryBar pills={summaryPills} />}
+      {step >= 2 && step < 5 && <CalcSummaryBar pills={summaryPills} />}
 
       <div
         key={step}
@@ -143,26 +160,34 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
               setDevice(value);
               setDamage(null);
               setUrgency(null);
+              setReturnMedium(null);
             }}
           />
         )}
 
-        {step === 2 && <CalcStepDamage selected={damage} onSelect={setDamage} />}
+        {step === 2 && (
+          <CalcStepDamage device={device} selected={damage} onSelect={setDamage} />
+        )}
 
         {step === 3 && <CalcStepUrgency selected={urgency} onSelect={setUrgency} />}
 
-        {step === 4 && device && damage && urgency && priceEstimate && (
+        {step === 4 && (
+          <CalcStepReturnMedium selected={returnMedium} onSelect={setReturnMedium} />
+        )}
+
+        {step === 5 && device && damage && urgency && returnMedium && priceEstimate && (
           <CalcStepResult
             damage={damage}
             device={device}
             priceEstimate={priceEstimate}
+            returnMedium={returnMedium}
             urgency={urgency}
             onReset={handleReset}
           />
         )}
       </div>
 
-      {step < 4 && (
+      {step < 5 && (
         <div className="mt-8 flex items-center justify-between">
           <button
             type="button"

@@ -7,9 +7,9 @@ import { processSteps } from '@/lib/datenrettung-services';
 
 const STEP_STYLES = CHEVRON_STEP_STYLES;
 
-const CLIP_CLASSES = ['chevron-clip-first', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-last'] as const;
+const CLIP_CLASSES = ['chevron-clip-first', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-mid', 'chevron-clip-last'] as const;
 
-const Z_INDEX_CLASSES = ['z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
+const Z_INDEX_CLASSES = ['z-[7]', 'z-[6]', 'z-[5]', 'z-[4]', 'z-[3]', 'z-[2]', 'z-[1]'] as const;
 
 const WAVE_STEP_CLASSES = [
   'timeline-wave-step-0',
@@ -18,6 +18,7 @@ const WAVE_STEP_CLASSES = [
   'timeline-wave-step-3',
   'timeline-wave-step-4',
   'timeline-wave-step-5',
+  'timeline-wave-step-6',
 ] as const;
 
 function StepLabelAbove({

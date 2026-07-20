@@ -43,7 +43,7 @@ function getBueroFaqs(loc: Location): StandortFaqItem[] {
     },
     {
       question: 'Wie erreiche ich RSQDATA?',
-      answer: `Telefon: ${SITE.phone} · E-Mail: ${SITE.email} · ${loc.serviceNote}`,
+      answer: `E-Mail: ${SITE.email} · ${loc.serviceNote}`,
     },
   ];
 }

@@ -14,6 +14,7 @@ const MOBILE_STEP_DELAY_CLASSES = [
   'timeline-mobile-step-3',
   'timeline-mobile-step-4',
   'timeline-mobile-step-5',
+  'timeline-mobile-step-6',
 ] as const;
 
 export default function ProcessTimelineMobile() {

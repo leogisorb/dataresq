@@ -2,7 +2,9 @@ import {
   formatPriceRange,
   getDeviceCategory,
   SERVICE_PRICES,
+  type DamageKey,
   type DeviceKey,
+  type ReturnMediumKey,
   type UrgencyKey,
 } from './constants';
 
@@ -22,6 +24,12 @@ export interface UrgencyOption {
   label: string;
   duration: string;
   popular?: boolean;
+}
+
+export interface ReturnMediumOption {
+  key: ReturnMediumKey;
+  label: string;
+  hint: string;
 }
 
 export interface PriceEstimateResult {
@@ -47,6 +55,47 @@ export const DAMAGE_OPTIONS: DamageOption[] = [
   { key: 'crash', label: 'Absturz / BSOD', hint: 'Boot-Fehler, Kernel' },
 ];
 
+/** Schadensarten für Smartphone / Tablet — gleiche Keys, passende Labels. */
+export const MOBILE_DAMAGE_OPTIONS: DamageOption[] = [
+  { key: 'del', label: 'Versehentlich gelöscht', hint: 'Fotos, Nachrichten, Kontakte' },
+  { key: 'mech', label: 'Sturz', hint: 'Gerät gefallen, Gehäuse beschädigt' },
+  { key: 'water', label: 'Wasserschaden', hint: 'Toilette, Regen, Getränk' },
+  { key: 'ctrl', label: 'Kurzschluss / Elektronik', hint: 'Ladeport, Platine, Überspannung' },
+  { key: 'enc', label: 'Passwort / gesperrt', hint: 'PIN vergessen, Bildschirmsperre' },
+  { key: 'crash', label: 'Displaybruch', hint: 'Glas kaputt, Touch defekt, schwarzer Bildschirm' },
+];
+
+export function getDamageOptionsForDevice(device: DeviceKey | null): DamageOption[] {
+  if (device === 'smartphone') return MOBILE_DAMAGE_OPTIONS;
+  return DAMAGE_OPTIONS;
+}
+
+export function getDamageLabel(device: DeviceKey, key: DamageKey): string {
+  return (
+    getDamageOptionsForDevice(device).find((option) => option.key === key)?.label ??
+    DAMAGE_OPTIONS.find((option) => option.key === key)?.label ??
+    key
+  );
+}
+
+export const RETURN_MEDIUM_OPTIONS: ReturnMediumOption[] = [
+  {
+    key: 'original',
+    label: 'Original zurück',
+    hint: 'Ihr Datenträger wird versichert an Sie zurückgeschickt',
+  },
+  {
+    key: 'new',
+    label: 'Neuer Datenträger',
+    hint: 'Daten auf neuen Datenträger spielen — Preis auf Anfrage',
+  },
+  {
+    key: 'both',
+    label: 'Original + neuer Datenträger',
+    hint: 'Beides versichert zurück — Preis für neuen Datenträger auf Anfrage',
+  },
+];
+
 export const URGENCY_OPTIONS: UrgencyOption[] = [
   { key: 'std', label: 'Standard', duration: '3–5 Arbeitstage nach Eingang' },
   { key: 'express', label: 'Express', duration: '1–2 Arbeitstage nach Eingang', popular: true },
@@ -60,7 +109,12 @@ export const URGENCY_OPTIONS: UrgencyOption[] = [
 export function calculatePriceEstimate(
   device: DeviceKey,
   urgency: UrgencyKey,
+  returnMedium: ReturnMediumKey = 'original',
 ): PriceEstimateResult {
+  if (returnMedium === 'new' || returnMedium === 'both') {
+    return { range: null, label: 'auf Anfrage' };
+  }
+
   const category = getDeviceCategory(device);
 
   if (category === null || urgency === 'notfall') {

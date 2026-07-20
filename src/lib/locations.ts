@@ -117,7 +117,7 @@ export const LOCATIONS: Location[] = [
     description:
       'RSQDATA Büro in Köln — Ihr Ansprechpartner für Beratung, Koordination und Kommunikation während der Datenrettung. Keine Abgabe vor Ort; Medien senden Sie per DHL Express oder geben sie an einer iAmbulanz-Abgabestelle ab.',
     localFact:
-      'Aus Köln koordinieren wir Annahme, Analyse und Angebot. Sie erreichen uns per E-Mail und Telefon — RSQDATA ist Vermittler und Kundenbetreuung, nicht das Labor selbst.',
+      'Aus Köln koordinieren wir Annahme, Analyse und Angebot. Sie erreichen uns per E-Mail — RSQDATA ist Vermittler und Kundenbetreuung, nicht das Labor selbst.',
     nearbyAreas: ['Bonn', 'Düsseldorf', 'Leverkusen', 'Bergisch Gladbach', 'Aachen'],
     serviceNote: `${KOELN_OFFICE_ADDRESS} — Büro & Kundenbetreuung. Keine Medien-Abgabe vor Ort.`,
     mapsUrl: getGoogleMapsUrl(KOELN_OFFICE_ADDRESS),

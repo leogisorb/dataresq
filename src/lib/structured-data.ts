@@ -87,7 +87,6 @@ export interface LocalBusinessSchema {
   name: string;
   description: string;
   url: string;
-  telephone: string;
   email: string;
   priceRange: string;
   address: {
@@ -117,7 +116,6 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     name: siteConfig.name,
     description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
     url: siteConfig.url,
-    telephone: SITE.phone,
     email: SITE.email,
     priceRange: '€€',
     address: {

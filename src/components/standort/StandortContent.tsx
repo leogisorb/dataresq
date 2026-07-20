@@ -67,9 +67,6 @@ export default function StandortContent({ loc }: StandortContentProps) {
 
       {loc.kind === 'buero' ? (
         <div className="mt-6 flex flex-col gap-2 text-sm text-text">
-          <a className="text-accent hover:underline" href={`tel:${SITE.phoneTel}`}>
-            {SITE.phone}
-          </a>
           <a className="text-accent hover:underline" href={`mailto:${SITE.email}`}>
             {SITE.email}
           </a>

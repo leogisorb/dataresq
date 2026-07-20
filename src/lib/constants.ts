@@ -1,7 +1,5 @@
 export const SITE = {
-  phone: '+49 2181 000000',
-  phoneTel: '+492181000000',
-  email: 'info@muench-datenrettung.de',
+  email: 'info@rsqdata.de',
   address: {
     street: 'Pellenzstr. 15',
     city: 'Köln',
@@ -79,6 +77,8 @@ export const DATA_RETENTION_DAYS = 14 as const;
 export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb' | 'smartphone' | 'notebook';
 export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash';
 export type UrgencyKey = 'std' | 'express' | 'notfall';
+/** Rücksendung: Original, neuer Datenträger oder beides */
+export type ReturnMediumKey = 'original' | 'new' | 'both';
 
 export type DeviceCategory = 'hddSsd' | 'flash' | 'smartphone' | 'notebook';
 
