@@ -43,7 +43,7 @@ export const DEVICE_OPTIONS: DeviceOption[] = [
   { key: 'raid', label: 'RAID / NAS / Server' },
   { key: 'usb', label: 'USB / SD-Karte' },
   { key: 'smartphone', label: 'Smartphone / Tablet' },
-  { key: 'notebook', label: 'Notebook' },
+  { key: 'notebook', label: 'Notebook & PC-Systeme' },
 ];
 
 export const DAMAGE_OPTIONS: DamageOption[] = [
@@ -65,8 +65,19 @@ export const MOBILE_DAMAGE_OPTIONS: DamageOption[] = [
   { key: 'crash', label: 'Displaybruch', hint: 'Glas kaputt, Touch defekt, schwarzer Bildschirm' },
 ];
 
+/** Schadensarten für Notebook & PC-Systeme — gleiche Keys, passende Labels. */
+export const NOTEBOOK_DAMAGE_OPTIONS: DamageOption[] = [
+  { key: 'del', label: 'Versehentlich gelöscht', hint: 'Dateien, Partitionen, System' },
+  { key: 'mech', label: 'Sturz', hint: 'Notebook gefallen, Gehäuse beschädigt' },
+  { key: 'water', label: 'Flüssigkeitsschaden', hint: 'Tastatur, Kaffee, Wasser' },
+  { key: 'ctrl', label: 'Mainboard / Elektronik', hint: 'Logic Board, Netzteil, Überspannung' },
+  { key: 'enc', label: 'Verschlüsselt / BitLocker', hint: 'FileVault, TPM, Ransomware' },
+  { key: 'crash', label: 'Startet nicht', hint: 'Boot-Fehler, BSOD, kein POST' },
+];
+
 export function getDamageOptionsForDevice(device: DeviceKey | null): DamageOption[] {
   if (device === 'smartphone') return MOBILE_DAMAGE_OPTIONS;
+  if (device === 'notebook') return NOTEBOOK_DAMAGE_OPTIONS;
   return DAMAGE_OPTIONS;
 }
 

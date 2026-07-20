@@ -75,7 +75,7 @@ export const LOCATIONS: Location[] = [
     image: '/images/standort/grevenbroich.jpeg',
     imageAlt: 'iAmbulanz Abgabestelle Grevenbroich — Empfang und Übergabe',
     description:
-      'RSQDATA / iAmbulanz Grevenbroich — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook und mehr.',
+      'RSQDATA / iAmbulanz Grevenbroich — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook & PC und mehr.',
     localFact:
       'An unserer iAmbulanz-Abgabestelle in Grevenbroich nehmen wir jeden Datenträgertyp entgegen — von der Festplatte bis zum Smartphone. Zustand und Übergabe werden vor Ort dokumentiert.',
     nearbyAreas: ['Neuss', 'Mönchengladbach', 'Krefeld', 'Düsseldorf', 'Erkelenz'],
@@ -95,7 +95,7 @@ export const LOCATIONS: Location[] = [
     image: '/images/standort/moenchengladbach.jpeg',
     imageAlt: 'iAmbulanz Abgabestelle Mönchengladbach — Storefront',
     description:
-      'RSQDATA / iAmbulanz Mönchengladbach — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook und mehr.',
+      'RSQDATA / iAmbulanz Mönchengladbach — persönliche Abgabe ohne Termin. Alle Datenträgertypen: HDD, SSD, RAID, USB, Smartphone, Notebook & PC und mehr.',
     localFact:
       'In Mönchengladbach nehmen wir alle Datenträgertypen ohne Termin entgegen. Unsere Kundenbetreuung dokumentiert den Zustand und erklärt den weiteren Ablauf bis zur Laborrettung.',
     nearbyAreas: ['Grevenbroich', 'Viersen', 'Krefeld', 'Düsseldorf', 'Jüchen'],

@@ -10,7 +10,7 @@ export default function IambulanzPartnerSection() {
         RSQDATA arbeitet mit <strong className="font-semibold">iAmbulanz</strong> als offiziellem
         Partner zusammen. An allen iAmbulanz-Abgabestellen nehmen wir{' '}
         <strong className="font-semibold">jeden Datenträgertyp</strong> entgegen — Festplatte,
-        SSD, RAID, USB, Smartphone, Notebook und mehr — ohne Termin, mit persönlicher
+        SSD, RAID, USB, Smartphone, Notebook & PC und mehr — ohne Termin, mit persönlicher
         Kundenbetreuung und dokumentiertem Übergabeprotokoll.
       </p>
 

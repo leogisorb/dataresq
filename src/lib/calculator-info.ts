@@ -126,16 +126,16 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       'Gerät nicht weiter benutzen, nicht auf Werkseinstellungen zurücksetzen und keine Recovery-Apps installieren — das kann Daten überschreiben.',
   },
   notebook: {
-    title: 'Notebook & Laptop',
+    title: 'Notebook & PC-Systeme',
     intro:
-      'Notebooks vereinen interne SSD oder HDD, oft verschlüsselte Systempartitionen und manchmal RAID- oder Hybrid-Speicher. Nach Sturz, Flüssigkeitsschaden, Displaybruch oder Boot-Fehler retten wir Daten direkt vom Speichermedium — unabhängig davon, ob das Gerät noch startet.',
+      'Notebooks und PCs speichern Daten auf interner SSD oder HDD — oft mit verschlüsselter Systempartition. Nach Sturz, Flüssigkeitsschaden, Mainboard-Defekt oder Boot-Fehler retten wir die Daten direkt vom Speichermedium — unabhängig davon, ob das Gerät noch startet.',
     sections: [
       {
         label: 'Typische Symptome',
         items: [
-          'Laptop startet nicht mehr oder hängt beim Apple-/Windows-Logo',
+          'Notebook oder PC startet nicht mehr oder hängt beim Apple-/Windows-Logo',
           'Bluescreen (BSOD) oder Kernel Panic nach Update oder Sturz',
-          'Wasserschaden auf der Tastatur — Gerät geht nicht mehr an',
+          'Flüssigkeit auf der Tastatur — Gerät geht nicht mehr an',
           'SSD/HDD wird im BIOS nicht erkannt, obwohl das Gerät läuft',
         ],
       },
@@ -400,7 +400,113 @@ export const MOBILE_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
   },
 };
 
+export const NOTEBOOK_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
+  del: {
+    title: 'Gelöschte Dateien & formatierte Systempartition',
+    intro:
+      'Auf Notebooks und PCs bleiben gelöschte Dateien oft noch auf der internen SSD oder HDD — solange der Speicher nicht überschrieben wurde. Nutzen Sie das Gerät möglichst nicht weiter und starten Sie keine eigenen Recovery-Tools.',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'Dateien endgültig gelöscht oder Papierkorb geleert',
+          'Windows-/macOS-Neuinstallation überschreibt die Systempartition',
+          'Partition versehentlich gelöscht oder formatiert',
+          'System-Reset oder „Diesen PC zurücksetzen“ ausgeführt',
+        ],
+      },
+    ],
+    warning: 'Nicht weiter speichern, nicht neu installieren — jedes Schreiben verringert die Rettungschance.',
+  },
+  mech: {
+    title: 'Sturzschaden an Notebook oder PC',
+    intro:
+      'Nach einem Sturz kann die interne HDD mechanisch beschädigt sein oder die SSD/Platine den Kontakt verlieren. Wir öffnen das Gerät und retten die Daten direkt vom Speichermedium.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Notebook gefallen — startet nicht mehr oder knackt',
+          'Gehäuse verbeult, Display gerissen, Gerät tot',
+          'Nach Sturz wird die Festplatte nicht mehr erkannt',
+          'PC-Tower umgestürzt — Laufwerke klackern oder fehlen',
+        ],
+      },
+    ],
+    warning: 'Gerät nicht wiederholt einschalten — bei HDD-Verdacht sofort ruhen lassen und einsenden.',
+  },
+  water: {
+    title: 'Flüssigkeitsschaden an Notebook oder PC',
+    intro:
+      'Kaffee, Wasser oder andere Flüssigkeiten auf der Tastatur können Mainboard und Speicher beschädigen. Oft sind die Daten auf SSD/HDD noch intakt — entscheidend ist, das Gerät nicht weiter zu betreiben.',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'Getränk über die Tastatur verschüttet',
+          'Notebook in Regen oder Pfütze gefallen',
+          'Gerät geht nach Feuchtigkeit nicht mehr an',
+          'Korrosion an Anschlüssen oder Logic Board',
+        ],
+      },
+    ],
+    warning: 'Nicht laden, nicht einschalten, nicht mit Reis „trocknen“ — Gerät ausschalten und einsenden.',
+  },
+  ctrl: {
+    title: 'Mainboard- & Elektronikschaden',
+    intro:
+      'Defekte Netzteile, Logic Boards oder Überspannung legen Notebook und PC still — die Daten auf dem Speichermedium sind oft unberührt. Wir bauen SSD oder HDD aus und retten unabhängig vom Mainboard.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Gerät reagiert nicht auf Netzteil oder Power-Taste',
+          'Kein POST, kein Lüfter, keine Anzeige',
+          'Brandgeruch oder sichtbarer Schaden an der Platine',
+          'Nach Gewitter oder Überspannung tot',
+        ],
+      },
+    ],
+    note: 'Die Datenrettung erfolgt am Speichermedium — das Mainboard muss dafür nicht mehr funktionieren.',
+  },
+  enc: {
+    title: 'Verschlüsselung & BitLocker / FileVault',
+    intro:
+      'Bei BitLocker, FileVault oder TPM-gebundener Verschlüsselung brauchen wir den Wiederherstellungsschlüssel oder das Passwort. Ohne Schlüssel ist eine logische Entschlüsselung in der Regel nicht möglich.',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'BitLocker-Wiederherstellungsschlüssel nicht auffindbar',
+          'FileVault-Passwort vergessen',
+          'Ransomware verschlüsselt die Systempartition',
+          'TPM-Fehler nach Mainboard-Tausch',
+        ],
+      },
+    ],
+    warning: 'Wiederherstellungsschlüssel und Passwörter bereithalten — ohne sie ist oft keine Entschlüsselung möglich.',
+  },
+  crash: {
+    title: 'Startet nicht / Boot-Fehler',
+    intro:
+      'Boot-Schleifen, BSOD oder fehlender POST bedeuten oft ein Problem mit Systempartition, Firmware oder Speichermedium — nicht zwingend Datenverlust. Wir sichern die Daten, bevor Reparaturversuche sie gefährden.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          'Hängt beim Apple- oder Windows-Logo',
+          'Bluescreen (BSOD) oder Kernel Panic beim Start',
+          '„No bootable device“ / kein POST',
+          'Endloser Neustart nach Update',
+        ],
+      },
+    ],
+    note: 'Kein chkdsk, kein erzwungenes Update, keine Neuinstallation — zuerst Daten sichern lassen.',
+  },
+};
+
 export function getDamageInfo(device: DeviceKey | null, key: DamageKey): CalculatorInfoContent {
   if (device === 'smartphone') return MOBILE_DAMAGE_INFO[key];
+  if (device === 'notebook') return NOTEBOOK_DAMAGE_INFO[key];
   return DAMAGE_INFO[key];
 }

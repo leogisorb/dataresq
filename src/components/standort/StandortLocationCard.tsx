@@ -11,7 +11,7 @@ interface StandortLocationCardProps {
 
 function getLocationCardNote(location: Location): string {
   if (location.kind === 'abgabe') {
-    return 'Alle Datenträgertypen — HDD, SSD, RAID/NAS, USB/SD, Smartphone, Notebook';
+    return 'Alle Datenträgertypen — HDD, SSD, RAID/NAS, USB/SD, Smartphone, Notebook & PC';
   }
   if (location.kind === 'buero') {
     return 'Büro & Kundenbetreuung — keine Medien-Abgabe vor Ort';

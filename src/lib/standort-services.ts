@@ -13,9 +13,9 @@ export const STANDORT_SERVICES: StandortService[] = [
     href: service.href,
   })),
   {
-    title: 'Notebook & Laptop',
+    title: 'Notebook & PC-Systeme',
     description:
-      'Boot-Fehler, Sturz, Wasserschaden oder defekte SSD/HDD — Datenrettung für alle Notebook-Typen.',
+      'Boot-Fehler, Sturz, Wasserschaden oder defekte SSD/HDD — Datenrettung für Notebooks und PCs.',
     href: '/datenrettung/ssd',
   },
 ];

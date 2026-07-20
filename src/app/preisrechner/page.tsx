@@ -25,7 +25,7 @@ const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Preisrechner — Datenrettungskosten berechnen',
-  description: `Kostenloser Preisrechner für Datenrettung: HDD, SSD, RAID, USB, Smartphone, Notebook. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, verbindliches Angebot nach Laboranalyse. ${FAILED_RECOVERY_NOTE}`,
+  description: `Kostenloser Preisrechner für Datenrettung: HDD, SSD, RAID, USB, Smartphone, Notebook & PC. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, verbindliches Angebot nach Laboranalyse. ${FAILED_RECOVERY_NOTE}`,
   path: CALCULATOR_PAGE_PATH,
 });
 

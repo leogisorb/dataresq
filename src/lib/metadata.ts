@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 
 import { SITE_META_DESCRIPTION } from './constants';
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://www.rsqdata.de';
+
 export const siteConfig = {
   name: 'RSQDATA',
-  url: 'https://muench-datenrettung.de',
+  url: SITE_URL,
   description: SITE_META_DESCRIPTION,
   locale: 'de_DE',
 } as const;

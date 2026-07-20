@@ -1,9 +1,11 @@
 import {
   AlertTriangle,
   ArrowDown,
+  CircuitBoard,
   Cpu,
   Droplets,
   Lock,
+  Monitor,
   Smartphone,
   Trash2,
   Wrench,
@@ -35,8 +37,18 @@ const MOBILE_DAMAGE_ICONS = {
   crash: Smartphone,
 } as const;
 
+const NOTEBOOK_DAMAGE_ICONS = {
+  del: Trash2,
+  mech: ArrowDown,
+  water: Droplets,
+  ctrl: CircuitBoard,
+  enc: Lock,
+  crash: Monitor,
+} as const;
+
 function getDamageIcon(device: DeviceKey | null, key: DamageKey) {
   if (device === 'smartphone') return MOBILE_DAMAGE_ICONS[key];
+  if (device === 'notebook') return NOTEBOOK_DAMAGE_ICONS[key];
   return DEFAULT_DAMAGE_ICONS[key];
 }
 
