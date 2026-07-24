@@ -24,11 +24,11 @@ export default function CalcOptionTile({
   children,
 }: CalcOptionTileProps) {
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <button
         type="button"
         aria-pressed={isSelected}
-        className={[calcTileClasses(isSelected), 'w-full', className].filter(Boolean).join(' ')}
+        className={[calcTileClasses(isSelected), 'h-full w-full', className].filter(Boolean).join(' ')}
         onClick={onSelect}
       >
         {children}

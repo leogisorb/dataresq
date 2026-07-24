@@ -56,8 +56,8 @@ export default function DatenrettungFaq() {
             <Accordion.Body className="leading-relaxed text-text">
               {item.id === 'kosten' ? (
                 <>
-                  Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.099 – 1.999 € · Flash
-                  Standard 699 – 999 €, Express 899 – 1.199 € · RAID / NAS / Server individuell ·
+                  Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.149 – 2.049 € · Flash
+                  Standard 699 – 999 €, Express 949 – 1.249 € · RAID / NAS / Server individuell ·
                   Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung
                   treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen
                   Sie unseren{' '}

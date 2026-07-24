@@ -1,10 +1,5 @@
 import Image from 'next/image';
 
-import {
-  CALCULATOR_HEADING,
-  CALCULATOR_HEADING_ID,
-  CALCULATOR_SECTION_ID,
-} from '@/lib/calculator-section';
 import HeroCtas from '@/components/sections/HeroCtas';
 import { HOME_TRUST_ITEMS, HOME_WELCOME_TEXT } from '@/lib/constants';
 
@@ -42,18 +37,6 @@ export default function Hero() {
             width={1200}
           />
         </div>
-      </div>
-
-      <div
-        className="site-container shrink-0 scroll-mt-24 pb-5 pt-5 text-center md:pb-6 md:pt-6"
-        id={CALCULATOR_SECTION_ID}
-      >
-        <h2
-          className="text-3xl font-semibold tracking-tight text-text md:text-4xl"
-          id={CALCULATOR_HEADING_ID}
-        >
-          {CALCULATOR_HEADING}
-        </h2>
       </div>
     </section>
   );

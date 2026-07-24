@@ -1,4 +1,4 @@
-import { HardDrive, Layers, Package } from 'lucide-react';
+import { Download, HardDrive, Layers } from 'lucide-react';
 
 import CalcOptionTile from '@/components/calculator/CalcOptionTile';
 import CalcStepHeading from '@/components/calculator/CalcStepHeading';
@@ -7,8 +7,8 @@ import { RETURN_MEDIUM_OPTIONS } from '@/lib/calculator';
 import type { ReturnMediumKey } from '@/lib/constants';
 
 const RETURN_MEDIUM_ICONS = {
-  original: Package,
   new: HardDrive,
+  download: Download,
   both: Layers,
 } as const;
 

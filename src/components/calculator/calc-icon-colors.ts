@@ -15,11 +15,12 @@ export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
   ctrl: 'text-[#5856d6]',
   enc: 'text-[#af52de]',
   crash: 'text-[#ff2d55]',
+  unknown: 'text-[#86868b]',
   std: 'text-[#86868b]',
   express: 'text-[#ff9500]',
   notfall: 'text-[#ff3b30]',
-  original: 'text-[#0071e3]',
   new: 'text-[#5856d6]',
+  download: 'text-[#0071e3]',
   both: 'text-[#34c759]',
 };
 

@@ -8,12 +8,13 @@ import {
   CircuitBoard,
   Clock,
   Cpu,
+  Download,
   Droplets,
   HardDrive,
+  HelpCircle,
   Laptop,
   Layers,
   Lock,
-  Package,
   Server,
   Siren,
   Smartphone,
@@ -58,6 +59,7 @@ const DAMAGE_ICONS = {
   ctrl: Cpu,
   enc: Lock,
   crash: AlertTriangle,
+  unknown: HelpCircle,
 } as const;
 
 const URGENCY_ICONS = {
@@ -67,8 +69,8 @@ const URGENCY_ICONS = {
 } as const;
 
 const RETURN_MEDIUM_ICONS = {
-  original: Package,
   new: HardDrive,
+  download: Download,
   both: Layers,
 } as const;
 

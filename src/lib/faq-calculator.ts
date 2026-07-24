@@ -9,7 +9,7 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Was kostet eine Datenrettung?',
     answer:
-      'Preisrahmen je Medientyp und Service-Level: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.099 – 1.999 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 899 – 1.199 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt.',
+      'Preisrahmen je Medientyp und Service-Level: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.149 – 2.049 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 949 – 1.249 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt.',
   },
   {
     question: 'Was passiert nach der Analyse?',

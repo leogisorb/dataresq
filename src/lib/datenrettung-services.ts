@@ -102,7 +102,7 @@ export const processSteps: ProcessStep[] = [
     phaseLabel: 'Anfrage & Angebot',
     title: 'Anfrage stellen & Angebot erhalten',
     description:
-      'Beschreiben Sie über unser Online-Formular Datenträger, Auslöser und wichtige Daten — und wählen Sie Ihr Service-Level. Sie erhalten sofort Ihr unverbindliches Angebot: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.099 – 1.999 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 899 – 1.199 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt. Wichtig: Schalten Sie den Datenträger nicht mehr ein und starten Sie keine eigenen Rettungsversuche.',
+      'Beschreiben Sie über unser Online-Formular Datenträger, Auslöser und wichtige Daten — und wählen Sie Ihr Service-Level. Sie erhalten sofort Ihr unverbindliches Angebot: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.149 – 2.049 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 949 – 1.249 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt. Wichtig: Schalten Sie den Datenträger nicht mehr ein und starten Sie keine eigenen Rettungsversuche.',
   },
   {
     step: 2,

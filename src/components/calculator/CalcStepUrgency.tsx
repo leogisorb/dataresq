@@ -42,6 +42,9 @@ export default function CalcStepUrgency({ selected, onSelect }: CalcStepUrgencyP
               />
               <span className="pr-6 text-base font-medium">{option.label}</span>
               <span className="text-sm text-text-dim">{option.duration}</span>
+              {option.priceHint ? (
+                <span className="text-sm font-medium text-text">{option.priceHint}</span>
+              ) : null}
             </CalcOptionTile>
           );
         })}

@@ -1,4 +1,6 @@
 export const SITE = {
+  phone: '+49 151 27064982',
+  phoneTel: '+4915127064982',
   email: 'info@rsqdata.de',
   address: {
     street: 'Pellenzstr. 15',
@@ -75,12 +77,15 @@ export const SITE_META_DESCRIPTION =
 export const DATA_RETENTION_DAYS = 14 as const;
 
 export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb' | 'smartphone' | 'notebook';
-export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash';
+export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash' | 'unknown';
 export type UrgencyKey = 'std' | 'express' | 'notfall';
-/** Rücksendung: Original, neuer Datenträger oder beides */
-export type ReturnMediumKey = 'original' | 'new' | 'both';
+/** Datenübergabe: neuer Datenträger, Downloadlink oder beides */
+export type ReturnMediumKey = 'new' | 'download' | 'both';
 
 export type DeviceCategory = 'hddSsd' | 'flash' | 'smartphone' | 'notebook';
+
+/** Express-Aufpreis gegenüber Standard (Preisindikator im Rechner) */
+export const EXPRESS_SURCHARGE = 250 as const;
 
 export const SERVICE_PRICES: Record<
   UrgencyKey,
@@ -93,8 +98,8 @@ export const SERVICE_PRICES: Record<
     notebook: [249, 1199],
   },
   express: {
-    hddSsd: [1099, 1999],
-    flash: [899, 1199],
+    hddSsd: [1149, 2049],
+    flash: [949, 1249],
     smartphone: [179, 999],
     notebook: [249, 1199],
   },

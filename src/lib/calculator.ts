@@ -1,4 +1,5 @@
 import {
+  EXPRESS_SURCHARGE,
   formatPriceRange,
   getDeviceCategory,
   SERVICE_PRICES,
@@ -23,6 +24,7 @@ export interface UrgencyOption {
   key: UrgencyKey;
   label: string;
   duration: string;
+  priceHint?: string;
   popular?: boolean;
 }
 
@@ -53,6 +55,7 @@ export const DAMAGE_OPTIONS: DamageOption[] = [
   { key: 'ctrl', label: 'Controller / Elektronik', hint: 'PCB, Überspannung' },
   { key: 'enc', label: 'Verschlüsselt / Ransomware', hint: 'BitLocker, Virus' },
   { key: 'crash', label: 'Absturz / BSOD', hint: 'Boot-Fehler, Kernel' },
+  { key: 'unknown', label: 'Weiß ich nicht', hint: 'Ursache unklar — wir klären das in der Analyse' },
 ];
 
 /** Schadensarten für Smartphone / Tablet — gleiche Keys, passende Labels. */
@@ -63,6 +66,7 @@ export const MOBILE_DAMAGE_OPTIONS: DamageOption[] = [
   { key: 'ctrl', label: 'Kurzschluss / Elektronik', hint: 'Ladeport, Platine, Überspannung' },
   { key: 'enc', label: 'Passwort / gesperrt', hint: 'PIN vergessen, Bildschirmsperre' },
   { key: 'crash', label: 'Displaybruch', hint: 'Glas kaputt, Touch defekt, schwarzer Bildschirm' },
+  { key: 'unknown', label: 'Weiß ich nicht', hint: 'Ursache unklar — wir klären das in der Analyse' },
 ];
 
 /** Schadensarten für Notebook & PC-Systeme — gleiche Keys, passende Labels. */
@@ -73,6 +77,7 @@ export const NOTEBOOK_DAMAGE_OPTIONS: DamageOption[] = [
   { key: 'ctrl', label: 'Mainboard / Elektronik', hint: 'Logic Board, Netzteil, Überspannung' },
   { key: 'enc', label: 'Verschlüsselt / BitLocker', hint: 'FileVault, TPM, Ransomware' },
   { key: 'crash', label: 'Startet nicht', hint: 'Boot-Fehler, BSOD, kein POST' },
+  { key: 'unknown', label: 'Weiß ich nicht', hint: 'Ursache unklar — wir klären das in der Analyse' },
 ];
 
 export function getDamageOptionsForDevice(device: DeviceKey | null): DamageOption[] {
@@ -91,36 +96,43 @@ export function getDamageLabel(device: DeviceKey, key: DamageKey): string {
 
 export const RETURN_MEDIUM_OPTIONS: ReturnMediumOption[] = [
   {
-    key: 'original',
-    label: 'Original zurück',
-    hint: 'Ihr Datenträger wird versichert an Sie zurückgeschickt',
-  },
-  {
     key: 'new',
     label: 'Neuer Datenträger',
     hint: 'Daten auf neuen Datenträger spielen — Preis auf Anfrage',
   },
   {
+    key: 'download',
+    label: 'Downloadlink',
+    hint: 'Verschlüsselter Download über Ihr Kundenportal — im Festpreis enthalten',
+  },
+  {
     key: 'both',
-    label: 'Original + neuer Datenträger',
-    hint: 'Beides versichert zurück — Preis für neuen Datenträger auf Anfrage',
+    label: 'Beides',
+    hint: 'Neuer Datenträger und Downloadlink — Preis für neuen Datenträger auf Anfrage',
   },
 ];
 
 export const URGENCY_OPTIONS: UrgencyOption[] = [
   { key: 'std', label: 'Standard', duration: '3–5 Arbeitstage nach Eingang' },
-  { key: 'express', label: 'Express', duration: '1–2 Arbeitstage nach Eingang', popular: true },
+  {
+    key: 'express',
+    label: 'Express',
+    duration: '1–2 Arbeitstage nach Eingang',
+    priceHint: `+${EXPRESS_SURCHARGE} €`,
+    popular: true,
+  },
   {
     key: 'notfall',
     label: 'Notfall',
     duration: '24/7-Bearbeitung, bis Ihre Daten gerettet sind',
+    priceHint: 'auf Anfrage',
   },
 ];
 
 export function calculatePriceEstimate(
   device: DeviceKey,
   urgency: UrgencyKey,
-  returnMedium: ReturnMediumKey = 'original',
+  returnMedium: ReturnMediumKey = 'download',
 ): PriceEstimateResult {
   if (returnMedium === 'new' || returnMedium === 'both') {
     return { range: null, label: 'auf Anfrage' };

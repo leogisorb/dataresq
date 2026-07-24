@@ -77,6 +77,14 @@ export default function Footer() {
               <p className="mt-3 text-sm text-text-muted">
                 Büro: {SITE.address.street}, {SITE.address.zip} {SITE.address.city}
               </p>
+              <p className="mt-2 text-sm text-text-muted">
+                <a
+                  className="transition-colors hover:text-text"
+                  href={`tel:${SITE.phoneTel}`}
+                >
+                  {SITE.phone}
+                </a>
+              </p>
             </div>
 
             <FooterColumn title="Leistungen" links={leistungenLinks} />

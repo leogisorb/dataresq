@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useOverlayState } from '@heroui/react';
 
 import HashLink from '@/components/navigation/HashLink';
+import { SITE } from '@/lib/constants';
 import { mainNavItems } from '@/lib/navigation';
 import { siteConfig } from '@/lib/metadata';
 
@@ -83,6 +84,12 @@ export default function MobileNavClient() {
           </nav>
 
           <div className="flex items-center justify-end">
+            <a
+              className="site-header-nav-link touch-target hidden items-center md:inline-flex"
+              href={`tel:${SITE.phoneTel}`}
+            >
+              {SITE.phone}
+            </a>
             <button
               aria-controls="mobile-circle-menu"
               aria-expanded={menuState.isOpen}

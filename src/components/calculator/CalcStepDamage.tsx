@@ -4,6 +4,7 @@ import {
   CircuitBoard,
   Cpu,
   Droplets,
+  HelpCircle,
   Lock,
   Monitor,
   Smartphone,
@@ -26,6 +27,7 @@ const DEFAULT_DAMAGE_ICONS = {
   ctrl: Cpu,
   enc: Lock,
   crash: AlertTriangle,
+  unknown: HelpCircle,
 } as const;
 
 const MOBILE_DAMAGE_ICONS = {
@@ -35,6 +37,7 @@ const MOBILE_DAMAGE_ICONS = {
   ctrl: Zap,
   enc: Lock,
   crash: Smartphone,
+  unknown: HelpCircle,
 } as const;
 
 const NOTEBOOK_DAMAGE_ICONS = {
@@ -44,6 +47,7 @@ const NOTEBOOK_DAMAGE_ICONS = {
   ctrl: CircuitBoard,
   enc: Lock,
   crash: Monitor,
+  unknown: HelpCircle,
 } as const;
 
 function getDamageIcon(device: DeviceKey | null, key: DamageKey) {

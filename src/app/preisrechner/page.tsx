@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import {
   CALCULATOR_HEADING,
   CALCULATOR_PAGE_PATH,
+  CALCULATOR_SUBHEADING,
 } from '@/lib/calculator-section';
 import { DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
 import { calculatorFaqs } from '@/lib/faq-calculator';
@@ -63,10 +64,7 @@ export default function PreisrechnerPage() {
             />
 
             <h1 className={PAGE_HERO_HEADING}>{CALCULATOR_HEADING}</h1>
-            <p className={`${SECTION_SUBHEADING} mt-4 max-w-2xl`}>
-              In vier Schritten zum Preisrahmen für Ihren Datenträger. Unverbindlich, ohne
-              Registrierung.
-            </p>
+            <p className={`${SECTION_SUBHEADING} mt-4 max-w-2xl`}>{CALCULATOR_SUBHEADING}</p>
           </div>
         </section>
 

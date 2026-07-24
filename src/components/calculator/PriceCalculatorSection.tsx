@@ -3,12 +3,14 @@ import {
   CALCULATOR_HEADING,
   CALCULATOR_HEADING_ID,
   CALCULATOR_SECTION_ID,
+  CALCULATOR_SUBHEADING,
 } from '@/lib/calculator-section';
 import {
   SECTION_CONTENT_MT,
   SECTION_HEADING,
   SECTION_NARROW_WIDTH,
   SECTION_PADDING,
+  SECTION_SUBHEADING,
 } from '@/lib/section-styles';
 import type { DeviceKey } from '@/lib/constants';
 
@@ -37,6 +39,7 @@ export default function PriceCalculatorSection({
             <h2 className={SECTION_HEADING} id={CALCULATOR_HEADING_ID}>
               {CALCULATOR_HEADING}
             </h2>
+            <p className={`${SECTION_SUBHEADING} mx-auto max-w-2xl`}>{CALCULATOR_SUBHEADING}</p>
           </div>
         ) : null}
 

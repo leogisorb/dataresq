@@ -289,6 +289,27 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
     ],
     note: 'Führen Sie kein weiteres chkdsk, fsck oder „Erste Hilfe" im Festplattendienstprogramm durch — diese Tools können Dateistruktur-Metadaten überschreiben, die für die Wiederherstellung entscheidend sind.',
   },
+  unknown: {
+    title: 'Ursache unklar — wir klären das in der Analyse',
+    intro:
+      'Sie müssen die genaue Ursache nicht kennen. Viele Kunden merken nur, dass Daten fehlen oder das Medium nicht mehr erkannt wird. In der Laboranalyse diagnostizieren wir den Defekt und nennen Ihnen Erfolgsaussichten sowie einen verbindlichen Festpreis.',
+    sections: [
+      {
+        label: 'Was wir prüfen',
+        items: [
+          'Physischer Zustand des Mediums (Mechanik, Elektronik, Flash)',
+          'Dateisystem und lesbare Partitionen',
+          'Welche Dateien sich retten lassen',
+        ],
+      },
+      {
+        label: 'Ihr Vorteil',
+        text: 'Kein Rätselraten nötig: Wählen Sie „Weiß ich nicht“, beschreiben Sie kurz die Symptome — wir übernehmen die Diagnose. Erst nach dem Angebot entscheiden Sie über die Rettung.',
+      },
+    ],
+    warning:
+      'Gerät oder Datenträger nicht weiter nutzen und keine eigenen Recovery-Tools starten — das kann die Rettungschance verringern.',
+  },
 };
 
 export const MOBILE_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
@@ -398,6 +419,22 @@ export const MOBILE_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
     ],
     note: 'Datenrettung ist auch bei totem Display möglich — das Gerät muss dafür nicht mehr bedienbar sein.',
   },
+  unknown: {
+    title: 'Ursache unklar — wir klären das in der Analyse',
+    intro:
+      'Sie müssen nicht wissen, ob Display, Wasserschaden oder Softwaresperre das Problem ist. In der Analyse prüfen wir Speicher und Zustand und nennen Ihnen, welche Daten sich retten lassen.',
+    sections: [
+      {
+        label: 'Typische Ausgangslage',
+        items: [
+          'Gerät geht nicht an — Ursache unbekannt',
+          'Daten fehlen, ohne dass Sie einen klaren Auslöser kennen',
+          'Nach einem Update oder Reset funktioniert nichts mehr',
+        ],
+      },
+    ],
+    warning: 'Gerät nicht weiter laden oder bedienen, wenn es feucht oder beschädigt wirkt — einsenden und analysieren lassen.',
+  },
 };
 
 export const NOTEBOOK_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
@@ -502,6 +539,22 @@ export const NOTEBOOK_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
       },
     ],
     note: 'Kein chkdsk, kein erzwungenes Update, keine Neuinstallation — zuerst Daten sichern lassen.',
+  },
+  unknown: {
+    title: 'Ursache unklar — wir klären das in der Analyse',
+    intro:
+      'Ob Mainboard, Speichermedium oder Softwareschaden: Sie müssen das nicht selbst eingrenzen. Wir öffnen das Gerät bei Bedarf, sichern die Daten vom Speichermedium und erklären Ihnen das Ergebnis.',
+    sections: [
+      {
+        label: 'Typische Ausgangslage',
+        items: [
+          'Notebook/PC startet nicht — Ursache unklar',
+          'Daten fehlen nach Absturz oder Update',
+          'Gerät reagiert nicht, ohne sichtbaren Schaden',
+        ],
+      },
+    ],
+    warning: 'Keine weiteren Reparatur- oder Neuinstallationsversuche — zuerst professionelle Analyse und Datensicherung.',
   },
 };
 

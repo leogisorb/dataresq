@@ -22,12 +22,20 @@ export default function FooterContactSection() {
         </h2>
         <p className="mb-8 text-lg text-text">Uns zu erreichen nicht.</p>
         <FooterCta />
-        <a
-          className="mt-8 inline-block text-base text-text-muted transition-colors hover:text-accent"
-          href={`mailto:${SITE.email}`}
-        >
-          {SITE.email}
-        </a>
+        <div className="mt-8 flex flex-col items-center gap-2">
+          <a
+            className="inline-block text-base text-text-muted transition-colors hover:text-accent"
+            href={`tel:${SITE.phoneTel}`}
+          >
+            {SITE.phone}
+          </a>
+          <a
+            className="inline-block text-base text-text-muted transition-colors hover:text-accent"
+            href={`mailto:${SITE.email}`}
+          >
+            {SITE.email}
+          </a>
+        </div>
       </div>
     </section>
   );
