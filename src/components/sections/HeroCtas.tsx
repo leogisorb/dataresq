@@ -17,6 +17,12 @@ export default function HeroCtas() {
       <Link className={secondaryCtaClass} href="/standort">
         Abgabestelle finden
       </Link>
+      <Link
+        className="text-sm font-medium text-text-muted underline-offset-4 transition-colors hover:text-text hover:underline sm:ml-1"
+        href="/variante-b"
+      >
+        Design-Variante B
+      </Link>
     </div>
   );
 }

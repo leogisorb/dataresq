@@ -1,40 +1,50 @@
 import Image from 'next/image';
 
 import HeroCtas from '@/components/sections/HeroCtas';
+import HeroDecryptHeadline from '@/components/sections/HeroDecryptHeadline';
 import { HOME_TRUST_ITEMS, HOME_WELCOME_TEXT } from '@/lib/constants';
+
+const HERO_IMAGE = {
+  alt: 'Datenspeicher-Medien: Festplatte, SSD, Speicherkarten und Smartphone — professionelle Datenrettung',
+  src: '/images/hero-devices-v3-cropped.png',
+  width: 1120,
+  height: 641,
+} as const;
 
 export default function Hero() {
   return (
-    <section className="relative flex h-[calc(100dvh-var(--site-header-height))] flex-col overflow-hidden bg-bg">
-      <div className="site-container relative z-10 grid min-h-0 flex-1 grid-cols-1 items-center gap-6 overflow-hidden py-6 md:gap-10 md:py-10 lg:grid-cols-2 lg:gap-14 lg:py-12">
-        <div className="flex flex-col justify-center">
-          <h1 className="mb-5 text-4xl font-semibold leading-[1.05] tracking-tight text-text md:mb-6 md:text-6xl lg:text-7xl">
-            Daten verloren.
-            <br />
-            Wir holen sie zurück.
-          </h1>
+    <section className="flex h-[calc(100dvh-var(--site-header-height))] items-center overflow-hidden bg-bg">
+      {/*
+        Mobile: one composition (copy + image), vertically centered.
+        Tight gap between text and media — no empty mid-band from stretched rows.
+        Image ~φ⁻¹ of the hero band; PNG pre-cropped so devices fill the frame.
+      */}
+      <div className="site-container flex w-full flex-col justify-center gap-5 py-6 md:grid md:h-full md:grid-cols-2 md:items-center md:gap-10 md:py-10 lg:gap-14 lg:py-12">
+        <div className="min-w-0">
+          <HeroDecryptHeadline />
 
-          <p className="mb-8 max-w-xl text-base leading-relaxed text-text md:mb-10 md:text-lg">
+          <p className="mb-3 max-w-xl text-[0.9rem] leading-snug text-text md:mb-10 md:text-lg md:leading-relaxed">
             {HOME_WELCOME_TEXT}
           </p>
 
           <HeroCtas />
 
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-text md:mt-10">
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-text md:mt-10 md:gap-x-6 md:gap-y-2 md:text-sm">
             {HOME_TRUST_ITEMS.map((item) => (
               <span key={item}>✓ {item}</span>
             ))}
           </div>
         </div>
 
-        <div className="relative flex items-center justify-center lg:justify-end">
+        <div className="mx-auto w-[118%] max-w-none shrink-0 -translate-x-[7.5%] md:w-full md:max-w-none md:translate-x-0">
           <Image
-            alt="Datenspeicher-Medien: Festplatte, SSD, Speicherkarten und Smartphone — professionelle Datenrettung"
-            className="h-auto max-h-[min(42dvh,420px)] w-full max-w-[640px] object-contain lg:max-h-[min(48dvh,480px)]"
-            height={896}
+            alt={HERO_IMAGE.alt}
+            className="mx-auto h-auto w-full max-h-[min(34dvh,300px)] object-contain object-center md:max-h-[min(42dvh,420px)] lg:max-h-[min(48dvh,480px)]"
+            height={HERO_IMAGE.height}
             priority
-            src="/images/hero-devices-v3.png"
-            width={1200}
+            sizes="(max-width: 768px) 120vw, 640px"
+            src={HERO_IMAGE.src}
+            width={HERO_IMAGE.width}
           />
         </div>
       </div>

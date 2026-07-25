@@ -6,29 +6,40 @@ import AnfrageForm, { type AnfragePrefill } from '@/components/contact/AnfrageFo
 import { BTN_BRAND, BTN_CALC_PAIR_PRIMARY } from '@/lib/button-styles';
 
 interface AnfrageFormModalProps {
-  prefill: AnfragePrefill;
+  prefill?: AnfragePrefill;
   triggerLabel?: string;
   triggerClassName?: string;
+  hideTrigger?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export default function AnfrageFormModal({
   prefill,
   triggerLabel = 'Angebot anfordern',
   triggerClassName = BTN_CALC_PAIR_PRIMARY,
+  hideTrigger = false,
+  isOpen,
+  onOpenChange,
 }: AnfrageFormModalProps) {
   const modalState = useOverlayState();
+  const controlled = typeof isOpen === 'boolean' && typeof onOpenChange === 'function';
+  const open = controlled ? isOpen : modalState.isOpen;
+  const setOpen = controlled ? onOpenChange : modalState.setOpen;
 
   const handleClose = () => {
-    modalState.close();
+    setOpen(false);
   };
 
   return (
     <>
-      <button className={triggerClassName} type="button" onClick={modalState.open}>
-        {triggerLabel}
-      </button>
+      {!hideTrigger ? (
+        <button className={triggerClassName} type="button" onClick={() => setOpen(true)}>
+          {triggerLabel}
+        </button>
+      ) : null}
 
-      <Modal.Backdrop isOpen={modalState.isOpen} onOpenChange={modalState.setOpen}>
+      <Modal.Backdrop isOpen={open} onOpenChange={setOpen}>
         <Modal.Container>
           <Modal.Dialog className="max-w-lg">
             <Modal.CloseTrigger />

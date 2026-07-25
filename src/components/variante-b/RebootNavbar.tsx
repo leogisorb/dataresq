@@ -1,0 +1,117 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import { SITE } from '@/lib/constants';
+import { VARIANTE_B_COPY, VARIANTE_B_NAV } from '@/lib/variante-b';
+
+interface RebootNavbarProps {
+  onAnfrage: () => void;
+}
+
+export default function RebootNavbar({ onAnfrage }: RebootNavbarProps): React.JSX.Element {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="relative z-20 px-5 pt-6 md:px-10 md:pt-7">
+      <nav
+        aria-label="Hauptnavigation Variante B"
+        className="mx-auto flex max-w-6xl items-center justify-between gap-4 md:justify-center md:gap-7"
+      >
+        <Link className="flex shrink-0 items-center" href="/">
+          <Image
+            alt={VARIANTE_B_COPY.logoLabel}
+            className="h-6 w-auto md:h-[26px]"
+            height={26}
+            priority
+            src="/images/logo_2.svg"
+            width={78}
+          />
+        </Link>
+
+        <ul className="hidden items-center gap-7 md:flex">
+          {VARIANTE_B_NAV.map((item) => (
+            <li key={item.label}>
+              <Link
+                className="text-[13px] font-normal text-[#1a1a1a] transition-opacity hover:opacity-60"
+                href={item.href}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-3 md:ml-2 md:gap-5">
+          <a
+            className="hidden text-[13px] font-medium tracking-tight text-[#111111] transition-opacity hover:opacity-60 sm:inline"
+            href={`tel:${SITE.phoneTel}`}
+          >
+            {SITE.phone}
+          </a>
+
+          <button
+            aria-controls="reboot-mobile-nav"
+            aria-expanded={menuOpen}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-[#111111] md:hidden"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="sr-only">{menuOpen ? 'Menü schließen' : 'Menü öffnen'}</span>
+            <span aria-hidden className="flex flex-col gap-1.5">
+              <span
+                className={[
+                  'block h-px w-4 bg-current transition-transform',
+                  menuOpen ? 'translate-y-[3.5px] rotate-45' : '',
+                ].join(' ')}
+              />
+              <span
+                className={[
+                  'block h-px w-4 bg-current transition-transform',
+                  menuOpen ? '-translate-y-[3.5px] -rotate-45' : '',
+                ].join(' ')}
+              />
+            </span>
+          </button>
+
+          <button
+            className="rounded-full bg-[#111111] px-5 py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-85"
+            type="button"
+            onClick={onAnfrage}
+          >
+            {VARIANTE_B_COPY.navCtaLabel}
+          </button>
+        </div>
+      </nav>
+
+      {menuOpen ? (
+        <ul
+          className="mt-4 flex flex-col gap-3 rounded-2xl border border-[#ECECEC] bg-white px-4 py-4 md:hidden"
+          id="reboot-mobile-nav"
+        >
+          {VARIANTE_B_NAV.map((item) => (
+            <li key={item.label}>
+              <Link
+                className="block py-1 text-sm text-[#1a1a1a]"
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <a
+              className="block py-1 text-sm font-medium text-[#111111]"
+              href={`tel:${SITE.phoneTel}`}
+            >
+              {SITE.phone}
+            </a>
+          </li>
+        </ul>
+      ) : null}
+    </header>
+  );
+}

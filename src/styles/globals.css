@@ -433,3 +433,93 @@ body {
     transform: translateX(400%);
   }
 }
+
+/* Reboot Hero Variante B — rainbow CTA glow
+   Soft aura behind the button. Radial mask kills the rectangular
+   filter bounding-box that `blur()` otherwise paints. */
+@property --reboot-glow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.reboot-cta-wrap {
+  --brand-1: #22d3ee;
+  --brand-2: #a78bfa;
+  --brand-3: #c6ff00;
+  --brand-4: #fb923c;
+  --brand-5: #f472b6;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.reboot-cta-glow {
+  position: absolute;
+  z-index: 0;
+  inset: -16px -22px;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from var(--reboot-glow-angle),
+    var(--brand-1),
+    var(--brand-2),
+    var(--brand-3),
+    var(--brand-4),
+    var(--brand-5),
+    var(--brand-1)
+  );
+  opacity: 0.95;
+  filter: blur(16px) saturate(1.35);
+  /* Harder edge falloff — glow dies before the outer rim reads as a blob */
+  mask-image: radial-gradient(
+    ellipse 72% 80% at 50% 50%,
+    #000 0%,
+    #000 34%,
+    rgba(0, 0, 0, 0.5) 52%,
+    transparent 68%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 80% at 50% 50%,
+    #000 0%,
+    #000 34%,
+    rgba(0, 0, 0, 0.5) 52%,
+    transparent 68%
+  );
+  animation: reboot-spin-glow 8s linear infinite;
+  pointer-events: none;
+}
+
+.reboot-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #111111;
+  padding: 15px 35px;
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #ffffff;
+  transition: opacity 0.15s ease;
+}
+
+.reboot-cta:hover {
+  opacity: 0.92;
+}
+
+@keyframes reboot-spin-glow {
+  to {
+    --reboot-glow-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reboot-cta-glow {
+    animation: none;
+  }
+}
