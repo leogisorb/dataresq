@@ -19,6 +19,10 @@ const POINTER_RADIUS = 120;
 const POINTER_PUSH = 20;
 /** Cap ASCII redraws — full-grid fillText is expensive */
 const FRAME_MS = 1000 / 24;
+/** Heal wave across full hero width; 50% slower than original 0.18 */
+const WAVE_SPEED = 0.09;
+/** Soft boost band at wave front (only where shape glyphs already exist) */
+const WAVE_FRONT = 0.04;
 
 function clamp01(n: number): number {
   return Math.max(0, Math.min(1, n));
@@ -169,44 +173,54 @@ export default function DataRecoveryBackground({
       const pointerOn = pointerX > -5000;
       const isFolder = activeShape === 'folder';
       const isLogo = activeShape === 'logo';
+      // Pixel-based: true hero left edge (0) → right edge (1)
+      const waveX = reducedMotion ? 1 : (t * WAVE_SPEED) % 1;
 
       for (let r = 0; r < rows; r += 1) {
         for (let c = 0; c < cols; c += 1) {
           const i = r * cols + c;
           let density = bakedDensity[i] ?? 0;
 
-          let corrupt = false;
+          let x = c * CELL_W + CELL_W / 2;
+          let y = r * CELL_H + CELL_H / 2;
+          // Normalized by full canvas/hero width — not shape bounds
+          const nx = width > 0 ? x / width : 0;
+          if (density < (isLogo ? 0.04 : 0.06)) {
+            continue;
+          }
+
+          const distToWave = Math.abs(nx - waveX);
+          const atFront = !reducedMotion && distToWave < WAVE_FRONT;
+          // Left of front = healed; right = still corrupt
+          const corrupt = nx > waveX;
+
           if (isLogo) {
-            if (density < 0.04) {
-              continue;
-            }
-            const nx = c / Math.max(cols - 1, 1);
-            const waveX = ((t * 0.18) % 1.3) - 0.15;
-            const recovering = nx < waveX + 0.04;
-            density = clamp01(density * (recovering ? 0.75 : 0.95));
-            corrupt = recovering;
-          } else {
-            if (density < 0.06) {
-              continue;
-            }
-            corrupt = (bakedCorrupt[i] ?? 0) === 1;
+            density = clamp01(density * (corrupt ? 0.78 : 0.96));
           }
 
           let d = density;
-          // Skip noisy morph on folder — keeps silhouette crisp & cheap
-          if (!reducedMotion && !isFolder && !isLogo) {
-            const morph = hash2(c + Math.floor(t * (corrupt ? 10 : 4)), r);
+          if (atFront) {
+            d = clamp01(d + 0.28);
+          }
+
+          if (!reducedMotion && !isFolder && !isLogo && corrupt) {
+            const morph = hash2(c + Math.floor(t * 10), r);
             d = clamp01(d * 0.88 + morph * 0.18);
           }
 
-          let ch = pickRamp(corrupt ? CORRUPT_RAMP : ASCII_RAMP, d);
+          let ch = pickRamp(
+            atFront || corrupt ? CORRUPT_RAMP : ASCII_RAMP,
+            d,
+          );
           if (ch === ' ') {
             continue;
           }
 
-          let x = c * CELL_W + CELL_W / 2;
-          let y = r * CELL_H + CELL_H / 2;
           let opacity = isLogo || isFolder ? 0.3 + d * 0.52 : 0.18 + d * 0.42;
+
+          if (atFront) {
+            opacity = Math.min(1, opacity + 0.12);
+          }
 
           if (pointerOn) {
             const vx = x - pointerX;
@@ -275,12 +289,12 @@ export default function DataRecoveryBackground({
     };
   }, []);
 
-  const logoMaskClass =
-    shape === 'logo'
-      ? '[mask-image:radial-gradient(ellipse_80%_70%_at_50%_48%,black_0%,black_55%,rgba(0,0,0,0.55)_78%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_80%_70%_at_50%_48%,black_0%,black_55%,rgba(0,0,0,0.55)_78%,transparent_100%)]'
-      : shape === 'folder'
-        ? '[mask-image:radial-gradient(ellipse_70%_65%_at_50%_48%,black_0%,black_50%,rgba(0,0,0,0.45)_75%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_70%_65%_at_50%_48%,black_0%,black_50%,rgba(0,0,0,0.45)_75%,transparent_100%)]'
-        : '[mask-image:radial-gradient(ellipse_36%_42%_at_50%_44%,transparent_0%,rgba(0,0,0,0.25)_40%,black_72%)] [-webkit-mask-image:radial-gradient(ellipse_36%_42%_at_50%_44%,transparent_0%,rgba(0,0,0,0.25)_40%,black_72%)]';
+  // Full hero width stays opaque (wave must reach both edges).
+  // Soft center hole for copy; top/bottom fade only — no left/right clip.
+  const maskClass =
+    shape === 'logo' || shape === 'folder'
+      ? '[mask-image:radial-gradient(ellipse_55%_42%_at_50%_44%,transparent_0%,transparent_35%,black_68%,black_100%)] [-webkit-mask-image:radial-gradient(ellipse_55%_42%_at_50%_44%,transparent_0%,transparent_35%,black_68%,black_100%)]'
+      : '[mask-image:radial-gradient(ellipse_40%_48%_at_50%_44%,transparent_0%,transparent_32%,black_70%,black_100%)] [-webkit-mask-image:radial-gradient(ellipse_40%_48%_at_50%_44%,transparent_0%,transparent_32%,black_70%,black_100%)]';
 
   return (
     <div
@@ -288,7 +302,7 @@ export default function DataRecoveryBackground({
       aria-hidden
       className={[
         'pointer-events-none absolute inset-0 z-0 overflow-hidden',
-        logoMaskClass,
+        maskClass,
         className ?? '',
       ].join(' ')}
     >

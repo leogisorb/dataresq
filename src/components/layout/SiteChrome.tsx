@@ -12,13 +12,15 @@ interface SiteChromeProps {
 
 export default function SiteChrome({ children }: SiteChromeProps): React.JSX.Element {
   const pathname = usePathname();
-  const hideChrome = pathname === '/variante-b';
+  // Homepage uses Reboot hero with its own navbar; /variante-b redirects but keep safe.
+  const hideNav = pathname === '/' || pathname === '/variante-b';
+  const hideFooter = pathname === '/variante-b';
 
   return (
     <>
-      {!hideChrome ? <MobileNav /> : null}
+      {!hideNav ? <MobileNav /> : null}
       {children}
-      {!hideChrome ? <Footer /> : null}
+      {!hideFooter ? <Footer /> : null}
     </>
   );
 }

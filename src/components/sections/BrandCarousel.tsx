@@ -67,7 +67,7 @@ export default function BrandCarousel() {
   return (
     <div
       aria-label="Marken und Hersteller"
-      className="brand-carousel-viewport relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden py-8 md:py-10"
+      className="brand-carousel-viewport relative w-full max-w-full overflow-hidden py-8 md:py-10"
       role="region"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-bg to-transparent md:w-24" />
