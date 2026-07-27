@@ -53,33 +53,7 @@ export default function AboutStorySection(): React.JSX.Element {
         inView ? 'is-inview' : '',
       ].join(' ')}
     >
-      <div className="flex min-h-0 flex-col gap-4 md:gap-5 lg:order-1 lg:h-full">
-        {aboutStoryTiles.map((tile) => {
-          const Icon = STORY_ICONS[tile.icon];
-
-          return (
-            <article
-              key={tile.headline}
-              className="about-story-tile flex flex-1 flex-col justify-center gap-3 rounded-2xl border border-border bg-bg-card p-5 md:gap-3.5 md:rounded-3xl md:p-6 lg:p-7"
-            >
-              <h3
-                className={[
-                  'flex items-center gap-2.5 text-xl font-semibold tracking-tight md:text-2xl',
-                  tile.accentClass,
-                ].join(' ')}
-              >
-                <Icon aria-hidden className="size-5 shrink-0 md:size-6" strokeWidth={1.75} />
-                {tile.headline}
-              </h3>
-              <p className="text-base leading-relaxed text-text md:text-lg md:leading-relaxed">
-                {tile.body}
-              </p>
-            </article>
-          );
-        })}
-      </div>
-
-      <div className="about-story-media relative min-h-0 lg:order-2 lg:h-full">
+      <div className="about-story-media relative min-h-0 lg:h-full">
         <div className="relative aspect-[4/3] h-full min-h-[18rem] w-full overflow-hidden rounded-2xl bg-bg-subtle sm:min-h-[22rem] md:rounded-3xl lg:aspect-auto lg:min-h-0">
           <Image
             alt={ABOUT_STORY_IMAGE_ALT}
@@ -110,6 +84,32 @@ export default function AboutStorySection(): React.JSX.Element {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="flex min-h-0 flex-col gap-4 md:gap-5 lg:h-full">
+        {aboutStoryTiles.map((tile) => {
+          const Icon = STORY_ICONS[tile.icon];
+
+          return (
+            <article
+              key={tile.headline}
+              className="about-story-tile flex flex-1 flex-col justify-center gap-3 rounded-2xl border border-border bg-bg-card p-5 md:gap-3.5 md:rounded-3xl md:p-6 lg:p-7"
+            >
+              <h3
+                className={[
+                  'flex items-center gap-2.5 text-xl font-semibold tracking-tight md:text-2xl',
+                  tile.accentClass,
+                ].join(' ')}
+              >
+                <Icon aria-hidden className="size-5 shrink-0 md:size-6" strokeWidth={1.75} />
+                {tile.headline}
+              </h3>
+              <p className="text-base leading-relaxed text-text md:text-lg md:leading-relaxed">
+                {tile.body}
+              </p>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

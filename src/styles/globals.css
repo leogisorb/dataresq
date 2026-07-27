@@ -538,22 +538,22 @@ body {
 }
 
 .about-story-tile:nth-child(1) {
-  transform: translate3d(-2rem, 0, 0);
+  transform: translate3d(2rem, 0, 0);
   transition-delay: 0ms;
 }
 
 .about-story-tile:nth-child(2) {
-  transform: translate3d(-2rem, 0, 0);
+  transform: translate3d(2rem, 0, 0);
   transition-delay: 100ms;
 }
 
 .about-story-tile:nth-child(3) {
-  transform: translate3d(-2rem, 0, 0);
+  transform: translate3d(2rem, 0, 0);
   transition-delay: 200ms;
 }
 
 .about-story-media {
-  transform: translate3d(2.25rem, 0, 0);
+  transform: translate3d(-2.25rem, 0, 0);
   transition-delay: 120ms;
 }
 

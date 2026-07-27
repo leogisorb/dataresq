@@ -20,7 +20,12 @@ import {
   URGENCY_OPTIONS,
 } from '@/lib/calculator';
 import { BTN_BRAND } from '@/lib/button-styles';
-import type { DamageKey, DeviceKey, UrgencyKey } from '@/lib/constants';
+import { SITE, type DamageKey, type DeviceKey, type UrgencyKey } from '@/lib/constants';
+
+function formatOpeningHour(hhmm: string): string {
+  const hour = Number(hhmm.split(':')[0] ?? '0');
+  return String(hour);
+}
 
 export interface AnfragePrefill {
   medium: string;
@@ -295,9 +300,46 @@ export default function AnfrageForm({
         </p>
       )}
 
-      <Button className={`${BTN_BRAND} w-full rounded-full`} isPending={loading} type="submit">
-        {submitLabel}
-      </Button>
+      <div className="flex flex-col gap-3">
+        <Button
+          className={`${BTN_BRAND} w-full rounded-full`}
+          isPending={loading}
+          type="submit"
+        >
+          {submitLabel}
+        </Button>
+
+        <div className="flex flex-col gap-2.5 rounded-2xl border border-border bg-bg px-3.5 py-3">
+          <ul className="flex flex-wrap gap-2">
+            {['SSL-verschlüsselt', 'DSGVO-konform', 'Keine Weitergabe an Dritte'].map((label) => (
+              <li
+                key={label}
+                className="rounded-full border border-border bg-bg-card px-2.5 py-1 text-[11px] font-medium leading-none text-text-muted"
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs leading-relaxed text-text-muted">
+            Mit dem Absenden verpflichten Sie sich zu nichts. Erst nach der Analyse entscheiden
+            Sie, ob Sie beauftragen.
+          </p>
+        </div>
+      </div>
+
+      <p className="flex flex-col items-center gap-0.5 text-center text-sm leading-relaxed text-text-muted">
+        <span>Lieber direkt sprechen?</span>
+        <a
+          className="font-medium text-text underline-offset-2 transition-colors hover:text-accent hover:underline"
+          href={`tel:${SITE.phoneTel}`}
+        >
+          {SITE.phone}
+        </a>
+        <span>
+          Mo–Fr {formatOpeningHour(SITE.openingHours.opens)}–
+          {formatOpeningHour(SITE.openingHours.closes)} Uhr
+        </span>
+      </p>
     </form>
   );
 }

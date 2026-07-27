@@ -3,7 +3,7 @@
 import { Button, Modal, useOverlayState } from '@heroui/react';
 
 import AnfrageForm, { type AnfragePrefill } from '@/components/contact/AnfrageForm';
-import { BTN_BRAND, BTN_CALC_PAIR_PRIMARY } from '@/lib/button-styles';
+import { BTN_CALC_PAIR_PRIMARY } from '@/lib/button-styles';
 
 interface AnfrageFormModalProps {
   prefill?: AnfragePrefill;
@@ -53,7 +53,10 @@ export default function AnfrageFormModal({
               <AnfrageForm prefill={prefill} submitLabel="Angebot anfordern" />
             </Modal.Body>
             <Modal.Footer>
-              <Button className={`${BTN_BRAND} rounded-full`} onPress={handleClose}>
+              <Button
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-border bg-bg-card px-5 text-sm font-semibold text-text transition-colors hover:border-text-muted hover:bg-bg sm:min-h-12 sm:px-6 sm:text-base"
+                onPress={handleClose}
+              >
                 Schließen
               </Button>
             </Modal.Footer>
