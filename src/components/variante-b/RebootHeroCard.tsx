@@ -30,7 +30,7 @@ export default function RebootHeroCard(): React.JSX.Element {
     <div className="relative flex h-dvh min-h-dvh w-full flex-col overflow-hidden bg-white">
       <DataRecoveryBackground shape={shape} />
 
-      <RebootNavbar onAnfrage={anfrageState.open} />
+      <RebootNavbar />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center py-16 md:py-24">
         <RebootHeroContent onAnfrage={anfrageState.open} />

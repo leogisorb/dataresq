@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import RainbowCtaButton from '@/components/variante-b/RainbowCtaButton';
 import { VARIANTE_B_COPY } from '@/lib/variante-b';
 
@@ -30,9 +32,17 @@ export default function RebootHeroContent({
         {VARIANTE_B_COPY.subline}
       </p>
 
-      <RainbowCtaButton className="relative mt-10" onPress={onAnfrage}>
-        {VARIANTE_B_COPY.ctaLabel}
-      </RainbowCtaButton>
+      <div className="relative mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+        <RainbowCtaButton onPress={onAnfrage}>
+          {VARIANTE_B_COPY.ctaLabel}
+        </RainbowCtaButton>
+        <Link
+          className="inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full border border-[#111111]/15 bg-white/80 px-[35px] text-[17.5px] font-medium leading-[1.2] text-[#111111] backdrop-blur-sm transition-colors hover:border-[#111111]/35 hover:bg-white sm:w-auto"
+          href="/standort"
+        >
+          {VARIANTE_B_COPY.secondaryCtaLabel}
+        </Link>
+      </div>
     </div>
   );
 }

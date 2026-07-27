@@ -7,11 +7,7 @@ import { useState } from 'react';
 import { SITE } from '@/lib/constants';
 import { VARIANTE_B_COPY, VARIANTE_B_NAV } from '@/lib/variante-b';
 
-interface RebootNavbarProps {
-  onAnfrage: () => void;
-}
-
-export default function RebootNavbar({ onAnfrage }: RebootNavbarProps): React.JSX.Element {
+export default function RebootNavbar(): React.JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -74,14 +70,6 @@ export default function RebootNavbar({ onAnfrage }: RebootNavbarProps): React.JS
                 ].join(' ')}
               />
             </span>
-          </button>
-
-          <button
-            className="rounded-full bg-[#111111] px-5 py-2 text-[13px] font-medium text-white transition-opacity hover:opacity-85"
-            type="button"
-            onClick={onAnfrage}
-          >
-            {VARIANTE_B_COPY.navCtaLabel}
           </button>
         </div>
       </nav>

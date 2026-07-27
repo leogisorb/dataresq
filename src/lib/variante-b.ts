@@ -18,7 +18,7 @@ export const VARIANTE_B_COPY = {
   subline:
     'Professionelle Datenrettung für Festplatten, SSDs und Speicherkarten. Keine Daten – keine Kosten.',
   ctaLabel: 'Datenrettung anfragen',
-  navCtaLabel: 'Anfrage starten',
+  secondaryCtaLabel: 'Abgabestelle finden',
 } as const;
 
 export const VARIANTE_B_NAV: VarianteBNavItem[] = [

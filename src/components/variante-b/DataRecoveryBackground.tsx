@@ -75,7 +75,7 @@ export default function DataRecoveryBackground({
 
     let rafId = 0;
     let disposed = false;
-    let start = performance.now();
+    const start = performance.now();
     let lastDraw = 0;
 
     let targetX = -9999;
