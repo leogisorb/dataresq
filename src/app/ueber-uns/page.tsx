@@ -60,7 +60,7 @@ export default function UeberUnsPage() {
 
         <section className="border-t border-black/5 bg-bg-subtle py-12 md:border-t-0 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
-            <h2 className="text-2xl font-bold text-text md:text-3xl">Zertifikate & Partner</h2>
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Partner & Qualitätsversprechen</h2>
             <div className="mt-8">
               <CertificationGrid />
             </div>

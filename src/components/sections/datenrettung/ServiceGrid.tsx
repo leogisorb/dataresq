@@ -55,7 +55,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
     stats: [
       { value: '95%', label: 'Erfolgsquote' },
       { value: '899 – 1.799 €', label: 'Preisrahmen Standard' },
-      { value: DIAGNOSIS_FEE_FORMATTED, label: 'Analysepauschale' },
+      { value: DIAGNOSIS_FEE_FORMATTED, label: 'Kostenlose Analyse' },
     ],
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
   },

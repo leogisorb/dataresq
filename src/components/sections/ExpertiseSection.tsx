@@ -35,7 +35,7 @@ const CARDS: ExpertiseCardData[] = [
     badges: [
       { text: '95%', hint: 'Erfolgsquote' },
       { text: '899 – 1.799 €', hint: 'Preisrahmen Standard HDD/SSD' },
-      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Analysepauschale' },
+      { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Kostenlose Analyse' },
     ],
     features: [
       'Headcrash & mechanische Schäden',

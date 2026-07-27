@@ -1,9 +1,7 @@
 'use client';
 
-import { useOverlayState } from '@heroui/react';
 import { useEffect, useState } from 'react';
 
-import AnfrageFormModal from '@/components/contact/AnfrageFormModal';
 import AsciiThemeRail, {
   readStoredAsciiTheme,
 } from '@/components/variante-b/AsciiThemeRail';
@@ -16,7 +14,6 @@ import type { AsciiShapeId } from '@/lib/ascii-shapes';
 const DEFAULT_THEME: AsciiShapeId = 'folder';
 
 export default function RebootHeroCard(): React.JSX.Element {
-  const anfrageState = useOverlayState();
   const [shape, setShape] = useState<AsciiShapeId>(DEFAULT_THEME);
 
   useEffect(() => {
@@ -33,7 +30,7 @@ export default function RebootHeroCard(): React.JSX.Element {
       <RebootNavbar />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center py-16 md:py-24">
-        <RebootHeroContent onAnfrage={anfrageState.open} />
+        <RebootHeroContent />
       </div>
 
       <AsciiThemeRail value={shape} onChange={setShape} />
@@ -41,12 +38,6 @@ export default function RebootHeroCard(): React.JSX.Element {
       <div className="relative z-10 mt-auto w-full pt-10 md:pt-16">
         <RebootBrandBar />
       </div>
-
-      <AnfrageFormModal
-        hideTrigger
-        isOpen={anfrageState.isOpen}
-        onOpenChange={anfrageState.setOpen}
-      />
     </div>
   );
 }

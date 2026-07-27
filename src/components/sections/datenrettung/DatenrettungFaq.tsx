@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
-import { ANALYSIS_DURATION, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import {
+  ANALYSIS_DURATION,
+  DECLINED_RECOVERY_NOTE,
+  FAILED_RECOVERY_NOTE,
+  FREE_DIAGNOSIS_NOTE,
+} from '@/lib/constants';
 
 const faqItems = [
   {
@@ -26,7 +31,7 @@ const faqItems = [
   {
     id: 'pruefgebuehr',
     question: 'Was kostet die Analysepauschale?',
-    answer: `Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} deckt die Laboranalyse und Dateiliste. Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
+    answer: `${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
   },
   {
     id: 'sicherheit',
@@ -64,7 +69,7 @@ export default function DatenrettungFaq() {
                   <Link className="text-accent" href={CALCULATOR_PAGE_PATH}>
                     Preisrahmen-Rechner
                   </Link>
-                  .
+                  . {FAILED_RECOVERY_NOTE}
                 </>
               ) : item.id === 'sicherheit' ? (
                 <>

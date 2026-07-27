@@ -74,8 +74,8 @@ export interface ComparisonRow {
 export const comparisonRows: ComparisonRow[] = [
   {
     feature: 'Analysekosten',
-    rsqdata: `${DIAGNOSIS_FEE_FORMATTED} pauschal, bei Beauftragung voll verrechnet`,
-    industry: '„Kostenlos“ – dafür oft höhere Rettungspreise',
+    rsqdata: `${DIAGNOSIS_FEE_FORMATTED} — wirklich kostenlose Analyse inkl. Dateiliste`,
+    industry: 'Analysegebühr oder „kostenlos“ mit Aufschlag im Rettungspreis',
   },
   {
     feature: 'Preisangabe vor Einsendung',
@@ -84,7 +84,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Angebot',
-    rsqdata: 'Verbindlicher Festpreis mit Maximalpreis-Garantie',
+    rsqdata: 'Verbindlicher Festpreis vor Beauftragung',
     industry: 'Kostenvoranschlag, Nachberechnung möglich',
   },
   {
@@ -94,7 +94,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Keine Rettung',
-    rsqdata: `Nur ${DIAGNOSIS_FEE_FORMATTED} Analysepauschale`,
+    rsqdata: `${DIAGNOSIS_FEE_FORMATTED} — keine Kosten`,
     industry: 'Teils Bearbeitungs-/Rücksendegebühren',
   },
   {

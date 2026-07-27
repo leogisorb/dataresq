@@ -38,18 +38,28 @@ export const LAB_PARTNER_NOTE =
 export const LAB_PARTNER_NOTE_SHORT =
   `Laborpartner ${LAB_PARTNER.name} (UK)` as const;
 
-/** Analysepauschale für Laboranalyse inkl. Dateiliste */
-export const DIAGNOSIS_FEE = 79 as const;
+/** Laboranalyse inkl. Dateiliste — USP: kostenlos (0€) */
+export const DIAGNOSIS_FEE = 0 as const;
 export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
+
+export const FREE_DIAGNOSIS_BADGE = 'Kostenlose Analyse inkl. Dateiliste' as const;
+
+export const FREE_DIAGNOSIS_NOTE =
+  `Die Laboranalyse inklusive Dateiliste kostet bei uns ${DIAGNOSIS_FEE_FORMATTED} — ohne Analysepauschale.` as const;
+
+export const FREE_DIAGNOSIS_CAPTION = 'Analysepauschale — bei uns kostenlos' as const;
 
 /** Dauer der Laboranalyse bis Dateiliste und Angebot */
 export const ANALYSIS_DURATION = '48–72 h' as const;
 
-/** Bei erfolgloser Rettung: nur Analysepauschale, kein Rettungspreis */
+/** Bei erfolgloser Rettung: keine Kosten */
 export const FAILED_RECOVERY_NOTE =
-  `Können wir nichts retten, zahlen Sie nur die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED} — nicht den Rettungspreis.` as const;
+  'Können wir nichts retten, entstehen Ihnen keine Kosten — keinen Rettungspreis und keine Analysegebühr.' as const;
 
-export const FAILED_RECOVERY_BADGE = 'Keine Rettung = kein Rettungspreis' as const;
+export const FAILED_RECOVERY_BADGE = 'Keine Rettung = keine Kosten' as const;
+
+export const DECLINED_RECOVERY_NOTE =
+  'Entscheiden Sie sich gegen die Rettung, obwohl Daten rettbar sind, bleibt die Analyse kostenlos.' as const;
 
 export const BINDING_OFFER_BADGE = 'Verbindliches Angebot vor Beauftragung' as const;
 
@@ -57,13 +67,13 @@ export const HOME_META_TITLE =
   'Datenrettung für Festplatte, HDD, SSD & RAID' as const;
 
 export const HOME_META_DESCRIPTION =
-  `Datenrettung: HDD, SSD, RAID & NAS. Analyse für ${DIAGNOSIS_FEE_FORMATTED} – verbindliches Angebot vor Beauftragung. Keine Rettung = kein Rettungspreis.` as const;
+  `Datenrettung: HDD, SSD, RAID & NAS. Kostenlose Analyse (${DIAGNOSIS_FEE_FORMATTED}) – verbindliches Angebot vor Beauftragung. Keine Rettung = keine Kosten.` as const;
 
 export const HOME_WELCOME_TEXT =
-  `Festplatte klackert, SSD tot oder NAS „Volume degraded"? Keine weiteren Schreibzugriffe. RSQDATA rettet HDD, SSD, RAID & NAS — kostenlos per DHL Express oder Abgabe in Grevenbroich und Mönchengladbach. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, danach verbindliches Angebot und Dateiliste.` as const;
+  `Festplatte klackert, SSD tot oder NAS „Volume degraded"? Keine weiteren Schreibzugriffe. RSQDATA rettet HDD, SSD, RAID & NAS — kostenlos per DHL Express oder Abgabe in Grevenbroich und Mönchengladbach. Kostenlose Analyse inkl. Dateiliste, danach verbindliches Angebot.` as const;
 
 export const HOME_TRUST_ITEMS = [
-  `Analyse in ${ANALYSIS_DURATION}`,
+  FREE_DIAGNOSIS_BADGE,
   BINDING_OFFER_BADGE,
   FAILED_RECOVERY_BADGE,
 ] as const;

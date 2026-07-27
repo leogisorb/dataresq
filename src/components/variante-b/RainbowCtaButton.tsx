@@ -2,23 +2,25 @@
 
 import type { ReactNode } from 'react';
 
+import HashLink from '@/components/navigation/HashLink';
+
 interface RainbowCtaButtonProps {
   children: ReactNode;
-  onPress: () => void;
+  href: string;
   className?: string;
 }
 
 export default function RainbowCtaButton({
   children,
-  onPress,
+  href,
   className,
 }: RainbowCtaButtonProps): React.JSX.Element {
   return (
     <span className={['reboot-cta-wrap', className ?? ''].join(' ')}>
       <span aria-hidden className="reboot-cta-glow" />
-      <button className="reboot-cta" type="button" onClick={onPress}>
+      <HashLink className="reboot-cta" href={href}>
         {children}
-      </button>
+      </HashLink>
     </span>
   );
 }

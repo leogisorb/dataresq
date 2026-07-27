@@ -1,3 +1,5 @@
+import { FAILED_RECOVERY_BADGE } from '@/lib/constants';
+
 export interface VarianteBNavItem {
   label: string;
   href: string;
@@ -15,8 +17,7 @@ export const VARIANTE_B_COPY = {
   logoLabel: 'RSQDATA',
   headlineLine1: 'Wir retten',
   headlineLine2: 'Ihre Daten.',
-  subline:
-    'Professionelle Datenrettung für Festplatten, SSDs und Speicherkarten. Keine Daten – keine Kosten.',
+  subline: `Professionelle Datenrettung für Festplatten, SSDs und Speicherkarten. ${FAILED_RECOVERY_BADGE}.`,
   ctaLabel: 'Datenrettung anfragen',
   secondaryCtaLabel: 'Abgabestelle finden',
 } as const;

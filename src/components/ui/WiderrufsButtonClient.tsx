@@ -98,7 +98,7 @@ export default function WiderrufsButtonClient() {
                 </p>
               ) : (
                 <div className="flex flex-col gap-4">
-                  <p className="text-sm text-muted">
+                  <p className="text-sm text-text-muted">
                     Sie können hier Ihren Vertrag widerrufen.
                   </p>
 

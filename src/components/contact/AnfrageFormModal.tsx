@@ -47,7 +47,7 @@ export default function AnfrageFormModal({
               <Modal.Heading>Angebot anfordern</Modal.Heading>
             </Modal.Header>
             <Modal.Body>
-              <p className="mb-4 text-sm text-muted">
+              <p className="mb-4 text-sm text-text-muted">
                 Hinterlassen Sie Ihre Kontaktdaten — wir melden uns binnen 24 Stunden.
               </p>
               <AnfrageForm prefill={prefill} submitLabel="Angebot anfordern" />

@@ -3,15 +3,10 @@
 import Link from 'next/link';
 
 import RainbowCtaButton from '@/components/variante-b/RainbowCtaButton';
+import { CALCULATOR_SECTION_ID } from '@/lib/calculator-section';
 import { VARIANTE_B_COPY } from '@/lib/variante-b';
 
-interface RebootHeroContentProps {
-  onAnfrage: () => void;
-}
-
-export default function RebootHeroContent({
-  onAnfrage,
-}: RebootHeroContentProps): React.JSX.Element {
+export default function RebootHeroContent(): React.JSX.Element {
   return (
     <div className="relative z-10 mx-auto flex max-w-[800px] flex-col items-center px-6 text-center">
       <div
@@ -33,7 +28,7 @@ export default function RebootHeroContent({
       </p>
 
       <div className="relative mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
-        <RainbowCtaButton onPress={onAnfrage}>
+        <RainbowCtaButton href={`/#${CALCULATOR_SECTION_ID}`}>
           {VARIANTE_B_COPY.ctaLabel}
         </RainbowCtaButton>
         <Link

@@ -16,13 +16,16 @@ export async function POST(req: NextRequest) {
   }
 
   // Stub: loggt den Widerruf — kein echter E-Mail-Versand
-  console.log('[Widerruf registriert]', {
-    name: name.trim(),
-    auftragsnummer: auftragsnummer?.trim() || '—',
-    datum: datum?.trim() || '—',
-    begruendung: begruendung?.trim() || '—',
-    timestamp: new Date().toISOString(),
-  });
+  if (process.env.NODE_ENV === 'development') {
+    // dev only
+    console.log('[Widerruf registriert]', {
+      name: name.trim(),
+      auftragsnummer: auftragsnummer?.trim() || '—',
+      datum: datum?.trim() || '—',
+      begruendung: begruendung?.trim() || '—',
+      timestamp: new Date().toISOString(),
+    });
+  }
 
   return NextResponse.json({ success: true });
 }

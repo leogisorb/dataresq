@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import HashLink from '@/components/navigation/HashLink';
 
 import { CALCULATOR_SECTION_ID } from '@/lib/calculator-section';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, FREE_DIAGNOSIS_CAPTION } from '@/lib/constants';
 import { BTN_FEATURE_CTA_TILE } from '@/lib/button-styles';
 import { RESCUED_DATASETS } from '@/lib/team';
 
@@ -24,7 +24,7 @@ const statCards = [
   },
   {
     value: DIAGNOSIS_FEE_FORMATTED,
-    caption: 'Analysepauschale — bei Beauftragung verrechnet',
+    caption: FREE_DIAGNOSIS_CAPTION,
     gradient: 'linear-gradient(135deg, #0a1f12 0%, #0d4a2a 45%, #0a5540 100%)',
     glowColor: 'rgba(16,185,129,0.18)',
   },

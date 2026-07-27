@@ -1,4 +1,9 @@
-import { BINDING_OFFER_BADGE, DIAGNOSIS_FEE_FORMATTED, FAILED_RECOVERY_BADGE, SITE } from './constants';
+import {
+  BINDING_OFFER_BADGE,
+  FAILED_RECOVERY_BADGE,
+  FREE_DIAGNOSIS_BADGE,
+  SITE,
+} from './constants';
 import { CALCULATOR_PAGE_PATH } from './calculator-section';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
@@ -114,7 +119,7 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. Analyse für ${DIAGNOSIS_FEE_FORMATTED}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
+    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. ${FREE_DIAGNOSIS_BADGE}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
     url: siteConfig.url,
     email: SITE.email,
     priceRange: '€€',
@@ -177,7 +182,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
-      description: `Analysepauschale ${DIAGNOSIS_FEE_FORMATTED} — ${BINDING_OFFER_BADGE.toLowerCase()}, ${FAILED_RECOVERY_BADGE.toLowerCase()}.`,
+      description: `${FREE_DIAGNOSIS_BADGE} — ${BINDING_OFFER_BADGE.toLowerCase()}, ${FAILED_RECOVERY_BADGE.toLowerCase()}.`,
     },
   };
 }

@@ -1,9 +1,12 @@
 import {
   ANALYSIS_DURATION,
   BINDING_OFFER_BADGE,
+  DECLINED_RECOVERY_NOTE,
   DIAGNOSIS_FEE_FORMATTED,
   FAILED_RECOVERY_BADGE,
   FAILED_RECOVERY_NOTE,
+  FREE_DIAGNOSIS_BADGE,
+  FREE_DIAGNOSIS_NOTE,
   type DeviceKey,
 } from '@/lib/constants';
 
@@ -116,8 +119,8 @@ export const processSteps: ProcessStep[] = [
     step: 3,
     phase: 1,
     phaseLabel: 'Anfrage & Angebot',
-    title: 'Laboranalyse mit fairer Verrechnungs-Garantie',
-    description: `Nach Eingang dokumentieren wir den Zustand und starten die Laboranalyse — in der Regel ${ANALYSIS_DURATION}. Die anschließende Datenrettung dauert im Standard 3–5 Arbeitstage, Express 1–2 Arbeitstage, Notfall 24/7 bis Ihre Daten gerettet sind. Die Analysepauschale von ${DIAGNOSIS_FEE_FORMATTED}: Bei Beauftragung wird sie zu 100 % auf Ihren Festpreis angerechnet. ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. Entscheiden Sie sich gegen die Rettung, obwohl Daten rettbar sind, berechnen wir ${DIAGNOSIS_FEE_FORMATTED} als Aufwandspauschale.`,
+    title: 'Kostenlose Laboranalyse inkl. Dateiliste',
+    description: `Nach Eingang dokumentieren wir den Zustand und starten die Laboranalyse — in der Regel ${ANALYSIS_DURATION}. Die anschließende Datenrettung dauert im Standard 3–5 Arbeitstage, Express 1–2 Arbeitstage, Notfall 24/7 bis Ihre Daten gerettet sind. ${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. ${DECLINED_RECOVERY_NOTE}`,
   },
   {
     step: 4,
@@ -125,7 +128,7 @@ export const processSteps: ProcessStep[] = [
     phaseLabel: 'Rettung & Übergabe',
     title: 'Dateiliste der verfügbaren Daten & verbindliche Bestätigung',
     description:
-      'Sie erhalten Zugang zu Ihrem Kundenportal mit der vollständigen Dateiliste aller verfügbaren Daten — durchklickbar wie im Datei-Explorer. Dazu eine ehrliche Einschätzung und die verbindliche Festpreis-Bestätigung nach Laboranalyse, abzüglich der bereits angerechneten Analysepauschale. Keine Nachforderungen.',
+      'Sie erhalten Zugang zu Ihrem Kundenportal mit der vollständigen Dateiliste aller verfügbaren Daten — durchklickbar wie im Datei-Explorer. Dazu eine ehrliche Einschätzung und die verbindliche Festpreis-Bestätigung nach Laboranalyse. Keine Nachforderungen.',
   },
   {
     step: 5,
@@ -154,7 +157,7 @@ export const processSteps: ProcessStep[] = [
 ];
 
 export const trustMetrics = [
-  { value: DIAGNOSIS_FEE_FORMATTED, label: 'Analysepauschale' },
+  { value: DIAGNOSIS_FEE_FORMATTED, label: 'Kostenlose Analyse' },
   { value: ANALYSIS_DURATION, label: 'Laboranalyse' },
   { value: 'Verbindlich', label: 'Angebot vor Beauftragung' },
 ];
@@ -164,7 +167,7 @@ export const trustBadges = [
   'Kostenlose DHL Express-Abholung',
   'Kostenlose Rücksendung des Datenträgers',
   'Dateiliste vor dem Kauf',
-  'Analysepauschale wird voll verrechnet',
+  FREE_DIAGNOSIS_BADGE,
   FAILED_RECOVERY_BADGE,
   'DSGVO-konform',
 ];

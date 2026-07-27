@@ -62,7 +62,7 @@ function ThemeIcon({ id, active }: ThemeIconProps): React.JSX.Element {
       return (
         <svg aria-hidden className="size-3.5" viewBox="0 0 16 16">
           <path d="M2.5 5.2h3.2l1.2 1.3H13.5v6H2.5V5.2Z" {...common} />
-          <path d="M5 7.8h6v3.5H5V7.8Z" {...common} />
+          <path d="M3 7.4h10v5H3V7.4Z" {...common} />
         </svg>
       );
     case 'logo':
