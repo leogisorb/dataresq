@@ -9,14 +9,12 @@ import {
 } from '@/lib/calculator';
 import { BTN_CALC_PAIR_PRIMARY, BTN_CALC_PAIR_SECONDARY } from '@/lib/button-styles';
 import { calcCardClasses } from '@/components/calculator/calc-tile-styles';
-import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 import {
   DIAGNOSIS_FEE_FORMATTED,
-  FAILED_RECOVERY_BADGE,
-  FAILED_RECOVERY_NOTE,
   FREE_DIAGNOSIS_CAPTION,
-  FREE_DIAGNOSIS_NOTE,
+  NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
+import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 
 interface CalcStepResultProps {
   device: DeviceKey;
@@ -93,12 +91,8 @@ export default function CalcStepResult({
         </button>
       </div>
 
-      <p className="mt-4 text-center text-sm font-medium text-text">
-        {FAILED_RECOVERY_BADGE}
-      </p>
-
-      <p className="mt-6 text-sm text-text-dim">
-        {FREE_DIAGNOSIS_NOTE} {FAILED_RECOVERY_NOTE}
+      <p className="mt-6 text-center text-sm text-text-muted">
+        {NO_COST_GUARANTEE_NOTE}
       </p>
     </div>
   );

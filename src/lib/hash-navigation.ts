@@ -21,7 +21,7 @@ export function scrollToHash(
   const element = document.getElementById(id);
   if (!element) return;
 
-  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
   if (options?.updateHistory !== false) {
     window.history.pushState(

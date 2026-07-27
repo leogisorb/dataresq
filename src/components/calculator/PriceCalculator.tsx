@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   ArrowLeft,
@@ -79,11 +79,25 @@ interface PriceCalculatorProps {
 }
 
 export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState<Step>(1);
   const [device, setDevice] = useState<DeviceKey | null>(defaultDevice ?? null);
   const [damage, setDamage] = useState<DamageKey | null>(null);
   const [urgency, setUrgency] = useState<UrgencyKey | null>(null);
   const [returnMedium, setReturnMedium] = useState<ReturnMediumKey | null>(null);
+  const skipInitialCenter = useRef(true);
+
+  const centerCalculator = () => {
+    rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  useEffect(() => {
+    if (skipInitialCenter.current) {
+      skipInitialCenter.current = false;
+      return;
+    }
+    centerCalculator();
+  }, [step]);
 
   const priceEstimate = useMemo(() => {
     if (!device || !urgency || !returnMedium) return null;
@@ -144,7 +158,7 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
   };
 
   return (
-    <div className="relative w-full">
+    <div ref={rootRef} className="relative w-full">
       <CalcProgressBar step={step} />
 
       {step >= 2 && step < 5 && <CalcSummaryBar pills={summaryPills} />}
@@ -163,18 +177,40 @@ export default function PriceCalculator({ defaultDevice }: PriceCalculatorProps)
               setDamage(null);
               setUrgency(null);
               setReturnMedium(null);
+              centerCalculator();
             }}
           />
         )}
 
         {step === 2 && (
-          <CalcStepDamage device={device} selected={damage} onSelect={setDamage} />
+          <CalcStepDamage
+            device={device}
+            selected={damage}
+            onSelect={(value) => {
+              setDamage(value);
+              centerCalculator();
+            }}
+          />
         )}
 
-        {step === 3 && <CalcStepUrgency selected={urgency} onSelect={setUrgency} />}
+        {step === 3 && (
+          <CalcStepUrgency
+            selected={urgency}
+            onSelect={(value) => {
+              setUrgency(value);
+              centerCalculator();
+            }}
+          />
+        )}
 
         {step === 4 && (
-          <CalcStepReturnMedium selected={returnMedium} onSelect={setReturnMedium} />
+          <CalcStepReturnMedium
+            selected={returnMedium}
+            onSelect={(value) => {
+              setReturnMedium(value);
+              centerCalculator();
+            }}
+          />
         )}
 
         {step === 5 && device && damage && urgency && returnMedium && priceEstimate && (

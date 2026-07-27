@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
-import { FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 
 export default function DatenrettungFaq() {
@@ -30,7 +30,7 @@ export default function DatenrettungFaq() {
                   <Link className="text-accent" href={CALCULATOR_PAGE_PATH}>
                     Preisrahmen-Rechner
                   </Link>
-                  . {FAILED_RECOVERY_NOTE}
+                  . {NO_COST_GUARANTEE_NOTE}
                 </>
               ) : item.id === 'sicherheit' ? (
                 <>

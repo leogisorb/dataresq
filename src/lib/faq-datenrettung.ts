@@ -2,9 +2,8 @@ import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
 import {
   ANALYSIS_DURATION,
   DECLINED_RECOVERY_NOTE,
-  FAILED_RECOVERY_NOTE,
-  FREE_DIAGNOSIS_NOTE,
   LAB_PARTNER_NOTE,
+  NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
 
 export interface DatenrettungFaqItem {
@@ -34,12 +33,12 @@ export const datenrettungFaqs: DatenrettungFaqItem[] = [
   {
     id: 'kosten',
     question: 'Was kostet eine Datenrettung?',
-    answer: `Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.149 – 2.049 € · Flash Standard 699 – 999 €, Express 949 – 1.249 € · RAID / NAS / Server individuell · Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen Sie unseren Preisrahmen-Rechner unter ${CALCULATOR_PAGE_PATH}. ${FAILED_RECOVERY_NOTE}`,
+    answer: `Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.149 – 2.049 € · Flash Standard 699 – 999 €, Express 949 – 1.249 € · RAID / NAS / Server individuell · Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen Sie unseren Preisrahmen-Rechner unter ${CALCULATOR_PAGE_PATH}. ${NO_COST_GUARANTEE_NOTE}`,
   },
   {
     id: 'pruefgebuehr',
     question: 'Was kostet die Analysepauschale?',
-    answer: `${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
+    answer: `${NO_COST_GUARANTEE_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
   },
   {
     id: 'sicherheit',

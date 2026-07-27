@@ -1,8 +1,7 @@
 import {
   ANALYSIS_DURATION,
   DECLINED_RECOVERY_NOTE,
-  FAILED_RECOVERY_NOTE,
-  FREE_DIAGNOSIS_NOTE,
+  NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
 
 export interface FaqItem {
@@ -18,7 +17,7 @@ export const calculatorFaqs: FaqItem[] = [
   },
   {
     question: 'Was passiert nach der Analyse?',
-    answer: `Sie erhalten Dateiliste und verbindliches Angebot. ${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
+    answer: `Sie erhalten Dateiliste und verbindliches Angebot. ${NO_COST_GUARANTEE_NOTE} Rückversand ist kostenlos.`,
   },
   {
     question: 'Wie lange dauert die Laboranalyse?',
@@ -31,7 +30,7 @@ export const calculatorFaqs: FaqItem[] = [
   },
   {
     question: 'Was kostet die Analysepauschale?',
-    answer: `${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
+    answer: `${NO_COST_GUARANTEE_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
   },
   {
     question: 'Gilt der Preis auch für RAID-Systeme?',

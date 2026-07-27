@@ -11,7 +11,7 @@ import RebootHeroContent from '@/components/variante-b/RebootHeroContent';
 import RebootNavbar from '@/components/variante-b/RebootNavbar';
 import type { AsciiShapeId } from '@/lib/ascii-shapes';
 
-const DEFAULT_THEME: AsciiShapeId = 'folder';
+const DEFAULT_THEME: AsciiShapeId = 'logo';
 
 export default function RebootHeroCard(): React.JSX.Element {
   const [shape, setShape] = useState<AsciiShapeId>(DEFAULT_THEME);

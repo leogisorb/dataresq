@@ -5,7 +5,7 @@ import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSecti
 import ProcessTimeline from '@/components/sections/datenrettung/ProcessTimeline';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
-import { DATENRETTUNG_META_DESCRIPTION, FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { DATENRETTUNG_META_DESCRIPTION, NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import {
   PAGE_HERO_HEADING,
@@ -70,7 +70,7 @@ export default function DatenrettungPage() {
             </p>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted md:text-lg">
               Sie kennen den Preis, bevor Sie uns Ihren Datenträger anvertrauen. Sie sehen Ihre
-              Dateien, bevor Sie beauftragen. {FAILED_RECOVERY_NOTE} Über {RESCUED_DATASETS}{' '}
+              Dateien, bevor Sie beauftragen. {NO_COST_GUARANTEE_NOTE} Über {RESCUED_DATASETS}{' '}
               gerettete Datensätze.
             </p>
           </div>

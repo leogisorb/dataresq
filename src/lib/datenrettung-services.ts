@@ -4,9 +4,8 @@ import {
   DECLINED_RECOVERY_NOTE,
   DIAGNOSIS_FEE_FORMATTED,
   FAILED_RECOVERY_BADGE,
-  FAILED_RECOVERY_NOTE,
   FREE_DIAGNOSIS_BADGE,
-  FREE_DIAGNOSIS_NOTE,
+  NO_COST_GUARANTEE_NOTE,
   type DeviceKey,
 } from '@/lib/constants';
 
@@ -120,7 +119,7 @@ export const processSteps: ProcessStep[] = [
     phase: 1,
     phaseLabel: 'Anfrage & Angebot',
     title: 'Kostenlose Laboranalyse inkl. Dateiliste',
-    description: `Nach Eingang dokumentieren wir den Zustand und starten die Laboranalyse — in der Regel ${ANALYSIS_DURATION}. Die anschließende Datenrettung dauert im Standard 3–5 Arbeitstage, Express 1–2 Arbeitstage, Notfall 24/7 bis Ihre Daten gerettet sind. ${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. ${DECLINED_RECOVERY_NOTE}`,
+    description: `Nach Eingang dokumentieren wir den Zustand und starten die Laboranalyse — in der Regel ${ANALYSIS_DURATION}. Die anschließende Datenrettung dauert im Standard 3–5 Arbeitstage, Express 1–2 Arbeitstage, Notfall 24/7 bis Ihre Daten gerettet sind. ${NO_COST_GUARANTEE_NOTE} Rückversand ist kostenlos. ${DECLINED_RECOVERY_NOTE}`,
   },
   {
     step: 4,

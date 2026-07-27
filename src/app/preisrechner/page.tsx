@@ -8,7 +8,7 @@ import {
   CALCULATOR_PAGE_PATH,
   CALCULATOR_SUBHEADING,
 } from '@/lib/calculator-section';
-import { FAILED_RECOVERY_NOTE, FREE_DIAGNOSIS_NOTE } from '@/lib/constants';
+import { NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
@@ -26,7 +26,7 @@ const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Preisrechner — Datenrettungskosten berechnen',
-  description: `Kostenloser Preisrechner für Datenrettung: HDD, SSD, RAID, USB, Smartphone, Notebook & PC. ${FREE_DIAGNOSIS_NOTE} Verbindliches Angebot nach Laboranalyse. ${FAILED_RECOVERY_NOTE}`,
+  description: `Kostenloser Preisrechner für Datenrettung: HDD, SSD, RAID, USB, Smartphone, Notebook & PC. ${NO_COST_GUARANTEE_NOTE} Verbindliches Angebot nach Laboranalyse.`,
   path: CALCULATOR_PAGE_PATH,
 });
 

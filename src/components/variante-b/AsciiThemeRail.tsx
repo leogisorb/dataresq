@@ -97,7 +97,7 @@ function ThemeIcon({ id, active }: ThemeIconProps): React.JSX.Element {
   }
 }
 
-const STORAGE_KEY = 'rsq-ascii-theme';
+const STORAGE_KEY = 'rsq-ascii-theme-v2';
 
 export function readStoredAsciiTheme(): AsciiShapeId | null {
   if (typeof window === 'undefined') {

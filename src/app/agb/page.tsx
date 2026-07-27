@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import LegalPageLayout from '@/components/layout/LegalPageLayout';
-import { FAILED_RECOVERY_NOTE, FREE_DIAGNOSIS_NOTE } from '@/lib/constants';
+import { NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
 import { createLegalMetadata } from '@/lib/legal-metadata';
 
 export const metadata: Metadata = createLegalMetadata({
@@ -29,8 +29,8 @@ export default function AgbPage() {
       <h2>§ 2 Leistungsumfang</h2>
       <p>
         Leistungen umfassen Laboranalyse, Datenrettung und Rückversand des Datenträgers. Es wird
-        kein Erfolg der Datenrettung garantiert. {FREE_DIAGNOSIS_NOTE}{' '}
-        {FAILED_RECOVERY_NOTE} Rückversand ist kostenlos. Die Datenrettung erfolgt zum vereinbarten
+        kein Erfolg der Datenrettung garantiert. {NO_COST_GUARANTEE_NOTE} Rückversand ist
+        kostenlos. Die Datenrettung erfolgt zum vereinbarten
         Festpreis nach Beauftragung im Kundenportal.
       </p>
 

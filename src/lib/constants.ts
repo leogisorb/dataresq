@@ -44,19 +44,19 @@ export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
 
 export const FREE_DIAGNOSIS_BADGE = 'Kostenlose Analyse inkl. Dateiliste' as const;
 
-export const FREE_DIAGNOSIS_NOTE =
-  `Die Laboranalyse inklusive Dateiliste kostet bei uns ${DIAGNOSIS_FEE_FORMATTED} — ohne Analysepauschale.` as const;
-
 export const FREE_DIAGNOSIS_CAPTION = 'Analysepauschale — bei uns kostenlos' as const;
 
 /** Dauer der Laboranalyse bis Dateiliste und Angebot */
 export const ANALYSIS_DURATION = '48–72 h' as const;
 
-/** Bei erfolgloser Rettung: keine Kosten */
-export const FAILED_RECOVERY_NOTE =
-  'Können wir nichts retten, entstehen Ihnen keine Kosten — keinen Rettungspreis und keine Analysegebühr.' as const;
-
+/** Kurzform für Hero / Trust-Pills */
 export const FAILED_RECOVERY_BADGE = 'Keine Rettung = keine Kosten' as const;
+
+/**
+ * Einheitliche Kosten-Garantie: kostenlose Analyse + keine Rettung = keine Kosten.
+ */
+export const NO_COST_GUARANTEE_NOTE =
+  `Keine Rettung = keine Kosten — die Laboranalyse inklusive Dateiliste kostet bei uns ${DIAGNOSIS_FEE_FORMATTED} (ohne Analysepauschale). Können wir nichts retten, zahlen Sie weder Rettungspreis noch Analysegebühr.` as const;
 
 export const DECLINED_RECOVERY_NOTE =
   'Entscheiden Sie sich gegen die Rettung, obwohl Daten rettbar sind, bleibt die Analyse kostenlos.' as const;

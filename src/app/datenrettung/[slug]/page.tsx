@@ -11,8 +11,7 @@ import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
 import {
   BINDING_OFFER_BADGE,
-  FAILED_RECOVERY_NOTE,
-  FREE_DIAGNOSIS_NOTE,
+  NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/metadata';
@@ -92,7 +91,7 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               {service.description}
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-              {FREE_DIAGNOSIS_NOTE} {BINDING_OFFER_BADGE} — {FAILED_RECOVERY_NOTE}
+              {NO_COST_GUARANTEE_NOTE} {BINDING_OFFER_BADGE}.
             </p>
             <div className="mt-8">
               <DatenrettungCta layout="row" />
