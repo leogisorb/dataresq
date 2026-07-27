@@ -16,7 +16,7 @@ export const ABOUT_STORY_HEADLINE_ACCENT = 'heute aus Köln.' as const;
 export const ABOUT_STORY_HEADLINE =
   `${ABOUT_STORY_HEADLINE_LEAD} ${ABOUT_STORY_HEADLINE_ACCENT}` as const;
 
-export const ABOUT_STORY_IMAGE = '/images/ueber-uns/hdd-hand.png' as const;
+export const ABOUT_STORY_IMAGE = '/images/ueber-uns/hdd-hand.webp' as const;
 
 export const ABOUT_STORY_IMAGE_ALT =
   'Offene Festplatte in den Händen — professionelle Datenrettung' as const;

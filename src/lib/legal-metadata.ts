@@ -20,7 +20,7 @@ export function createLegalMetadata({
     description,
     robots: {
       index,
-      follow: false,
+      follow: true,
     },
     alternates: {
       canonical: `${siteConfig.url}${path}`,

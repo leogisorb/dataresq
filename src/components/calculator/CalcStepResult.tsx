@@ -12,6 +12,7 @@ import { calcCardClasses } from '@/components/calculator/calc-tile-styles';
 import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/constants';
 import {
   DIAGNOSIS_FEE_FORMATTED,
+  FAILED_RECOVERY_BADGE,
   FAILED_RECOVERY_NOTE,
   FREE_DIAGNOSIS_CAPTION,
   FREE_DIAGNOSIS_NOTE,
@@ -91,6 +92,10 @@ export default function CalcStepResult({
           Neu berechnen
         </button>
       </div>
+
+      <p className="mt-4 text-center text-sm font-medium text-text">
+        {FAILED_RECOVERY_BADGE}
+      </p>
 
       <p className="mt-6 text-sm text-text-dim">
         {FREE_DIAGNOSIS_NOTE} {FAILED_RECOVERY_NOTE}

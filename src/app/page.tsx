@@ -10,7 +10,6 @@ import { HOME_META_DESCRIPTION, HOME_META_TITLE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import {
   generateCalculatorServiceJsonLd,
-  generateFaqPageJsonLd,
   generateLocalBusinessJsonLd,
   generateWebSiteJsonLd,
 } from '@/lib/structured-data';
@@ -41,7 +40,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const localBusinessJsonLd = generateLocalBusinessJsonLd();
   const calculatorServiceJsonLd = generateCalculatorServiceJsonLd();
-  const faqJsonLd = generateFaqPageJsonLd(calculatorFaqs);
   const webSiteJsonLd = generateWebSiteJsonLd();
 
   return (
@@ -53,10 +51,6 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorServiceJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <script
         type="application/ld+json"

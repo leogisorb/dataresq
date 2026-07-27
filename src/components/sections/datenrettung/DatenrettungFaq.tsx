@@ -4,52 +4,13 @@ import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
-import {
-  ANALYSIS_DURATION,
-  DECLINED_RECOVERY_NOTE,
-  FAILED_RECOVERY_NOTE,
-  FREE_DIAGNOSIS_NOTE,
-} from '@/lib/constants';
-
-const faqItems = [
-  {
-    id: 'analyse-dauer',
-    question: 'Wie lange dauert die Laboranalyse?',
-    answer: `Die technische Analyse inklusive Dateiliste dauert in der Regel ${ANALYSIS_DURATION} nach Eingang Ihres Datenträgers. Danach erhalten Sie ein verbindliches Angebot.`,
-  },
-  {
-    id: 'dauer',
-    question: 'Wie lange dauert eine Datenrettung?',
-    answer:
-      'Standard: 3–5 Arbeitstage nach Eingang. Express: 1–2 Arbeitstage nach Eingang. Notfall: 24/7-Bearbeitung bis Ihre Daten gerettet sind — auf Anfrage.',
-  },
-  {
-    id: 'kosten',
-    question: 'Was kostet eine Datenrettung?',
-    answer: null,
-  },
-  {
-    id: 'pruefgebuehr',
-    question: 'Was kostet die Analysepauschale?',
-    answer: `${FREE_DIAGNOSIS_NOTE} ${FAILED_RECOVERY_NOTE} ${DECLINED_RECOVERY_NOTE} Rückversand ist kostenlos.`,
-  },
-  {
-    id: 'sicherheit',
-    question: 'Sind meine Daten bei Ihnen sicher?',
-    answer: null,
-  },
-  {
-    id: 'medien',
-    question: 'Welche Medien können Sie retten?',
-    answer:
-      'Festplatten (2,5" und 3,5"), SSDs (SATA, NVMe, M.2), RAID-Arrays, NAS-Systeme, USB-Sticks, SD-Karten und Smartphones.',
-  },
-];
+import { FAILED_RECOVERY_NOTE } from '@/lib/constants';
+import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 
 export default function DatenrettungFaq() {
   return (
     <Accordion className="w-full" variant="surface">
-      {faqItems.map((item) => (
+      {datenrettungFaqs.map((item) => (
         <Accordion.Item key={item.id} id={item.id}>
           <Accordion.Heading>
             <Accordion.Trigger>

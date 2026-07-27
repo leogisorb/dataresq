@@ -37,6 +37,10 @@ export default function RebootHeroContent(): React.JSX.Element {
           {VARIANTE_B_COPY.secondaryCtaLabel}
         </Link>
       </div>
+
+      <p className="relative mt-5 text-sm font-medium text-[#111111] md:text-[15px]">
+        {VARIANTE_B_COPY.trustBadge}
+      </p>
     </div>
   );
 }

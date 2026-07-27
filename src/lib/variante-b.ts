@@ -1,4 +1,4 @@
-import { FAILED_RECOVERY_BADGE } from '@/lib/constants';
+import { FREE_DIAGNOSIS_BADGE, FAILED_RECOVERY_BADGE } from '@/lib/constants';
 
 export interface VarianteBNavItem {
   label: string;
@@ -17,9 +17,11 @@ export const VARIANTE_B_COPY = {
   logoLabel: 'RSQDATA',
   headlineLine1: 'Wir retten',
   headlineLine2: 'Ihre Daten.',
-  subline: `Professionelle Datenrettung für Festplatten, SSDs und Speicherkarten. ${FAILED_RECOVERY_BADGE}.`,
+  /** Hero subline — top-intent media + free diagnosis USP (NAS with RAID; phone/USB on cluster pages) */
+  subline: `Datenrettung für Festplatte, SSD, RAID & NAS. ${FREE_DIAGNOSIS_BADGE}.`,
   ctaLabel: 'Datenrettung anfragen',
   secondaryCtaLabel: 'Abgabestelle finden',
+  trustBadge: FAILED_RECOVERY_BADGE,
 } as const;
 
 export const VARIANTE_B_NAV: VarianteBNavItem[] = [

@@ -7,7 +7,7 @@ import {
 import { CALCULATOR_PAGE_PATH } from './calculator-section';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
-import { siteConfig } from './metadata';
+import { siteConfig, OG_IMAGE } from './metadata';
 import { FOUNDING_YEAR, TEAM } from './team';
 
 export interface OrganizationSchema {
@@ -42,6 +42,9 @@ export interface OrganizationJsonLdSchema {
   name: string;
   url: string;
   email: string;
+  telephone: string;
+  logo: string;
+  image: string;
   foundingDate: string;
   employee: Array<{
     '@type': 'Person';
@@ -57,6 +60,9 @@ export function generateOrganizationJsonLd(): OrganizationJsonLdSchema {
     name: siteConfig.name,
     url: siteConfig.url,
     email: SITE.email,
+    telephone: SITE.phone,
+    logo: `${siteConfig.url}/images/logo_2.svg`,
+    image: `${siteConfig.url}${OG_IMAGE.url}`,
     foundingDate: String(FOUNDING_YEAR),
     employee: TEAM.map((member) => ({
       '@type': 'Person',
@@ -93,6 +99,9 @@ export interface LocalBusinessSchema {
   description: string;
   url: string;
   email: string;
+  telephone: string;
+  image: string;
+  logo: string;
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -122,6 +131,9 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
     description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. ${FREE_DIAGNOSIS_BADGE}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
     url: siteConfig.url,
     email: SITE.email,
+    telephone: SITE.phone,
+    image: `${siteConfig.url}${OG_IMAGE.url}`,
+    logo: `${siteConfig.url}/images/logo_2.svg`,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
@@ -382,6 +394,9 @@ export interface LocalBusinessLocationSchema {
   '@type': 'LocalBusiness';
   name: string;
   url: string;
+  telephone: string;
+  email: string;
+  image: string;
   areaServed: string[];
   geo: {
     '@type': 'GeoCoordinates';
@@ -394,6 +409,11 @@ export interface LocalBusinessLocationSchema {
     addressRegion: string;
     addressCountry: string;
   };
+  parentOrganization: {
+    '@type': 'Organization';
+    name: string;
+    url: string;
+  };
 }
 
 export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusinessLocationSchema {
@@ -402,6 +422,9 @@ export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusines
     '@type': 'LocalBusiness',
     name: `${siteConfig.name} ${loc.name}`,
     url: `${siteConfig.url}/standort/${loc.slug}`,
+    telephone: SITE.phone,
+    email: SITE.email,
+    image: `${siteConfig.url}${OG_IMAGE.url}`,
     areaServed: [loc.name, ...loc.nearbyAreas],
     geo: {
       '@type': 'GeoCoordinates',
@@ -413,6 +436,11 @@ export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusines
       addressLocality: loc.name,
       addressRegion: loc.region,
       addressCountry: 'DE',
+    },
+    parentOrganization: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
     },
   };
 }

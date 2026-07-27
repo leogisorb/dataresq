@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: StandortPageProps): Promise<M
   }
 
   return createContentMetadata({
-    title: `${getLocationPageTitle(loc)} — RSQDATA`,
+    title: getLocationPageTitle(loc),
     description: getLocationMetaDescription(loc),
     path: `/standort/${loc.slug}`,
   });
