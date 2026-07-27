@@ -2,8 +2,7 @@
 
 import { useEffect, useState, type ReactElement } from 'react';
 
-const HERO_LINES = ['Daten verloren.', 'Wir holen sie zurück.'] as const;
-const HERO_LINE = HERO_LINES.join('\n');
+const DEFAULT_LINES = ['Daten verloren.', 'Wir holen sie zurück.'] as const;
 
 const GLYPHS =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%&*+?/<>@';
@@ -15,6 +14,14 @@ const INITIAL_REVEALED = 0;
 interface GlyphCell {
   char: string;
   resolved: boolean;
+}
+
+interface HeroDecryptHeadlineProps {
+  lines?: readonly string[];
+  className?: string;
+  /** Classes for each resolved line (index-aligned) */
+  resolvedLineClassNames?: readonly string[];
+  scrambledClassName?: string;
 }
 
 function randomGlyph(): string {
@@ -33,21 +40,31 @@ function scrambleLine(target: string, revealedInLine: number): GlyphCell[] {
   });
 }
 
-function renderCells(cells: GlyphCell[]): ReactElement[] {
+function renderCells(
+  cells: GlyphCell[],
+  resolvedClassName: string,
+  scrambledClassName: string,
+): ReactElement[] {
   return cells.map((cell, index) => (
     <span
       key={index}
-      className={cell.resolved ? 'text-text' : 'text-[#c7c7cc]'}
+      className={cell.resolved ? resolvedClassName : scrambledClassName}
     >
       {cell.char}
     </span>
   ));
 }
 
-export default function HeroDecryptHeadline() {
+export default function HeroDecryptHeadline({
+  lines = DEFAULT_LINES,
+  className = 'mb-3 text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-text md:mb-6 md:text-6xl md:leading-[1.05] lg:text-7xl',
+  resolvedLineClassNames,
+  scrambledClassName = 'text-[#c7c7cc]',
+}: HeroDecryptHeadlineProps): React.JSX.Element {
   const [revealed, setRevealed] = useState(INITIAL_REVEALED);
   const [done, setDone] = useState(false);
-  const total = HERO_LINE.replace('\n', '').length;
+  const joined = lines.join('');
+  const total = joined.length;
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -84,21 +101,19 @@ export default function HeroDecryptHeadline() {
   let consumed = 0;
 
   return (
-    <h1
-      aria-label={HERO_LINES.join(' ')}
-      className="mb-3 text-[1.85rem] font-semibold leading-[1.1] tracking-tight text-text md:mb-6 md:text-6xl md:leading-[1.05] lg:text-7xl"
-    >
+    <h1 aria-label={lines.join(' ')} className={className}>
       <span aria-hidden={!done} className="flex flex-col gap-0">
-        {HERO_LINES.map((line) => {
-          const lineStart = consumed;
+        {lines.map((line, lineIndex) => {
           const lineLen = line.length;
+          const revealedInLine = Math.max(0, Math.min(lineLen, revealed - consumed));
           consumed += lineLen;
-          const revealedInLine = Math.max(0, Math.min(lineLen, revealed - lineStart));
           const cells = scrambleLine(line, revealedInLine);
+          const resolvedClass =
+            resolvedLineClassNames?.[lineIndex] ?? 'text-text';
 
           return (
-            <span key={line} className="block overflow-hidden whitespace-nowrap">
-              {renderCells(cells)}
+            <span key={`${lineIndex}-${line}`} className="block overflow-hidden whitespace-nowrap">
+              {renderCells(cells, resolvedClass, scrambledClassName)}
             </span>
           );
         })}

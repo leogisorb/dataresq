@@ -1,7 +1,7 @@
-import StandortLocationCard from '@/components/standort/StandortLocationCard';
+import StandortStack from '@/components/standort/StandortStack';
 import { getIambulanzLocations } from '@/lib/locations';
 
-export default function IambulanzPartnerSection() {
+export default function IambulanzPartnerSection(): React.JSX.Element {
   const locations = getIambulanzLocations();
 
   return (
@@ -14,11 +14,7 @@ export default function IambulanzPartnerSection() {
         Kundenbetreuung und dokumentiertem Übergabeprotokoll.
       </p>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-        {locations.map((location) => (
-          <StandortLocationCard key={location.slug} location={location} />
-        ))}
-      </div>
+      <StandortStack locations={locations} />
     </div>
   );
 }

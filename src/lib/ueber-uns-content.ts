@@ -7,18 +7,55 @@ import {
 
 export type CertificationIconKey = 'microscope' | 'shield' | 'handshake';
 
+export const ABOUT_STORY_HEADLINE_LEAD =
+  'Seit 2013 begleiten wir Sie bei Datenverlust —' as const;
+
+export const ABOUT_STORY_HEADLINE_ACCENT = 'heute aus Köln.' as const;
+
+/** Full headline — for metadata / plain-text contexts */
 export const ABOUT_STORY_HEADLINE =
-  'Seit 2013 begleiten wir Sie bei Datenverlust — heute aus Köln.' as const;
+  `${ABOUT_STORY_HEADLINE_LEAD} ${ABOUT_STORY_HEADLINE_ACCENT}` as const;
 
 export const ABOUT_STORY_IMAGE = '/images/ueber-uns/hdd-hand.png' as const;
 
 export const ABOUT_STORY_IMAGE_ALT =
   'Offene Festplatte in den Händen — professionelle Datenrettung' as const;
 
-export const aboutStoryParagraphs: readonly string[] = [
-  '2013 haben wir in Grevenbroich angefangen — mit Handy-Reparatur, Displays und Akkus. Schnell kamen Fälle dazu, bei denen es nicht nur ums Gerät ging, sondern um die Daten darauf.',
-  'Heute ist RSQDATA Ihr Ansprechpartner in Deutschland: Annahme, Beratung, Analyse-Koordination und verbindliches Angebot — aus unserem Büro in Köln. Persönliche Abgabe geht auch an unseren Partner iAmbulanz in Grevenbroich und Mönchengladbach.',
-  'Für Sie ändert sich der Ablauf nicht: Sie senden Ihr Medium ein oder geben es ab, erhalten nach der Analyse Dateiliste und Angebot — und entscheiden erst dann.',
+export const ABOUT_STORY_IMAGE_TILE = {
+  eyebrow: 'RSQDATA',
+  title: 'Von der Werkstatt zum Labor',
+  subtitle: 'Von Grevenbroich nach Köln',
+} as const;
+
+export type AboutStoryIconKey = 'history' | 'building' | 'route';
+
+export interface AboutStoryTile {
+  headline: string;
+  icon: AboutStoryIconKey;
+  body: string;
+  /** Tailwind text color — RSQ palette, no green */
+  accentClass: string;
+}
+
+export const aboutStoryTiles: readonly AboutStoryTile[] = [
+  {
+    headline: '2013',
+    icon: 'history',
+    accentClass: 'text-chevron-1',
+    body: '2013 haben wir in Grevenbroich angefangen — mit Handy-Reparatur, Displays und Akkus. Schnell kamen Fälle dazu, bei denen es nicht nur ums Gerät ging, sondern um die Daten darauf.',
+  },
+  {
+    headline: 'Heute',
+    icon: 'building',
+    accentClass: 'text-chevron-2',
+    body: 'Heute ist RSQDATA Ihr Ansprechpartner in Deutschland: Annahme, Beratung, Analyse-Koordination und verbindliches Angebot — aus unserem Büro in Köln. Persönliche Abgabe geht auch an unseren Partner iAmbulanz in Grevenbroich und Mönchengladbach.',
+  },
+  {
+    headline: 'Ablauf',
+    icon: 'route',
+    accentClass: 'text-chevron-4',
+    body: 'Für Sie ändert sich der Ablauf nicht: Sie senden Ihr Medium ein oder geben es ab, erhalten nach der Analyse Dateiliste und Angebot — und entscheiden erst dann.',
+  },
 ];
 
 export const labPartnerBullets: readonly string[] = [

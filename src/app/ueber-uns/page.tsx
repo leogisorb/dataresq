@@ -11,7 +11,7 @@ import {
   generateBreadcrumbJsonLd,
   generateOrganizationJsonLd,
 } from '@/lib/structured-data';
-import { ABOUT_STORY_HEADLINE } from '@/lib/ueber-uns-content';
+import { ABOUT_STORY_HEADLINE_ACCENT, ABOUT_STORY_HEADLINE_LEAD } from '@/lib/ueber-uns-content';
 
 export const metadata: Metadata = createContentMetadata({
   title: 'Über uns — Von der Werkstatt zum Labor',
@@ -48,7 +48,10 @@ export default function UeberUnsPage() {
               ]}
             />
 
-            <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">{ABOUT_STORY_HEADLINE}</h1>
+            <h1 className="ml-auto max-w-4xl text-right text-4xl font-bold leading-tight md:text-[2.8125rem] lg:text-6xl">
+              {ABOUT_STORY_HEADLINE_LEAD}{' '}
+              <span className="text-accent">{ABOUT_STORY_HEADLINE_ACCENT}</span>
+            </h1>
           </div>
         </section>
 
