@@ -1,5 +1,6 @@
 /**
  * Builds a soft density mask from the RSQDATA wordmark for ASCII sampling.
+ * Scales + tracks the wordmark to fill most of the hero width (ultrawide-safe).
  * Call again after resize (cols/rows change).
  */
 export function buildRsqLogoMask(cols: number, rows: number): Float32Array<ArrayBuffer> {
@@ -19,29 +20,58 @@ export function buildRsqLogoMask(cols: number, rows: number): Float32Array<Array
   ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, cols, rows);
 
-  // ~25% of canvas height (scaled +25% with hero content)
-  const fontSize = Math.max(25, Math.floor(rows * 0.25));
+  const label = 'RSQDATA';
+  const targetWidth = cols * 0.92;
+  const maxFont = Math.floor(rows * 0.52);
+  const minFont = 25;
+
+  const applyFont = (size: number): void => {
+    ctx.font = `800 ${size}px Inter, ui-sans-serif, system-ui, sans-serif`;
+  };
+
+  const measureGlyphWidths = (size: number): number[] => {
+    applyFont(size);
+    return label.split('').map((ch) => ctx.measureText(ch).width);
+  };
+
+  // Fit font to width first, then clamp to height so letters stay in frame
+  let fontSize = Math.max(minFont, Math.floor(rows * 0.28));
+  let widths = measureGlyphWidths(fontSize);
+  let baseGap = Math.max(2, Math.floor(fontSize * 0.08));
+  let total =
+    widths.reduce((sum, w) => sum + w, 0) + baseGap * Math.max(0, label.length - 1);
+
+  if (total > 0) {
+    fontSize = Math.floor(fontSize * (targetWidth / total));
+  }
+  fontSize = Math.min(Math.max(fontSize, minFont), maxFont);
+
+  widths = measureGlyphWidths(fontSize);
+  const glyphsWidth = widths.reduce((sum, w) => sum + w, 0);
+  // Extra tracking on wide canvases so the wordmark still spans the hero
+  const gapSlots = Math.max(1, label.length - 1);
+  const gap = Math.max(
+    Math.floor(fontSize * 0.06),
+    Math.floor((targetWidth - glyphsWidth) / gapSlots),
+  );
+
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = `800 ${fontSize}px Inter, ui-sans-serif, system-ui, sans-serif`;
+  applyFont(fontSize);
 
-  // Draw with manual tracking for clearer ASCII letter separation
-  const label = 'RSQDATA';
-  const gap = Math.max(2, Math.floor(fontSize * 0.08));
-  const widths = label.split('').map((ch) => ctx.measureText(ch).width);
-  const total =
-    widths.reduce((sum, w) => sum + w, 0) + gap * Math.max(0, label.length - 1);
-  let x = cols / 2 - total / 2;
+  const drawnTotal = glyphsWidth + gap * gapSlots;
+  let x = cols / 2 - drawnTotal / 2;
   const y = rows * 0.48;
 
   for (let i = 0; i < label.length; i += 1) {
     const ch = label[i] ?? '';
     const w = widths[i] ?? 0;
-    ctx.fillText(ch, x + w / 2, y);
+    const cx = x + w / 2;
+    ctx.fillText(ch, cx, y);
     ctx.lineWidth = Math.max(1, Math.floor(fontSize * 0.035));
     ctx.strokeStyle = '#ffffff';
-    ctx.strokeText(ch, x + w / 2, y);
+    ctx.strokeText(ch, cx, y);
     x += w + gap;
   }
 
