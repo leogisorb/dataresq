@@ -37,8 +37,8 @@ export function buildRsqLogoMask(cols: number, rows: number): Float32Array<Array
   // Fit font to width first, then clamp to height so letters stay in frame
   let fontSize = Math.max(minFont, Math.floor(rows * 0.28));
   let widths = measureGlyphWidths(fontSize);
-  let baseGap = Math.max(2, Math.floor(fontSize * 0.08));
-  let total =
+  const baseGap = Math.max(2, Math.floor(fontSize * 0.08));
+  const total =
     widths.reduce((sum, w) => sum + w, 0) + baseGap * Math.max(0, label.length - 1);
 
   if (total > 0) {
