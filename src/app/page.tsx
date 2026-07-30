@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import RebootHeroCard from '@/components/variante-b/RebootHeroCard';
 import BrandCarousel from '@/components/sections/BrandCarousel';
 import Features from '@/components/sections/Features';
+import PromisesSection from '@/components/sections/PromisesSection';
 import Testimonials from '@/components/sections/Testimonials';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import { HOME_META_DESCRIPTION, HOME_META_TITLE } from '@/lib/constants';
@@ -58,6 +59,7 @@ export default function HomePage() {
       />
       <main>
         <RebootHeroCard />
+        <PromisesSection />
         <CalculatorSection />
         <ExpertiseSection />
         <div className="bg-bg pt-16 pb-16 md:pt-0 md:pb-24">

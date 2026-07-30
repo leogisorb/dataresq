@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
+import SectionHeader from '@/components/sections/SectionHeader';
 import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
 
 interface ExpertiseBadge {
@@ -108,17 +109,12 @@ function getSlideTransform(state: CardState, direction: SlideDirection): string 
 
 function ExpertiseSectionHeading({ className }: { className?: string }) {
   return (
-    <div className={className}>
-      <h2
-        id="expertise-heading"
-        className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold leading-tight tracking-[-0.02em] text-text"
-      >
-        Unsere Expertise
-      </h2>
-      <p className="mt-1.5 text-base leading-snug text-text-muted md:mt-2">
-        Jedes Medium. Jeder Schaden.
-      </p>
-    </div>
+    <SectionHeader
+      className={className}
+      subline="Jedes Medium. Jeder Schaden."
+      title="Unsere Expertise"
+      titleId="expertise-heading"
+    />
   );
 }
 
@@ -132,7 +128,7 @@ function ExpertiseCardMedium({
   return (
     <div
       className={[
-        'flex shrink-0 flex-col justify-center md:w-[200px] lg:w-[220px]',
+        'flex shrink-0 flex-col justify-center md:w-[168px] lg:w-[180px]',
         className,
       ]
         .filter(Boolean)
@@ -159,7 +155,7 @@ function ExpertiseCardBrands({
   return (
     <div
       className={[
-        'flex shrink-0 flex-col justify-center md:w-[200px] lg:w-[220px]',
+        'flex shrink-0 flex-col justify-center md:w-[168px] lg:w-[180px]',
         className,
       ]
         .filter(Boolean)
@@ -263,7 +259,7 @@ function ExpertiseSlide({
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center gap-12 lg:gap-16"
+      className="absolute inset-0 flex items-center justify-center gap-6 lg:gap-8"
       style={{
         transform: getSlideTransform(state, direction),
         opacity: opacities[state],
@@ -427,23 +423,30 @@ export default function ExpertiseSection() {
         <ExpertiseSectionHeading className="site-container pb-6 pt-12 text-center md:hidden" />
 
         <div className="sticky top-[var(--site-header-height)] h-[calc(100dvh-var(--site-header-height))] overflow-hidden md:top-0 md:h-screen">
-          {/* Desktop — original layout & full-size tiles */}
-          <div className="relative hidden h-full items-center justify-center px-6 md:flex">
-            <ExpertiseSectionHeading className="absolute left-0 right-0 top-16 text-center" />
+          {/* Desktop — aligned to site-container like other homepage sections */}
+          <div className="relative hidden h-full md:block">
+            <div className="site-container relative flex h-full items-center justify-center">
+              <ExpertiseSectionHeading className="absolute left-0 right-0 top-16 text-center" />
 
-            <div className="relative h-[468px] w-full max-w-5xl min-[1512px]:h-[520px]">
-              {CARDS.map((card, index) => {
-                const state: CardState =
-                  index === activeIndex ? 'active' : index === prevIndex ? 'exit' : 'hidden';
+              <div className="relative h-[468px] w-full max-w-4xl min-[1512px]:h-[520px]">
+                {CARDS.map((card, index) => {
+                  const state: CardState =
+                    index === activeIndex ? 'active' : index === prevIndex ? 'exit' : 'hidden';
 
-                return (
-                  <ExpertiseSlide key={card.id} card={card} direction={direction} state={state} />
-                );
-              })}
-            </div>
+                  return (
+                    <ExpertiseSlide
+                      key={card.id}
+                      card={card}
+                      direction={direction}
+                      state={state}
+                    />
+                  );
+                })}
+              </div>
 
-            <div className="absolute bottom-20 left-0 right-0 flex justify-center">
-              <ProgressDots activeIndex={activeIndex} />
+              <div className="absolute bottom-20 left-0 right-0 flex justify-center">
+                <ProgressDots activeIndex={activeIndex} />
+              </div>
             </div>
           </div>
 

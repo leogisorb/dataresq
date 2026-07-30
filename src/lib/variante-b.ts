@@ -1,4 +1,4 @@
-import { FREE_DIAGNOSIS_BADGE, FAILED_RECOVERY_BADGE } from '@/lib/constants';
+import { FREE_DIAGNOSIS_BADGE } from '@/lib/constants';
 
 export interface VarianteBNavItem {
   label: string;
@@ -21,7 +21,6 @@ export const VARIANTE_B_COPY = {
   subline: `Datenrettung für Festplatte, SSD, RAID & NAS. ${FREE_DIAGNOSIS_BADGE}.`,
   ctaLabel: 'Datenrettung anfragen',
   secondaryCtaLabel: 'Abgabestelle finden',
-  trustBadge: FAILED_RECOVERY_BADGE,
 } as const;
 
 export const VARIANTE_B_NAV: VarianteBNavItem[] = [

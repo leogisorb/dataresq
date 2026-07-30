@@ -4,6 +4,7 @@ import HashLink from '@/components/navigation/HashLink';
 import { CALCULATOR_SECTION_ID } from '@/lib/calculator-section';
 import { DIAGNOSIS_FEE_FORMATTED, FREE_DIAGNOSIS_CAPTION } from '@/lib/constants';
 import { BTN_FEATURE_CTA_TILE } from '@/lib/button-styles';
+import { SECTION_PADDING } from '@/lib/section-styles';
 import { RESCUED_DATASETS } from '@/lib/team';
 
 const statHeadlineClass =
@@ -32,7 +33,7 @@ const statCards = [
 
 export default function Features() {
   return (
-    <section className="bg-bg-subtle py-20 md:py-28">
+    <section className={`bg-bg-subtle ${SECTION_PADDING}`}>
       <div className="site-container">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4">
           {statCards.map((card) => (

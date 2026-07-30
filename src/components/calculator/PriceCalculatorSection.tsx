@@ -1,4 +1,5 @@
 import PriceCalculator from '@/components/calculator/PriceCalculator';
+import SectionHeader from '@/components/sections/SectionHeader';
 import {
   CALCULATOR_HEADING,
   CALCULATOR_HEADING_ID,
@@ -7,10 +8,8 @@ import {
 } from '@/lib/calculator-section';
 import {
   SECTION_CONTENT_MT,
-  SECTION_HEADING,
   SECTION_NARROW_WIDTH,
   SECTION_PADDING,
-  SECTION_SUBHEADING,
 } from '@/lib/section-styles';
 import type { DeviceKey } from '@/lib/constants';
 
@@ -35,15 +34,18 @@ export default function PriceCalculatorSection({
     >
       <div className="site-container">
         {showHeading ? (
-          <div className="text-center">
-            <h2 className={SECTION_HEADING} id={CALCULATOR_HEADING_ID}>
-              {CALCULATOR_HEADING}
-            </h2>
-            <p className={`${SECTION_SUBHEADING} mx-auto max-w-2xl`}>{CALCULATOR_SUBHEADING}</p>
-          </div>
+          <SectionHeader
+            subline={CALCULATOR_SUBHEADING}
+            title={CALCULATOR_HEADING}
+            titleId={CALCULATOR_HEADING_ID}
+          />
         ) : null}
 
-        <div className={showHeading ? `${SECTION_CONTENT_MT} ${SECTION_NARROW_WIDTH}` : SECTION_NARROW_WIDTH}>
+        <div
+          className={
+            showHeading ? `${SECTION_CONTENT_MT} ${SECTION_NARROW_WIDTH}` : SECTION_NARROW_WIDTH
+          }
+        >
           <PriceCalculator defaultDevice={defaultDevice} />
         </div>
       </div>

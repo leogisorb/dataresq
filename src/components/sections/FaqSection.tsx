@@ -2,10 +2,10 @@
 
 import { Accordion } from '@heroui/react';
 
+import SectionHeader from '@/components/sections/SectionHeader';
 import type { FaqItem } from '@/lib/faq-calculator';
 import {
   SECTION_CONTENT_MT,
-  SECTION_HEADING,
   SECTION_NARROW_WIDTH,
   SECTION_PADDING,
 } from '@/lib/section-styles';
@@ -20,10 +20,10 @@ export default function FaqSection({ title, faqs, id }: FaqSectionProps) {
   return (
     <section className={`${SECTION_PADDING} bg-bg`} id={id}>
       <div className="site-container">
-        <div className={`${SECTION_NARROW_WIDTH} text-center`}>
-          <h2 className={SECTION_HEADING}>{title}</h2>
+        <SectionHeader title={title} />
 
-          <Accordion className={`${SECTION_CONTENT_MT} w-full text-left`} variant="surface">
+        <div className={`${SECTION_CONTENT_MT} ${SECTION_NARROW_WIDTH}`}>
+          <Accordion className="w-full text-left" variant="surface">
             {faqs.map((faq, index) => (
               <Accordion.Item key={faq.question} id={id ? `${id}-${index}` : `faq-${index}`}>
                 <Accordion.Heading>

@@ -1,17 +1,14 @@
 import Image from 'next/image';
 
+import SectionHeader from '@/components/sections/SectionHeader';
 import { testimonials } from '@/lib/testimonials';
-import {
-  SECTION_CONTENT_MT,
-  SECTION_HEADING,
-  SECTION_PADDING,
-} from '@/lib/section-styles';
+import { SECTION_CONTENT_MT, SECTION_PADDING } from '@/lib/section-styles';
 
 export default function Testimonials() {
   return (
     <section className={SECTION_PADDING}>
       <div className="site-container">
-        <h2 className={SECTION_HEADING}>Was unsere Kunden sagen</h2>
+        <SectionHeader title="Was unsere Kunden sagen" />
 
         <div
           className={`${SECTION_CONTENT_MT} grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3`}
