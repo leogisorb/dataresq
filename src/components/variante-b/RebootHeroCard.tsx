@@ -11,8 +11,8 @@ import RebootHeroContent from '@/components/variante-b/RebootHeroContent';
 import RebootNavbar from '@/components/variante-b/RebootNavbar';
 import type { AsciiShapeId } from '@/lib/ascii-shapes';
 
-/** Mobile hero uses folder (diskette) ASCII only — no theme picker */
-const MOBILE_THEME: AsciiShapeId = 'folder';
+/** Mobile hero uses platter/disc ASCII only — first theme, no picker */
+const MOBILE_THEME: AsciiShapeId = 'platter';
 const DEFAULT_THEME: AsciiShapeId = 'logo';
 
 export default function RebootHeroCard(): React.JSX.Element {
@@ -72,7 +72,7 @@ export default function RebootHeroCard(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="relative flex h-dvh min-h-dvh w-full flex-col overflow-hidden bg-white">
+    <div className="relative flex h-dvh min-h-dvh w-full flex-col overflow-hidden bg-white pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)]">
       {showAscii ? <DataRecoveryBackground shape={shape} /> : null}
 
       <RebootNavbar />

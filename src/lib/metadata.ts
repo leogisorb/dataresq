@@ -95,6 +95,11 @@ export const defaultMetadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: siteConfig.name,
+  },
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     shortcut: '/favicon.svg',

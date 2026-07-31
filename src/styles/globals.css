@@ -78,11 +78,12 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  background-color: #ffffff;
   overflow-x: clip;
 }
 
 body {
-  background-color: var(--color-bg);
+  background-color: #ffffff;
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

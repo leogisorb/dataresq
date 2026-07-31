@@ -62,7 +62,7 @@ export default function HomePage() {
         <PromisesSection />
         <CalculatorSection />
         <ExpertiseSection />
-        <div className="bg-bg pt-16 pb-16 md:pt-0 md:pb-24">
+        <div className="hidden bg-bg md:block md:pb-24 md:pt-0">
           <BrandCarousel />
         </div>
         <Features />
