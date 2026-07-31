@@ -43,9 +43,9 @@ export default function PromisesSection(): React.JSX.Element {
         />
       </div>
 
-      {/* Full-bleed scroll on mobile so folders aren't clipped by site-container */}
+      {/* Full-bleed scroll; py leaves room so folder shadows aren't clipped */}
       <ul
-        className={`${SECTION_CONTENT_MT} flex list-none items-stretch gap-3 overflow-x-auto px-[7.5%] pb-2 md:mx-auto md:grid md:w-[85%] md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:max-w-[calc(4*340px+3*0.5rem)] lg:gap-2`}
+        className={`${SECTION_CONTENT_MT} flex list-none items-stretch gap-3 overflow-x-auto px-[7.5%] py-5 md:mx-auto md:grid md:w-[85%] md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:py-0 lg:max-w-[calc(4*340px+3*0.5rem)] lg:gap-2`}
       >
         {promiseTiles.map((tile, index) => {
           const Icon = ICONS[tile.icon];
@@ -57,7 +57,7 @@ export default function PromisesSection(): React.JSX.Element {
             >
               <article
                 className={[
-                  'relative mx-auto flex h-full w-full max-w-[340px] flex-col overflow-hidden rounded-[2rem] shadow-[0_8px_28px_rgba(0,0,0,0.18)]',
+                  'relative mx-auto flex h-full w-full max-w-[340px] flex-col overflow-hidden rounded-[2rem] shadow-[0_10px_24px_rgba(0,0,0,0.14)]',
                   tile.faceClass,
                 ].join(' ')}
               >

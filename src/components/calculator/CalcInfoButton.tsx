@@ -27,14 +27,18 @@ export default function CalcInfoButton({ label, content, className }: CalcInfoBu
         aria-haspopup="dialog"
         aria-label={`Informationen: ${label}`}
         className={[
-          'inline-flex size-7 shrink-0 items-center justify-center rounded-full text-[#c8c0b8] transition-colors hover:bg-bg hover:text-text-muted',
+          'inline-flex size-7 shrink-0 items-center justify-center rounded-full text-[#c8c0b8] transition-colors hover:bg-bg hover:text-text-muted max-md:size-[2.1875rem] max-md:text-[#111111] max-md:hover:bg-black/5 max-md:hover:text-[#111111]',
           className,
         ]
           .filter(Boolean)
           .join(' ')}
         onClick={handleOpen}
       >
-        <Info aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
+        <Info
+          aria-hidden="true"
+          className="size-3.5 max-md:size-[1.09375rem]"
+          strokeWidth={1.5}
+        />
       </button>
 
       <CalcInfoModal content={content} isOpen={isOpen} onClose={() => setIsOpen(false)} />
