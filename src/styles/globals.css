@@ -456,7 +456,14 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   overflow: visible;
+}
+
+@media (min-width: 640px) {
+  .reboot-cta-wrap {
+    width: auto;
+  }
 }
 
 .reboot-cta-glow {
@@ -498,6 +505,8 @@ body {
   position: relative;
   z-index: 1;
   display: inline-flex;
+  width: 100%;
+  min-height: 3.25rem;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;

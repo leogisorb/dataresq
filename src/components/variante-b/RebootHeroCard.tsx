@@ -11,25 +11,40 @@ import RebootHeroContent from '@/components/variante-b/RebootHeroContent';
 import RebootNavbar from '@/components/variante-b/RebootNavbar';
 import type { AsciiShapeId } from '@/lib/ascii-shapes';
 
+/** Mobile hero uses folder (diskette) ASCII only — no theme picker */
+const MOBILE_THEME: AsciiShapeId = 'folder';
 const DEFAULT_THEME: AsciiShapeId = 'logo';
 
 export default function RebootHeroCard(): React.JSX.Element {
   const [shape, setShape] = useState<AsciiShapeId>(DEFAULT_THEME);
+  const [isMobile, setIsMobile] = useState(false);
   /** Defer ASCII canvas until after first paint — lighter LCP / TBT */
   const [showAscii, setShowAscii] = useState(false);
 
   useEffect(() => {
-    const stored = readStoredAsciiTheme();
-    if (stored) {
-      setShape(stored);
-    }
+    const mq = window.matchMedia('(max-width: 767px)');
+    const syncViewport = (): void => {
+      const mobile = mq.matches;
+      setIsMobile(mobile);
+      if (mobile) {
+        setShape(MOBILE_THEME);
+        return;
+      }
+      const stored = readStoredAsciiTheme();
+      setShape(stored ?? DEFAULT_THEME);
+    };
+
+    syncViewport();
+    mq.addEventListener('change', syncViewport);
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
+      return () => {
+        mq.removeEventListener('change', syncViewport);
+      };
     }
 
     let cancelled = false;
-    const enable = () => {
+    const enable = (): void => {
       if (!cancelled) {
         setShowAscii(true);
       }
@@ -47,6 +62,7 @@ export default function RebootHeroCard(): React.JSX.Element {
 
     return () => {
       cancelled = true;
+      mq.removeEventListener('change', syncViewport);
       if (usedIdleCallback && typeof window.cancelIdleCallback === 'function') {
         window.cancelIdleCallback(idleId);
       } else {
@@ -65,7 +81,9 @@ export default function RebootHeroCard(): React.JSX.Element {
         <RebootHeroContent />
       </div>
 
-      <AsciiThemeRail value={shape} onChange={setShape} />
+      {!isMobile ? (
+        <AsciiThemeRail value={shape} onChange={setShape} />
+      ) : null}
 
       <div className="relative z-10 mt-auto w-full pt-10 md:pt-16">
         <RebootBrandBar />

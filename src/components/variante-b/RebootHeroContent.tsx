@@ -26,7 +26,7 @@ export default function RebootHeroContent(): React.JSX.Element {
         {VARIANTE_B_COPY.subline}
       </p>
 
-      <div className="relative mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+      <div className="relative mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
         <RainbowCtaButton href={`/#${CALCULATOR_SECTION_ID}`}>
           {VARIANTE_B_COPY.ctaLabel}
         </RainbowCtaButton>
