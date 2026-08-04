@@ -4,10 +4,15 @@ import Link from 'next/link';
 import { Accordion } from '@heroui/react';
 
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
-import { NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
+import {
+  BASE_PRICES,
+  EXPRESS_SURCHARGE,
+  formatPriceEuro,
+  NO_COST_GUARANTEE_NOTE,
+} from '@/lib/constants';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 
-export default function DatenrettungFaq() {
+export default function DatenrettungFaq(): React.JSX.Element {
   return (
     <Accordion className="w-full" variant="surface">
       {datenrettungFaqs.map((item) => (
@@ -22,13 +27,15 @@ export default function DatenrettungFaq() {
             <Accordion.Body className="leading-relaxed text-text">
               {item.id === 'kosten' ? (
                 <>
-                  Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.149 – 2.049 € · Flash
-                  Standard 699 – 999 €, Express 949 – 1.249 € · RAID / NAS / Server individuell ·
-                  Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung
-                  treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen
-                  Sie unseren{' '}
+                  Festpreise inkl. MwSt.: HDD/SSD/Notebook logisch{' '}
+                  {formatPriceEuro(BASE_PRICES.hddSsd.logical)}, physisch{' '}
+                  {formatPriceEuro(BASE_PRICES.hddSsd.physical)} · Flash logisch{' '}
+                  {formatPriceEuro(BASE_PRICES.flash.logical)}, physisch{' '}
+                  {formatPriceEuro(BASE_PRICES.flash.physical)} · Express +{EXPRESS_SURCHARGE} € ·
+                  RAID/NAS/Smartphone nach Analyse · Notfall auf Anfrage. Verbindlicher Festpreis
+                  nach der kostenlosen Analyse. Nutzen Sie unseren{' '}
                   <Link className="text-accent" href={CALCULATOR_PAGE_PATH}>
-                    Preisrahmen-Rechner
+                    Preisrechner
                   </Link>
                   . {NO_COST_GUARANTEE_NOTE}
                 </>

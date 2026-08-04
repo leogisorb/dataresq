@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import SectionHeader from '@/components/sections/SectionHeader';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, formatPriceRange, PRICE_DISPLAY } from '@/lib/constants';
 
 interface ExpertiseBadge {
   text: string;
@@ -35,7 +35,7 @@ const CARDS: ExpertiseCardData[] = [
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
     badges: [
       { text: '95%', hint: 'Erfolgsquote' },
-      { text: '899 – 1.799 €', hint: 'Preisrahmen Standard HDD/SSD' },
+      { text: formatPriceRange(PRICE_DISPLAY.hddSsd), hint: 'Festpreis logisch / physisch' },
       { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Kostenlose Analyse' },
     ],
     features: [
@@ -57,7 +57,7 @@ const CARDS: ExpertiseCardData[] = [
     badges: [
       { text: '92%', hint: 'Erfolgsquote' },
       { text: '3–5 Tage', hint: 'Standardbearbeitung' },
-      { text: '899 – 1.799 €', hint: 'Preisrahmen Standard HDD/SSD' },
+      { text: formatPriceRange(PRICE_DISPLAY.hddSsd), hint: 'Festpreis logisch / physisch' },
     ],
     features: [
       'Controller-Ausfall & Firmware-Fehler',

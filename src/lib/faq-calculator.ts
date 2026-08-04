@@ -1,7 +1,12 @@
 import {
   ANALYSIS_DURATION,
+  BASE_PRICES,
   DECLINED_RECOVERY_NOTE,
+  EXPRESS_SURCHARGE,
+  formatPriceEuro,
+  formatPriceRange,
   NO_COST_GUARANTEE_NOTE,
+  PRICE_DISPLAY,
 } from '@/lib/constants';
 
 export interface FaqItem {
@@ -12,8 +17,7 @@ export interface FaqItem {
 export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Was kostet eine Datenrettung?',
-    answer:
-      'Preisrahmen je Medientyp und Service-Level: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.149 – 2.049 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 949 – 1.249 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt.',
+    answer: `Festpreise inkl. MwSt. nach Schadenart: Festplatte (HDD) / SSD / Notebook — logisch ${formatPriceEuro(BASE_PRICES.hddSsd.logical)}, physisch ${formatPriceEuro(BASE_PRICES.hddSsd.physical)} (Rahmen ${formatPriceRange(PRICE_DISPLAY.hddSsd)}). Flash (USB-Stick, Speicherkarte) — logisch ${formatPriceEuro(BASE_PRICES.flash.logical)}, physisch ${formatPriceEuro(BASE_PRICES.flash.physical)}. Express: +${EXPRESS_SURCHARGE} €. RAID / NAS / Server und Smartphone: Preis nach kostenloser Analyse. Notfall (24/7): auf Anfrage. Verbindlicher Festpreis nach der Analyse.`,
   },
   {
     question: 'Was passiert nach der Analyse?',

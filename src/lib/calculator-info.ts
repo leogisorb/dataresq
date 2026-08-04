@@ -100,21 +100,19 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
         text: 'Gelöschte Fotos, Videos und Dokumente sind auf Flash-Medien in den meisten Fällen vollständig wiederherstellbar — solange das Medium danach nicht neu bespielt wurde. Bei physischem Chipschaden löten unsere Techniker den Speicherchip direkt aus und lesen ihn über spezielle Adapter aus.',
       },
     ],
-    warning:
-      'Tippen Sie niemals auf „Jetzt formatieren", wenn Ihr Betriebssystem das vorschlägt. Das überschreibt die Dateitabelle und verschlechtert die Rettungschancen erheblich.',
   },
   smartphone: {
-    title: 'Smartphone & Tablet (iPhone, iPad & Android)',
+    title: 'Smartphone & Tablet',
     intro:
-      'Smartphones und Tablets speichern Fotos, Kontakte und Nachrichten auf internem Flash-Speicher oder einer verschlüsselten Partition. Nach Displaybruch, Wasserschaden oder versehentlichem Löschen ist eine professionelle Analyse oft der einzige Weg zu Ihren Daten.',
+      'Smartphones speichern Fotos, Kontakte und Nachrichten auf internem Flash — oft verschlüsselt. Nach Displaybruch, Wasserschaden oder Reset ist schnelles Handeln entscheidend.',
     sections: [
       {
-        label: 'Typische Symptome',
+        label: 'Typische Fälle',
         items: [
-          'Display kaputt — Gerät startet, Daten nicht zugänglich',
-          'Wasserschaden oder Sturz — Gerät erkennt sich nicht mehr',
-          'Gelöschte Fotos, Videos oder WhatsApp-Chats',
-          'PIN vergessen oder Gerät nach Reset gesperrt',
+          'Displaybruch oder schwarzer Bildschirm',
+          'Wasserschaden (Toilette, Regen, Getränk)',
+          'Gelöschte Fotos oder Factory Reset',
+          'Gerät startet nicht mehr / wird nicht erkannt',
         ],
       },
       {
@@ -123,20 +121,20 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
     ],
     warning:
-      'Gerät nicht weiter benutzen, nicht auf Werkseinstellungen zurücksetzen und keine Recovery-Apps installieren — das kann Daten überschreiben.',
+      'Gerät nicht weiter nutzen, nicht laden bei Feuchtigkeit, keine weiteren PIN-Fehlversuche.',
   },
   notebook: {
     title: 'Notebook & PC-Systeme',
     intro:
-      'Notebooks und PCs speichern Daten auf interner SSD oder HDD — oft mit verschlüsselter Systempartition. Nach Sturz, Flüssigkeitsschaden, Mainboard-Defekt oder Boot-Fehler retten wir die Daten direkt vom Speichermedium — unabhängig davon, ob das Gerät noch startet.',
+      'Bei Notebooks und PCs retten wir die Daten vom internen Speichermedium — unabhängig davon, ob Mainboard, Display oder Gehäuse defekt sind.',
     sections: [
       {
-        label: 'Typische Symptome',
+        label: 'Typische Fälle',
         items: [
-          'Notebook oder PC startet nicht mehr oder hängt beim Apple-/Windows-Logo',
-          'Bluescreen (BSOD) oder Kernel Panic nach Update oder Sturz',
-          'Flüssigkeit auf der Tastatur — Gerät geht nicht mehr an',
-          'SSD/HDD wird im BIOS nicht erkannt, obwohl das Gerät läuft',
+          'Gerät startet nicht mehr (BSOD, Kernel Panic, kein POST)',
+          'Sturz- oder Flüssigkeitsschaden',
+          'Gelöschte Partitionen oder Neuinstallation',
+          'SSD/HDD wird nicht mehr erkannt',
         ],
       },
       {
@@ -151,31 +149,65 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
 
 export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
   del: {
-    title: 'Gelöschte Dateien & formatierte Laufwerke',
+    title: 'Versehentlich gelöscht oder formatiert',
     intro:
-      'Wenn Sie Dateien löschen oder ein Laufwerk formatieren, werden die Daten selbst nicht sofort entfernt — nur der Eintrag in der Dateitabelle wird als „freier Speicher" markiert. Solange dieser Bereich nicht mit neuen Daten überschrieben wird, ist eine vollständige Wiederherstellung möglich.',
+      'Auch nach geleertem Papierkorb oder Schnellformatierung sind Daten meist vollständig wiederherstellbar — solange nichts Neues darauf geschrieben wurde.',
     sections: [
       {
         label: 'Typische Fälle',
         items: [
-          'Dateien aus dem Papierkorb endgültig gelöscht (Shift + Entf)',
-          'Gesamtes Laufwerk versehentlich formatiert (Schnell- oder Vollformat)',
-          'rm -rf auf dem falschen Pfad ausgeführt',
+          'Dateien aus dem Papierkorb endgültig gelöscht',
+          'Laufwerk versehentlich formatiert',
           'Partition gelöscht oder Partitionstabelle überschrieben',
+          'rm -rf auf dem falschen Pfad',
         ],
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'Dies ist die häufigste und am besten rettbare Kategorie. Bei HDDs liegen die Erfolgsquoten bei 95–99 %, bei SSDs etwas niedriger, da manche SSDs im Hintergrund automatisch gelöschte Blöcke freigeben (TRIM-Funktion).',
+        text: 'Dies ist die häufigste und am besten rettbare Kategorie. Bei HDDs liegen die Erfolgsquoten bei 95–99 %, bei SSDs etwas niedriger durch TRIM.',
       },
     ],
     warning:
-      'Stoppen Sie die Nutzung des Laufwerks sofort. Jede neue Datei, die Sie speichern — auch das Herunterladen eines Recovery-Tools — kann die gelöschten Daten überschreiben.',
+      'Stoppen Sie die Nutzung des Laufwerks sofort. Jede neue Datei kann gelöschte Daten überschreiben.',
+  },
+  unreadable: {
+    title: 'Wird erkannt, aber nicht lesbar',
+    intro:
+      'Das Laufwerk erscheint im System, lässt sich aber nicht öffnen. Bitte nicht formatieren, auch wenn Windows es vorschlägt.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: [
+          '„Sie müssen das Laufwerk formatieren"-Meldung',
+          'Laufwerk erscheint als RAW',
+          'Ordner sind leer oder Dateien nicht öffnenbar',
+          'Dateisystemfehler nach Absturz',
+        ],
+      },
+    ],
+    warning: 'Nicht formatieren und keine Reparaturtools starten — zuerst professionell sichern lassen.',
+  },
+  crash: {
+    title: 'System startet nicht mehr',
+    intro:
+      'Bluescreen, Kernel Panic oder Bootfehler bedeuten oft ein Problem mit Systempartition oder Dateisystem — die Platte selbst ist meist intakt. Wenn das Gerät dabei klackert oder gar nicht mehr erkannt wird, wählen Sie bitte einen Punkt aus „Gerät defekt".',
+    sections: [
+      {
+        label: 'Typische Fälle',
+        items: [
+          'Windows-BSOD nach einem Update',
+          'macOS Kernel Panic / „Laufwerk nicht reparierbar"',
+          '„No bootable device" / kein POST',
+          'Endloser Neustart nach Update',
+        ],
+      },
+    ],
+    note: 'Kein chkdsk, fsck oder erzwungenes Update — zuerst Daten sichern lassen.',
   },
   mech: {
-    title: 'Mechanischer Schaden (Headcrash, Motorausfall)',
+    title: 'Klackert, schleift oder dreht nicht',
     intro:
-      'Bei einem mechanischen Schaden sind physische Bauteile der Festplatte defekt: Der Lesekopf hat die Plattenoberfläche berührt (Headcrash), der Spindelmotor dreht nicht mehr, oder die Lager sind beschädigt. Solche Schäden erkennt man oft an ungewöhnlichen Geräuschen.',
+      'Klackern klingt wie ein leises, regelmäßiges Tack-Tack im Abstand von wenigen Sekunden. Bitte sofort ausschalten — jeder Startversuch kann die Datenscheiben zerstören.',
     sections: [
       {
         label: 'Typische Symptome',
@@ -183,132 +215,90 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
           'Klackern, Kratzen oder Schleifen beim Einschalten',
           'Festplatte dreht an, erkennt sich aber nicht',
           'Festplatte dreht gar nicht (kein Anlaufton)',
-          'Nach einem Sturz oder Stoß plötzlich keine Daten mehr',
         ],
       },
       {
         label: 'Unser Prozess',
-        text: 'Mechanische Reparaturen führen wir ausschließlich im Reinraumlabor durch — ein staubfreier Arbeitsraum mit einem Reinheitsgrad vergleichbar mit einem OP-Saal. Ein einzelnes Staubkorn auf der Plattenoberfläche würde beim Einschalten einen weiteren Headcrash auslösen.',
+        text: 'Mechanische Reparaturen führen wir ausschließlich im Reinraumlabor durch.',
       },
     ],
     warning:
-      'Auf keinen Fall versuchen, die Festplatte nochmals einzuschalten oder zu „wärmen". Jeder weitere Startversuch vergrößert den Schaden auf den Datenscheiben.',
+      'Auf keinen Fall erneut einschalten oder „wärmen". Jeder Startversuch vergrößert den Schaden.',
   },
-  water: {
-    title: 'Wasser- & Flüssigkeitsschaden',
+  not_recognized: {
+    title: 'Wird gar nicht mehr erkannt',
     intro:
-      'Flüssigkeit auf einem Laufwerk verursacht zwei Probleme: sofortige Kurzschlüsse auf der Elektronikplatine und — mit der Zeit — Korrosion der Kontakte und Leiterbahnen. Wie viel gerettet werden kann, hängt stark davon ab, wie schnell das Gerät eingesandt wird.',
-    sections: [
-      {
-        label: 'Typische Fälle',
-        items: [
-          'Laptop ins Wasser gefallen oder Kaffee/Wasser verschüttet',
-          'Keller überschwemmt, NAS oder Server steht im Wasser',
-          'Gerät im Regen liegengelassen',
-          'Löschwasserschaden nach Brandfall',
-        ],
-      },
-      {
-        label: 'Erste Maßnahmen (jetzt sofort)',
-        items: [
-          'Gerät sofort ausschalten und vom Strom trennen',
-          'Nicht mehr einschalten — auch nicht kurz zum Testen',
-          'Nicht trocknen mit Föhn, Reis oder Heizung',
-          'So schnell wie möglich einsenden (jede Stunde zählt)',
-        ],
-      },
-    ],
-    warning:
-      'Salzwasser, Meerwasser oder koffeinhaltige Flüssigkeiten sind aggressiver als reines Wasser und beschleunigen die Korrosion massiv. Bei solchen Fällen bitte vorab per E-Mail Kontakt aufnehmen.',
-  },
-  ctrl: {
-    title: 'Elektronik- & Controller-Schaden',
-    intro:
-      'Jede Festplatte und SSD hat eine Steuerplatine (PCB), auf der ein Controller-Chip die gesamte Kommunikation zwischen Laufwerk und Computer regelt. Fällt dieser Chip durch einen Überspannungsschaden, Blitzeinschlag oder einfaches Altern aus, dreht die Festplatte zwar an — antwortet aber nicht.',
+      'Das Laufwerk erscheint weder im Explorer noch im BIOS bzw. in der Datenträgerverwaltung.',
     sections: [
       {
         label: 'Typische Symptome',
         items: [
-          'Festplatte wird nicht erkannt, obwohl sie dreht und anläuft',
-          'Nach Gewitter oder Überspannung plötzlich kein Zugriff',
-          'Laufwerk erscheint im BIOS mit falscher Modellbezeichnung',
-          'USB-Festplatte: die Kapselung erkennt das Laufwerk nicht mehr',
+          'Keine Reaktion, kein Stromgeräusch',
+          'Gerät fehlt in BIOS / Datenträgerverwaltung',
+          'USB-Gehäuse erkennt das Laufwerk nicht',
+          'Plötzlich 0 Byte oder falsche Kapazität',
         ],
       },
-      {
-        label: 'Unser Ansatz',
-        text: 'Wir tauschen keine Platinen blind aus — jede HDD-Platine enthält einen ROM-Chip mit laufwerksspezifischen Kalibrierungsdaten. Diese müssen auf die Ersatzplatine übertragen werden, bevor das Laufwerk überhaupt reagiert. Bei SSDs lesen wir den Controller direkt über JTAG oder proprietäre Firmware-Schnittstellen aus.',
-      },
     ],
-    note: '„Einfach eine neue Platine kaufen und tauschen" funktioniert bei modernen Laufwerken fast nie. Falsch vorgegangen kann es den gespeicherten Kalibrierungsdaten dauerhaft schaden.',
+    warning: 'Keine weiteren Adapter- oder Port-Tests mit Gewalt — Medium ruhen lassen und einsenden.',
   },
-  enc: {
-    title: 'Ransomware & Verschlüsselung',
+  water: {
+    title: 'Sturz oder Flüssigkeitsschaden',
     intro:
-      'Bei Ransomware-Angriffen verschlüsseln Schadprogramme Ihre Dateien und fordern Lösegeld. Bei vergessenen BitLocker- oder VeraCrypt-Passwörtern ist der Schlüssel verloren gegangen. Wir empfehlen in beiden Fällen, nicht zu zahlen — und analysieren stattdessen, ob eine technische Rettung möglich ist.',
+      'Gerät nicht trocknen lassen und nicht einschalten — bei Feuchtigkeit arbeitet Korrosion weiter.',
     sections: [
       {
         label: 'Typische Fälle',
         items: [
-          'Ransomware-Befall (Locky, WannaCry, REvil u. v. m.)',
-          'BitLocker-PIN vergessen, Recovery-Key nicht verfügbar',
-          'VeraCrypt-Container, Passwort nicht mehr bekannt',
-          'Unternehmensweite Verschlüsselung durch Angreifer',
+          'Wasser, Feuchtigkeit oder Getränk auf dem Gerät',
+          'Stoß oder Fall, danach kein Zugriff',
+          'Kellerüberschwemmung / Löschwasser',
         ],
       },
       {
-        label: 'Was wir prüfen',
+        label: 'Erste Maßnahmen',
         items: [
-          'Bekannte Schwachstellen in der eingesetzten Ransomware-Variante (für einige Varianten existieren freie Decryptoren)',
-          'Shadow Copies oder VSS-Snapshots, die von der Ransomware nicht gelöscht wurden',
-          'Teilweise unverschlüsselte Datenbereiche auf dem Laufwerk',
+          'Sofort ausschalten und vom Strom trennen',
+          'Nicht mit Föhn, Reis oder Heizung trocknen',
+          'So schnell wie möglich einsenden',
         ],
       },
     ],
-    warning:
-      'Schalten Sie das betroffene Gerät sofort aus und trennen Sie es vom Netzwerk. Aktive Ransomware verschlüsselt weiter, solange das Gerät läuft. Für Unternehmenskunden bieten wir forensische Analyse und einen DSGVO-konformen Incident-Report.',
+    warning: 'Nicht einschalten — auch nicht kurz zum Testen.',
   },
-  crash: {
-    title: 'Systemabsturz, BSOD & RAID-Rebuild-Fehler',
+  ctrl: {
+    title: 'Controller oder Elektronik',
     intro:
-      'Systemabstürze, Bluescreen-Fehler (BSOD) oder ein fehlgeschlagener RAID-Rebuild beschädigen oft die Dateisystemstruktur, nicht die Rohdaten selbst. Das bedeutet: Die Daten sind meist noch vollständig vorhanden — das Dateisystem weiß nur nicht mehr, wo genau.',
+      'Typisch nach Blitzschlag oder Netzteildefekt, oder wenn eine SSD plötzlich 0 Byte anzeigt.',
     sections: [
       {
-        label: 'Typische Fälle',
+        label: 'Typische Symptome',
         items: [
-          'Windows-BSOD nach einem Update, danach kein Boot mehr',
-          'macOS: „Laufwerk nicht reparierbar" im Festplattendienstprogramm',
-          'RAID-Rebuild wurde unterbrochen oder mit falscher Reihenfolge gestartet',
-          'Linux: Filesystem-Check schlägt fehl, Dateien fehlen nach fsck',
+          'PCB / Überspannungsschaden',
+          'Laufwerk erscheint mit falscher Modellbezeichnung',
+          'SSD zeigt 0 Byte',
+          'Nach Gewitter kein Zugriff mehr',
         ],
       },
-      {
-        label: 'Erfolgsaussichten',
-        text: 'Reiner Dateisystemschaden ohne physische Beschädigung hat eine sehr hohe Erfolgsquote (90–99 %). Wir erstellen zunächst ein 1:1-Abbild des Laufwerks (Image) und arbeiten dann ausschließlich auf dieser Kopie — das Original bleibt immer unberührt.',
-      },
     ],
-    note: 'Führen Sie kein weiteres chkdsk, fsck oder „Erste Hilfe" im Festplattendienstprogramm durch — diese Tools können Dateistruktur-Metadaten überschreiben, die für die Wiederherstellung entscheidend sind.',
+    note: 'Platinen werden nicht blind getauscht — kalibrierungsspezifische Daten müssen übertragen werden.',
   },
   unknown: {
     title: 'Ursache unklar — wir klären das in der Analyse',
     intro:
-      'Sie müssen die genaue Ursache nicht kennen. Viele Kunden merken nur, dass Daten fehlen oder das Medium nicht mehr erkannt wird. In der Laboranalyse diagnostizieren wir den Defekt und nennen Ihnen Erfolgsaussichten sowie einen verbindlichen Festpreis.',
+      'Sie müssen die genaue Ursache nicht kennen. In der Laboranalyse diagnostizieren wir den Defekt und nennen Ihnen Erfolgsaussichten sowie einen verbindlichen Festpreis.',
     sections: [
       {
         label: 'Was wir prüfen',
         items: [
-          'Physischer Zustand des Mediums (Mechanik, Elektronik, Flash)',
+          'Physischer Zustand des Mediums',
           'Dateisystem und lesbare Partitionen',
           'Welche Dateien sich retten lassen',
         ],
       },
-      {
-        label: 'Ihr Vorteil',
-        text: 'Kein Rätselraten nötig: Wählen Sie „Weiß ich nicht“, beschreiben Sie kurz die Symptome — wir übernehmen die Diagnose. Erst nach dem Angebot entscheiden Sie über die Rettung.',
-      },
     ],
     warning:
-      'Gerät oder Datenträger nicht weiter nutzen und keine eigenen Recovery-Tools starten — das kann die Rettungschance verringern.',
+      'Gerät nicht weiter nutzen und keine eigenen Recovery-Tools starten.',
   },
 };
 
@@ -316,246 +306,126 @@ export const MOBILE_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
   del: {
     title: 'Gelöschte Fotos, Nachrichten & Apps',
     intro:
-      'Gelöschte Dateien auf Smartphones und Tablets bleiben oft noch auf dem internen Flash-Speicher — solange der Speicher nicht überschrieben wurde. Entscheidend ist, das Gerät nach dem Löschvorgang möglichst wenig weiter zu nutzen.',
+      'Gelöschte Dateien auf Smartphones bleiben oft noch auf dem internen Flash — solange der Speicher nicht überschrieben wurde.',
     sections: [
       {
         label: 'Typische Fälle',
         items: [
-          'Fotos oder Videos aus der Galerie gelöscht',
-          'WhatsApp-Nachrichten oder Kontakte verschwunden',
-          'Factory Reset oder „Telefon zurücksetzen"',
-          'App-Daten nach Update oder Neuinstallation weg',
+          'Fotos oder Videos gelöscht',
+          'WhatsApp-Nachrichten verschwunden',
+          'Factory Reset',
         ],
       },
     ],
-    warning:
-      'Keine neuen Fotos machen, Apps installieren oder Backups überschreiben — jede neue Schreiboperation kann gelöschte Daten ersetzen.',
+    warning: 'Gerät möglichst wenig weiter nutzen.',
   },
-  mech: {
-    title: 'Sturz & Stoßschaden',
+  unreadable: {
+    title: 'Wird erkannt, aber nicht lesbar',
+    intro: 'Das Gerät reagiert teilweise, Apps oder Dateien lassen sich aber nicht öffnen.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: ['Hängt beim Start', 'Apps stürzen ab', 'Speicher wirkt leer oder korrupt'],
+      },
+    ],
+  },
+  crash: {
+    title: 'Displaybruch / startet nicht',
     intro:
-      'Nach einem Sturz kann der interne Speicherchip gelöst sein, das Gehäuse verbogen sein oder Bauteile auf der Platine Mikrorisse bekommen. Oft startet das Gerät noch — die Daten sind aber nicht mehr zugänglich.',
+      'Ein kaputtes Display bedeutet nicht, dass die Daten weg sind. Der interne Speicher ist oft unversehrt.',
     sections: [
       {
         label: 'Typische Symptome',
         items: [
-          'Gerät nach Fall auf harten Boden',
-          'Gehäuse verbogen, Risse im Rahmen',
-          'Gerät vibriert ungewöhnlich oder erkennt sich am PC nicht',
-          'Intermittierende Verbindung per USB',
+          'Displayglas gebrochen',
+          'Schwarzer Bildschirm',
+          'Gerät vibriert, Bild bleibt schwarz',
         ],
       },
     ],
-    warning:
-      'Gerät nicht wiederholt ein- und ausschalten. Bei gelöstem Speicherchip kann jeder Startversuch den Chip weiter beschädigen.',
+  },
+  mech: {
+    title: 'Sturzschaden',
+    intro: 'Nach einem Sturz kann der Speicherchip oder die Platine beschädigt sein.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: ['Gerät nach Fall', 'Gehäuse verbogen', 'Intermittierende USB-Verbindung'],
+      },
+    ],
+    warning: 'Nicht wiederholt ein- und ausschalten.',
+  },
+  not_recognized: {
+    title: 'Wird gar nicht mehr erkannt',
+    intro: 'Keine Reaktion, kein Laden, PC erkennt das Gerät nicht.',
+    sections: [
+      {
+        label: 'Typische Symptome',
+        items: ['Kein Ladevorgang', 'Keine Vibration', 'USB erkennt nichts'],
+      },
+    ],
   },
   water: {
     title: 'Wasserschaden',
-    intro:
-      'Flüssigkeit auf dem Mainboard verursacht Kurzschlüsse und Korrosion — besonders im Ladeport und an Lötstellen. Je schneller das Gerät bei uns ankommt, desto höher die Chance auf vollständige Datenrettung.',
+    intro: 'Flüssigkeit verursacht Kurzschlüsse und Korrosion — schnell einsenden.',
     sections: [
       {
         label: 'Erste Maßnahmen',
-        items: [
-          'Sofort ausschalten — nicht laden',
-          'Nicht mit Föhn oder Reis trocknen',
-          'SIM-Karte entfernen, wenn möglich',
-          'So schnell wie möglich einsenden',
-        ],
+        items: ['Sofort ausschalten', 'Nicht laden', 'Nicht mit Reis trocknen'],
       },
     ],
-    warning:
-      'Ladegerät nicht anschließen. Strom durch feuchte Elektronik beschleunigt Korrosion und kann den Speicher dauerhaft zerstören.',
   },
   ctrl: {
     title: 'Kurzschluss & Elektronikdefekt',
-    intro:
-      'Defekte am Ladeport, auf dem Mainboard oder nach Überspannung führen dazu, dass das Gerät nicht mehr erkannt wird — die Daten auf dem Flash-Speicher sind oft noch intakt.',
+    intro: 'Defekte am Ladeport oder Mainboard — Daten auf dem Flash sind oft noch intakt.',
     sections: [
       {
         label: 'Typische Symptome',
-        items: [
-          'Ladeport korrodiert oder locker',
-          'Gerät heizt sich auf, startet nicht',
-          'Nach Gewitter oder Billig-Ladegerät kein Zugriff mehr',
-          'PC erkennt das Gerät nicht mehr per USB',
-        ],
+        items: ['Ladeport defekt', 'Gerät heizt sich auf', 'Nach Überspannung tot'],
       },
     ],
-    note: 'Wir lesen den Speicherchip im Labor direkt aus — unabhängig davon, ob das Gerät noch startet.',
-  },
-  enc: {
-    title: 'Passwort vergessen & Gerät gesperrt',
-    intro:
-      'Vergessene PIN, Passwort oder Bildschirmsperre bedeuten nicht automatisch Datenverlust. Je nach Gerät und Verschlüsselung prüfen wir, ob ein technischer Zugriff auf die gespeicherten Daten möglich ist.',
-    sections: [
-      {
-        label: 'Typische Fälle',
-        items: [
-          'PIN oder Muster vergessen',
-          'Apple-ID / Google-Konto gesperrt',
-          'Gerät nach zu vielen Fehlversuchen gesperrt',
-          'Kindersicherung oder Firmen-MDM aktiv',
-        ],
-      },
-    ],
-    warning:
-      'Keine weiteren Fehlversuche mit PIN oder Passwort — manche Geräte löschen nach zu vielen Versuchen alle Daten.',
-  },
-  crash: {
-    title: 'Displaybruch & schwarzer Bildschirm',
-    intro:
-      'Ein kaputtes Display bedeutet nicht, dass die Daten weg sind. Der interne Speicher ist oft unversehrt — nur die Anzeige oder Touch-Einheit ist defekt.',
-    sections: [
-      {
-        label: 'Typische Symptome',
-        items: [
-          'Displayglas gebrochen, Touch reagiert nicht',
-          'Schwarzer Bildschirm, Gerät vibriert noch',
-          'Bildschirm flackert oder zeigt Streifen',
-          'Gerät startet hörbar, Bild bleibt schwarz',
-        ],
-      },
-    ],
-    note: 'Datenrettung ist auch bei totem Display möglich — das Gerät muss dafür nicht mehr bedienbar sein.',
   },
   unknown: {
     title: 'Ursache unklar — wir klären das in der Analyse',
-    intro:
-      'Sie müssen nicht wissen, ob Display, Wasserschaden oder Softwaresperre das Problem ist. In der Analyse prüfen wir Speicher und Zustand und nennen Ihnen, welche Daten sich retten lassen.',
+    intro: 'Sie müssen die Ursache nicht selbst eingrenzen. Wir prüfen Speicher und Zustand.',
     sections: [
       {
         label: 'Typische Ausgangslage',
-        items: [
-          'Gerät geht nicht an — Ursache unbekannt',
-          'Daten fehlen, ohne dass Sie einen klaren Auslöser kennen',
-          'Nach einem Update oder Reset funktioniert nichts mehr',
-        ],
+        items: ['Gerät geht nicht an', 'Daten fehlen ohne klaren Auslöser'],
       },
     ],
-    warning: 'Gerät nicht weiter laden oder bedienen, wenn es feucht oder beschädigt wirkt — einsenden und analysieren lassen.',
   },
 };
 
 export const NOTEBOOK_DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
-  del: {
-    title: 'Gelöschte Dateien & formatierte Systempartition',
-    intro:
-      'Auf Notebooks und PCs bleiben gelöschte Dateien oft noch auf der internen SSD oder HDD — solange der Speicher nicht überschrieben wurde. Nutzen Sie das Gerät möglichst nicht weiter und starten Sie keine eigenen Recovery-Tools.',
-    sections: [
-      {
-        label: 'Typische Fälle',
-        items: [
-          'Dateien endgültig gelöscht oder Papierkorb geleert',
-          'Windows-/macOS-Neuinstallation überschreibt die Systempartition',
-          'Partition versehentlich gelöscht oder formatiert',
-          'System-Reset oder „Diesen PC zurücksetzen“ ausgeführt',
-        ],
-      },
-    ],
-    warning: 'Nicht weiter speichern, nicht neu installieren — jedes Schreiben verringert die Rettungschance.',
-  },
-  mech: {
-    title: 'Sturzschaden an Notebook oder PC',
-    intro:
-      'Nach einem Sturz kann die interne HDD mechanisch beschädigt sein oder die SSD/Platine den Kontakt verlieren. Wir öffnen das Gerät und retten die Daten direkt vom Speichermedium.',
-    sections: [
-      {
-        label: 'Typische Symptome',
-        items: [
-          'Notebook gefallen — startet nicht mehr oder knackt',
-          'Gehäuse verbeult, Display gerissen, Gerät tot',
-          'Nach Sturz wird die Festplatte nicht mehr erkannt',
-          'PC-Tower umgestürzt — Laufwerke klackern oder fehlen',
-        ],
-      },
-    ],
-    warning: 'Gerät nicht wiederholt einschalten — bei HDD-Verdacht sofort ruhen lassen und einsenden.',
-  },
-  water: {
-    title: 'Flüssigkeitsschaden an Notebook oder PC',
-    intro:
-      'Kaffee, Wasser oder andere Flüssigkeiten auf der Tastatur können Mainboard und Speicher beschädigen. Oft sind die Daten auf SSD/HDD noch intakt — entscheidend ist, das Gerät nicht weiter zu betreiben.',
-    sections: [
-      {
-        label: 'Typische Fälle',
-        items: [
-          'Getränk über die Tastatur verschüttet',
-          'Notebook in Regen oder Pfütze gefallen',
-          'Gerät geht nach Feuchtigkeit nicht mehr an',
-          'Korrosion an Anschlüssen oder Logic Board',
-        ],
-      },
-    ],
-    warning: 'Nicht laden, nicht einschalten, nicht mit Reis „trocknen“ — Gerät ausschalten und einsenden.',
-  },
-  ctrl: {
-    title: 'Mainboard- & Elektronikschaden',
-    intro:
-      'Defekte Netzteile, Logic Boards oder Überspannung legen Notebook und PC still — die Daten auf dem Speichermedium sind oft unberührt. Wir bauen SSD oder HDD aus und retten unabhängig vom Mainboard.',
-    sections: [
-      {
-        label: 'Typische Symptome',
-        items: [
-          'Gerät reagiert nicht auf Netzteil oder Power-Taste',
-          'Kein POST, kein Lüfter, keine Anzeige',
-          'Brandgeruch oder sichtbarer Schaden an der Platine',
-          'Nach Gewitter oder Überspannung tot',
-        ],
-      },
-    ],
-    note: 'Die Datenrettung erfolgt am Speichermedium — das Mainboard muss dafür nicht mehr funktionieren.',
-  },
-  enc: {
-    title: 'Verschlüsselung & BitLocker / FileVault',
-    intro:
-      'Bei BitLocker, FileVault oder TPM-gebundener Verschlüsselung brauchen wir den Wiederherstellungsschlüssel oder das Passwort. Ohne Schlüssel ist eine logische Entschlüsselung in der Regel nicht möglich.',
-    sections: [
-      {
-        label: 'Typische Fälle',
-        items: [
-          'BitLocker-Wiederherstellungsschlüssel nicht auffindbar',
-          'FileVault-Passwort vergessen',
-          'Ransomware verschlüsselt die Systempartition',
-          'TPM-Fehler nach Mainboard-Tausch',
-        ],
-      },
-    ],
-    warning: 'Wiederherstellungsschlüssel und Passwörter bereithalten — ohne sie ist oft keine Entschlüsselung möglich.',
-  },
+  del: DAMAGE_INFO.del,
+  unreadable: DAMAGE_INFO.unreadable,
   crash: {
-    title: 'Startet nicht / Boot-Fehler',
+    title: 'System startet nicht mehr',
     intro:
-      'Boot-Schleifen, BSOD oder fehlender POST bedeuten oft ein Problem mit Systempartition, Firmware oder Speichermedium — nicht zwingend Datenverlust. Wir sichern die Daten, bevor Reparaturversuche sie gefährden.',
+      'Boot-Schleifen, BSOD oder fehlender POST bedeuten oft ein Problem mit Systempartition — nicht zwingend Datenverlust.',
+    sections: DAMAGE_INFO.crash.sections,
+    note: DAMAGE_INFO.crash.note,
+  },
+  mech: DAMAGE_INFO.mech,
+  not_recognized: DAMAGE_INFO.not_recognized,
+  water: DAMAGE_INFO.water,
+  ctrl: {
+    title: 'Controller oder Elektronik / Mainboard',
+    intro:
+      'Defekte Netzteile, Logic Boards oder Überspannung legen Notebook und PC still — die Daten auf dem Speichermedium sind oft unberührt.',
     sections: [
       {
         label: 'Typische Symptome',
         items: [
-          'Hängt beim Apple- oder Windows-Logo',
-          'Bluescreen (BSOD) oder Kernel Panic beim Start',
-          '„No bootable device“ / kein POST',
-          'Endloser Neustart nach Update',
+          'Gerät reagiert nicht auf Power-Taste',
+          'Kein POST, kein Lüfter',
+          'Nach Gewitter tot',
         ],
       },
     ],
-    note: 'Kein chkdsk, kein erzwungenes Update, keine Neuinstallation — zuerst Daten sichern lassen.',
   },
-  unknown: {
-    title: 'Ursache unklar — wir klären das in der Analyse',
-    intro:
-      'Ob Mainboard, Speichermedium oder Softwareschaden: Sie müssen das nicht selbst eingrenzen. Wir öffnen das Gerät bei Bedarf, sichern die Daten vom Speichermedium und erklären Ihnen das Ergebnis.',
-    sections: [
-      {
-        label: 'Typische Ausgangslage',
-        items: [
-          'Notebook/PC startet nicht — Ursache unklar',
-          'Daten fehlen nach Absturz oder Update',
-          'Gerät reagiert nicht, ohne sichtbaren Schaden',
-        ],
-      },
-    ],
-    warning: 'Keine weiteren Reparatur- oder Neuinstallationsversuche — zuerst professionelle Analyse und Datensicherung.',
-  },
+  unknown: DAMAGE_INFO.unknown,
 };
 
 export function getDamageInfo(device: DeviceKey | null, key: DamageKey): CalculatorInfoContent {

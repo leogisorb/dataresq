@@ -20,7 +20,13 @@ import {
   URGENCY_OPTIONS,
 } from '@/lib/calculator';
 import { BTN_BRAND } from '@/lib/button-styles';
-import { SITE, type DamageKey, type DeviceKey, type UrgencyKey } from '@/lib/constants';
+import {
+  SITE,
+  type DamageKey,
+  type DeviceKey,
+  type PriceGroup,
+  type UrgencyKey,
+} from '@/lib/constants';
 
 function formatOpeningHour(hhmm: string): string {
   const hour = Number(hhmm.split(':')[0] ?? '0');
@@ -30,9 +36,10 @@ function formatOpeningHour(hhmm: string): string {
 export interface AnfragePrefill {
   medium: string;
   schaden: string;
-  dringlichkeit: UrgencyKey;
-  ruecksendung: string;
+  dringlichkeit?: UrgencyKey;
+  ruecksendung?: string;
   preisrahmen: string;
+  preisgruppe?: PriceGroup;
 }
 
 interface AnfrageFormProps {
@@ -121,9 +128,12 @@ export default function AnfrageForm({
           email: email.trim(),
           medium: mediumLabel,
           schaden: schadenLabel,
-          dringlichkeit: isCalculatorMode ? prefill!.dringlichkeit : dringlichkeit,
+          dringlichkeit: isCalculatorMode
+            ? (prefill!.dringlichkeit ?? undefined)
+            : dringlichkeit,
           ruecksendung: isCalculatorMode ? prefill!.ruecksendung : undefined,
           preisrahmen: isCalculatorMode ? prefill!.preisrahmen : undefined,
+          preisgruppe: isCalculatorMode ? prefill!.preisgruppe : undefined,
           nachricht: nachricht.trim() || undefined,
         }),
       });
@@ -166,10 +176,20 @@ export default function AnfrageForm({
         <div className="rounded-xl border border-border bg-bg px-4 py-3">
           <p className="text-xs font-semibold uppercase tracking-wide text-text">Ihre Auswahl</p>
           <p className="mt-2 text-sm text-text-muted">
-            {prefill.medium} · {prefill.schaden} ·{' '}
-            {URGENCY_OPTIONS.find((option) => option.key === prefill.dringlichkeit)?.label}
+            {[
+              prefill.medium,
+              prefill.schaden,
+              prefill.dringlichkeit
+                ? URGENCY_OPTIONS.find((option) => option.key === prefill.dringlichkeit)?.label
+                : null,
+            ]
+              .filter(Boolean)
+              .join(' · ')}
           </p>
-          <p className="mt-1 text-sm font-medium text-text">Preisrahmen: {prefill.preisrahmen}</p>
+          <p className="mt-1 text-sm font-medium text-text">Preis: {prefill.preisrahmen}</p>
+          {prefill.preisgruppe ? (
+            <input name="preisgruppe" type="hidden" value={prefill.preisgruppe} />
+          ) : null}
         </div>
       )}
 

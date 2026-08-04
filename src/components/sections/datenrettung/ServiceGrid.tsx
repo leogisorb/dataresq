@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { calcTileClasses } from '@/components/calculator/calc-tile-styles';
-import { DIAGNOSIS_FEE_FORMATTED } from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, formatPriceRange, PRICE_DISPLAY } from '@/lib/constants';
 import { getChevronStyleForService } from '@/lib/chevron-colors';
 import { datenrettungServices } from '@/lib/datenrettung-services';
 
@@ -54,7 +54,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
     ],
     stats: [
       { value: '95%', label: 'Erfolgsquote' },
-      { value: '899 – 1.799 €', label: 'Preisrahmen Standard' },
+      { value: formatPriceRange(PRICE_DISPLAY.hddSsd), label: 'Festpreis logisch / physisch' },
       { value: DIAGNOSIS_FEE_FORMATTED, label: 'Kostenlose Analyse' },
     ],
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
@@ -69,7 +69,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
     stats: [
       { value: '92%', label: 'Erfolgsquote' },
       { value: '3–5 Tage', label: 'Standard' },
-      { value: '899 – 1.799 €', label: 'Preisrahmen Standard' },
+      { value: formatPriceRange(PRICE_DISPLAY.hddSsd), label: 'Festpreis logisch / physisch' },
     ],
     brands: ['Samsung', 'WD', 'Crucial', 'Kingston', 'Corsair', 'Intel'],
   },
@@ -89,7 +89,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
   },
   'usb-sd': {
     features: [],
-    note: 'USB-Stick & SD-Karte — Preisrahmen 699 – 999 € (Flash-Speicher, Standard).',
+    note: `USB-Stick & SD-Karte — Festpreis ${formatPriceRange(PRICE_DISPLAY.flash)} (Flash-Speicher, inkl. MwSt.).`,
   },
   server: {
     features: [],

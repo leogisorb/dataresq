@@ -104,43 +104,62 @@ export const SITE_META_DESCRIPTION =
 export const DATA_RETENTION_DAYS = 14 as const;
 
 export type DeviceKey = 'hdd' | 'ssd' | 'raid' | 'usb' | 'smartphone' | 'notebook';
-export type DamageKey = 'del' | 'mech' | 'water' | 'ctrl' | 'enc' | 'crash' | 'unknown';
+export type DamageKey =
+  | 'del'
+  | 'unreadable'
+  | 'crash'
+  | 'mech'
+  | 'not_recognized'
+  | 'water'
+  | 'ctrl'
+  | 'unknown';
 export type UrgencyKey = 'std' | 'express' | 'notfall';
 /** Datenübergabe: neuer Datenträger, Downloadlink oder beides */
 export type ReturnMediumKey = 'new' | 'download' | 'both';
 
-export type DeviceCategory = 'hddSsd' | 'flash' | 'smartphone' | 'notebook';
+/** Preisgruppe aus Schadenauswahl bzw. Anfrage-Fallback */
+export type PriceGroup = 'logical' | 'physical' | 'unknown' | 'anfrage';
 
-/** Express-Aufpreis gegenüber Standard (Preisindikator im Rechner) */
+/** Medien mit Festpreis-Leiter (logisch / physisch) */
+export type PricedDeviceCategory = 'hddSsd' | 'flash';
+
+/** Express-Aufpreis gegenüber Standard */
 export const EXPRESS_SURCHARGE = 250 as const;
 
-export const SERVICE_PRICES: Record<
-  UrgencyKey,
-  Record<DeviceCategory, [number, number] | null>
-> = {
-  std: {
-    hddSsd: [899, 1799],
-    flash: [699, 999],
-    smartphone: [179, 999],
-    notebook: [249, 1199],
-  },
-  express: {
-    hddSsd: [1149, 2049],
-    flash: [949, 1249],
-    smartphone: [179, 999],
-    notebook: [249, 1199],
-  },
-  notfall: { hddSsd: null, flash: null, smartphone: null, notebook: null },
+/**
+ * Festpreise inkl. MwSt. (Standard-Service).
+ * Gruppe A = logischer Defekt, Gruppe B = physischer Defekt.
+ */
+export const BASE_PRICES = {
+  hddSsd: { logical: 585, physical: 1185 },
+  flash: { logical: 385, physical: 685 },
 } as const;
+
+/** Marketing-Spannen für Service-Karten (Standard) */
+export const PRICE_DISPLAY = {
+  hddSsd: [BASE_PRICES.hddSsd.logical, BASE_PRICES.hddSsd.physical] as [number, number],
+  flash: [BASE_PRICES.flash.logical, BASE_PRICES.flash.physical] as [number, number],
+} as const;
+
+export function formatPriceEuro(amount: number): string {
+  return `${amount.toLocaleString('de-DE')} €`;
+}
 
 export function formatPriceRange(range: [number, number]): string {
   return `${range[0].toLocaleString('de-DE')} – ${range[1].toLocaleString('de-DE')} €`;
 }
 
-export function getDeviceCategory(device: DeviceKey): DeviceCategory | null {
-  if (device === 'hdd' || device === 'ssd') return 'hddSsd';
+export function getPricedCategory(device: DeviceKey): PricedDeviceCategory | null {
+  if (device === 'hdd' || device === 'ssd' || device === 'notebook') return 'hddSsd';
   if (device === 'usb') return 'flash';
-  if (device === 'smartphone') return 'smartphone';
-  if (device === 'notebook') return 'notebook';
   return null;
+}
+
+/** Notebook, RAID, Smartphone: nach Schaden direkt Formular (kein Service-Level) */
+export function skipsServiceFlow(device: DeviceKey): boolean {
+  return device === 'notebook' || device === 'raid' || device === 'smartphone';
+}
+
+export function showsDamagePriceBadges(device: DeviceKey): boolean {
+  return getPricedCategory(device) !== null;
 }

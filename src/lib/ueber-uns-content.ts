@@ -116,7 +116,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Preisangabe vor Einsendung',
-    rsqdata: 'Konkreter Preisrahmen im Online-Rechner',
+    rsqdata: 'Konkreter Festpreis-Indikator im Online-Rechner',
     industry: 'Erst nach Einsendung',
   },
   {

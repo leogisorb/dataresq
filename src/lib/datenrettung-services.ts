@@ -1,11 +1,16 @@
 import {
   ANALYSIS_DURATION,
+  BASE_PRICES,
   BINDING_OFFER_BADGE,
   DECLINED_RECOVERY_NOTE,
   DIAGNOSIS_FEE_FORMATTED,
+  EXPRESS_SURCHARGE,
   FAILED_RECOVERY_BADGE,
+  formatPriceEuro,
+  formatPriceRange,
   FREE_DIAGNOSIS_BADGE,
   NO_COST_GUARANTEE_NOTE,
+  PRICE_DISPLAY,
   type DeviceKey,
 } from '@/lib/constants';
 
@@ -54,8 +59,7 @@ export const datenrettungServices: ServiceCard[] = [
     slug: 'usb-sd',
     icon: '🔌',
     title: 'USB-Stick & SD-Karte',
-    description:
-      'Abgebrochener Stecker, beschädigter Chip, gelöschte Fotos — Preisrahmen 699 – 999 € (Flash-Speicher, Standard).',
+    description: `Abgebrochener Stecker, beschädigter Chip, gelöschte Fotos — Festpreis ${formatPriceRange(PRICE_DISPLAY.flash)} (Flash-Speicher, inkl. MwSt.).`,
     href: '/datenrettung/usb-sd',
     imageAlt: 'Datenrettung USB SD-Karte',
     defaultDevice: 'usb',
@@ -103,8 +107,7 @@ export const processSteps: ProcessStep[] = [
     phase: 1,
     phaseLabel: 'Anfrage & Angebot',
     title: 'Anfrage stellen & Angebot erhalten',
-    description:
-      'Beschreiben Sie über unser Online-Formular Datenträger, Auslöser und wichtige Daten — und wählen Sie Ihr Service-Level. Sie erhalten sofort Ihr unverbindliches Angebot: Festplatte (HDD) / SSD — Standard (3–5 AT) 899 – 1.799 €, Express (1–2 AT) 1.149 – 2.049 €. Flash (USB-Stick, Speicherkarte) — Standard 699 – 999 €, Express 949 – 1.249 €. RAID / NAS / Server: individuell nach kostenloser Voranfrage. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt. Wichtig: Schalten Sie den Datenträger nicht mehr ein und starten Sie keine eigenen Rettungsversuche.',
+    description: `Beschreiben Sie über unseren Online-Rechner Datenträger und Schadensbild. Sie sehen sofort Ihren Preisindikator: HDD/SSD/Notebook — logisch ${formatPriceEuro(BASE_PRICES.hddSsd.logical)}, physisch ${formatPriceEuro(BASE_PRICES.hddSsd.physical)}; Flash — ${formatPriceRange(PRICE_DISPLAY.flash)}. Express +${EXPRESS_SURCHARGE} €. RAID/NAS/Smartphone: Preis nach Analyse. Notfall (24/7): auf Anfrage. Alle Preise inkl. MwSt. Verbindlicher Festpreis nach der kostenlosen Analyse. Wichtig: Schalten Sie den Datenträger nicht mehr ein und starten Sie keine eigenen Rettungsversuche.`,
   },
   {
     step: 2,

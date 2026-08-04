@@ -30,7 +30,7 @@ export const mobileNavItems: MobileNavItem[] = [
   {
     label: 'Preisrechner',
     href: '/preisrechner',
-    description: 'Kostenloser Preisrahmen in vier Schritten — unverbindlich, ohne Registrierung.',
+    description: 'Festpreis-Indikator in wenigen Schritten — verbindlich nach Analyse.',
   },
   {
     label: 'Standorte',

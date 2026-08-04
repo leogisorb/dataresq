@@ -2,30 +2,30 @@ import type { DamageKey, DeviceKey, ReturnMediumKey, UrgencyKey } from '@/lib/co
 
 export type CalcIconKey = DeviceKey | DamageKey | UrgencyKey | ReturnMediumKey;
 
-export const CALC_ICON_COLORS: Record<CalcIconKey, string> = {
-  hdd: 'text-[#0071e3]',
+const ICON_COLORS: Record<CalcIconKey, string> = {
+  hdd: 'text-[#007aff]',
   ssd: 'text-[#5856d6]',
   raid: 'text-[#ff9500]',
   usb: 'text-[#34c759]',
-  smartphone: 'text-[#007aff]',
-  notebook: 'text-[#86868b]',
+  smartphone: 'text-[#af52de]',
+  notebook: 'text-[#64d2ff]',
   del: 'text-[#ff3b30]',
+  unreadable: 'text-[#ff9500]',
+  crash: 'text-[#ff2d55]',
   mech: 'text-[#ff9500]',
+  not_recognized: 'text-[#8e8e93]',
   water: 'text-[#32ade6]',
   ctrl: 'text-[#5856d6]',
-  enc: 'text-[#af52de]',
-  crash: 'text-[#ff2d55]',
   unknown: 'text-[#86868b]',
-  std: 'text-[#86868b]',
+  std: 'text-[#34c759]',
   express: 'text-[#ff9500]',
   notfall: 'text-[#ff3b30]',
   new: 'text-[#5856d6]',
-  download: 'text-[#0071e3]',
-  both: 'text-[#34c759]',
+  download: 'text-[#007aff]',
+  both: 'text-[#af52de]',
 };
 
 export function calcTileIconClasses(isSelected: boolean, key: CalcIconKey): string {
-  const base = 'transition-colors duration-200';
-  if (!isSelected) return `${base} text-text-dim`;
-  return `${base} ${CALC_ICON_COLORS[key]}`;
+  if (isSelected) return 'text-accent';
+  return ICON_COLORS[key] ?? 'text-text-muted';
 }

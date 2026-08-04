@@ -691,7 +691,7 @@ export default function DatenschutzContent(): React.JSX.Element {
       <h2>13. Keine automatisierte Entscheidungsfindung</h2>
       <p>
         Eine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne des Art. 22 DSGVO
-        findet nicht statt. Der auf unserer Website angezeigte Preisrahmen ist eine unverbindliche
+        findet nicht statt. Der auf unserer Website angezeigte Preisindikator ist eine unverbindliche
         Orientierung und keine automatisierte Entscheidung mit rechtlicher Wirkung; das verbindliche
         Angebot erstellen wir stets nach individueller Prüfung.
       </p>

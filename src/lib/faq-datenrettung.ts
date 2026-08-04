@@ -1,7 +1,10 @@
 import { CALCULATOR_PAGE_PATH } from '@/lib/calculator-section';
 import {
   ANALYSIS_DURATION,
+  BASE_PRICES,
   DECLINED_RECOVERY_NOTE,
+  EXPRESS_SURCHARGE,
+  formatPriceEuro,
   LAB_PARTNER_NOTE,
   NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
@@ -33,7 +36,7 @@ export const datenrettungFaqs: DatenrettungFaqItem[] = [
   {
     id: 'kosten',
     question: 'Was kostet eine Datenrettung?',
-    answer: `Preisrahmen: HDD/SSD Standard 899 – 1.799 €, Express 1.149 – 2.049 € · Flash Standard 699 – 999 €, Express 949 – 1.249 € · RAID / NAS / Server individuell · Notfall auf Anfrage. Warum dieses Modell? Weil Sie nur dann eine gute Entscheidung treffen können, wenn Sie Preis und rettbare Daten kennen, bevor Sie zahlen. Nutzen Sie unseren Preisrahmen-Rechner unter ${CALCULATOR_PAGE_PATH}. ${NO_COST_GUARANTEE_NOTE}`,
+    answer: `Festpreise inkl. MwSt.: HDD/SSD/Notebook logisch ${formatPriceEuro(BASE_PRICES.hddSsd.logical)}, physisch ${formatPriceEuro(BASE_PRICES.hddSsd.physical)} · Flash logisch ${formatPriceEuro(BASE_PRICES.flash.logical)}, physisch ${formatPriceEuro(BASE_PRICES.flash.physical)} · Express +${EXPRESS_SURCHARGE} € · RAID/NAS/Smartphone nach Analyse · Notfall auf Anfrage. Verbindlicher Festpreis nach der kostenlosen Analyse. Nutzen Sie unseren Preisrechner unter ${CALCULATOR_PAGE_PATH}. ${NO_COST_GUARANTEE_NOTE}`,
   },
   {
     id: 'pruefgebuehr',

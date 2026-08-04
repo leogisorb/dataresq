@@ -70,7 +70,7 @@ export const MEDIUM_DETAIL_CONTENT: Record<string, MediumDetailContent> = {
       'Chip-Level-Diagnose bei Controller-Ausfall',
       'Direktes Auslesen des NAND-Chips',
       'Logische Rekonstruktion von FAT/exFAT-Dateisystemen',
-      'Preisrahmen 699 – 999 € für Flash-Speicher (Standard)',
+      'Festpreis Flash-Speicher: logisch 385 €, physisch 685 € (inkl. MwSt.)',
     ],
     relatedSlugs: ['smartphone', 'ssd', 'festplatte-hdd'],
   },

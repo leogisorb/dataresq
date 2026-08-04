@@ -1,17 +1,23 @@
 interface CalcProgressBarProps {
-  step: 1 | 2 | 3 | 4 | 5;
+  step: number;
+  totalSteps: number;
 }
 
-export default function CalcProgressBar({ step }: CalcProgressBarProps) {
+export default function CalcProgressBar({
+  step,
+  totalSteps,
+}: CalcProgressBarProps): React.JSX.Element {
+  const steps = Array.from({ length: totalSteps }, (_, index) => index + 1);
+
   return (
     <div
       aria-label="Fortschritt"
-      aria-valuemax={5}
+      aria-valuemax={totalSteps}
       aria-valuenow={step}
       className="mb-8 flex items-center justify-center gap-2"
       role="progressbar"
     >
-      {([1, 2, 3, 4, 5] as const).map((s) => {
+      {steps.map((s) => {
         const isActive = s === step;
         const isDone = s < step;
 

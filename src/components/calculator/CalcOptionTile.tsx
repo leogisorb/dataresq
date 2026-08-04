@@ -12,6 +12,7 @@ interface CalcOptionTileProps {
   isSelected: boolean;
   onSelect: () => void;
   className?: string;
+  role?: 'radio' | undefined;
   children: ReactNode;
 }
 
@@ -21,14 +22,17 @@ export default function CalcOptionTile({
   isSelected,
   onSelect,
   className,
+  role,
   children,
-}: CalcOptionTileProps) {
+}: CalcOptionTileProps): React.JSX.Element {
   return (
     <div className="relative h-full">
       <button
         type="button"
-        aria-pressed={isSelected}
+        aria-checked={role === 'radio' ? isSelected : undefined}
+        aria-pressed={role === 'radio' ? undefined : isSelected}
         className={[calcTileClasses(isSelected), 'h-full w-full', className].filter(Boolean).join(' ')}
+        role={role}
         onClick={onSelect}
       >
         {children}

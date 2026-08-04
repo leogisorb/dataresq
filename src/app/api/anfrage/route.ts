@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import { EMAIL_REGEX, PHONE_REGEX, URGENCY_OPTIONS } from '@/lib/calculator';
-import { SITE, type UrgencyKey } from '@/lib/constants';
+import { SITE, type PriceGroup, type UrgencyKey } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 
 function getResendClient() {
@@ -22,6 +22,7 @@ interface AnfrageBody {
   festpreis?: string;
   preisrahmen?: string;
   preisrange?: string;
+  preisgruppe?: PriceGroup;
   ruecksendung?: string;
   nachricht?: string;
 }
@@ -39,6 +40,7 @@ function resolveUrgencyLabel(body: AnfrageBody): string {
     return URGENCY_OPTIONS.find((o) => o.key === body.dringlichkeit)?.label ?? body.dringlichkeit;
   }
   if (body.express) return 'Notfall';
+  if (body.preisgruppe || body.preisrahmen) return 'nach Analyse';
   return 'Standard';
 }
 
@@ -46,6 +48,7 @@ export async function POST(req: NextRequest) {
   const body = (await req.json()) as AnfrageBody;
   const { name, telefon, email, medium, schaden, nachricht } = body;
   const preisrahmen = body.preisrahmen ?? body.preisrange ?? body.festpreis;
+  const preisgruppe = body.preisgruppe?.trim();
   const dringlichkeitLabel = resolveUrgencyLabel(body);
   const ruecksendung = body.ruecksendung?.trim();
 
@@ -81,6 +84,7 @@ export async function POST(req: NextRequest) {
         schaden,
         dringlichkeit: dringlichkeitLabel,
         preisrahmen,
+        preisgruppe,
         ruecksendung,
       });
       return NextResponse.json({ success: true, dev: true });
@@ -101,6 +105,7 @@ export async function POST(req: NextRequest) {
   const safeMedium = escapeHtml(medium);
   const safeSchaden = escapeHtml(schaden);
   const safePreisrahmen = escapeHtml(preisrahmen ?? '—');
+  const safePreisgruppe = escapeHtml(preisgruppe ?? '—');
   const safeDringlichkeit = escapeHtml(dringlichkeitLabel);
   const safeRuecksendung = escapeHtml(ruecksendung ?? '—');
   const safeNachricht = escapeHtml(nachricht?.trim() || '—');
@@ -113,7 +118,7 @@ export async function POST(req: NextRequest) {
       replyTo: email.trim(),
       subject: `Neue Datenrettungs-Anfrage: ${medium} / ${schaden}`,
       html: `
-        <h2>Neue Anfrage über den Preisrahmen-Rechner</h2>
+        <h2>Neue Anfrage über den Preisrechner</h2>
         <table>
           <tr><td><b>Name:</b></td><td>${safeName}</td></tr>
           <tr><td><b>Telefon:</b></td><td>${safeTelefon}</td></tr>
@@ -122,7 +127,8 @@ export async function POST(req: NextRequest) {
           <tr><td><b>Schaden:</b></td><td>${safeSchaden}</td></tr>
           <tr><td><b>Service-Level:</b></td><td>${safeDringlichkeit}</td></tr>
           <tr><td><b>Rücksendung:</b></td><td>${safeRuecksendung}</td></tr>
-          <tr><td><b>Preisrahmen:</b></td><td>${safePreisrahmen}</td></tr>
+          <tr><td><b>Preisgruppe:</b></td><td>${safePreisgruppe}</td></tr>
+          <tr><td><b>Preis:</b></td><td>${safePreisrahmen}</td></tr>
           <tr><td><b>Nachricht:</b></td><td>${safeNachricht}</td></tr>
         </table>
         <p><b>Bitte binnen 24h zurückrufen.</b></p>
@@ -137,7 +143,8 @@ export async function POST(req: NextRequest) {
       html: `
         <h2>Vielen Dank, ${safeName}!</h2>
         <p>Ihre Anfrage ist bei uns eingegangen.</p>
-        <p><b>Ihr Preisrahmen: ${safePreisrahmen}</b></p>
+        <p><b>Ihr Preisindikator: ${safePreisrahmen}</b></p>
+        <p>Der Festpreis wird nach der kostenlosen Analyse verbindlich.</p>
         <p>Unser Team meldet sich binnen <b>24 Stunden per E-Mail</b> bei Ihnen
         und sendet Ihnen anschließend die Bestätigung mit Ihrer Auftragsnummer.</p>
         <p>Bei Rückfragen antworten Sie einfach auf diese E-Mail.</p>
