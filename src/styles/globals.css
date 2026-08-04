@@ -120,14 +120,16 @@ body {
 }
 
 :root {
-  --site-header-bar-height: 2.75rem;
+  /* RebootNavbar: py-4 (1rem×2) + logo h-6 (1.5rem) */
+  --site-header-bar-height: 3.5rem;
   --safe-area-inset-top: env(safe-area-inset-top, 0px);
   --site-header-height: calc(var(--site-header-bar-height) + var(--safe-area-inset-top));
 }
 
 @media (min-width: 768px) {
   :root {
-    --site-header-bar-height: 3rem;
+    /* RebootNavbar: py-5 (1.25rem×2) + logo ~26px */
+    --site-header-bar-height: 3.875rem;
   }
 }
 

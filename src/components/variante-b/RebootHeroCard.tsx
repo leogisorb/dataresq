@@ -8,7 +8,6 @@ import AsciiThemeRail, {
 import DataRecoveryBackground from '@/components/variante-b/DataRecoveryBackground';
 import RebootBrandBar from '@/components/variante-b/RebootBrandBar';
 import RebootHeroContent from '@/components/variante-b/RebootHeroContent';
-import RebootNavbar from '@/components/variante-b/RebootNavbar';
 import type { AsciiShapeId } from '@/lib/ascii-shapes';
 
 /** Mobile hero uses platter/disc ASCII only — first theme, no picker */
@@ -72,10 +71,8 @@ export default function RebootHeroCard(): React.JSX.Element {
   }, []);
 
   return (
-    <div className="relative flex h-dvh min-h-dvh w-full flex-col overflow-hidden bg-white pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)]">
+    <div className="relative flex h-[calc(100dvh-var(--site-header-height))] min-h-[calc(100dvh-var(--site-header-height))] w-full flex-col overflow-hidden bg-white pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)]">
       {showAscii ? <DataRecoveryBackground shape={shape} /> : null}
-
-      <RebootNavbar />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center py-16 md:py-24">
         <RebootHeroContent />
