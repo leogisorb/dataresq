@@ -2,6 +2,7 @@ export const SITE = {
   phone: '+49 151 27064982',
   phoneTel: '+4915127064982',
   email: 'info@rsqdata.de',
+  /** Büro Köln — Kundenbetreuung / Koordination (nicht Impressumsadresse) */
   address: {
     street: 'Pellenzstr. 15',
     city: 'Köln',
@@ -12,6 +13,22 @@ export const SITE = {
     weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as const,
     opens: '09:00',
     closes: '18:00',
+  },
+} as const;
+
+/** Angaben gemäß § 5 DDG — Single Source für /impressum (TXT ist Vorgabe) */
+export const LEGAL = {
+  ownerName: 'Robert Münch',
+  brandName: 'RSQDATA',
+  vatId: 'DE291595156',
+  /** Nur Impressum — nicht in Nav/Footer */
+  phoneSecondary: '+49 2181 7578878',
+  phoneSecondaryTel: '+4921817578878',
+  address: {
+    street: 'Am Hammerwerk 16A',
+    city: 'Grevenbroich',
+    zip: '41515',
+    country: 'Deutschland',
   },
 } as const;
 

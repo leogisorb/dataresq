@@ -5,9 +5,14 @@ import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta'
 import ProcessTimelinePreview from '@/components/sections/datenrettung/ProcessTimelinePreview';
 import StandortFaq from '@/components/standort/StandortFaq';
 import StandortLabPartnerSection from '@/components/standort/StandortLabPartnerSection';
+import StandortMapConsent from '@/components/standort/StandortMapConsent';
 import { TILE_CARD_LINK } from '@/lib/button-styles';
 import { SITE } from '@/lib/constants';
-import { getLocationPageTitle, type Location } from '@/lib/locations';
+import {
+  getGoogleMapsEmbedUrl,
+  getLocationPageTitle,
+  type Location,
+} from '@/lib/locations';
 import { trustBadges } from '@/lib/datenrettung-services';
 import { STANDORT_SERVICES } from '@/lib/standort-services';
 import { getStandortFaqs } from '@/lib/standort-faq';
@@ -92,6 +97,12 @@ export default function StandortContent({ loc }: StandortContentProps) {
           src={loc.image}
         />
       </div>
+
+      <StandortMapConsent
+        embedUrl={getGoogleMapsEmbedUrl(loc)}
+        locationName={loc.name}
+        mapsUrl={loc.mapsUrl}
+      />
 
       {loc.kind === 'labor' ? (
         <div className="mt-10">

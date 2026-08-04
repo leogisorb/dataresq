@@ -27,6 +27,12 @@ export function getGoogleMapsUrl(address: string, country = 'Deutschland'): stri
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${country}`)}`;
 }
 
+/** Embed URL for privacy-friendly two-click Google Maps (no API key). */
+export function getGoogleMapsEmbedUrl(loc: Location): string {
+  const query = encodeURIComponent(`${loc.street}, ${loc.zip} ${loc.name}`);
+  return `https://maps.google.com/maps?q=${query}&hl=de&z=15&output=embed`;
+}
+
 export function getLocationPartnerLabel(loc: Location): string {
   if (loc.kind === 'labor') {
     return 'Labor (UK)';
