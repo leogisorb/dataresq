@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Inter } from 'next/font/google';
 
 import SiteChrome from '@/components/layout/SiteChrome';
@@ -34,6 +35,7 @@ export default function RootLayout({
       >
         <HashScrollOnNavigate />
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   );

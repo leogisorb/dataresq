@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
@@ -14,14 +15,13 @@ import {
 } from '@/lib/structured-data';
 
 export const metadata: Metadata = createContentMetadata({
-  title: 'Standorte — Abgabe & Kundenbetreuung',
+  title: 'Datenrettung NRW — Standorte Grevenbroich, Mönchengladbach, Köln',
   description:
-    'RSQDATA Standorte: iAmbulanz-Abgabe in Grevenbroich und Mönchengladbach, Büro Köln. Kostenlose DHL Express-Abholung bundesweit.',
+    'Datenrettung in NRW: persönliche Abgabe in Grevenbroich und Mönchengladbach, Koordination aus Köln, kostenlose DHL Express-Abholung bundesweit.',
   path: '/standort',
 });
 
 export default function StandortOverviewPage() {
-  /** One deck: Abgabe first, then Büro & Labor — all cards settle into one block */
   const locations = [...getAbgabeLocations(), ...getOfficeAndLabLocations()];
 
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
@@ -29,8 +29,8 @@ export default function StandortOverviewPage() {
     { name: 'Standorte', url: `${siteConfig.url}/standort` },
   ]);
   const collectionJsonLd = generateCollectionPageJsonLd(
-    'Standorte — Abgabe & Kundenbetreuung',
-    'RSQDATA: Abgabestellen in Grevenbroich und Mönchengladbach, Büro Köln.',
+    'Datenrettung NRW — Standorte',
+    'RSQDATA in Nordrhein-Westfalen: Abgabe Grevenbroich und Mönchengladbach, Büro Köln, bundesweite DHL Express-Abholung.',
     '/standort',
   );
 
@@ -52,10 +52,35 @@ export default function StandortOverviewPage() {
               { label: 'Standorte' },
             ]}
           />
-          <h1 className="text-3xl font-bold text-text md:text-4xl">Standorte</h1>
-          <p className="mt-4 max-w-2xl text-text">
-            Persönliche Abgabe an iAmbulanz-Partnern oder Beratung aus Köln. Kostenlose DHL
-            Express-Abholung bundesweit.
+          <h1 className="text-3xl font-bold text-text md:text-4xl">
+            Datenrettung in NRW — Standorte
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text md:text-lg">
+            Datenrettung in Nordrhein-Westfalen: Geben Sie Ihren Datenträger ohne Termin in
+            Grevenbroich oder Mönchengladbach ab — oder lassen Sie ihn kostenlos per DHL Express
+            abholen. Beratung und Auftragssteuerung laufen über das Büro Köln. Die technische
+            Laborarbeit erfolgt über unseren Reinraum-Partner.
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            Einzugsgebiet u. a. Köln, Düsseldorf, Neuss, Krefeld, Bonn, Leverkusen, Viersen und
+            Aachen — ohne Thin-Doorway-Seiten, mit echten Abgabe- und Büroadressen.
+          </p>
+          <p className="mt-4 text-sm text-text-muted">
+            Leistungen:{' '}
+            <Link className="text-accent transition-opacity hover:opacity-70" href="/datenrettung">
+              Datenrettung Übersicht
+            </Link>
+            {' · '}
+            <Link className="text-accent transition-opacity hover:opacity-70" href="/preisrechner">
+              Preisrechner
+            </Link>
+            {' · '}
+            <Link
+              className="text-accent transition-opacity hover:opacity-70"
+              href="/ratgeber/datenrettung-nrw-abgabe-dhl"
+            >
+              Ratgeber Abgabe vs. DHL
+            </Link>
           </p>
 
           <StandortStack className="mt-12" locations={locations} />

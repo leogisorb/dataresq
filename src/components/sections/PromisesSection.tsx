@@ -57,21 +57,20 @@ export default function PromisesSection(): React.JSX.Element {
             >
               <article
                 className={[
-                  'relative mx-auto flex h-full w-full max-w-[340px] flex-col overflow-hidden rounded-[2rem] shadow-[0_10px_24px_rgba(0,0,0,0.14)]',
+                  'relative mx-auto flex h-full w-full max-w-[340px] flex-col overflow-hidden rounded-[2rem] shadow-[0_12px_40px_rgba(0,0,0,0.1)]',
                   tile.faceClass,
                 ].join(' ')}
               >
-                {/* Colored header band (Expertise gradient) */}
+                {/* Full-bleed color — shows through glass folder */}
                 <div
-                  className={[
-                    'relative h-[7.25rem] shrink-0 overflow-hidden',
-                    tile.backClass,
-                  ].join(' ')}
+                  aria-hidden
+                  className={['absolute inset-0', tile.backClass].join(' ')}
                 >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -inset-10 opacity-70 blur-xl bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.35)_0%,transparent_40%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.12)_0%,transparent_45%)]"
-                  />
+                  <div className="pointer-events-none absolute -inset-10 opacity-70 blur-xl bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.4)_0%,transparent_40%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.16)_0%,transparent_45%)]" />
+                </div>
+
+                {/* Clear color band for icon + meta */}
+                <div className="relative z-10 h-[7.25rem] shrink-0">
                   <Icon
                     aria-hidden="true"
                     className="absolute top-5 left-6 z-10 size-6 text-[#1d1d1f] md:size-7"
@@ -87,10 +86,10 @@ export default function PromisesSection(): React.JSX.Element {
                   </p>
                 </div>
 
-                {/* RSQ-colored folder + tab */}
+                {/* Frosted glass folder — translucent so color reads through */}
                 <svg
                   aria-hidden
-                  className="pointer-events-none absolute top-[4.5rem] left-0 block h-[calc(100%-4.5rem)] w-full"
+                  className="pointer-events-none absolute top-[4.5rem] left-0 z-[1] block h-[calc(100%-4.5rem)] w-full"
                   viewBox="0 0 380 268"
                   preserveAspectRatio="none"
                 >
@@ -99,7 +98,7 @@ export default function PromisesSection(): React.JSX.Element {
                       id={gradId}
                       x1="0"
                       y1="0"
-                      x2="1"
+                      x2="0"
                       y2="1"
                     >
                       <stop
@@ -115,17 +114,36 @@ export default function PromisesSection(): React.JSX.Element {
                         stopColor={tile.faceGradient.to}
                       />
                     </linearGradient>
+                    <linearGradient
+                      id={`${gradId}-sheen`}
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="0%" stopColor="rgba(255,255,255,0.35)" />
+                      <stop offset="35%" stopColor="rgba(255,255,255,0)" />
+                    </linearGradient>
                   </defs>
-                  <path d={FOLDER_BODY_PATH} fill={`url(#${gradId})`} />
+                  <path
+                    d={FOLDER_BODY_PATH}
+                    fill={`url(#${gradId})`}
+                    stroke="rgba(255,255,255,0.55)"
+                    strokeWidth="1.25"
+                  />
+                  <path
+                    d={FOLDER_BODY_PATH}
+                    fill={`url(#${gradId}-sheen)`}
+                  />
                 </svg>
 
                 {/* Content on folder body */}
                 <div className="relative z-10 flex flex-1 flex-col px-7 pb-7 pt-3">
                   <div className="text-left">
-                    <h3 className="text-[1.05rem] font-bold leading-snug tracking-tight text-white md:text-[1.125rem]">
+                    <h3 className="text-[1.05rem] font-bold leading-snug tracking-tight text-[#1d1d1f] md:text-[1.125rem]">
                       {tile.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-snug text-white/65">
+                    <p className="mt-2 text-sm leading-snug text-[#1d1d1f]/70">
                       {tile.body}
                     </p>
                   </div>

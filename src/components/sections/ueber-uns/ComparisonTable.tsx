@@ -1,6 +1,10 @@
-import { comparisonRows } from '@/lib/ueber-uns-content';
+import { comparisonRows, type ComparisonRow } from '@/lib/ueber-uns-content';
 
-export default function ComparisonTable() {
+interface ComparisonTableProps {
+  rows?: ComparisonRow[];
+}
+
+export default function ComparisonTable({ rows = comparisonRows }: ComparisonTableProps) {
   return (
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full min-w-[560px] border-collapse text-left text-sm text-text md:text-base">
@@ -18,7 +22,7 @@ export default function ComparisonTable() {
           </tr>
         </thead>
         <tbody>
-          {comparisonRows.map((row) => (
+          {rows.map((row) => (
             <tr
               key={row.feature}
               className="border-b border-border transition-colors duration-200 last:border-b-0 hover:bg-neon/20"

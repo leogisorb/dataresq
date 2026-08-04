@@ -1,13 +1,16 @@
 import {
   BINDING_OFFER_BADGE,
+  CONTENT_LAST_UPDATED,
   FAILED_RECOVERY_BADGE,
   FREE_DIAGNOSIS_BADGE,
+  NRW_AREA_SERVED,
   SITE,
 } from './constants';
 import { CALCULATOR_PAGE_PATH } from './calculator-section';
 import { calculatorFaqs, type FaqItem } from './faq-calculator';
 import type { Location } from './locations';
 import { siteConfig, OG_IMAGE } from './metadata';
+import type { ProcessStep } from './datenrettung-services';
 import { FOUNDING_YEAR, TEAM } from './team';
 
 export interface OrganizationSchema {
@@ -46,14 +49,27 @@ export interface OrganizationJsonLdSchema {
   logo: string;
   image: string;
   foundingDate: string;
-  employee: Array<{
+  sameAs?: string[];
+  employee?: Array<{
     '@type': 'Person';
     name: string;
     jobTitle: string;
   }>;
 }
 
+/** Nur reale Teammitglieder — Platzhalter mit [ … ] nicht in Schema ausgeben */
+function getRealTeamEmployees(): Array<{ '@type': 'Person'; name: string; jobTitle: string }> {
+  return TEAM.filter((member) => !member.name.includes('[')).map((member) => ({
+    '@type': 'Person' as const,
+    name: member.name,
+    jobTitle: member.role,
+  }));
+}
+
 export function generateOrganizationJsonLd(): OrganizationJsonLdSchema {
+  const employees = getRealTeamEmployees();
+  const sameAs = SITE.sameAs.filter((url) => url.length > 0);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -64,11 +80,8 @@ export function generateOrganizationJsonLd(): OrganizationJsonLdSchema {
     logo: `${siteConfig.url}/images/logo_2.svg`,
     image: `${siteConfig.url}${OG_IMAGE.url}`,
     foundingDate: String(FOUNDING_YEAR),
-    employee: TEAM.map((member) => ({
-      '@type': 'Person',
-      name: member.name,
-      jobTitle: member.role,
-    })),
+    ...(sameAs.length > 0 ? { sameAs: [...sameAs] } : {}),
+    ...(employees.length > 0 ? { employee: employees } : {}),
   };
 }
 
@@ -92,6 +105,14 @@ export function buildWebPageSchema({
   };
 }
 
+export type AreaServedValue =
+  | string
+  | string[]
+  | {
+      '@type': 'AdministrativeArea' | 'City' | 'Country';
+      name: string;
+    }[];
+
 export interface LocalBusinessSchema {
   '@context': 'https://schema.org';
   '@type': 'LocalBusiness';
@@ -108,9 +129,11 @@ export interface LocalBusinessSchema {
     streetAddress?: string;
     postalCode?: string;
     addressLocality?: string;
+    addressRegion?: string;
     addressCountry: string;
   };
-  areaServed: string;
+  areaServed: AreaServedValue;
+  sameAs?: string[];
   openingHoursSpecification: Array<{
     '@type': 'OpeningHoursSpecification';
     dayOfWeek: string[];
@@ -123,12 +146,25 @@ export interface LocalBusinessSchema {
   };
 }
 
+function buildNrwAreaServed(): AreaServedValue {
+  return [
+    { '@type': 'Country' as const, name: 'Deutschland' },
+    { '@type': 'AdministrativeArea' as const, name: 'Nordrhein-Westfalen' },
+    ...NRW_AREA_SERVED.filter((name) => name !== 'Nordrhein-Westfalen').map((name) => ({
+      '@type': 'City' as const,
+      name,
+    })),
+  ];
+}
+
 export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
+  const sameAs = SITE.sameAs.filter((url) => url.length > 0);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. ${FREE_DIAGNOSIS_BADGE}, ${BINDING_OFFER_BADGE.toLowerCase()}.`,
+    description: `Professionelle Datenrettung für Festplatten, SSD, RAID und NAS. ${FREE_DIAGNOSIS_BADGE}, ${BINDING_OFFER_BADGE.toLowerCase()}. Standorte in NRW: Abgabe Grevenbroich und Mönchengladbach, Büro Köln.`,
     url: siteConfig.url,
     email: SITE.email,
     telephone: SITE.phone,
@@ -140,9 +176,11 @@ export function generateLocalBusinessJsonLd(): LocalBusinessSchema {
       streetAddress: SITE.address.street,
       postalCode: SITE.address.zip,
       addressLocality: SITE.address.city,
+      addressRegion: SITE.address.region,
       addressCountry: SITE.address.country,
     },
-    areaServed: 'DE',
+    areaServed: buildNrwAreaServed(),
+    ...(sameAs.length > 0 ? { sameAs: [...sameAs] } : {}),
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -169,7 +207,7 @@ export interface ServiceSchema {
     name: string;
     url: string;
   };
-  areaServed: string;
+  areaServed: AreaServedValue;
   offers: {
     '@type': 'Offer';
     priceCurrency: string;
@@ -190,7 +228,7 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
       name: siteConfig.name,
       url: siteConfig.url,
     },
-    areaServed: 'DE',
+    areaServed: buildNrwAreaServed(),
     offers: {
       '@type': 'Offer',
       priceCurrency: 'EUR',
@@ -208,7 +246,7 @@ export interface DatenrettungServiceSchema {
     name: string;
   };
   serviceType: string;
-  areaServed: string;
+  areaServed: AreaServedValue;
   hasOfferCatalog: {
     '@type': 'OfferCatalog';
     itemListElement: Array<{
@@ -231,7 +269,7 @@ export function generateServiceJsonLd(): DatenrettungServiceSchema {
       name: siteConfig.name,
     },
     serviceType: 'Datenrettung',
-    areaServed: 'DE',
+    areaServed: buildNrwAreaServed(),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       itemListElement: [
@@ -266,7 +304,7 @@ export interface MediumServiceSchema {
     name: string;
   };
   serviceType: string;
-  areaServed: string;
+  areaServed: AreaServedValue;
 }
 
 export function generateMediumServiceJsonLd(
@@ -283,7 +321,7 @@ export function generateMediumServiceJsonLd(
       name: siteConfig.name,
     },
     serviceType: 'Datenrettung',
-    areaServed: 'DE',
+    areaServed: buildNrwAreaServed(),
   };
 }
 
@@ -341,6 +379,95 @@ export function generateFaqPageJsonLd(faqs: FaqItem[] = calculatorFaqs): FaqPage
   };
 }
 
+export interface HowToSchema {
+  '@context': 'https://schema.org';
+  '@type': 'HowTo';
+  name: string;
+  description: string;
+  totalTime?: string;
+  step: Array<{
+    '@type': 'HowToStep';
+    position: number;
+    name: string;
+    text: string;
+  }>;
+}
+
+export function generateHowToJsonLd(
+  steps: ProcessStep[],
+  name = 'So funktioniert professionelle Datenrettung bei RSQDATA',
+  description = 'Von der Anfrage über kostenlose Analyse inkl. Dateiliste bis zur sicheren Übergabe Ihrer geretteten Daten.',
+): HowToSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((item) => ({
+      '@type': 'HowToStep',
+      position: item.step,
+      name: item.title,
+      text: item.description,
+    })),
+  };
+}
+
+export interface ArticleSchema {
+  '@context': 'https://schema.org';
+  '@type': 'Article';
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  author: {
+    '@type': 'Organization';
+    name: string;
+    url: string;
+  };
+  publisher: {
+    '@type': 'Organization';
+    name: string;
+    url: string;
+    logo: {
+      '@type': 'ImageObject';
+      url: string;
+    };
+  };
+  mainEntityOfPage: string;
+}
+
+export function generateArticleJsonLd(options: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified?: string;
+}): ArticleSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: options.headline,
+    description: options.description,
+    datePublished: options.datePublished,
+    dateModified: options.dateModified ?? options.datePublished,
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/images/logo_2.svg`,
+      },
+    },
+    mainEntityOfPage: `${siteConfig.url}${options.path}`,
+  };
+}
+
 export interface WebSiteSchema {
   '@context': 'https://schema.org';
   '@type': 'WebSite';
@@ -373,6 +500,7 @@ export interface CollectionPageSchema {
   name: string;
   description: string;
   url: string;
+  dateModified?: string;
 }
 
 export function generateCollectionPageJsonLd(
@@ -386,6 +514,7 @@ export function generateCollectionPageJsonLd(
     name,
     description,
     url: `${siteConfig.url}${path}`,
+    dateModified: CONTENT_LAST_UPDATED,
   };
 }
 
@@ -405,10 +534,19 @@ export interface LocalBusinessLocationSchema {
   };
   address: {
     '@type': 'PostalAddress';
+    streetAddress: string;
+    postalCode: string;
     addressLocality: string;
     addressRegion: string;
     addressCountry: string;
   };
+  openingHoursSpecification?: Array<{
+    '@type': 'OpeningHoursSpecification';
+    dayOfWeek: string[];
+    opens: string;
+    closes: string;
+  }>;
+  sameAs?: string[];
   parentOrganization: {
     '@type': 'Organization';
     name: string;
@@ -417,6 +555,9 @@ export interface LocalBusinessLocationSchema {
 }
 
 export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusinessLocationSchema {
+  const sameAs = SITE.sameAs.filter((url) => url.length > 0);
+  const isGermany = loc.region === 'NRW' || loc.region === 'DE';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -425,7 +566,9 @@ export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusines
     telephone: SITE.phone,
     email: SITE.email,
     image: `${siteConfig.url}${OG_IMAGE.url}`,
-    areaServed: [loc.name, ...loc.nearbyAreas],
+    areaServed: isGermany
+      ? Array.from(new Set([loc.name, ...loc.nearbyAreas, ...NRW_AREA_SERVED]))
+      : [loc.name, ...loc.nearbyAreas],
     geo: {
       '@type': 'GeoCoordinates',
       latitude: loc.lat,
@@ -433,10 +576,25 @@ export function generateLocalBusinessLocationJsonLd(loc: Location): LocalBusines
     },
     address: {
       '@type': 'PostalAddress',
+      streetAddress: loc.street,
+      postalCode: loc.zip,
       addressLocality: loc.name,
       addressRegion: loc.region,
-      addressCountry: 'DE',
+      addressCountry: isGermany ? 'DE' : 'GB',
     },
+    ...(loc.kind === 'buero'
+      ? {
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification' as const,
+              dayOfWeek: [...SITE.openingHours.weekdays],
+              opens: SITE.openingHours.opens,
+              closes: SITE.openingHours.closes,
+            },
+          ],
+        }
+      : {}),
+    ...(sameAs.length > 0 ? { sameAs: [...sameAs] } : {}),
     parentOrganization: {
       '@type': 'Organization',
       name: siteConfig.name,

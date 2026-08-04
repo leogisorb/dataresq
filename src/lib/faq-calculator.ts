@@ -41,4 +41,14 @@ export const calculatorFaqs: FaqItem[] = [
     answer:
       'RAID-, NAS- und Server-Systeme bepreisen wir individuell nach kostenloser Voranfrage. Der Rechner zeigt für diese Medien „auf Anfrage“ — nach der Analyse erhalten Sie ein verbindliches Angebot.',
   },
+  {
+    question: 'Welche Erfolgsaussichten gibt es bei HDD und SSD?',
+    answer:
+      'HDDs haben unter allen Datenträgern oft die besten Rettungsquoten — vorausgesetzt, die Datenscheiben (Platter) sind nicht physisch zerkratzt; im Reinraumlabor liegt unsere Quote bei mechanisch intakten Platter-Oberflächen bei etwa 92 %. Bei SSDs sind logische Defekte (gelöscht, formatiert, Dateisystemfehler) gut rettbar; Controller-Ausfälle hängen vom Chip-Typ und verfügbaren Firmware-Tools ab.',
+  },
+  {
+    question: 'Wo kann ich in NRW abgeben?',
+    answer:
+      'Persönliche Abgabe ohne Termin an den iAmbulanz-Partnern in Grevenbroich und Mönchengladbach. Beratung und Koordination erfolgen aus dem Büro Köln. Alternativ holt DHL Express Ihren Datenträger kostenlos und versichert bundesweit ab.',
+  },
 ];

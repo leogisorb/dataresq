@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -7,18 +8,24 @@ import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import MediumDetailSections from '@/components/sections/datenrettung/MediumDetailSections';
 import RelatedServices from '@/components/sections/datenrettung/RelatedServices';
-import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
-import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
+import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
+import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import {
   BINDING_OFFER_BADGE,
+  CONTENT_LAST_UPDATED,
   NO_COST_GUARANTEE_NOTE,
 } from '@/lib/constants';
-import { createContentMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/lib/metadata';
+import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
+import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
+import { getMediumFaqs } from '@/lib/faq-medium';
+import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
+  generateFaqPageJsonLd,
   generateMediumServiceJsonLd,
 } from '@/lib/structured-data';
+
+const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
 interface DatenrettungMediumPageProps {
   params: Promise<{ slug: string }>;
@@ -54,12 +61,14 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
   }
 
   const detailContent = getMediumDetailContent(slug);
+  const mediumFaqs = getMediumFaqs(slug);
   const serviceJsonLd = generateMediumServiceJsonLd(service.title, service.description);
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
     { name: 'Datenrettung', url: `${siteConfig.url}/datenrettung` },
     { name: service.title, url: `${siteConfig.url}${service.href}` },
   ]);
+  const faqJsonLd = mediumFaqs.length > 0 ? generateFaqPageJsonLd(mediumFaqs) : null;
 
   return (
     <>
@@ -71,6 +80,12 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
 
       <main>
         <section className="border-b border-black/5 bg-bg-subtle py-12 text-text md:px-8 md:py-16 lg:px-12">
@@ -87,9 +102,18 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               {service.icon}
             </span>
             <h1 className="mt-4 text-3xl font-bold md:text-4xl lg:text-5xl">{service.title}</h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text md:text-lg">
-              {service.description}
-            </p>
+            <LastUpdatedBadge className="mt-3" dateIso={CONTENT_LAST_UPDATED} />
+            {detailContent ? (
+              <CitationAnswerBlock
+                answer={detailContent.citationAnswer.answer}
+                facts={detailContent.citationAnswer.facts}
+                question={detailContent.citationAnswer.question}
+              />
+            ) : (
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-text md:text-lg">
+                {service.description}
+              </p>
+            )}
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
               {NO_COST_GUARANTEE_NOTE} {BINDING_OFFER_BADGE}.
             </p>
@@ -101,6 +125,10 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
 
         {detailContent ? (
           <MediumDetailSections content={detailContent} title={service.title} />
+        ) : null}
+
+        {mediumFaqs.length > 0 ? (
+          <FaqSection faqs={mediumFaqs} title={`Häufige Fragen zu ${service.title}`} />
         ) : null}
 
         <PriceCalculatorSection defaultDevice={service.defaultDevice} />
@@ -119,7 +147,10 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
               <DatenrettungCta layout="column" />
             </div>
             <p className="mt-8 text-sm text-text-muted">
-              <Link className="font-medium text-text transition-opacity hover:opacity-70" href="/datenrettung">
+              <Link
+                className="font-medium text-text transition-opacity hover:opacity-70"
+                href="/datenrettung"
+              >
                 ← Zurück zur Datenrettungs-Übersicht
               </Link>
             </p>

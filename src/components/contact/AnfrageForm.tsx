@@ -27,6 +27,7 @@ import {
   type PriceGroup,
   type UrgencyKey,
 } from '@/lib/constants';
+import { getLeadSourceLabel, LEAD_SOURCES, type LeadSource } from '@/lib/lead-source';
 
 function formatOpeningHour(hhmm: string): string {
   const hour = Number(hhmm.split(':')[0] ?? '0');
@@ -67,6 +68,7 @@ export default function AnfrageForm({
   const [medium, setMedium] = useState<DeviceKey | ''>('');
   const [schaden, setSchaden] = useState<DamageKey | ''>('');
   const [dringlichkeit, setDringlichkeit] = useState<UrgencyKey>('std');
+  const [herkunft, setHerkunft] = useState<LeadSource | ''>('');
   const [nachricht, setNachricht] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -134,6 +136,8 @@ export default function AnfrageForm({
           ruecksendung: isCalculatorMode ? prefill!.ruecksendung : undefined,
           preisrahmen: isCalculatorMode ? prefill!.preisrahmen : undefined,
           preisgruppe: isCalculatorMode ? prefill!.preisgruppe : undefined,
+          herkunft: herkunft || undefined,
+          herkunftLabel: herkunft ? getLeadSourceLabel(herkunft) : undefined,
           nachricht: nachricht.trim() || undefined,
         }),
       });
@@ -304,6 +308,24 @@ export default function AnfrageForm({
           </div>
         </>
       )}
+
+      <div className="flex flex-col gap-2">
+        <Label className="text-sm font-medium text-text">Wie sind Sie auf uns aufmerksam geworden?</Label>
+        <select
+          aria-label="Wie sind Sie auf uns aufmerksam geworden?"
+          className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-text outline-none transition-colors focus:border-neon"
+          name="anfrage-herkunft"
+          value={herkunft}
+          onChange={(event) => setHerkunft(event.target.value as LeadSource | '')}
+        >
+          <option value="">Bitte wählen (optional)</option>
+          {LEAD_SOURCES.map((option) => (
+            <option key={option.key} value={option.key}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <TextField fullWidth name="anfrage-nachricht" value={nachricht} onChange={setNachricht}>
         <Label>Nachricht (optional)</Label>

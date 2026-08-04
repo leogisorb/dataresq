@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 import RebootHeroCard from '@/components/variante-b/RebootHeroCard';
-import BrandCarousel from '@/components/sections/BrandCarousel';
 import Features from '@/components/sections/Features';
 import PromisesSection from '@/components/sections/PromisesSection';
 import Testimonials from '@/components/sections/Testimonials';
@@ -11,6 +10,7 @@ import { HOME_META_DESCRIPTION, HOME_META_TITLE } from '@/lib/constants';
 import { createContentMetadata } from '@/lib/metadata';
 import {
   generateCalculatorServiceJsonLd,
+  generateFaqPageJsonLd,
   generateLocalBusinessJsonLd,
   generateWebSiteJsonLd,
 } from '@/lib/structured-data';
@@ -42,6 +42,7 @@ export default function HomePage() {
   const localBusinessJsonLd = generateLocalBusinessJsonLd();
   const calculatorServiceJsonLd = generateCalculatorServiceJsonLd();
   const webSiteJsonLd = generateWebSiteJsonLd();
+  const faqJsonLd = generateFaqPageJsonLd(calculatorFaqs);
 
   return (
     <>
@@ -57,14 +58,15 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <main>
         <RebootHeroCard />
         <PromisesSection />
         <CalculatorSection />
         <ExpertiseSection />
-        <div className="hidden bg-bg md:block md:pb-24 md:pt-0">
-          <BrandCarousel />
-        </div>
         <Features />
         <FaqSection faqs={calculatorFaqs} title="Häufige Fragen zu Datenrettungskosten" />
         <Testimonials />

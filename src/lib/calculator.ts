@@ -192,7 +192,7 @@ export const RETURN_MEDIUM_OPTIONS: ReturnMediumOption[] = [
   {
     key: 'new',
     label: 'Neuer Datenträger',
-    hint: 'Daten auf neuen Datenträger spielen — Preis auf Anfrage',
+    hint: 'Daten auf neuen Datenträger spielen — je nach Datenmenge auf Anfrage',
   },
   {
     key: 'download',
@@ -202,9 +202,12 @@ export const RETURN_MEDIUM_OPTIONS: ReturnMediumOption[] = [
   {
     key: 'both',
     label: 'Beides',
-    hint: 'Neuer Datenträger und Downloadlink — Preis für neuen Datenträger auf Anfrage',
+    hint: 'Downloadlink im Festpreis · neuer Datenträger je nach Datenmenge auf Anfrage',
   },
 ];
+
+const RETURN_MEDIUM_SURCHARGE_NOTE =
+  'Neuer Datenträger: je nach Datenmenge auf Anfrage.' as const;
 
 export const URGENCY_OPTIONS: UrgencyOption[] = [
   { key: 'std', label: 'Standard', duration: '3–5 Arbeitstage nach Eingang' },
@@ -252,6 +255,19 @@ export function buildUnknownFallbackHint(device: DeviceKey): string {
   return `Kein Problem. Sie zahlen höchstens ${formatPriceEuro(prices.physical)}. Zeigt die kostenlose Analyse einen logischen Defekt, sinkt der Preis auf ${formatPriceEuro(prices.logical)}.`;
 }
 
+function withReturnMediumNote(
+  result: PriceEstimateResult,
+  returnMedium: ReturnMediumKey,
+): PriceEstimateResult {
+  if (returnMedium !== 'new' && returnMedium !== 'both') return result;
+
+  const detail = result.detail
+    ? `${result.detail} ${RETURN_MEDIUM_SURCHARGE_NOTE}`
+    : RETURN_MEDIUM_SURCHARGE_NOTE;
+
+  return { ...result, detail };
+}
+
 export function calculatePriceEstimate(
   device: DeviceKey,
   damage: DamageKey,
@@ -259,82 +275,92 @@ export function calculatePriceEstimate(
   returnMedium: ReturnMediumKey = 'download',
 ): PriceEstimateResult {
   if (device === 'raid' || device === 'smartphone') {
-    return {
-      priceGroup: 'anfrage',
-      amount: null,
-      ceiling: null,
-      logicalAmount: null,
-      label: 'Preis nach Analyse',
-      detail: 'Festpreis nach kostenloser Analyse — verbindlich vor Beauftragung.',
-    };
-  }
-
-  if (returnMedium === 'new' || returnMedium === 'both') {
-    return {
-      priceGroup: 'anfrage',
-      amount: null,
-      ceiling: null,
-      logicalAmount: null,
-      label: 'auf Anfrage',
-      detail: 'Preis für neuen Datenträger nach Analyse.',
-    };
+    return withReturnMediumNote(
+      {
+        priceGroup: 'anfrage',
+        amount: null,
+        ceiling: null,
+        logicalAmount: null,
+        label: 'Preis nach Analyse',
+        detail: 'Festpreis nach kostenloser Analyse — verbindlich vor Beauftragung.',
+      },
+      returnMedium,
+    );
   }
 
   if (urgency === 'notfall') {
-    return {
-      priceGroup: 'anfrage',
-      amount: null,
-      ceiling: null,
-      logicalAmount: null,
-      label: 'auf Anfrage',
-      detail: 'Notfall-Service individuell nach Absprache.',
-    };
+    return withReturnMediumNote(
+      {
+        priceGroup: 'anfrage',
+        amount: null,
+        ceiling: null,
+        logicalAmount: null,
+        label: 'auf Anfrage',
+        detail: 'Notfall-Service individuell nach Absprache.',
+      },
+      returnMedium,
+    );
   }
 
   const prices = getGroupPrices(device, urgency);
   if (!prices) {
-    return {
-      priceGroup: 'anfrage',
-      amount: null,
-      ceiling: null,
-      logicalAmount: null,
-      label: 'Preis nach Analyse',
-      detail: 'Festpreis nach kostenloser Analyse — verbindlich vor Beauftragung.',
-    };
+    return withReturnMediumNote(
+      {
+        priceGroup: 'anfrage',
+        amount: null,
+        ceiling: null,
+        logicalAmount: null,
+        label: 'Preis nach Analyse',
+        detail: 'Festpreis nach kostenloser Analyse — verbindlich vor Beauftragung.',
+      },
+      returnMedium,
+    );
   }
 
   const group = DAMAGE_PRICE_GROUP[damage];
+  const expressSuffix =
+    urgency === 'express' ? ` Inkl. Express (+${EXPRESS_SURCHARGE} €).` : '';
+  const freeListNote = ' Dateiliste kostenlos.';
 
   if (group === 'physical') {
-    return {
-      priceGroup: 'physical',
-      amount: prices.physical,
-      ceiling: prices.physical,
-      logicalAmount: prices.logical,
-      label: formatPriceEuro(prices.physical),
-      detail: 'Festpreis inkl. MwSt. — verbindlich nach der kostenlosen Analyse.',
-    };
+    return withReturnMediumNote(
+      {
+        priceGroup: 'physical',
+        amount: prices.physical,
+        ceiling: prices.physical,
+        logicalAmount: prices.logical,
+        label: formatPriceEuro(prices.physical),
+        detail: `Festpreis inkl. MwSt. — verbindlich nach der kostenlosen Analyse.${expressSuffix}${freeListNote}`,
+      },
+      returnMedium,
+    );
   }
 
   if (group === 'logical') {
-    return {
-      priceGroup: 'logical',
-      amount: prices.logical,
-      ceiling: prices.physical,
-      logicalAmount: prices.logical,
-      label: `Voraussichtlich ${formatPriceEuro(prices.logical)}`,
-      detail: `Höchstpreis ${formatPriceEuro(prices.physical)}, falls die Analyse einen physischen Defekt zeigt.`,
-    };
+    return withReturnMediumNote(
+      {
+        priceGroup: 'logical',
+        amount: prices.logical,
+        ceiling: prices.physical,
+        logicalAmount: prices.logical,
+        label: `Voraussichtlich ${formatPriceEuro(prices.logical)}`,
+        detail: `Höchstpreis ${formatPriceEuro(prices.physical)}, falls die Analyse einen physischen Defekt zeigt.${expressSuffix}${freeListNote}`,
+      },
+      returnMedium,
+    );
   }
 
-  return {
-    priceGroup: 'unknown',
-    amount: prices.physical,
-    ceiling: prices.physical,
-    logicalAmount: prices.logical,
-    label: `Höchstpreis ${formatPriceEuro(prices.physical)}`,
-    detail: `Sinkt auf ${formatPriceEuro(prices.logical)}, wenn der Defekt rein logisch ist.`,
-  };
+  return withReturnMediumNote(
+    {
+      priceGroup: 'unknown',
+      amount: prices.physical,
+      ceiling: prices.physical,
+      logicalAmount: prices.logical,
+      label: `Höchstpreis ${formatPriceEuro(prices.physical)}`,
+      detail: `Sinkt auf ${formatPriceEuro(prices.logical)}, wenn der Defekt rein logisch ist.${expressSuffix}${freeListNote}`,
+    },
+    returnMedium,
+  );
 }
 
 export function buildAnfragePrefillLabel(

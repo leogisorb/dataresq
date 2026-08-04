@@ -8,13 +8,40 @@ export const SITE = {
     city: 'Köln',
     zip: '50823',
     country: 'DE',
+    region: 'NRW',
   },
   openingHours: {
     weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] as const,
     opens: '09:00',
     closes: '18:00',
   },
+  /**
+   * Externe Profil-URLs für Schema.org sameAs (GBP, Social, Bewertungsportale).
+   * Leere Einträge werden in JSON-LD weggelassen — URLs nachpflegen, sobald live.
+   */
+  sameAs: [] as readonly string[],
 } as const;
+
+/** NRW-Kernstädte für areaServed / Local SEO (keine Doorway-Seiten) */
+export const NRW_AREA_SERVED = [
+  'Nordrhein-Westfalen',
+  'Köln',
+  'Düsseldorf',
+  'Mönchengladbach',
+  'Grevenbroich',
+  'Neuss',
+  'Krefeld',
+  'Bonn',
+  'Leverkusen',
+  'Aachen',
+  'Bergisch Gladbach',
+  'Viersen',
+  'Erkelenz',
+  'Jüchen',
+] as const;
+
+/** Stabile Sitemap-/Schema-Aktualität (manuell bei Content-Updates anheben) */
+export const CONTENT_LAST_UPDATED = '2026-08-04' as const;
 
 /** Angaben gemäß § 5 DDG — Single Source für /impressum (TXT ist Vorgabe) */
 export const LEGAL = {
@@ -61,7 +88,7 @@ export const DIAGNOSIS_FEE_FORMATTED = `${DIAGNOSIS_FEE}€` as const;
 
 export const FREE_DIAGNOSIS_BADGE = 'Kostenlose Analyse inkl. Dateiliste' as const;
 
-export const FREE_DIAGNOSIS_CAPTION = 'Analysepauschale — bei uns kostenlos' as const;
+export const FREE_DIAGNOSIS_CAPTION = 'Analyse inkl. Dateiliste — 0 €' as const;
 
 /** Dauer der Laboranalyse bis Dateiliste und Angebot */
 export const ANALYSIS_DURATION = '48–72 h' as const;

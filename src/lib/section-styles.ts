@@ -26,5 +26,5 @@ export const PAGE_HERO_HEADING =
 /**
  * Canonical homepage section header pattern (use SectionHeader component):
  *   [SECTION_EYEBROW?] → SECTION_HEADING → [SECTION_SUBHEADING?] → SECTION_CONTENT_MT → body
- * Always centered. Exceptions: RebootHero, BrandCarousel, Features (no title).
+ * Always centered. Exceptions: RebootHero, Features (no title).
  */

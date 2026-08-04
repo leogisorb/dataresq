@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 
 import { EMAIL_REGEX, PHONE_REGEX, URGENCY_OPTIONS } from '@/lib/calculator';
 import { SITE, type PriceGroup, type UrgencyKey } from '@/lib/constants';
+import { getLeadSourceLabel, type LeadSource } from '@/lib/lead-source';
 import { siteConfig } from '@/lib/metadata';
 
 function getResendClient() {
@@ -24,6 +25,8 @@ interface AnfrageBody {
   preisrange?: string;
   preisgruppe?: PriceGroup;
   ruecksendung?: string;
+  herkunft?: LeadSource;
+  herkunftLabel?: string;
   nachricht?: string;
 }
 
@@ -51,6 +54,9 @@ export async function POST(req: NextRequest) {
   const preisgruppe = body.preisgruppe?.trim();
   const dringlichkeitLabel = resolveUrgencyLabel(body);
   const ruecksendung = body.ruecksendung?.trim();
+  const herkunftLabel =
+    body.herkunftLabel?.trim() ||
+    (body.herkunft ? getLeadSourceLabel(body.herkunft) : undefined);
 
   if (!name || !telefon || !email || !medium || !schaden) {
     return NextResponse.json({ error: 'Pflichtfelder fehlen' }, { status: 400 });
@@ -86,6 +92,7 @@ export async function POST(req: NextRequest) {
         preisrahmen,
         preisgruppe,
         ruecksendung,
+        herkunft: herkunftLabel,
       });
       return NextResponse.json({ success: true, dev: true });
     }
@@ -108,6 +115,7 @@ export async function POST(req: NextRequest) {
   const safePreisgruppe = escapeHtml(preisgruppe ?? '—');
   const safeDringlichkeit = escapeHtml(dringlichkeitLabel);
   const safeRuecksendung = escapeHtml(ruecksendung ?? '—');
+  const safeHerkunft = escapeHtml(herkunftLabel ?? '—');
   const safeNachricht = escapeHtml(nachricht?.trim() || '—');
   const addressLine = `${SITE.address.street}, ${SITE.address.zip} ${SITE.address.city}`;
 
@@ -129,6 +137,7 @@ export async function POST(req: NextRequest) {
           <tr><td><b>Rücksendung:</b></td><td>${safeRuecksendung}</td></tr>
           <tr><td><b>Preisgruppe:</b></td><td>${safePreisgruppe}</td></tr>
           <tr><td><b>Preis:</b></td><td>${safePreisrahmen}</td></tr>
+          <tr><td><b>Herkunft:</b></td><td>${safeHerkunft}</td></tr>
           <tr><td><b>Nachricht:</b></td><td>${safeNachricht}</td></tr>
         </table>
         <p><b>Bitte binnen 24h zurückrufen.</b></p>

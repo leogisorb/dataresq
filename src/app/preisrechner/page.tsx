@@ -3,16 +3,20 @@ import dynamic from 'next/dynamic';
 
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
+import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
+import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import {
   CALCULATOR_HEADING,
   CALCULATOR_PAGE_PATH,
   CALCULATOR_SUBHEADING,
 } from '@/lib/calculator-section';
-import { NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
+import { CONTENT_LAST_UPDATED, NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
   PAGE_HERO_HEADING,
+  SECTION_CONTENT_MT,
+  SECTION_HEADING,
   SECTION_PADDING,
   SECTION_SUBHEADING,
 } from '@/lib/section-styles';
@@ -21,6 +25,7 @@ import {
   generateCalculatorServiceJsonLd,
   generateFaqPageJsonLd,
 } from '@/lib/structured-data';
+import { comparisonRows } from '@/lib/ueber-uns-content';
 
 const FaqSection = dynamic(() => import('@/components/sections/FaqSection'));
 
@@ -64,11 +69,24 @@ export default function PreisrechnerPage() {
             />
 
             <h1 className={PAGE_HERO_HEADING}>{CALCULATOR_HEADING}</h1>
+            <LastUpdatedBadge className="mt-3" dateIso={CONTENT_LAST_UPDATED} />
             <p className={`${SECTION_SUBHEADING} mt-4 max-w-2xl`}>{CALCULATOR_SUBHEADING}</p>
           </div>
         </section>
 
         <PriceCalculatorSection showHeading={false} />
+
+        <section className={`${SECTION_PADDING} bg-bg`}>
+          <div className="site-container">
+            <h2 className={SECTION_HEADING}>Preistransparenz im Vergleich</h2>
+            <p className={`${SECTION_SUBHEADING} max-w-2xl`}>
+              Warum Sie bei uns den Indikator und die Dateiliste vor der Beauftragung sehen.
+            </p>
+            <div className={SECTION_CONTENT_MT}>
+              <ComparisonTable rows={comparisonRows.slice(0, 4)} />
+            </div>
+          </div>
+        </section>
 
         <FaqSection faqs={calculatorFaqs} title="Häufige Fragen zu Datenrettungskosten" />
       </main>

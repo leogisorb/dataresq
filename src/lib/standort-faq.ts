@@ -7,10 +7,15 @@ export interface StandortFaqItem {
 }
 
 function getAbgabeFaqs(loc: Location): StandortFaqItem[] {
+  const nearby = loc.nearbyAreas.slice(0, 3).join(', ');
   return [
     {
       question: 'Kann ich das Medium persönlich vorbeibringen?',
       answer: `${loc.serviceNote} Unsere Kundenbetreuung dokumentiert den Zustand gemeinsam mit Ihnen und beantwortet Ihre Fragen direkt vor Ort.`,
+    },
+    {
+      question: `Für welche Orte in NRW ist ${loc.name} geeignet?`,
+      answer: `Die Abgabestelle ${loc.name} ist für Kundinnen und Kunden aus ${loc.name} sowie dem Umland (u. a. ${nearby}) praktisch. Wer weiter entfernt wohnt, nutzt die kostenlose DHL Express-Abholung bundesweit — Analyse und Angebot bleiben gleich.`,
     },
     {
       question: 'Wie lange dauert die Laboranalyse?',
@@ -39,7 +44,7 @@ function getBueroFaqs(loc: Location): StandortFaqItem[] {
     {
       question: 'Was passiert im Büro Köln?',
       answer:
-        'Aus Köln koordinieren wir Ihren Auftrag: Beratung, Annahme-Koordination, Kommunikation zu Analyse und Angebot.',
+        'Aus Köln koordinieren wir Ihren Auftrag für ganz NRW und bundesweit: Beratung, Annahme-Koordination, Kommunikation zu Analyse und Angebot. Technische Rettung erfolgt im Partner-Reinraumlabor.',
     },
     {
       question: 'Wie erreiche ich RSQDATA?',

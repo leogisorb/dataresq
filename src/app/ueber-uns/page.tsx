@@ -6,6 +6,8 @@ import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
 import IambulanzPartnerSection from '@/components/sections/ueber-uns/IambulanzPartnerSection';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
+import ExpertQuote from '@/components/seo/ExpertQuote';
+import { FOUNDER_EXPERT_QUOTE } from '@/lib/datenrettung-geo-ui';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
   generateBreadcrumbJsonLd,
@@ -58,6 +60,13 @@ export default function UeberUnsPage() {
         <section className="py-12 md:px-8 md:py-16 lg:px-12">
           <div className="site-container">
             <AboutStorySection />
+            <div className="mt-12">
+              <ExpertQuote
+                attribution={FOUNDER_EXPERT_QUOTE.attribution}
+                quote={FOUNDER_EXPERT_QUOTE.quote}
+                role={FOUNDER_EXPERT_QUOTE.role}
+              />
+            </div>
           </div>
         </section>
 

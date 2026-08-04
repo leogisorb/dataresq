@@ -11,7 +11,6 @@ import {
 import { BTN_CALC_PAIR_PRIMARY, BTN_CALC_PAIR_SECONDARY } from '@/lib/button-styles';
 import { calcCardClasses } from '@/components/calculator/calc-tile-styles';
 import {
-  DIAGNOSIS_FEE_FORMATTED,
   FREE_DIAGNOSIS_CAPTION,
   NO_COST_GUARANTEE_NOTE,
   type DamageKey,
@@ -76,7 +75,7 @@ export default function CalcStepResult({
           <p className="mt-1 text-sm text-text-muted">Erfolgsquote · Partner-Reinraumlabor</p>
         </div>
         <div className={`${calcCardClasses()} p-5 md:p-6`}>
-          <p className="text-2xl font-semibold text-text">{DIAGNOSIS_FEE_FORMATTED}</p>
+          <p className="text-2xl font-semibold text-text">0 €</p>
           <p className="mt-1 text-sm text-text-muted">{FREE_DIAGNOSIS_CAPTION}</p>
         </div>
         <div className={`${calcCardClasses()} p-5 md:p-6`}>

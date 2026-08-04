@@ -16,9 +16,9 @@ export interface PromiseTile {
   meta: string;
   /** RSQ logo color on the outer back peek */
   backClass: string;
-  /** Gray folder-face gradient (SVG fill) */
+  /** Glass folder-face gradient (SVG fill) */
   faceGradient: PromiseFaceGradient;
-  /** Fallback solid matching faceGradient.from */
+  /** Fallback glass panel behind SVG */
   faceClass: string;
 }
 
@@ -33,14 +33,18 @@ export const PROMISES_BANNER_LEAD =
 export const PROMISES_BANNER_TRAIL =
   `Deutschlandweit. Zertifiziert. Erfolgreich seit ${FOUNDING_YEAR}.` as const;
 
-/** Inner face = graphite gray (shared) */
-const FACE_GRAY = {
-  from: '#2c2c2e',
-  via: '#3a3a3c',
-  to: '#1d1d1f',
+/** Inner face = frosted glass over full-bleed color (shared) */
+const FACE_GLASS = {
+  from: 'rgba(255,255,255,0.28)',
+  via: 'rgba(255,255,255,0.38)',
+  to: 'rgba(255,255,255,0.52)',
 } as const;
 
-/** Outer = logo colors (no lime/green); inner = gray */
+/** Card shell only — no solid white fill (that killed the glass look) */
+const FACE_GLASS_CLASS =
+  'border border-white/40 bg-transparent' as const;
+
+/** Outer = logo colors; inner = glass */
 export const promiseTiles: readonly PromiseTile[] = [
   {
     icon: 'price',
@@ -48,8 +52,8 @@ export const promiseTiles: readonly PromiseTile[] = [
     body: 'Sie erhalten vor Beginn der Datenrettung einen verbindlichen Festpreis – garantiert ohne Preis-Schock.',
     meta: 'Festpreis',
     backClass: 'bg-[#22d3ee]',
-    faceGradient: FACE_GRAY,
-    faceClass: 'bg-[#2c2c2e]',
+    faceGradient: FACE_GLASS,
+    faceClass: FACE_GLASS_CLASS,
   },
   {
     icon: 'preview',
@@ -57,8 +61,8 @@ export const promiseTiles: readonly PromiseTile[] = [
     body: 'Sie erhalten eine Liste aller rettbaren Daten zur Ansicht. Erst dann entscheiden Sie, ob Sie die Rettung beauftragen.',
     meta: 'Dateiliste',
     backClass: 'bg-[#a78bfa]',
-    faceGradient: FACE_GRAY,
-    faceClass: 'bg-[#2c2c2e]',
+    faceGradient: FACE_GLASS,
+    faceClass: FACE_GLASS_CLASS,
   },
   {
     icon: 'noCost',
@@ -66,8 +70,8 @@ export const promiseTiles: readonly PromiseTile[] = [
     body: 'Wenn wir Ihre Daten nicht retten können, entstehen Ihnen garantiert keine Kosten. Versprochen!',
     meta: 'No-Cure',
     backClass: 'bg-[#f472b6]',
-    faceGradient: FACE_GRAY,
-    faceClass: 'bg-[#2c2c2e]',
+    faceGradient: FACE_GLASS,
+    faceClass: FACE_GLASS_CLASS,
   },
   {
     icon: 'shipping',
@@ -75,7 +79,7 @@ export const promiseTiles: readonly PromiseTile[] = [
     body: 'Wir organisieren die kostenlose Abholung und den sicheren Rückversand mit DHL Express – schnell und zuverlässig.',
     meta: 'DHL Express',
     backClass: 'bg-[#fb923c]',
-    faceGradient: FACE_GRAY,
-    faceClass: 'bg-[#2c2c2e]',
+    faceGradient: FACE_GLASS,
+    faceClass: FACE_GLASS_CLASS,
   },
 ] as const;

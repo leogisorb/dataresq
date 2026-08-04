@@ -13,6 +13,7 @@ const leistungenLinks = [
   { label: 'Server', href: '/datenrettung/server' },
   { label: 'Smartphone', href: '/datenrettung/smartphone' },
   { label: 'Preisrechner', href: '/preisrechner' },
+  { label: 'Ratgeber', href: '/ratgeber' },
 ];
 
 const standortLinks = [

@@ -3,12 +3,18 @@
 import Image from 'next/image';
 import { Chip } from '@heroui/react';
 
-import { TEAM } from '@/lib/team';
+import { getPublicTeamMembers } from '@/lib/team';
 
 export default function TeamGrid() {
+  const members = getPublicTeamMembers();
+
+  if (members.length === 0) {
+    return null;
+  }
+
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {TEAM.map((member) => (
+      {members.map((member) => (
         <article
           key={member.name}
           className="flex flex-col rounded-lg border border-black/5 bg-bg-card p-6"
