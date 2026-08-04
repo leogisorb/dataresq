@@ -25,8 +25,8 @@ export const VARIANTE_B_COPY = {
 
 export const VARIANTE_B_NAV: VarianteBNavItem[] = [
   { label: 'Leistungen', href: '/datenrettung' },
-  { label: 'Ablauf', href: '/datenrettung' },
   { label: 'Preise', href: '/preisrechner' },
+  { label: 'Standorte', href: '/standort' },
   { label: 'Über uns', href: '/ueber-uns' },
   { label: 'Kontakt', href: '/#kontakt' },
 ];
