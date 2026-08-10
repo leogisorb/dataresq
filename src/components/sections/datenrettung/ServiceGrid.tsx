@@ -53,7 +53,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
       'Mechanische Reparatur im Reinraumlabor',
     ],
     stats: [
-      { value: '95%', label: 'Erfolgsquote' },
+      { value: 'hoch', label: 'Quote Partnerlabor (intern)' },
       { value: formatPriceRange(PRICE_DISPLAY.hddSsd), label: 'Festpreis logisch / physisch' },
       { value: DIAGNOSIS_FEE_FORMATTED, label: 'Kostenlose Analyse' },
     ],
@@ -67,7 +67,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
       'NVMe, SATA, M.2, eMMC',
     ],
     stats: [
-      { value: '92%', label: 'Erfolgsquote' },
+      { value: 'gut', label: 'Quote Partnerlabor (intern)' },
       { value: '3–5 Tage', label: 'Standard' },
       { value: formatPriceRange(PRICE_DISPLAY.hddSsd), label: 'Festpreis logisch / physisch' },
     ],
@@ -81,7 +81,7 @@ const expandContent: Record<string, ServiceExpandContent> = {
       'NDA & SLA für Unternehmen',
     ],
     stats: [
-      { value: '89%', label: 'Erfolgsquote' },
+      { value: 'komplex', label: 'Quote fallabhängig' },
       { value: 'SLA', label: 'B2B' },
       { value: 'NDA', label: 'Verfügbar' },
     ],

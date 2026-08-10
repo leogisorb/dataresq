@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import ContentPageShell from '@/components/layout/ContentPageShell';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
+import { LEGAL } from '@/lib/constants';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import { getDatenrettungService } from '@/lib/datenrettung-services';
 import { getLocation } from '@/lib/locations';
@@ -97,7 +98,7 @@ export default async function RatgeberArticlePage({ params }: RatgeberArticlePag
           </h1>
           <LastUpdatedBadge className="mt-3" dateIso={article.updatedAt} />
           <p className="mt-2 text-sm text-text-muted">
-            Veröffentlicht {article.datePublished}
+            Von {LEGAL.ownerName} · Veröffentlicht {article.datePublished}
           </p>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-muted">{article.excerpt}</p>
 

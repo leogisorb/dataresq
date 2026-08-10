@@ -374,10 +374,11 @@ export default function DatenschutzContent(): React.JSX.Element {
         in Verbindung mit Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
       </p>
       <p>
-        <em>
-          Hinweis: Die Einbindung der Tracking-Dienste und des Cookie-Banners ist geplant. Bis zur
-          technischen Freischaltung werden die unter 8.2 genannten Dienste nicht aktiv geladen.
-        </em>
+        Beim ersten Besuch erscheint unser Cookie-Banner. Ihre Entscheidung speichern wir lokal in
+        Ihrem Browser (localStorage-Schlüssel <code>rsqdata-cookie-consent-v1</code>). Optional
+        Dienste — insbesondere Google Analytics 4 — laden wir erst nach Ihrer Einwilligung. Sie
+        können Ihre Wahl jederzeit über den Link „Cookie-Einstellungen“ im Seitenfuß ändern oder
+        widerrufen.
       </p>
 
       <h3>8.2.1 Google Tag Manager</h3>

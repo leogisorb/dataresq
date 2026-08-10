@@ -3,6 +3,7 @@ import {
   CONTENT_LAST_UPDATED,
   FAILED_RECOVERY_BADGE,
   FREE_DIAGNOSIS_BADGE,
+  LEGAL,
   NRW_AREA_SERVED,
   SITE,
 } from './constants';
@@ -240,10 +241,13 @@ export function generateCalculatorServiceJsonLd(): ServiceSchema {
 export interface DatenrettungServiceSchema {
   '@context': 'https://schema.org';
   '@type': 'Service';
+  '@id': string;
   name: string;
+  url: string;
   provider: {
     '@type': 'LocalBusiness';
     name: string;
+    url: string;
   };
   serviceType: string;
   areaServed: AreaServedValue;
@@ -260,13 +264,17 @@ export interface DatenrettungServiceSchema {
 }
 
 export function generateServiceJsonLd(): DatenrettungServiceSchema {
+  const url = `${siteConfig.url}/datenrettung`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${url}#service`,
     name: 'Professionelle Datenrettung',
+    url,
     provider: {
       '@type': 'LocalBusiness',
       name: siteConfig.name,
+      url: siteConfig.url,
     },
     serviceType: 'Datenrettung',
     areaServed: buildNrwAreaServed(),
@@ -297,11 +305,14 @@ export function generateServiceJsonLd(): DatenrettungServiceSchema {
 export interface MediumServiceSchema {
   '@context': 'https://schema.org';
   '@type': 'Service';
+  '@id': string;
   name: string;
   description: string;
+  url: string;
   provider: {
     '@type': 'LocalBusiness';
     name: string;
+    url: string;
   };
   serviceType: string;
   areaServed: AreaServedValue;
@@ -310,15 +321,20 @@ export interface MediumServiceSchema {
 export function generateMediumServiceJsonLd(
   name: string,
   description: string,
+  path: string,
 ): MediumServiceSchema {
+  const url = `${siteConfig.url}${path.startsWith('/') ? path : `/${path}`}`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${url}#service`,
     name,
     description,
+    url,
     provider: {
       '@type': 'LocalBusiness',
       name: siteConfig.name,
+      url: siteConfig.url,
     },
     serviceType: 'Datenrettung',
     areaServed: buildNrwAreaServed(),
@@ -420,7 +436,7 @@ export interface ArticleSchema {
   datePublished: string;
   dateModified: string;
   author: {
-    '@type': 'Organization';
+    '@type': 'Person';
     name: string;
     url: string;
   };
@@ -451,9 +467,9 @@ export function generateArticleJsonLd(options: {
     datePublished: options.datePublished,
     dateModified: options.dateModified ?? options.datePublished,
     author: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.url,
+      '@type': 'Person',
+      name: LEGAL.ownerName,
+      url: `${siteConfig.url}/ueber-uns`,
     },
     publisher: {
       '@type': 'Organization',

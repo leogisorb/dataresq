@@ -3,6 +3,7 @@
 import { Accordion } from '@heroui/react';
 
 import SectionHeader from '@/components/sections/SectionHeader';
+import FaqHtmlFallback from '@/components/seo/FaqHtmlFallback';
 import type { FaqItem } from '@/lib/faq-calculator';
 import {
   SECTION_CONTENT_MT,
@@ -23,6 +24,7 @@ export default function FaqSection({ title, faqs, id }: FaqSectionProps) {
         <SectionHeader title={title} />
 
         <div className={`${SECTION_CONTENT_MT} ${SECTION_NARROW_WIDTH}`}>
+          <FaqHtmlFallback faqs={faqs} />
           <Accordion className="w-full text-left" variant="surface">
             {faqs.map((faq, index) => (
               <Accordion.Item key={faq.question} id={id ? `${id}-${index}` : `faq-${index}`}>

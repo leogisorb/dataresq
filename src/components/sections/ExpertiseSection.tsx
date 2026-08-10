@@ -34,7 +34,7 @@ const CARDS: ExpertiseCardData[] = [
     glowColor: 'rgba(52,211,153,0.15)',
     brands: ['WD', 'Seagate', 'Toshiba', 'Hitachi', 'Samsung', 'Fujitsu'],
     badges: [
-      { text: '95%', hint: 'Erfolgsquote' },
+      { text: 'hoch', hint: 'Quote Partnerlabor (intern)' },
       { text: formatPriceRange(PRICE_DISPLAY.hddSsd), hint: 'Festpreis logisch / physisch' },
       { text: DIAGNOSIS_FEE_FORMATTED, hint: 'Kostenlose Analyse' },
     ],
@@ -55,7 +55,7 @@ const CARDS: ExpertiseCardData[] = [
     glowColor: 'rgba(129,140,248,0.15)',
     brands: ['Samsung', 'WD', 'Crucial', 'Kingston', 'Corsair', 'Intel'],
     badges: [
-      { text: '92%', hint: 'Erfolgsquote' },
+      { text: 'gut', hint: 'Quote Partnerlabor (intern)' },
       { text: '3–5 Tage', hint: 'Standardbearbeitung' },
       { text: formatPriceRange(PRICE_DISPLAY.hddSsd), hint: 'Festpreis logisch / physisch' },
     ],
@@ -76,7 +76,7 @@ const CARDS: ExpertiseCardData[] = [
     glowColor: 'rgba(16,185,129,0.15)',
     brands: ['Synology', 'QNAP', 'Buffalo', 'Drobo', 'LaCie', 'NetApp'],
     badges: [
-      { text: '89%', hint: 'Erfolgsquote' },
+      { text: 'komplex', hint: 'Quote fallabhängig (intern)' },
       { text: 'SLA', hint: 'B2B-Vertrag' },
       { text: 'NDA', hint: 'Verfügbar' },
     ],

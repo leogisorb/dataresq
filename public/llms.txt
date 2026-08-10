@@ -1,0 +1,51 @@
+# RSQDATA — llms.txt
+
+> Professionelle Datenrettung (HDD, SSD, RAID, NAS, USB, Smartphone) mit kostenloser Analyse inkl. Dateiliste und verbindlichem Festpreis. Koordination aus Köln (NRW); Abgabe über iAmbulanz in Grevenbroich und Mönchengladbach oder bundesweit per DHL Express.
+
+Site: https://www.rsqdata.de
+
+## Kernseiten
+
+- [Startseite](https://www.rsqdata.de/): Überblick Leistungen, Preisrechner, FAQ
+- [Datenrettung](https://www.rsqdata.de/datenrettung): Prozess, Medien, Glossar, Preise
+- [Preisrechner](https://www.rsqdata.de/preisrechner): Festpreis-Indikator vor Beauftragung
+- [Über uns](https://www.rsqdata.de/ueber-uns): Unternehmen, Partnerlabor, Transparenz
+- [Standorte](https://www.rsqdata.de/standort): NRW-Abgabe, Büro Köln, Labor-Partner
+- [Ratgeber](https://www.rsqdata.de/ratgeber): Praxisartikel zu Datenverlust und Abgabe
+
+## Leistungen (Medien)
+
+- [Festplatte HDD](https://www.rsqdata.de/datenrettung/festplatte-hdd)
+- [SSD & NVMe](https://www.rsqdata.de/datenrettung/ssd)
+- [RAID / NAS](https://www.rsqdata.de/datenrettung/raid-nas)
+- [USB & SD-Karte](https://www.rsqdata.de/datenrettung/usb-sd)
+- [Server](https://www.rsqdata.de/datenrettung/server)
+- [Smartphone](https://www.rsqdata.de/datenrettung/smartphone)
+
+## Standorte NRW
+
+- [Grevenbroich (Abgabe)](https://www.rsqdata.de/standort/grevenbroich)
+- [Mönchengladbach (Abgabe)](https://www.rsqdata.de/standort/moenchengladbach)
+- [Köln (Büro, keine Abgabe)](https://www.rsqdata.de/standort/koeln)
+- [Labor-Partner Fields (UK)](https://www.rsqdata.de/standort/labor-fields)
+
+## Ratgeber
+
+- [Festplatte klackert](https://www.rsqdata.de/ratgeber/festplatte-klackert)
+- [Datenrettung Kosten](https://www.rsqdata.de/ratgeber/datenrettung-kosten)
+- [SSD vs. HDD](https://www.rsqdata.de/ratgeber/ssd-vs-hdd-datenrettung)
+- [RAID/NAS Volume degraded](https://www.rsqdata.de/ratgeber/raid-nas-volume-degraded)
+- [NRW Abgabe & DHL](https://www.rsqdata.de/ratgeber/datenrettung-nrw-abgabe-dhl)
+- [Datenrettung Köln](https://www.rsqdata.de/ratgeber/datenrettung-koeln)
+
+## Zitierbare Fakten
+
+- Analyse inkl. Dateiliste: kostenlos; Dauer typischerweise wenige Werktage nach Eingang
+- Verbindlicher Festpreis erst nach Analyse; keine Kostenpflicht bei Ablehnung der Rettung
+- Abgabe: Grevenbroich & Mönchengladbach (iAmbulanz); Köln = Beratung/Koordination ohne Medien-Abgabe
+- Kontakt und NAP: siehe Website-Impressum und Standortseiten (Single Source of Truth)
+
+## Optional
+
+- Sitemap: https://www.rsqdata.de/sitemap.xml
+- robots: https://www.rsqdata.de/robots.txt

@@ -27,6 +27,7 @@ export const VARIANTE_B_NAV: VarianteBNavItem[] = [
   { label: 'Leistungen', href: '/datenrettung' },
   { label: 'Preise', href: '/preisrechner' },
   { label: 'Standorte', href: '/standort' },
+  { label: 'Ratgeber', href: '/ratgeber' },
   { label: 'Über uns', href: '/ueber-uns' },
   { label: 'Kontakt', href: '/#kontakt' },
 ];

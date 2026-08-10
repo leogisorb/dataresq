@@ -44,7 +44,7 @@ export const calculatorFaqs: FaqItem[] = [
   {
     question: 'Welche Erfolgsaussichten gibt es bei HDD und SSD?',
     answer:
-      'HDDs haben unter allen Datenträgern oft die besten Rettungsquoten — vorausgesetzt, die Datenscheiben (Platter) sind nicht physisch zerkratzt; im Reinraumlabor liegt unsere Quote bei mechanisch intakten Platter-Oberflächen bei etwa 92 %. Bei SSDs sind logische Defekte (gelöscht, formatiert, Dateisystemfehler) gut rettbar; Controller-Ausfälle hängen vom Chip-Typ und verfügbaren Firmware-Tools ab.',
+      'HDDs haben unter allen Datenträgern oft die besten Rettungsaussichten — vorausgesetzt, die Datenscheiben (Platter) sind nicht physisch zerkratzt; bei mechanisch intakten Oberflächen sind die Chancen im Partner-Reinraumlabor typischerweise hoch (interne Statistik, keine unabhängige Prüfung). Bei SSDs sind logische Defekte (gelöscht, formatiert, Dateisystemfehler) gut rettbar; Controller-Ausfälle hängen vom Chip-Typ und verfügbaren Firmware-Tools ab.',
   },
   {
     question: 'Wo kann ich in NRW abgeben?',

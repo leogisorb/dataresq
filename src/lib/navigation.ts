@@ -12,6 +12,7 @@ export const mainNavItems: NavItem[] = [
   { label: 'Datenrettung', href: '/datenrettung' },
   { label: 'Preisrechner', href: '/preisrechner' },
   { label: 'Standorte', href: '/standort' },
+  { label: 'Ratgeber', href: '/ratgeber' },
   { label: 'Über uns', href: '/ueber-uns' },
   { label: 'Kontakt', href: '/#kontakt' },
 ];
@@ -36,6 +37,11 @@ export const mobileNavItems: MobileNavItem[] = [
     label: 'Standorte',
     href: '/standort',
     description: 'Abgabestellen in Grevenbroich und Mönchengladbach oder DHL Express-Abholung.',
+  },
+  {
+    label: 'Ratgeber',
+    href: '/ratgeber',
+    description: 'Praxiswissen zu Datenverlust, Analyse und Abgabe in NRW.',
   },
   {
     label: 'Über uns',

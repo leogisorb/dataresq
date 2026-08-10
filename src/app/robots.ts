@@ -18,6 +18,16 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [...disallow],
       },
       {
+        userAgent: 'GPTBot',
+        allow: '/',
+        disallow: [...disallow],
+      },
+      {
+        userAgent: 'ClaudeBot',
+        allow: '/',
+        disallow: [...disallow],
+      },
+      {
         userAgent: 'PerplexityBot',
         allow: '/',
         disallow: [...disallow],

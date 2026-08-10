@@ -136,7 +136,7 @@ export const RATGEBER_ARTICLES: RatgeberArticle[] = [
       {
         heading: 'Vergleich',
         paragraphs: [
-          'HDD: bewegliche Teile, typische Symptome Klackern/Nicht-Erkennen; hohe Quote bei intakten Plattern (im Labor ca. 92 % bei mechanisch intakter Oberfläche).',
+          'HDD: bewegliche Teile, typische Symptome Klackern/Nicht-Erkennen; bei intakten Plattern typischerweise hohe Rettungsaussichten im Partnerlabor (interne Statistik, keine unabhängige Prüfung).',
           'SSD: keine Mechanik, Ausfälle oft ohne Vorwarnung; logische Defekte gut rettbar, Controller-Fälle chipabhängig. Niemals selbst scannen oder klonen.',
         ],
       },
@@ -226,8 +226,9 @@ export const RATGEBER_ARTICLES: RatgeberArticle[] = [
     excerpt:
       'RSQDATA steuert aus Köln Annahme, Analyse und Angebot. Abgabe an Partnern in Grevenbroich/Mönchengladbach oder per DHL.',
     datePublished: '2026-08-04',
-    updatedAt: '2026-08-04',
+    updatedAt: '2026-08-10',
     relatedStandortSlugs: ['koeln', 'grevenbroich', 'moenchengladbach'],
+    relatedMediumSlugs: ['festplatte-hdd', 'ssd'],
     sections: [
       {
         heading: 'Kurzantwort',
@@ -236,10 +237,41 @@ export const RATGEBER_ARTICLES: RatgeberArticle[] = [
         ],
       },
       {
+        heading: 'Büro Köln vs. Abgabe NRW',
+        paragraphs: [
+          'Am Kölner Standort findet keine Medien-Abgabe statt. Das Büro ist Ansprechpartner für Erstberatung, Status, Dateiliste und Angebot. Physische Übergabe: iAmbulanz Grevenbroich (Am Hammerwerk 16A) oder Mönchengladbach (Lüpertzender Str. 159) — ohne Termin.',
+          'Wer nicht vorbeikommen kann: kostenlose, versicherte DHL Express-Abholung bundesweit. Analyse inkl. Dateiliste bleibt kostenlos; der Festpreis gilt erst nach Ihrer Freigabe.',
+        ],
+      },
+      {
         heading: 'Für wen das passt',
         paragraphs: [
           'Privat- und Geschäftskunden aus Köln, Bonn, Leverkusen und dem Umland, die transparente Preise und eine Dateiliste vor Beauftragung wollen — ohne Analysepauschale.',
+          'Typische Anlässe: klackernde HDD, nicht erkannte SSD, NAS „Volume degraded“, gelöschte Partitionen. Für RAID/Server erstellen wir nach Voranfrage ein individuelles Angebot.',
         ],
+      },
+      {
+        heading: 'Nächste Schritte',
+        paragraphs: [
+          'Fall kurz schildern (Medium, Symptome, Dringlichkeit), optional Preisrechner nutzen, Abgabeort oder DHL wählen. Nach Eingang: Analyse, Dateiliste, verbindliches Angebot — dann entscheiden Sie.',
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: 'Kann ich in Köln Datenträger abgeben?',
+        answer:
+          'Nein. Das Büro Köln ist für Beratung und Koordination. Abgabe erfolgt in Grevenbroich oder Mönchengladbach bzw. per DHL Express.',
+      },
+      {
+        question: 'Wie lange dauert die Analyse?',
+        answer:
+          'Die technische Analyse inklusive Dateiliste dauert in der Regel wenige Werktage nach Eingang. Danach erhalten Sie ein verbindliches Angebot.',
+      },
+      {
+        question: 'Was kostet die Analyse?',
+        answer:
+          'Die Analyse inkl. Dateiliste ist kostenlos. Es entsteht keine Kostenpflicht, wenn Sie die Rettung nach dem Angebot ablehnen.',
       },
     ],
   },

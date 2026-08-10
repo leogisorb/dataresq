@@ -3,11 +3,13 @@ import Link from 'next/link';
 
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import ProcessTimelinePreview from '@/components/sections/datenrettung/ProcessTimelinePreview';
+import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
+import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import StandortFaq from '@/components/standort/StandortFaq';
 import StandortLabPartnerSection from '@/components/standort/StandortLabPartnerSection';
 import StandortMapConsent from '@/components/standort/StandortMapConsent';
 import { TILE_CARD_LINK } from '@/lib/button-styles';
-import { SITE } from '@/lib/constants';
+import { CONTENT_LAST_UPDATED, DIAGNOSIS_FEE_FORMATTED, SITE } from '@/lib/constants';
 import {
   getGoogleMapsEmbedUrl,
   getLocationPageTitle,
@@ -27,10 +29,30 @@ interface StandortContentProps {
   loc: Location;
 }
 
+function getStandortCitation(loc: Location): { question: string; answer: string } {
+  if (loc.kind === 'abgabe') {
+    return {
+      question: `Kann ich Datenträger in ${loc.name} abgeben?`,
+      answer: `Ja. An der iAmbulanz-Abgabestelle in ${loc.name} (${loc.street}, ${loc.zip} ${loc.name}) nehmen wir Ihre Medien entgegen. Analyse inkl. Dateiliste: ${DIAGNOSIS_FEE_FORMATTED}. ${loc.localFact}`,
+    };
+  }
+  if (loc.kind === 'buero') {
+    return {
+      question: `Gibt es Medien-Abgabe in ${loc.name}?`,
+      answer: `Nein — das Büro in ${loc.name} ist für Beratung und Koordination. Medien geben Sie in Grevenbroich oder Mönchengladbach ab oder senden sie per DHL Express. ${loc.localFact}`,
+    };
+  }
+  return {
+    question: 'Wo findet die Laborarbeit statt?',
+    answer: `${loc.localFact} Annahme und Kundenkommunikation steuert RSQDATA; die technische Rettung erfolgt im Partner-Reinraumlabor.`,
+  };
+}
+
 export default function StandortContent({ loc }: StandortContentProps) {
   const faqs = getStandortFaqs(loc);
   const pageTitle = getLocationPageTitle(loc);
   const isAbgabe = loc.kind === 'abgabe';
+  const citation = getStandortCitation(loc);
   const localBusinessJsonLd = generateLocalBusinessLocationJsonLd(loc);
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
@@ -67,9 +89,11 @@ export default function StandortContent({ loc }: StandortContentProps) {
       </nav>
 
       <h1 className="text-3xl font-bold text-text md:text-4xl">{pageTitle}</h1>
+      <LastUpdatedBadge className="mt-3" dateIso={CONTENT_LAST_UPDATED} />
       <p className="mt-4 max-w-2xl text-lg text-text">{loc.description}</p>
       <p className="mt-3 text-sm text-text-muted">{loc.serviceNote}</p>
       <p className="mt-3 max-w-2xl text-sm text-text-muted md:text-base">{loc.localFact}</p>
+      <CitationAnswerBlock answer={citation.answer} question={citation.question} />
 
       {loc.kind === 'buero' ? (
         <div className="mt-6 flex flex-col gap-2 text-sm text-text">

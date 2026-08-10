@@ -12,14 +12,14 @@ const statHeadlineClass =
 
 const statCards = [
   {
-    value: '92%',
-    caption: 'Erfolgsquote bei Datenrettung',
+    value: 'hoch',
+    caption: 'Rettungsquote im Partnerlabor (interne Statistik)',
     gradient: 'linear-gradient(135deg, #0a1628 0%, #0d3b5e 45%, #0a6b5e 100%)',
     glowColor: 'rgba(52,211,153,0.18)',
   },
   {
     value: `${RESCUED_DATASETS}+`,
-    caption: 'Gerettete Datensätze',
+    caption: 'Gerettete Datensätze (seit Gründung, intern erfasst)',
     gradient: 'linear-gradient(135deg, #1a0a3e 0%, #2d1b6e 45%, #1a3a9e 100%)',
     glowColor: 'rgba(129,140,248,0.18)',
   },
@@ -35,6 +35,9 @@ export default function Features() {
   return (
     <section className={`bg-bg-subtle ${SECTION_PADDING}`}>
       <div className="site-container">
+        <h2 className="mb-6 text-2xl font-bold text-text md:mb-8 md:text-3xl">
+          Zahlen & Versprechen
+        </h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 md:gap-4">
           {statCards.map((card) => (
             <div

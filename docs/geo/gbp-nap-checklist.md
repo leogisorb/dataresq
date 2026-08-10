@@ -10,6 +10,20 @@
 
 Telefon/E-Mail: aus `SITE` in `src/lib/constants.ts`.
 
+## sameAs (Code-Bridge)
+
+`SITE.sameAs` in `src/lib/constants.ts` speist Organization/LocalBusiness JSON-LD.
+Leere Liste = Feld wird weggelassen. **Sobald live**, hier eintragen und Array befüllen:
+
+| Profil | URL (vom Owner) | Status |
+|--------|-----------------|--------|
+| Google Business Profile Grevenbroich | _ausstehend_ | offen |
+| Google Business Profile Mönchengladbach | _ausstehend_ | offen |
+| Google Business Profile Köln (Büro) | _ausstehend_ | offen |
+| LinkedIn / Social / Bewertungsportal | _ausstehend_ | offen |
+
+Keine Platzhalter-URLs committen.
+
 ## GBP Checkliste je Profil
 
 - [ ] Kategorie korrekt (Datenwiederherstellung / IT-Dienstleistung)
@@ -20,6 +34,7 @@ Telefon/E-Mail: aus `SITE` in `src/lib/constants.ts`.
 - [ ] Q&A aus `standort-faq.ts` spiegeln
 - [ ] Primary Phone = `SITE.phone`
 - [ ] Website-URL = passende Standortseite
+- [ ] Profil-URL an Dev übergeben → `SITE.sameAs`
 
 ## Verzeichnisse
 

@@ -18,7 +18,7 @@ export const TEAM: TeamMember[] = [
   {
     name: LEGAL.ownerName,
     role: 'Gründer & Geschäftsführer',
-    bio: `Seit ${FOUNDING_YEAR} begleitet ${LEGAL.ownerName} Kundinnen und Kunden bei Datenverlust — zuerst in ${FOUNDING_LOCATION}, heute mit Koordination aus Köln. Schwerpunkt: transparente Preise, kostenlose Analyse inkl. Dateiliste und verbindliches Angebot vor Beauftragung. Über ${RESCUED_DATASETS} gerettete Datensätze.`,
+    bio: `Seit ${FOUNDING_YEAR} begleitet ${LEGAL.ownerName} Kundinnen und Kunden bei Datenverlust — zuerst in ${FOUNDING_LOCATION}, heute mit Koordination aus Köln. Schwerpunkt: transparente Preise, kostenlose Analyse inkl. Dateiliste und verbindliches Angebot vor Beauftragung. Über ${RESCUED_DATASETS} gerettete Datensätze (intern erfasst).`,
     credentials: [`Seit ${FOUNDING_YEAR}`, `${YEARS_EXPERIENCE}+ Jahre`, 'NRW · Köln'],
     image: '/images/team/gruender.svg',
   },

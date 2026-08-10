@@ -62,7 +62,11 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
 
   const detailContent = getMediumDetailContent(slug);
   const mediumFaqs = getMediumFaqs(slug);
-  const serviceJsonLd = generateMediumServiceJsonLd(service.title, service.description);
+  const serviceJsonLd = generateMediumServiceJsonLd(
+    service.title,
+    service.description,
+    service.href,
+  );
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
     { name: 'Datenrettung', url: `${siteConfig.url}/datenrettung` },

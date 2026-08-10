@@ -51,3 +51,14 @@ export const PILLAR_CITATION_ANSWER = {
     { label: 'NRW-Abgabe', value: 'Grevenbroich & Mönchengladbach' },
   ],
 } as const;
+
+export const HOME_CITATION_ANSWER = {
+  question: 'Was kostet Datenrettung bei RSQDATA?',
+  answer: `Sie erhalten nach kostenloser Analyse inkl. Dateiliste einen verbindlichen Festpreis. Orientierung: HDD/SSD ${formatPriceRange(PRICE_DISPLAY.hddSsd)}, Flash ${formatPriceRange(PRICE_DISPLAY.flash)} (inkl. MwSt.). ${NO_COST_GUARANTEE_NOTE}`,
+  facts: [
+    { label: 'Analyse', value: `${DIAGNOSIS_FEE_FORMATTED} · ${ANALYSIS_DURATION}` },
+    { label: 'HDD/SSD', value: formatPriceRange(PRICE_DISPLAY.hddSsd) },
+    { label: 'Flash', value: formatPriceRange(PRICE_DISPLAY.flash) },
+    { label: 'Abgabe NRW', value: 'Grevenbroich & Mönchengladbach' },
+  ],
+} as const;

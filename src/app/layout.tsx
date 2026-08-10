@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import { Inter } from 'next/font/google';
 
+import ConsentRoot from '@/components/consent/ConsentRoot';
 import SiteChrome from '@/components/layout/SiteChrome';
 import HashScrollOnNavigate from '@/components/navigation/HashScrollOnNavigate';
 import { defaultMetadata } from '@/lib/metadata';
@@ -33,9 +34,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${inter.className} min-h-screen bg-bg text-text antialiased`}
       >
-        <HashScrollOnNavigate />
-        <SiteChrome>{children}</SiteChrome>
-        <Analytics />
+        <ConsentRoot>
+          <HashScrollOnNavigate />
+          <SiteChrome>{children}</SiteChrome>
+          <Analytics />
+        </ConsentRoot>
       </body>
     </html>
   );

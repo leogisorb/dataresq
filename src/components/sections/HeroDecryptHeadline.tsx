@@ -9,7 +9,6 @@ const GLYPHS =
 
 const TICK_MS = 39;
 const REVEAL_STEP = 0.03;
-const INITIAL_REVEALED = 0;
 
 interface GlyphCell {
   char: string;
@@ -61,10 +60,11 @@ export default function HeroDecryptHeadline({
   resolvedLineClassNames,
   scrambledClassName = 'text-[#c7c7cc]',
 }: HeroDecryptHeadlineProps): React.JSX.Element {
-  const [revealed, setRevealed] = useState(INITIAL_REVEALED);
-  const [done, setDone] = useState(false);
   const joined = lines.join('');
   const total = joined.length;
+  /** SSR + first paint: full text (avoids scrambled H1 for crawlers) */
+  const [revealed, setRevealed] = useState(total);
+  const [done, setDone] = useState(true);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -74,9 +74,12 @@ export default function HeroDecryptHeadline({
       return;
     }
 
-    let current = INITIAL_REVEALED;
+    let current = 0;
     let rafId = 0;
     let lastTick = 0;
+
+    setRevealed(0);
+    setDone(false);
 
     const frame = (now: number): void => {
       if (now - lastTick < TICK_MS) {

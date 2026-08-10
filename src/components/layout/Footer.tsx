@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import CookieSettingsLink from '@/components/consent/CookieSettingsLink';
 import FooterContactSection from '@/components/layout/FooterContactSection';
 import WiderrufsButton from '@/components/ui/WiderrufsButton';
 import { SITE } from '@/lib/constants';
@@ -40,7 +41,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-text">{title}</h2>
+      <p className="text-sm font-semibold uppercase tracking-wide text-text">{title}</p>
       <ul className="mt-4 flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.label}>
@@ -104,6 +105,8 @@ export default function Footer() {
               >
                 {SITE.email}
               </a>
+              {' · '}
+              <CookieSettingsLink />
             </p>
 
             <div className="mt-4">

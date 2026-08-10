@@ -5,6 +5,8 @@ import AboutStorySection from '@/components/sections/ueber-uns/AboutStorySection
 import CertificationGrid from '@/components/sections/ueber-uns/CertificationGrid';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
 import IambulanzPartnerSection from '@/components/sections/ueber-uns/IambulanzPartnerSection';
+import MetricsSection from '@/components/sections/ueber-uns/MetricsSection';
+import TeamGrid from '@/components/sections/ueber-uns/TeamGrid';
 import DatenrettungCta from '@/components/sections/datenrettung/DatenrettungCta';
 import ExpertQuote from '@/components/seo/ExpertQuote';
 import { FOUNDER_EXPERT_QUOTE } from '@/lib/datenrettung-geo-ui';
@@ -66,6 +68,24 @@ export default function UeberUnsPage() {
                 quote={FOUNDER_EXPERT_QUOTE.quote}
                 role={FOUNDER_EXPERT_QUOTE.role}
               />
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/5 bg-bg-subtle py-12 md:border-t-0 md:px-8 md:py-16 lg:px-12">
+          <div className="site-container">
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Kennzahlen</h2>
+            <div className="mt-8">
+              <MetricsSection />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 md:px-8 md:py-16 lg:px-12">
+          <div className="site-container">
+            <h2 className="text-2xl font-bold text-text md:text-3xl">Team</h2>
+            <div className="mt-8">
+              <TeamGrid />
             </div>
           </div>
         </section>

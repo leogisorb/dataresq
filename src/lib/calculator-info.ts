@@ -31,7 +31,7 @@ export const DEVICE_INFO: Record<DeviceKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'HDDs haben die besten Rettungsquoten unter allen Datenträgern — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. Im Reinraumlabor erzielen wir eine Erfolgsquote von 92 %.',
+        text: 'HDDs haben unter allen Datenträgern oft die besten Rettungsaussichten — vorausgesetzt, die Platter (Datenscheiben) sind nicht physisch zerkratzt. Im Partner-Reinraumlabor sind mechanisch intakte Oberflächen typischerweise gut rettbar (interne Laborstatistik, keine unabhängige Prüfung).',
       },
     ],
     warning:
@@ -164,7 +164,7 @@ export const DAMAGE_INFO: Record<DamageKey, CalculatorInfoContent> = {
       },
       {
         label: 'Erfolgsaussichten',
-        text: 'Dies ist die häufigste und am besten rettbare Kategorie. Bei HDDs liegen die Erfolgsquoten bei 95–99 %, bei SSDs etwas niedriger durch TRIM.',
+        text: 'Dies ist die häufigste und am besten rettbare Kategorie. Bei HDDs sind die Aussichten typischerweise hoch, solange keine physischen Überschreibungen stattgefunden haben; bei SSDs etwas zurückhaltender wegen TRIM (interne Laborerfahrung, keine unabhängige Prüfung).',
       },
     ],
     warning:

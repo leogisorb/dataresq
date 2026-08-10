@@ -25,7 +25,7 @@ Jede page.tsx braucht ohne Ausnahme:
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'Münch Data Center',
+  name: 'RSQDATA',
   description: '[Beschreibung]',
   telephone: SITE.phone,
   email: SITE.email,
