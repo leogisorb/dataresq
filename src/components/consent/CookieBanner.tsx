@@ -110,8 +110,9 @@ export default function CookieBanner(): React.JSX.Element | null {
                 Auswahl speichern
               </Button>
               <Button
-                className="min-h-9 rounded-full border border-border bg-bg px-4 text-xs font-semibold text-text"
+                className="min-h-9 rounded-full border border-border bg-bg px-4 text-xs font-semibold !text-text"
                 type="button"
+                variant="outline"
                 onPress={() => setShowDetails(false)}
               >
                 Zurück
@@ -124,23 +125,26 @@ export default function CookieBanner(): React.JSX.Element | null {
               Alle akzeptieren
             </Button>
             <Button
-              className="min-h-11 rounded-full border border-border bg-bg px-5 text-sm font-semibold text-text"
+              className="min-h-11 rounded-full border border-border bg-bg px-5 text-sm font-semibold !text-text"
               type="button"
+              variant="outline"
               onPress={rejectOptional}
             >
               Nur notwendige
             </Button>
             <Button
-              className="min-h-11 rounded-full px-5 text-sm font-semibold text-accent"
+              className="min-h-11 rounded-full px-5 text-sm font-semibold !text-accent"
               type="button"
+              variant="ghost"
               onPress={() => setShowDetails(true)}
             >
               Einstellungen
             </Button>
             {hasDecided ? (
               <Button
-                className="min-h-11 rounded-full px-5 text-sm font-medium text-text-muted"
+                className="min-h-11 rounded-full px-5 text-sm font-medium !text-text-muted"
                 type="button"
+                variant="ghost"
                 onPress={closeBanner}
               >
                 Schließen
