@@ -53,7 +53,8 @@ export default function StandortContent({ loc }: StandortContentProps) {
   const pageTitle = getLocationPageTitle(loc);
   const isAbgabe = loc.kind === 'abgabe';
   const citation = getStandortCitation(loc);
-  const localBusinessJsonLd = generateLocalBusinessLocationJsonLd(loc);
+  const localBusinessJsonLd =
+    loc.kind === 'labor' ? null : generateLocalBusinessLocationJsonLd(loc);
   const breadcrumbJsonLd = generateBreadcrumbJsonLd([
     { name: 'Startseite', url: siteConfig.url },
     { name: 'Standorte', url: `${siteConfig.url}/standort` },
@@ -63,10 +64,12 @@ export default function StandortContent({ loc }: StandortContentProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-      />
+      {localBusinessJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+      ) : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -122,11 +125,13 @@ export default function StandortContent({ loc }: StandortContentProps) {
         />
       </div>
 
-      <StandortMapConsent
-        embedUrl={getGoogleMapsEmbedUrl(loc)}
-        locationName={loc.name}
-        mapsUrl={loc.mapsUrl}
-      />
+      {loc.kind !== 'labor' && loc.mapsUrl ? (
+        <StandortMapConsent
+          embedUrl={getGoogleMapsEmbedUrl(loc)}
+          locationName={loc.name}
+          mapsUrl={loc.mapsUrl}
+        />
+      ) : null}
 
       {loc.kind === 'labor' ? (
         <div className="mt-10">

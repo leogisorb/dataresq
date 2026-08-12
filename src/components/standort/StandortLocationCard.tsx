@@ -68,7 +68,9 @@ export default function StandortLocationCard({
             <span className="text-white">{location.name}</span>
           </h3>
           <p className="text-sm text-white/55 md:text-[15px]">
-            {location.street}, {location.zip} {location.name}
+            {location.kind === 'labor'
+              ? 'Vereinigtes Königreich — Anschrift vertraulich'
+              : `${location.street}, ${location.zip} ${location.name}`}
           </p>
           <ul className="flex flex-wrap gap-x-4 gap-y-1.5 pt-1">
             {tags.map((tag) => (
@@ -85,15 +87,17 @@ export default function StandortLocationCard({
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-              href={location.mapsUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <MapPin aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.5} />
-              Google Maps
-            </a>
+            {location.kind !== 'labor' && location.mapsUrl ? (
+              <a
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                href={location.mapsUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <MapPin aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.5} />
+                Google Maps
+              </a>
+            ) : null}
             <Link
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-[#111111] transition-opacity hover:opacity-90"
               href={`/standort/${location.slug}`}

@@ -17,19 +17,15 @@ export const mainNavItems: NavItem[] = [
   { label: 'Kontakt', href: '/#kontakt' },
 ];
 
+/** Fullscreen mobile circle menu — aligned with VARIANTE_B_NAV labels. */
 export const mobileNavItems: MobileNavItem[] = [
-  {
-    label: 'Startseite',
-    href: '/',
-    description: 'Datenrettung mit Festpreis — bevor Sie uns Ihren Datenträger anvertrauen.',
-  },
   {
     label: 'Datenrettung',
     href: '/datenrettung',
     description: 'HDD, SSD, RAID, NAS, USB und Smartphone — alle Medien, ein Prozess.',
   },
   {
-    label: 'Preisrechner',
+    label: 'Preise',
     href: '/preisrechner',
     description: 'Festpreis-Indikator in wenigen Schritten — verbindlich nach Analyse.',
   },

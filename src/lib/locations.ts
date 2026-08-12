@@ -1,4 +1,4 @@
-import { LAB_PARTNER, LAB_PARTNER_ADDRESS_LINE, SITE } from '@/lib/constants';
+import { LAB_PARTNER, SITE } from '@/lib/constants';
 
 export type LocationKind = 'abgabe' | 'buero' | 'labor';
 
@@ -20,6 +20,7 @@ export interface Location {
   localFact: string;
   nearbyAreas: string[];
   serviceNote: string;
+  /** Empty for confidential locations (e.g. Reinraumlabor). */
   mapsUrl: string;
 }
 
@@ -130,22 +131,23 @@ export const LOCATIONS: Location[] = [
   },
   {
     slug: 'labor-fields',
-    name: 'Bridgend',
+    name: 'Partnerlabor UK',
     region: 'UK',
-    zip: LAB_PARTNER.address.zip,
-    street: LAB_PARTNER.address.street,
-    lat: 51.524,
-    lng: -3.697,
+    zip: '',
+    street: '',
+    lat: 0,
+    lng: 0,
     kind: 'labor',
     partner: 'fields',
     image: '/images/standort/labor-reinraum.png',
     imageAlt: `Reinraumlabor ${LAB_PARTNER.name} — Festplattenrettung unter dem Mikroskop`,
     description: `Reinraumlabor in Großbritannien (Partner ${LAB_PARTNER.name}). Keine Abgabe vor Ort.`,
     localFact:
-      'Mechanische HDD-Rettung und Reinraumarbeiten. Medien werden hierher geleitet, nachdem Sie sie bei RSQDATA angemeldet haben.',
-    nearbyAreas: ['Cardiff', 'Swansea', 'Newport', 'Pencoed'],
-    serviceNote: `${LAB_PARTNER_ADDRESS_LINE} — keine Abgabe vor Ort.`,
-    mapsUrl: getGoogleMapsUrl(LAB_PARTNER_ADDRESS_LINE, 'United Kingdom'),
+      'Mechanische HDD-Rettung und Reinraumarbeiten. Medien werden hierher geleitet, nachdem Sie sie bei RSQDATA angemeldet haben. Die genaue Anschrift bleibt aus Sicherheitsgründen vertraulich.',
+    nearbyAreas: [],
+    serviceNote:
+      'Genaue Laboranschrift aus Sicherheitsgründen nicht öffentlich — keine Abgabe vor Ort.',
+    mapsUrl: '',
   },
 ];
 

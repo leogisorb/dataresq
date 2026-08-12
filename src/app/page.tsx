@@ -55,7 +55,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      <main>
+      <main className="home-mobile-snap">
         <RebootHeroCard />
         <PromisesSection />
         <CalculatorSection />

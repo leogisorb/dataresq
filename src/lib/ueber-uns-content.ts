@@ -1,9 +1,4 @@
-import {
-  DIAGNOSIS_FEE_FORMATTED,
-  LAB_PARTNER,
-  LAB_PARTNER_ADDRESS_LINE,
-  LAB_PARTNER_NOTE,
-} from '@/lib/constants';
+import { DIAGNOSIS_FEE_FORMATTED, LAB_PARTNER, LAB_PARTNER_NOTE } from '@/lib/constants';
 
 export type CertificationIconKey = 'microscope' | 'shield' | 'handshake';
 
@@ -66,8 +61,6 @@ export const labPartnerBullets: readonly string[] = [
 ];
 
 export const labPartnerIntro = LAB_PARTNER_NOTE;
-
-export const labPartnerAddressLine = LAB_PARTNER_ADDRESS_LINE;
 
 export interface Certification {
   iconKey: CertificationIconKey;

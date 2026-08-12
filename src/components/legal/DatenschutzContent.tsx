@@ -269,13 +269,14 @@ export default function DatenschutzContent(): React.JSX.Element {
       <p>
         Fields Data Recovery Ltd
         <br />
-        Fields House, 18-21 Old Field Road, Bocam Park
-        <br />
-        Pencoed, Bridgend, CF35 5LJ
-        <br />
         Vereinigtes Königreich
         <br />
         Company Number: 06695262
+      </p>
+      <p>
+        Die vollständige postalische Anschrift des Reinraumlabors geben wir aus
+        Sicherheitsgründen (Schutz der dort gelagerten Datenträger) nicht öffentlich an. Auf
+        Anfrage teilen wir berechtigten Betroffenen die ladungsfähige Anschrift mit.
       </p>
       <p>
         Es besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Fields Data Recovery Ltd

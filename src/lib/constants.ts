@@ -59,20 +59,15 @@ export const LEGAL = {
   },
 } as const;
 
-/** Laborpartner — technische Rettung im Reinraumlabor (nicht RSQDATA-eigen) */
+/**
+ * Laborpartner — technische Rettung im Reinraumlabor (nicht RSQDATA-eigen).
+ * Postalische Anschrift bewusst nicht öffentlich (Sicherheit / Datenträgerlager).
+ */
 export const LAB_PARTNER = {
   name: 'Fields',
-  address: {
-    careOf: 'Fields c/o RSQDATA',
-    street: '18-21 Old Fields Rd, Bocam Park',
-    city: 'Pencoed Bridgend',
-    zip: 'CF35 5LJ',
-    country: 'GB',
-  },
+  country: 'GB',
+  countryLabel: 'Vereinigtes Königreich',
 } as const;
-
-export const LAB_PARTNER_ADDRESS_LINE =
-  `${LAB_PARTNER.address.careOf}, ${LAB_PARTNER.address.street}, ${LAB_PARTNER.address.zip} ${LAB_PARTNER.address.city}, United Kingdom` as const;
 
 export const LAB_PARTNER_BADGE = `Partner-Reinraumlabor (${LAB_PARTNER.name})` as const;
 

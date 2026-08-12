@@ -1,8 +1,4 @@
-import {
-  LAB_PARTNER,
-  LAB_PARTNER_ADDRESS_LINE,
-  LAB_PARTNER_NOTE,
-} from '@/lib/constants';
+import { LAB_PARTNER, LAB_PARTNER_NOTE } from '@/lib/constants';
 
 export default function StandortLabPartnerSection() {
   return (
@@ -13,7 +9,9 @@ export default function StandortLabPartnerSection() {
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-text-muted md:text-base">
         {LAB_PARTNER_NOTE}
       </p>
-      <p className="mt-4 text-sm text-text-muted">{LAB_PARTNER_ADDRESS_LINE}</p>
+      <p className="mt-4 text-sm text-text-muted">
+        Genaue Laboranschrift aus Sicherheitsgründen nicht öffentlich — keine Abgabe vor Ort.
+      </p>
     </section>
   );
 }
