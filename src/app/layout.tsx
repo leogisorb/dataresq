@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Analytics } from '@vercel/analytics/next';
 import { Inter } from 'next/font/google';
 
 import ConsentRoot from '@/components/consent/ConsentRoot';
@@ -37,7 +36,6 @@ export default function RootLayout({
         <ConsentRoot>
           <HashScrollOnNavigate />
           <SiteChrome>{children}</SiteChrome>
-          <Analytics />
         </ConsentRoot>
       </body>
     </html>

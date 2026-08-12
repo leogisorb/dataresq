@@ -41,7 +41,7 @@ export const NRW_AREA_SERVED = [
 ] as const;
 
 /** Stabile Sitemap-/Schema-Aktualität (manuell bei Content-Updates anheben) */
-export const CONTENT_LAST_UPDATED = '2026-08-10' as const;
+export const CONTENT_LAST_UPDATED = '2026-08-12' as const;
 
 /** Angaben gemäß § 5 DDG — Single Source für /impressum (TXT ist Vorgabe) */
 export const LEGAL = {

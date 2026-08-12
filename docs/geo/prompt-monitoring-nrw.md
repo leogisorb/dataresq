@@ -2,9 +2,11 @@
 
 ## 1. Analytics (Website)
 
-- **Vercel Analytics** ist in `src/app/layout.tsx` aktiv (`@vercel/analytics`).
+- **Vercel Web Analytics** lädt nur nach Cookie-Einwilligung Kategorie Analyse (`VercelAnalytics` in `ConsentRoot`).
+- Optional **GA4**: `NEXT_PUBLIC_GA_ID` ebenfalls nur mit Consent (`GoogleAnalytics.tsx`).
 - ChatGPT-Referrals: in Vercel/GA Segment bzw. Filter auf Referrer/`utm_source=chatgpt.com` (OpenAI setzt dies bei Klicks aus ChatGPT-Suche).
-- Optional GA4: `NEXT_PUBLIC_GA_ID` nur mit Cookie-Consent laden (DSGVO). Verification: `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Env setzen — greift über `defaultMetadata.verification` in `src/lib/metadata.ts`.
+- Verification: `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Env setzen — greift über `defaultMetadata.verification` in `src/lib/metadata.ts`.
+- Canonical-Host: Production **muss** `NEXT_PUBLIC_SITE_URL=https://www.rsqdata.de` setzen (kein apex-Split).
 
 ## 2. Google Search Console
 

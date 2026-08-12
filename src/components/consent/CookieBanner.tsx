@@ -45,8 +45,8 @@ export default function CookieBanner(): React.JSX.Element | null {
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-text-muted" id="cookie-banner-desc">
             Wir verwenden technisch notwendige Cookies sowie — nur mit Ihrer Einwilligung —
-            optionale Analyse-Cookies (Google Analytics 4) und Marketing-Cookies (z. B. Google Ads).
-            Details in der{' '}
+            optionale Analyse-Tools (Google Analytics 4, Vercel Web Analytics) und Marketing-Cookies
+            (z. B. Google Ads). Details in der{' '}
             <Link className="text-accent underline-offset-2 hover:underline" href="/datenschutz">
               Datenschutzerklärung
             </Link>
@@ -79,7 +79,7 @@ export default function CookieBanner(): React.JSX.Element | null {
                 onChange={(event) => setAnalytics(event.target.checked)}
               />
               <span>
-                <span className="font-medium">Analyse (Google Analytics 4)</span>
+                <span className="font-medium">Analyse (Google Analytics 4 / Vercel)</span>
                 <span className="mt-0.5 block text-text-muted">
                   Hilft uns, Nutzung und Preisrechner zu verstehen. Wird erst nach Einwilligung
                   geladen.

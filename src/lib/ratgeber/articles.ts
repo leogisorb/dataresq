@@ -265,8 +265,7 @@ export const RATGEBER_ARTICLES: RatgeberArticle[] = [
       },
       {
         question: 'Wie lange dauert die Analyse?',
-        answer:
-          'Die technische Analyse inklusive Dateiliste dauert in der Regel wenige Werktage nach Eingang. Danach erhalten Sie ein verbindliches Angebot.',
+        answer: `Die technische Analyse inklusive Dateiliste dauert in der Regel ${ANALYSIS_DURATION} nach Eingang. Danach erhalten Sie ein verbindliches Angebot.`,
       },
       {
         question: 'Was kostet die Analyse?',

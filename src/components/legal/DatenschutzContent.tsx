@@ -376,9 +376,9 @@ export default function DatenschutzContent(): React.JSX.Element {
       <p>
         Beim ersten Besuch erscheint unser Cookie-Banner. Ihre Entscheidung speichern wir lokal in
         Ihrem Browser (localStorage-Schlüssel <code>rsqdata-cookie-consent-v1</code>). Optional
-        Dienste — insbesondere Google Analytics 4 — laden wir erst nach Ihrer Einwilligung. Sie
-        können Ihre Wahl jederzeit über den Link „Cookie-Einstellungen“ im Seitenfuß ändern oder
-        widerrufen.
+        Dienste — insbesondere Google Analytics 4 und Vercel Web Analytics — laden wir erst nach
+        Ihrer Einwilligung. Sie können Ihre Wahl jederzeit über den Link „Cookie-Einstellungen“ im
+        Seitenfuß ändern oder widerrufen.
       </p>
 
       <h3>8.2.1 Google Tag Manager</h3>
@@ -448,7 +448,31 @@ export default function DatenschutzContent(): React.JSX.Element {
         </a>
       </p>
 
-      <h3>8.2.3 Google Ads Conversion-Tracking und Remarketing</h3>
+      <h3>8.2.3 Vercel Web Analytics</h3>
+      <p>
+        Wir nutzen Vercel Web Analytics der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723,
+        USA — ausschließlich nach Ihrer Einwilligung in die Kategorie Analyse.
+      </p>
+      <p>
+        <strong>Zweck:</strong> anonyme Auswertung von Seitenaufrufen und Performance unserer
+        Website (First-Party-Analyse ohne eigene Marketing-Profile).
+      </p>
+      <p>
+        <strong>Verarbeitete Daten:</strong> aufgerufene Seitenpfade, Referrer, grobe
+        Geräte-/Browserinformationen sowie aggregierte Nutzungsmetriken. Es werden keine
+        Werbe-Cookies gesetzt.
+      </p>
+      <p>
+        <strong>Drittlandübermittlung:</strong> Eine Verarbeitung in den USA kann nicht
+        ausgeschlossen werden. Vercel Inc. ist unter dem EU-US Data Privacy Framework zertifiziert
+        (Art. 45 DSGVO).
+      </p>
+      <p>
+        <strong>Widerruf:</strong> über die Cookie-Einstellungen (Kategorie Analyse) jederzeit mit
+        Wirkung für die Zukunft.
+      </p>
+
+      <h3>8.2.4 Google Ads Conversion-Tracking und Remarketing</h3>
       <p>
         Wir nutzen das Werbeprogramm Google Ads der Google Ireland Limited, Gordon House, Barrow
         Street, Dublin 4, Irland.
@@ -483,7 +507,7 @@ export default function DatenschutzContent(): React.JSX.Element {
         </a>
       </p>
 
-      <h3>8.2.4 Meta-Pixel (Facebook und Instagram)</h3>
+      <h3>8.2.5 Meta-Pixel (Facebook und Instagram)</h3>
       <p>
         Wir nutzen das Meta-Pixel der Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04
         X2K5, Irland.

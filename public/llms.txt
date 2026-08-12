@@ -40,7 +40,7 @@ Site: https://www.rsqdata.de
 
 ## Zitierbare Fakten
 
-- Analyse inkl. Dateiliste: kostenlos; Dauer typischerweise wenige Werktage nach Eingang
+- Analyse inkl. Dateiliste: kostenlos; Dauer typischerweise 48–72 h nach Eingang
 - Verbindlicher Festpreis erst nach Analyse; keine Kostenpflicht bei Ablehnung der Rettung
 - Abgabe: Grevenbroich & Mönchengladbach (iAmbulanz); Köln = Beratung/Koordination ohne Medien-Abgabe
 - Kontakt und NAP: siehe Website-Impressum und Standortseiten (Single Source of Truth)
