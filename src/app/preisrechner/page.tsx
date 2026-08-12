@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import PriceCalculatorSection from '@/components/calculator/PriceCalculatorSection';
 import Breadcrumbs from '@/components/navigation/Breadcrumbs';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
+import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
 import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import {
   CALCULATOR_HEADING,
@@ -11,6 +12,7 @@ import {
   CALCULATOR_SUBHEADING,
 } from '@/lib/calculator-section';
 import { CONTENT_LAST_UPDATED, NO_COST_GUARANTEE_NOTE } from '@/lib/constants';
+import { HOME_CITATION_ANSWER } from '@/lib/datenrettung-geo-ui';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
 import {
@@ -70,6 +72,11 @@ export default function PreisrechnerPage() {
 
             <h1 className={PAGE_HERO_HEADING}>{CALCULATOR_HEADING}</h1>
             <LastUpdatedBadge className="mt-3" dateIso={CONTENT_LAST_UPDATED} />
+            <CitationAnswerBlock
+              answer={HOME_CITATION_ANSWER.answer}
+              facts={[...HOME_CITATION_ANSWER.facts]}
+              question={HOME_CITATION_ANSWER.question}
+            />
             <p className={`${SECTION_SUBHEADING} mt-4 max-w-2xl`}>{CALCULATOR_SUBHEADING}</p>
           </div>
         </section>

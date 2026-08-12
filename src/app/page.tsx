@@ -7,6 +7,7 @@ import PromisesSection from '@/components/sections/PromisesSection';
 import Testimonials from '@/components/sections/Testimonials';
 import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
 import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
+import RatgeberTeaser from '@/components/seo/RatgeberTeaser';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import {
   CONTENT_LAST_UPDATED,
@@ -14,10 +15,9 @@ import {
   HOME_META_TITLE,
 } from '@/lib/constants';
 import { HOME_CITATION_ANSWER } from '@/lib/datenrettung-geo-ui';
+import { HOME_RATGEBER_TEASERS } from '@/lib/ratgeber/articles';
 import { createContentMetadata } from '@/lib/metadata';
 import {
-  generateCalculatorServiceJsonLd,
-  generateFaqPageJsonLd,
   generateLocalBusinessJsonLd,
   generateWebSiteJsonLd,
 } from '@/lib/structured-data';
@@ -47,9 +47,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const localBusinessJsonLd = generateLocalBusinessJsonLd();
-  const calculatorServiceJsonLd = generateCalculatorServiceJsonLd();
   const webSiteJsonLd = generateWebSiteJsonLd();
-  const faqJsonLd = generateFaqPageJsonLd(calculatorFaqs);
 
   return (
     <>
@@ -59,15 +57,7 @@ export default function HomePage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorServiceJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <main>
         <RebootHeroCard />
@@ -86,6 +76,7 @@ export default function HomePage() {
         <ExpertiseSection />
         <Features />
         <FaqSection faqs={calculatorFaqs} title="Häufige Fragen zu Datenrettungskosten" />
+        <RatgeberTeaser links={HOME_RATGEBER_TEASERS} title="Ratgeber & Erste Hilfe" />
         <Testimonials />
       </main>
     </>

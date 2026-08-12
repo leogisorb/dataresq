@@ -287,3 +287,46 @@ export function getRatgeberArticle(slug: string): RatgeberArticle | undefined {
 export function getRatgeberSlugs(): string[] {
   return RATGEBER_ARTICLES.map((article) => article.slug);
 }
+
+/** Reverse lookup: medium pages → related ratgeber articles */
+export function getRatgeberArticlesForMedium(mediumSlug: string): RatgeberArticle[] {
+  return RATGEBER_ARTICLES.filter((article) =>
+    article.relatedMediumSlugs?.includes(mediumSlug),
+  );
+}
+
+export const HOME_RATGEBER_TEASERS = [
+  {
+    href: '/ratgeber/festplatte-klackert',
+    title: 'Festplatte klackert',
+    excerpt: 'Sofort ausschalten — was Sie tun und vermeiden sollten.',
+  },
+  {
+    href: '/ratgeber/datenrettung-kosten',
+    title: 'Was kostet Datenrettung?',
+    excerpt: 'Festpreisrahmen, 0 € Analyse und worauf Sie achten.',
+  },
+  {
+    href: '/ratgeber/datenrettung-nrw-abgabe-dhl',
+    title: 'Abgabe NRW & DHL',
+    excerpt: 'Grevenbroich, Mönchengladbach oder Express-Abholung.',
+  },
+] as const;
+
+export const PILLAR_RATGEBER_TEASERS = [
+  {
+    href: '/ratgeber/festplatte-klackert',
+    title: 'Festplatte klackert',
+    excerpt: 'Erste Hilfe bei mechanischem Defekt.',
+  },
+  {
+    href: '/ratgeber/raid-nas-volume-degraded',
+    title: 'RAID / NAS Volume degraded',
+    excerpt: 'Kein Rebuild — so sichern Sie die Chance auf Rettung.',
+  },
+  {
+    href: '/ratgeber/datenrettung-kosten',
+    title: 'Datenrettung Kosten',
+    excerpt: 'Transparente Preisspannen vor der Beauftragung.',
+  },
+] as const;

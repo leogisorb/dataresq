@@ -8,6 +8,7 @@ import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
 import ExpertQuote from '@/components/seo/ExpertQuote';
 import GlossarySection from '@/components/seo/GlossarySection';
 import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
+import RatgeberTeaser from '@/components/seo/RatgeberTeaser';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
 import {
@@ -24,6 +25,7 @@ import {
 } from '@/lib/datenrettung-geo-ui';
 import { createContentMetadata } from '@/lib/metadata';
 import { processSteps } from '@/lib/datenrettung-services';
+import { PILLAR_RATGEBER_TEASERS } from '@/lib/ratgeber/articles';
 import {
   PAGE_HERO_HEADING,
   SECTION_CONTENT_MT,
@@ -151,6 +153,8 @@ export default function DatenrettungPage() {
         </section>
 
         <GlossarySection terms={DATENRETTUNG_GLOSSARY} />
+
+        <RatgeberTeaser links={PILLAR_RATGEBER_TEASERS} title="Ratgeber zur Datenrettung" />
 
         <section className={`${SECTION_PADDING} bg-bg-subtle`}>
           <div className="site-container">

@@ -10,6 +10,7 @@ import MediumDetailSections from '@/components/sections/datenrettung/MediumDetai
 import RelatedServices from '@/components/sections/datenrettung/RelatedServices';
 import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
 import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
+import RatgeberTeaser from '@/components/seo/RatgeberTeaser';
 import {
   BINDING_OFFER_BADGE,
   CONTENT_LAST_UPDATED,
@@ -19,6 +20,7 @@ import { getMediumDetailContent } from '@/lib/datenrettung-medium-content';
 import { getDatenrettungService, getDatenrettungSlugs } from '@/lib/datenrettung-services';
 import { getMediumFaqs } from '@/lib/faq-medium';
 import { createContentMetadata, siteConfig } from '@/lib/metadata';
+import { getRatgeberArticlesForMedium } from '@/lib/ratgeber/articles';
 import {
   generateBreadcrumbJsonLd,
   generateFaqPageJsonLd,
@@ -62,6 +64,11 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
 
   const detailContent = getMediumDetailContent(slug);
   const mediumFaqs = getMediumFaqs(slug);
+  const relatedRatgeber = getRatgeberArticlesForMedium(slug).map((article) => ({
+    href: `/ratgeber/${article.slug}`,
+    title: article.title,
+    excerpt: article.excerpt,
+  }));
   const serviceJsonLd = generateMediumServiceJsonLd(
     service.title,
     service.description,
@@ -140,6 +147,8 @@ export default async function DatenrettungMediumPage({ params }: DatenrettungMed
         {detailContent ? (
           <RelatedServices currentSlug={slug} relatedSlugs={detailContent.relatedSlugs} />
         ) : null}
+
+        <RatgeberTeaser links={relatedRatgeber} title="Passende Ratgeber" />
 
         <section className="border-t border-black/5 bg-bg-card py-12 text-text md:px-8 md:py-16 lg:px-12">
           <div className="site-container text-center">

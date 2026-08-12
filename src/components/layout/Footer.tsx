@@ -7,6 +7,7 @@ import { SITE } from '@/lib/constants';
 import { siteConfig } from '@/lib/metadata';
 
 const leistungenLinks = [
+  { label: 'Datenrettung', href: '/datenrettung' },
   { label: 'Festplatte HDD', href: '/datenrettung/festplatte-hdd' },
   { label: 'SSD & NVMe', href: '/datenrettung/ssd' },
   { label: 'RAID / NAS', href: '/datenrettung/raid-nas' },
@@ -15,6 +16,7 @@ const leistungenLinks = [
   { label: 'Smartphone', href: '/datenrettung/smartphone' },
   { label: 'Preisrechner', href: '/preisrechner' },
   { label: 'Ratgeber', href: '/ratgeber' },
+  { label: 'Über uns', href: '/ueber-uns' },
 ];
 
 const standortLinks = [

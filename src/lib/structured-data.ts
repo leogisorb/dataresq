@@ -433,6 +433,7 @@ export interface ArticleSchema {
   '@type': 'Article';
   headline: string;
   description: string;
+  image: string[];
   datePublished: string;
   dateModified: string;
   author: {
@@ -458,12 +459,16 @@ export function generateArticleJsonLd(options: {
   path: string;
   datePublished: string;
   dateModified?: string;
+  imageUrl?: string;
 }): ArticleSchema {
+  const imageUrl = options.imageUrl ?? `${siteConfig.url}${OG_IMAGE.url}`;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: options.headline,
     description: options.description,
+    image: [imageUrl],
     datePublished: options.datePublished,
     dateModified: options.dateModified ?? options.datePublished,
     author: {
