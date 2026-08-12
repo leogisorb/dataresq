@@ -11,13 +11,7 @@ import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import RatgeberTeaser from '@/components/seo/RatgeberTeaser';
 import ComparisonTable from '@/components/sections/ueber-uns/ComparisonTable';
 import { datenrettungFaqs } from '@/lib/faq-datenrettung';
-import {
-  ANALYSIS_DURATION,
-  CONTENT_LAST_UPDATED,
-  DATENRETTUNG_META_DESCRIPTION,
-  DIAGNOSIS_FEE_FORMATTED,
-  NO_COST_GUARANTEE_NOTE,
-} from '@/lib/constants';
+import { CONTENT_LAST_UPDATED, DATENRETTUNG_META_DESCRIPTION } from '@/lib/constants';
 import {
   DATENRETTUNG_GLOSSARY,
   FOUNDER_EXPERT_QUOTE,
@@ -34,7 +28,6 @@ import {
   SECTION_PADDING,
   SECTION_SUBHEADING,
 } from '@/lib/section-styles';
-import { RESCUED_DATASETS } from '@/lib/team';
 import {
   generateBreadcrumbJsonLd,
   generateFaqPageJsonLd,
@@ -100,15 +93,6 @@ export default function DatenrettungPage() {
               facts={[...PILLAR_CITATION_ANSWER.facts]}
               question={PILLAR_CITATION_ANSWER.question}
             />
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted md:text-lg">
-              Datenrettung ist die Wiederherstellung von Dateien von defekten, gelöschten oder
-              nicht zugänglichen Speichermedien — ohne weitere Schreibzugriffe auf Ihr Original.
-              Analyse inklusive Dateiliste: {DIAGNOSIS_FEE_FORMATTED}, Dauer in der Regel{' '}
-              {ANALYSIS_DURATION}. Sie kennen den Preis, bevor Sie beauftragen. {NO_COST_GUARANTEE_NOTE}{' '}
-              Über {RESCUED_DATASETS} gerettete Datensätze. Abgabe in Grevenbroich und
-              Mönchengladbach oder kostenlose DHL Express-Abholung bundesweit; Koordination aus Köln
-              (NRW).
-            </p>
           </div>
         </section>
 

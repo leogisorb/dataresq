@@ -11,7 +11,7 @@ export default function GlossarySection({
 }: GlossarySectionProps): React.JSX.Element {
   return (
     <section className="border-t border-black/5 bg-bg py-12 md:px-8 md:py-16 lg:px-12">
-      <div className="site-container max-w-3xl">
+      <div className="site-container">
         <h2 className="text-2xl font-bold text-text md:text-3xl">{title}</h2>
         <dl className="mt-8 space-y-6">
           {terms.map((item) => (

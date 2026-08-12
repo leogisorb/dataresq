@@ -6,10 +6,10 @@ interface ComparisonTableProps {
 
 export default function ComparisonTable({ rows = comparisonRows }: ComparisonTableProps) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="overflow-x-auto rounded-xl border border-border bg-bg-card">
       <table className="w-full min-w-[560px] border-collapse text-left text-sm text-text md:text-base">
         <thead>
-          <tr className="border-b border-border bg-bg-subtle">
+          <tr className="border-b border-border bg-bg-card">
             <th className="px-4 py-4 font-semibold md:px-6" scope="col">
               Merkmal
             </th>
@@ -25,7 +25,7 @@ export default function ComparisonTable({ rows = comparisonRows }: ComparisonTab
           {rows.map((row) => (
             <tr
               key={row.feature}
-              className="border-b border-border transition-colors duration-200 last:border-b-0 hover:bg-neon/20"
+              className="border-b border-border bg-bg-card transition-colors duration-200 last:border-b-0 hover:bg-neon/20"
             >
               <th className="px-4 py-4 font-medium md:px-6" scope="row">
                 {row.feature}
