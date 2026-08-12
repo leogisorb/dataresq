@@ -5,16 +5,12 @@ import RebootHeroCard from '@/components/variante-b/RebootHeroCard';
 import Features from '@/components/sections/Features';
 import PromisesSection from '@/components/sections/PromisesSection';
 import Testimonials from '@/components/sections/Testimonials';
-import CitationAnswerBlock from '@/components/seo/CitationAnswerBlock';
-import LastUpdatedBadge from '@/components/seo/LastUpdatedBadge';
 import RatgeberTeaser from '@/components/seo/RatgeberTeaser';
 import { calculatorFaqs } from '@/lib/faq-calculator';
 import {
-  CONTENT_LAST_UPDATED,
   HOME_META_DESCRIPTION,
   HOME_META_TITLE,
 } from '@/lib/constants';
-import { HOME_CITATION_ANSWER } from '@/lib/datenrettung-geo-ui';
 import { HOME_RATGEBER_TEASERS } from '@/lib/ratgeber/articles';
 import { createContentMetadata } from '@/lib/metadata';
 import {
@@ -61,16 +57,6 @@ export default function HomePage() {
       />
       <main>
         <RebootHeroCard />
-        <section className="border-b border-black/5 bg-bg py-10 md:px-8 md:py-12 lg:px-12">
-          <div className="site-container">
-            <LastUpdatedBadge dateIso={CONTENT_LAST_UPDATED} />
-            <CitationAnswerBlock
-              answer={HOME_CITATION_ANSWER.answer}
-              facts={[...HOME_CITATION_ANSWER.facts]}
-              question={HOME_CITATION_ANSWER.question}
-            />
-          </div>
-        </section>
         <PromisesSection />
         <CalculatorSection />
         <ExpertiseSection />
